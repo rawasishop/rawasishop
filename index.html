@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="سيروم رواسي الفاخر لإنبات وتكثيف الشعر واللحية — مكونات طبيعية، شحن سريع، والدفع عند الاستلام في الخليج.">
-  <title>رواسي | سيروم إنبات وتكثيف الشعر واللحية</title>
+  <meta name="description" content="رواسي — سيروم إنبات الشعر واللحية، مجموعة الرداء الفاخر، وحقيبة الظهر الذكية. شحن سريع لكل مدن المملكة والدفع عند الاستلام.">
+  <title>رواسي | منتجات فاخرة — سيروم، عناية اللحية، وحقائب ذكية</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
@@ -18,15 +18,22 @@
         <span class="navbar__logo" aria-hidden="true">ر</span>
         <span class="navbar__name">رواسي</span>
       </a>
-      <a href="#order" class="navbar__cart" aria-label="الانتقال إلى نموذج الطلب">
-        <svg class="navbar__cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-          <path d="M6 6h15l-1.5 9h-12L6 6z"/>
-          <circle cx="9" cy="20" r="1.2"/>
-          <circle cx="18" cy="20" r="1.2"/>
-          <path d="M6 6L5 3H2"/>
-        </svg>
-        <span class="navbar__cart-badge">1</span>
-      </a>
+      <nav class="navbar__nav" aria-label="التنقل الرئيسي">
+        <a href="#features" class="navbar__link">المميزات</a>
+        <a href="#premium" class="navbar__link navbar__link--gold">الفاخرة</a>
+        <a href="?product=serum#order" class="navbar__link navbar__link--cta">اطلب الآن</a>
+      </nav>
+      <div class="navbar__actions">
+        <a href="?product=serum#order" class="navbar__cart" aria-label="السلة — الانتقال إلى الطلب">
+          <svg class="navbar__cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+            <path d="M6 6h15l-1.5 9h-12L6 6z"/>
+            <circle cx="9" cy="20" r="1.2"/>
+            <circle cx="18" cy="20" r="1.2"/>
+            <path d="M6 6L5 3H2"/>
+          </svg>
+          <span class="navbar__cart-badge" id="cart-badge" aria-hidden="true">1</span>
+        </a>
+      </div>
     </div>
   </header>
 
@@ -57,7 +64,7 @@
             </li>
           </ul>
           <div class="hero__cta">
-            <a href="#order" class="btn btn--primary">اطلب الآن — الدفع عند الاستلام</a>
+            <a href="?product=serum#order" class="btn btn--primary" data-product="serum">اطلب الآن — الدفع عند الاستلام</a>
             <p class="hero__price">
               <span class="hero__price-label">العرض الحالي</span>
               <span class="hero__price-value">199 <small>ر.س</small></span>
@@ -143,6 +150,153 @@
             </p>
           </article>
         </div>
+        <p class="features__premium-cta">
+          <a href="#premium" class="btn btn--outline-gold">اكتشف مجموعة رواسي الفاخرة ←</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- Premium Products -->
+    <section class="premium" id="premium" aria-labelledby="premium-title">
+      <div class="container">
+        <header class="section-header section-header--premium">
+          <p class="section-header__eyebrow section-header__eyebrow--gold">مجموعة رواسي الحصرية</p>
+          <h2 id="premium-title" class="section-header__title section-header__title--light">منتجاتنا الفاخرة — من المصنع إلى بيتك</h2>
+          <p class="section-header__desc section-header__desc--light">
+            نصمّم ونُنتج بأيدٍ سعودية خبرة — أنت تتعامل مباشرة مع مالك العلامة، بدون وسطاء، بجودة تليق برجل الخليج.
+          </p>
+        </header>
+
+        <p class="premium__owner-line" aria-hidden="true">
+          <span class="premium__owner-icon">◆</span>
+          رواسي — العلامة الحصرية | صنع وتوزيع مباشر
+          <span class="premium__owner-icon">◆</span>
+        </p>
+
+        <div class="premium__grid">
+          <!-- Product 1: Beard Kit -->
+          <article class="premium-card">
+            <div class="premium-card__media">
+              <span class="premium-card__ribbon">إصدار الخليج</span>
+              <img
+                src="https://images.unsplash.com/photo-1621607512214-68297480165e?w=800&auto=format&fit=crop&q=80"
+                alt="مجموعة الرداء الفاخر لتكثيف والعناية باللحية — زيت طبيعي، ديرما رولر، ومشط فاخر"
+                width="800"
+                height="600"
+                loading="lazy"
+              >
+            </div>
+            <div class="premium-card__body">
+              <span class="premium-card__brand">رواسي أوريجينال</span>
+              <h3 class="premium-card__title">مجموعة الرداء الفاخر لتكثيف والعناية باللحية</h3>
+              <p class="premium-card__desc">
+                حزمة عناية متكاملة من إنتاجنا: <strong>زيت طبيعي مركّز</strong> يتحمّل حرارة ورياح الخليج،
+                <strong>ديرما رولر</strong> لتنشيط البصيلات، و<strong>مشط فاخر</strong> بتصميم ملكي — لمن يريد لحية كثيفة وأنيقة في كل مناسبة.
+              </p>
+              <ul class="premium-card__features">
+                <li>مكوّنات طبيعية مناسبة لمناخ الخليج</li>
+                <li>تكثيف وإنبات مع الاستخدام المنتظم</li>
+                <li>تغليف فاخر — هدية تليق برجل مكانه</li>
+              </ul>
+              <p class="premium-card__guarantee">
+                <span class="premium-card__guarantee-icon" aria-hidden="true">★</span>
+                ضمان ذهبي 30 يوماً — استرجاع كامل المبلغ إن لم ترضَ
+              </p>
+              <div class="premium-card__footer">
+                <p class="premium-card__price">
+                  <span class="premium-card__price-label">سعر الحزمة</span>
+                  <span class="premium-card__price-value">349 <small>ر.س</small></span>
+                </p>
+                <a href="?product=beard-kit#order" class="btn btn--premium" data-product="beard-kit">اطلب الآن — الدفع عند الاستلام مع شحن سريع لكافة مدن المملكة</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Product 2: Smart Backpack -->
+          <article class="premium-card premium-card--reverse">
+            <div class="premium-card__media">
+              <span class="premium-card__ribbon premium-card__ribbon--navy">لرجال الأعمال</span>
+              <img
+                src="https://images.unsplash.com/photo-1553062407-98eeb64c9a62?w=800&auto=format&fit=crop&q=80"
+                alt="حقيبة الظهر الذكية المنظمة — مقاومة للماء والسرقة مع منافذ شحن USB"
+                width="800"
+                height="600"
+                loading="lazy"
+              >
+            </div>
+            <div class="premium-card__body">
+              <span class="premium-card__brand">رواسي برو</span>
+              <h3 class="premium-card__title">حقيبة الظهر الذكية المنظمة للمقتنيات الثمينة</h3>
+              <p class="premium-card__desc">
+                صُمّمت في ورش رواسي لرجل ينتقل بين الاجتماعات والرحلات: <strong>مقاومة للماء</strong>،
+                <strong>حماية ضد السرقة</strong> بجيوب مخفية، و<strong>منافذ شحن USB</strong> مدمجة — مع تقسيم داخلي ذكي لأجهزتك ومستنداتك وأغراضك الثمينة.
+              </p>
+              <ul class="premium-card__features">
+                <li>قماش مقوّى ومقاوم للمطر والغبار</li>
+                <li>تنظيم داخلي للابتوب والجواز والمحفظة</li>
+                <li>مثالية للسفر والعمل اليومي</li>
+              </ul>
+              <p class="premium-card__guarantee">
+                <span class="premium-card__guarantee-icon" aria-hidden="true">★</span>
+                ضمان رواسي لمدة سنة على عيوب التصنيع
+              </p>
+              <div class="premium-card__footer">
+                <p class="premium-card__price">
+                  <span class="premium-card__price-label">سعر الحقيبة</span>
+                  <span class="premium-card__price-value">279 <small>ر.س</small></span>
+                </p>
+                <a href="?product=backpack#order" class="btn btn--premium" data-product="backpack">اطلب الآن — الدفع عند الاستلام مع شحن سريع لكافة مدن المملكة</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <!-- Reviews -->
+        <div class="premium-reviews" aria-labelledby="premium-reviews-title">
+          <h3 id="premium-reviews-title" class="premium-reviews__title">آراء عملائنا في المملكة</h3>
+          <div class="premium-reviews__grid">
+            <blockquote class="review-card">
+              <div class="review-card__stars" aria-label="تقييم 5 من 5">★★★★★</div>
+              <p class="review-card__text">
+                «والله العظيم يا جماعة، المجموعة غيّرت لحيتي — الزيت ما يثقل والديرما رولر حسّيت فيه فرق من أول أسبوع. وأبو فهد ما يمدح إلا اللي يستاهل.»
+              </p>
+              <footer class="review-card__author">
+                <span class="review-card__name">أبو فهد</span>
+                <span class="review-card__city">الرياض</span>
+              </footer>
+            </blockquote>
+            <blockquote class="review-card">
+              <div class="review-card__stars" aria-label="تقييم 5 من 5">★★★★★</div>
+              <p class="review-card__text">
+                «طلبت حقيبة الظهر قبل رحلة دبي — منظمة، خفيفة، والشحن USB فادني في المطار. مشعل الميموني يشكر رواسي على الالتزام والتغليف الراقي.»
+              </p>
+              <footer class="review-card__author">
+                <span class="review-card__name">مشعل الميموني</span>
+                <span class="review-card__city">جدة</span>
+              </footer>
+            </blockquote>
+            <blockquote class="review-card">
+              <div class="review-card__stars" aria-label="تقييم 5 من 5">★★★★★</div>
+              <p class="review-card__text">
+                «أنا من أهل الدمام — جربت السيروم والحزمة مع بعض، والنتيجة ممتازة. الدفع عند الاستلام يطمن الواحد، والتوصيل لباب البيت ما يتجاوز ثلاثة أيام.»
+              </p>
+              <footer class="review-card__author">
+                <span class="review-card__name">سلطان الحربي</span>
+                <span class="review-card__city">الدمام</span>
+              </footer>
+            </blockquote>
+            <blockquote class="review-card">
+              <div class="review-card__stars" aria-label="تقييم 5 من 5">★★★★★</div>
+              <p class="review-card__text">
+                «بنتي اشترت لي الحقيبة هدية — جودة عالية وتبان إنها من مصنع مو من سوق عشوائي. نورة العتيبي تنصح كل أخو يبغى شي يدوم.»
+              </p>
+              <footer class="review-card__author">
+                <span class="review-card__name">نورة العتيبي</span>
+                <span class="review-card__city">مكة المكرمة</span>
+              </footer>
+            </blockquote>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -185,12 +339,38 @@
             <li>تغليف آمن ومغلق</li>
             <li>دعم عبر الواتساب بعد الطلب</li>
           </ul>
-          <div class="order__summary">
-            <span>سيروم رواسي الفاخر × 1</span>
-            <strong>199 ر.س</strong>
+          <div class="order__summary" id="order-summary" aria-live="polite">
+            <span id="order-summary-label">سيروم رواسي الفاخر × 1</span>
+            <strong id="order-summary-price">199 ر.س</strong>
           </div>
         </div>
         <form class="order__form" id="checkout-form" novalidate>
+          <fieldset class="product-picker">
+            <legend class="product-picker__legend">اختر منتجك</legend>
+            <div class="product-picker__grid" role="radiogroup" aria-label="اختيار المنتج">
+              <label class="product-picker__option">
+                <input type="radio" name="product" value="serum" checked>
+                <span class="product-picker__card">
+                  <span class="product-picker__name">سيروم رواسي الفاخر</span>
+                  <span class="product-picker__price">199 ر.س</span>
+                </span>
+              </label>
+              <label class="product-picker__option">
+                <input type="radio" name="product" value="beard-kit">
+                <span class="product-picker__card">
+                  <span class="product-picker__name">مجموعة الرداء الفاخر</span>
+                  <span class="product-picker__price">349 ر.س</span>
+                </span>
+              </label>
+              <label class="product-picker__option">
+                <input type="radio" name="product" value="backpack">
+                <span class="product-picker__card">
+                  <span class="product-picker__name">حقيبة الظهر الذكية</span>
+                  <span class="product-picker__price">279 ر.س</span>
+                </span>
+              </label>
+            </div>
+          </fieldset>
           <div class="form-group">
             <label for="fullname">الاسم الكامل</label>
             <input type="text" id="fullname" name="fullname" placeholder="مثال: محمد أحمد العتيبي" required autocomplete="name">
@@ -217,32 +397,185 @@
   <footer class="footer">
     <div class="container footer__inner">
       <p class="footer__brand">رواسي © <span id="year"></span></p>
-      <p class="footer__tagline">سيروم فاخر لإنبات وتكثيف الشعر واللحية</p>
+      <p class="footer__tagline">من المصنع إلى بيتك — سيروم، عناية اللحية، وحقائب ذكية</p>
+      <nav class="footer__nav" aria-label="روابط سريعة">
+        <a href="#features">المميزات</a>
+        <a href="#premium">المنتجات الفاخرة</a>
+        <a href="?product=serum#order">اطلب الآن</a>
+      </nav>
     </div>
   </footer>
+
+  <aside class="sticky-cta" aria-label="طلب سريع">
+    <a href="?product=serum#order" class="sticky-cta__btn" id="sticky-cta-btn">اطلب — دفع عند الاستلام</a>
+  </aside>
+
+  <a
+    href="#"
+    class="whatsapp-fab"
+    id="whatsapp-fab"
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label="تواصل معنا عبر واتساب"
+  >
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
 
   <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    (function () {
+      var PRODUCTS = {
+        serum: {
+          name: 'سيروم رواسي الفاخر',
+          price: 199,
+          sticky: 'اطلب السيروم — دفع عند الاستلام'
+        },
+        'beard-kit': {
+          name: 'مجموعة الرداء الفاخر لتكثيف والعناية باللحية',
+          price: 349,
+          sticky: 'اطلب مجموعة اللحية — دفع عند الاستلام'
+        },
+        backpack: {
+          name: 'حقيبة الظهر الذكية المنظمة للمقتنيات الثمينة',
+          price: 279,
+          sticky: 'اطلب الحقيبة — دفع عند الاستلام'
+        }
+      };
 
-    document.getElementById('checkout-form').addEventListener('submit', function (e) {
-      e.preventDefault();
-      var form = e.target;
-      if (!form.checkValidity()) {
-        form.reportValidity();
-        return;
+      /* غيّر الرقم إلى رقم واتساب المتجر (مثال: 966501234567) */
+      var WHATSAPP_NUMBER = '966500000000';
+
+      var orderSection = document.getElementById('order');
+      var summaryLabel = document.getElementById('order-summary-label');
+      var summaryPrice = document.getElementById('order-summary-price');
+      var stickyBtn = document.getElementById('sticky-cta-btn');
+      var whatsappFab = document.getElementById('whatsapp-fab');
+      var form = document.getElementById('checkout-form');
+      var productRadios = form.querySelectorAll('input[name="product"]');
+
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      function formatPrice(n) {
+        return n + ' ر.س';
       }
-      var toast = document.getElementById('toast');
-      toast.textContent = 'تم استلام طلبك بنجاح! سنتواصل معك قريباً لتأكيد الشحنة.';
-      toast.hidden = false;
-      toast.classList.add('toast--visible');
-      form.reset();
-      setTimeout(function () {
-        toast.classList.remove('toast--visible');
-        setTimeout(function () { toast.hidden = true; }, 400);
-      }, 5000);
-    });
+
+      function getSelectedProductId() {
+        var checked = form.querySelector('input[name="product"]:checked');
+        return checked ? checked.value : 'serum';
+      }
+
+      function buildWhatsAppUrl(productId) {
+        var p = PRODUCTS[productId] || PRODUCTS.serum;
+        var text = 'السلام عليكم، أبغى أطلب من متجر رواسي:\n• ' + p.name + '\n• السعر: ' + formatPrice(p.price) + '\n• الدفع عند الاستلام';
+        return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(text);
+      }
+
+      function updateWhatsAppLink(productId) {
+        whatsappFab.href = buildWhatsAppUrl(productId);
+      }
+
+      function highlightOrder() {
+        orderSection.classList.add('order--pulse');
+        setTimeout(function () {
+          orderSection.classList.remove('order--pulse');
+        }, 1400);
+      }
+
+      function selectProduct(productId, options) {
+        options = options || {};
+        if (!PRODUCTS[productId]) productId = 'serum';
+        var p = PRODUCTS[productId];
+
+        productRadios.forEach(function (radio) {
+          radio.checked = radio.value === productId;
+          radio.closest('.product-picker__option').classList.toggle(
+            'product-picker__option--active',
+            radio.checked
+          );
+        });
+
+        summaryLabel.textContent = p.name + ' × 1';
+        summaryPrice.textContent = formatPrice(p.price);
+        stickyBtn.textContent = p.sticky;
+        stickyBtn.href = '?product=' + productId + '#order';
+        updateWhatsAppLink(productId);
+
+        if (options.updateUrl !== false) {
+          var url = new URL(window.location.href);
+          url.searchParams.set('product', productId);
+          url.hash = 'order';
+          history.replaceState(null, '', url.pathname + url.search + url.hash);
+        }
+
+        if (options.highlight) highlightOrder();
+      }
+
+      function readProductFromUrl() {
+        var params = new URLSearchParams(window.location.search);
+        return params.get('product');
+      }
+
+      productRadios.forEach(function (radio) {
+        radio.addEventListener('change', function () {
+          selectProduct(radio.value, { highlight: false });
+        });
+      });
+
+      document.querySelectorAll('[data-product]').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          var id = link.getAttribute('data-product');
+          if (!id || !PRODUCTS[id]) return;
+          selectProduct(id, { highlight: true, updateUrl: true });
+        });
+      });
+
+      function syncFromUrl() {
+        var id = readProductFromUrl();
+        if (id && PRODUCTS[id]) {
+          selectProduct(id, {
+            highlight: window.location.hash === '#order',
+            updateUrl: false
+          });
+        }
+      }
+
+      window.addEventListener('popstate', syncFromUrl);
+      window.addEventListener('hashchange', syncFromUrl);
+
+      document.body.addEventListener('click', function (e) {
+        var link = e.target.closest('a[href*="#order"], a[href*="product="]');
+        if (!link || link.hasAttribute('data-product')) return;
+        setTimeout(syncFromUrl, 80);
+      });
+
+      var initial = readProductFromUrl() || 'serum';
+      selectProduct(initial, { highlight: false, updateUrl: !!readProductFromUrl() });
+
+      if (window.location.hash === '#order' && readProductFromUrl()) {
+        setTimeout(highlightOrder, 300);
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        if (!form.checkValidity()) {
+          form.reportValidity();
+          return;
+        }
+        var productId = getSelectedProductId();
+        var p = PRODUCTS[productId];
+        var toast = document.getElementById('toast');
+        toast.textContent = 'تم استلام طلب «' + p.name + '» بنجاح! سنتواصل معك قريباً لتأكيد الشحنة.';
+        toast.hidden = false;
+        toast.classList.add('toast--visible');
+        form.reset();
+        selectProduct('serum', { highlight: false, updateUrl: true });
+        setTimeout(function () {
+          toast.classList.remove('toast--visible');
+          setTimeout(function () { toast.hidden = true; }, 400);
+        }, 5500);
+      });
+    })();
   </script>
 </body>
 </html>
