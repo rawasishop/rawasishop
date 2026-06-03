@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>شكراً لطلبك | رواسي</title>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="thank-you-page">
+  <main class="thank-you">
+    <div class="container thank-you__box">
+      <span class="thank-you__icon" aria-hidden="true">✓</span>
+      <h1>تم استلام طلبك بنجاح</h1>
+      <p>سنتصل بكِ خلال ساعات لتأكيد الطلب قبل الشحن.</p>
+      <p class="thank-you__meta">رقم الطلب: <strong id="order-id">—</strong></p>
+      <p class="thank-you__meta">الإجمالي: <strong id="order-total">—</strong></p>
+      <a href="index.html" class="btn btn--primary">العودة للمتجر</a>
+    </div>
+  </main>
+  <script>
+    var p = new URLSearchParams(location.search);
+    document.getElementById('order-id').textContent = p.get('order') || '—';
+    var t = p.get('total');
+    document.getElementById('order-total').textContent = t ? t + ' ر.س' : '—';
+  </script>
+</body>
+</html>
