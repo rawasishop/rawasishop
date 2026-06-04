@@ -9,7 +9,7 @@ window.RAWASI_CONFIG = {
   whatsapp: '212633405061',
   GOOGLE_SHEET_ID: '1mFLx9XEPJjSVxCo41c929jtqwpluV9TADqFRLlnc7Lw',
   WEBHOOK_URL:
-    'https://script.google.com/macros/s/AKfycbyz-kQq4zvNK2_GrNCj9uMpOYUCxIO_beI_-8ykRZlw6Bh-7jVK1VIVVO1Wl7Tvdfc/exec',
+    'https://script.google.com/macros/s/AKfycbwiNflCm3Jj_5PmHeA4as3ACx2vsv3vJWOoCjS_aYRzqSjKGDvmlMBhekfAe6Zg/exec',
 
   products: {
     electrolytes: {

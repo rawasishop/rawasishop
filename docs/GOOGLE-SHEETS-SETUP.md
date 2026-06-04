@@ -45,7 +45,7 @@ https://docs.google.com/spreadsheets/d/1mFLx9XEPJjSVxCo41c929jtqwpluV9TADqFRLlnc
 الرابط العامل (الإصدار 2):
 
 ```
-https://script.google.com/macros/s/AKfycbyz-kQq4zvNK2_GrNCj9uMpOYUCxIO_beI_-8ykRZlw6Bh-7jVK1VIVVO1Wl7Tvdfc/exec
+https://script.google.com/macros/s/AKfycbwiNflCm3Jj_5PmHeA4as3ACx2vsv3vJWOoCjS_aYRzqSjKGDvmlMBhekfAe6Zg/exec
 ```
 
 ## اختبار
