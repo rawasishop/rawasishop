@@ -36,13 +36,14 @@
 
 /* ---------- Reset ---------- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; overflow-x: clip; width: 100%; }
+html { scroll-behavior: smooth; max-width: 100%; }
 body {
   font-family: var(--font-body);
   color: var(--ink);
   background: var(--cream);
   line-height: 1.7;
-  overflow-x: clip;
+  overflow-x: hidden;
+  max-width: 100%;
   -webkit-font-smoothing: antialiased;
 }
 img { max-width: 100%; display: block; }
