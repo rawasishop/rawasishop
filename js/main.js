@@ -1,0 +1,318 @@
+/* =========================================================
+   RawasiShop — تفاعلية صفحة الهبوط
+   ========================================================= */
+(function () {
+  'use strict';
+
+  /* ====== إعدادات المتجر ======
+     ضعي هنا رقم واتساب المتجر (بصيغة دولية بدون + أو مسافات).
+     مثال للمغرب: 2126XXXXXXXX */
+  var STORE_WHATSAPP = '212633405061';
+
+  /* علم استخدام كوبون خصم المغادرة */
+  var couponClaimed = false;
+
+  /* ---- سنة الفوتر ---- */
+  var yearEl = document.getElementById('year');
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  /* ---- ظل الهيدر عند التمرير ---- */
+  var header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', function () {
+    if (header) header.classList.toggle('scrolled', window.scrollY > 12);
+  });
+
+  /* ---- قائمة الجوال ---- */
+  var navToggle = document.getElementById('navToggle');
+  var mainNav = document.getElementById('mainNav');
+  if (navToggle && mainNav) {
+    navToggle.addEventListener('click', function () {
+      mainNav.classList.toggle('open');
+      navToggle.classList.toggle('open');
+    });
+    mainNav.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mainNav.classList.remove('open');
+        navToggle.classList.remove('open');
+      });
+    });
+  }
+
+  /* ---- تأثير الظهور عند التمرير ---- */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(function (el) { io.observe(el); });
+  } else {
+    reveals.forEach(function (el) { el.classList.add('visible'); });
+  }
+
+  /* ---- العداد التنازلي (يتجدد كل يوم لإبقاء العرض "حياً") ---- */
+  var cdH = document.getElementById('cdH');
+  var cdM = document.getElementById('cdM');
+  var cdS = document.getElementById('cdS');
+
+  function getDeadline() {
+    var saved = localStorage.getItem('rawasi_deadline');
+    var now = Date.now();
+    if (saved && parseInt(saved, 10) > now) return parseInt(saved, 10);
+    var next = now + 8 * 60 * 60 * 1000; // 8 ساعات من أول زيارة
+    localStorage.setItem('rawasi_deadline', String(next));
+    return next;
+  }
+
+  var deadline = getDeadline();
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function tick() {
+    var diff = deadline - Date.now();
+    if (diff <= 0) { deadline = getDeadline(); diff = deadline - Date.now(); }
+    var h = Math.floor(diff / 3600000);
+    var m = Math.floor((diff % 3600000) / 60000);
+    var s = Math.floor((diff % 60000) / 1000);
+    if (cdH) cdH.textContent = pad(h);
+    if (cdM) cdM.textContent = pad(m);
+    if (cdS) cdS.textContent = pad(s);
+  }
+  if (cdH) { tick(); setInterval(tick, 1000); }
+
+  /* ---- تحديث المجموع حسب الباقة المختارة ---- */
+  var totalPrice = document.getElementById('totalPrice');
+  function arNum(n) {
+    return n.toLocaleString('ar-EG');
+  }
+  function getSelectedBundle() {
+    return document.querySelector('input[name="qty"]:checked');
+  }
+  function updateTotal() {
+    var sel = getSelectedBundle();
+    if (!sel || !totalPrice) return;
+    var price = parseInt(sel.getAttribute('data-price'), 10);
+    totalPrice.textContent = arNum(price) + ' درهم';
+  }
+  document.querySelectorAll('input[name="qty"]').forEach(function (r) {
+    r.addEventListener('change', updateTotal);
+  });
+  updateTotal();
+
+  /* ---- التحقق من نموذج الطلب ---- */
+  var form = document.getElementById('orderForm');
+  var modal = document.getElementById('successModal');
+  var modalClose = document.getElementById('modalClose');
+  var successName = document.getElementById('successName');
+
+  function setError(name, msg) {
+    var input = form.querySelector('[name="' + name + '"]');
+    var err = form.querySelector('.err[data-for="' + name + '"]');
+    if (input) input.classList.toggle('invalid', !!msg);
+    if (err) err.textContent = msg || '';
+  }
+
+  function validate() {
+    var ok = true;
+    var name = form.fullname.value.trim();
+    var phone = form.phone.value.trim();
+    var city = form.city.value.trim();
+    var address = form.address.value.trim();
+
+    if (name.length < 3) { setError('fullname', 'يرجى إدخال الاسم الكامل'); ok = false; }
+    else setError('fullname', '');
+
+    var phoneDigits = phone.replace(/\D/g, '');
+    if (phoneDigits.length < 9) { setError('phone', 'يرجى إدخال رقم هاتف صحيح'); ok = false; }
+    else setError('phone', '');
+
+    if (city.length < 2) { setError('city', 'يرجى إدخال المدينة'); ok = false; }
+    else setError('city', '');
+
+    if (address.length < 5) { setError('address', 'يرجى إدخال عنوان واضح'); ok = false; }
+    else setError('address', '');
+
+    return ok;
+  }
+
+  if (form) {
+    // قبول الأرقام فقط في حقل الهاتف
+    form.phone.addEventListener('input', function () {
+      this.value = this.value.replace(/[^\d+ ]/g, '');
+    });
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!validate()) {
+        var firstInvalid = form.querySelector('.invalid');
+        if (firstInvalid) firstInvalid.focus();
+        return;
+      }
+
+      var selBundle = getSelectedBundle();
+      var qtyVal = selBundle ? selBundle.value : '1';
+      var bundleTitleEl = selBundle ? selBundle.parentNode.querySelector('.bundle-title') : null;
+      var qtyLabel = bundleTitleEl ? bundleTitleEl.textContent : (qtyVal + ' قطعة');
+
+      var order = {
+        name: form.fullname.value.trim(),
+        phone: form.phone.value.trim(),
+        city: form.city.value.trim(),
+        address: form.address.value.trim(),
+        qty: qtyVal,
+        total: totalPrice ? totalPrice.textContent : '',
+        date: new Date().toISOString()
+      };
+      // حفظ الطلب محلياً (يمكن ربطه لاحقاً بخادم أو Google Sheets)
+      try {
+        var orders = JSON.parse(localStorage.getItem('rawasi_orders') || '[]');
+        orders.push(order);
+        localStorage.setItem('rawasi_orders', JSON.stringify(orders));
+      } catch (err) { /* تجاهل */ }
+
+      console.log('طلب جديد:', order);
+
+      // ---- إرسال الطلب تلقائياً عبر واتساب لرقم المتجر ----
+      var msg =
+        '🛍️ *طلب جديد من RawasiShop*\n' +
+        '────────────\n' +
+        '🧴 المنتج: جهاز إزالة الشعر IPL\n' +
+        '👤 الاسم: ' + order.name + '\n' +
+        '📞 الهاتف: ' + order.phone + '\n' +
+        '🏙️ المدينة: ' + order.city + '\n' +
+        '📍 العنوان: ' + order.address + '\n' +
+        '🔢 الكمية: ' + qtyLabel + '\n' +
+        '💰 المجموع: ' + order.total + '\n' +
+        '💵 الدفع: عند الاستلام' +
+        (couponClaimed ? '\n🎁 كوبون خصم: RAWASI10 (خصم إضافي 10%)' : '');
+      var waUrl = 'https://wa.me/' + STORE_WHATSAPP + '?text=' + encodeURIComponent(msg);
+      window.open(waUrl, '_blank');
+
+      if (successName) successName.textContent = order.name.split(' ')[0];
+      if (modal) { modal.classList.add('show'); modal.setAttribute('aria-hidden', 'false'); }
+      form.reset();
+      updateTotal();
+    });
+  }
+
+  /* ---- إغلاق النافذة ---- */
+  function closeModal() {
+    if (modal) { modal.classList.remove('show'); modal.setAttribute('aria-hidden', 'true'); }
+  }
+  if (modalClose) modalClose.addEventListener('click', closeModal);
+  if (modal) modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+
+  /* ---- نافذة عرض المغادرة (Exit-Intent) ---- */
+  var exitModal = document.getElementById('exitModal');
+  if (exitModal) {
+    var shown = false;
+    function openExit() {
+      if (shown || sessionStorage.getItem('rawasi_exit')) return;
+      shown = true;
+      sessionStorage.setItem('rawasi_exit', '1');
+      exitModal.classList.add('show');
+      exitModal.setAttribute('aria-hidden', 'false');
+    }
+    function hideExit() {
+      exitModal.classList.remove('show');
+      exitModal.setAttribute('aria-hidden', 'true');
+    }
+    // سطح المكتب: عند تحريك الماوس خارج أعلى الصفحة
+    document.addEventListener('mouseout', function (e) {
+      if (e.clientY <= 0 && !e.relatedTarget) openExit();
+    });
+    // الجوال: بعد مرور وقت دون طلب
+    setTimeout(function () {
+      if (window.innerWidth < 760) openExit();
+    }, 25000);
+
+    var exitClose = document.getElementById('exitClose');
+    var exitDecline = document.getElementById('exitDecline');
+    var exitCta = document.getElementById('exitCta');
+    if (exitClose) exitClose.addEventListener('click', hideExit);
+    if (exitDecline) exitDecline.addEventListener('click', hideExit);
+    if (exitCta) exitCta.addEventListener('click', function () { couponClaimed = true; hideExit(); });
+    exitModal.addEventListener('click', function (e) { if (e.target === exitModal) hideExit(); });
+
+    // نسخ كود الكوبون عند الضغط
+    var couponCode = document.getElementById('couponCode');
+    if (couponCode) {
+      couponCode.style.cursor = 'pointer';
+      couponCode.addEventListener('click', function () {
+        var code = couponCode.textContent.trim();
+        if (navigator.clipboard) { navigator.clipboard.writeText(code).catch(function () {}); }
+        var c = couponCode.closest('.coupon');
+        if (c) { c.classList.add('copied'); }
+      });
+    }
+  }
+
+  /* ---- عداد المشاهدين الحي (يتذبذب لإيحاء الحركة) ---- */
+  var viewersEl = document.getElementById('viewers');
+  if (viewersEl) {
+    var v = 23;
+    setInterval(function () {
+      v += Math.floor(Math.random() * 7) - 3; // ±3
+      if (v < 12) v = 12;
+      if (v > 47) v = 47;
+      viewersEl.textContent = v;
+    }, 4000);
+  }
+
+  /* ---- تناقص المخزون ببطء (إلحاح) ---- */
+  var stockEl = document.getElementById('stockLeft');
+  if (stockEl) {
+    var stock = parseInt(localStorage.getItem('rawasi_stock') || '7', 10);
+    if (isNaN(stock) || stock < 2) stock = 7;
+    stockEl.textContent = stock;
+    setInterval(function () {
+      if (stock > 2 && Math.random() < 0.5) {
+        stock--;
+        stockEl.textContent = stock;
+        localStorage.setItem('rawasi_stock', String(stock));
+      }
+    }, 35000);
+  }
+
+  /* ---- شريط الطلب الثابت: يظهر بعد تجاوز Hero ويختفي عند نموذج الطلب ---- */
+  var stickyCta = document.getElementById('stickyCta');
+  var orderSection = document.getElementById('order');
+  if (stickyCta) {
+    window.addEventListener('scroll', function () {
+      var past = window.scrollY > 600;
+      var atOrder = false;
+      if (orderSection) {
+        var r = orderSection.getBoundingClientRect();
+        atOrder = r.top < window.innerHeight && r.bottom > 0;
+      }
+      stickyCta.classList.toggle('show', past && !atOrder);
+    });
+  }
+
+  /* ---- إشعارات الإثبات الاجتماعي (طلبات حديثة) ---- */
+  var toast = document.getElementById('socialToast');
+  if (toast) {
+    var names = ['سارة', 'ليلى', 'نسرين', 'فاطمة', 'خديجة', 'رجاء', 'إيمان', 'سلمى', 'هند', 'أمينة', 'مريم', 'زينب'];
+    var cities = ['الدار البيضاء', 'الرباط', 'مراكش', 'طنجة', 'أكادير', 'فاس', 'مكناس', 'وجدة', 'تطوان', 'القنيطرة'];
+    var times = ['قبل دقيقة', 'قبل دقيقتين', 'قبل 4 دقائق', 'قبل 7 دقائق', 'قبل 12 دقيقة', 'الآن'];
+    var stName = document.getElementById('stName');
+    var stCity = document.getElementById('stCity');
+    var stTime = document.getElementById('stTime');
+    function pick(a) { return a[Math.floor(Math.random() * a.length)]; }
+    function showToast() {
+      if (stName) stName.textContent = pick(names);
+      if (stCity) stCity.textContent = pick(cities);
+      if (stTime) stTime.textContent = pick(times);
+      toast.classList.add('show');
+      setTimeout(function () { toast.classList.remove('show'); }, 5000);
+    }
+    setTimeout(function () {
+      showToast();
+      setInterval(showToast, 13000);
+    }, 6000);
+  }
+
+})();
