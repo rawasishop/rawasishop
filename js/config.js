@@ -8,7 +8,8 @@ window.RAWASI_CONFIG = {
   whatsapp: '212633405061',
   /* جدول الطلبات: https://docs.google.com/spreadsheets/d/1fK5x1DqQYpijlbmGPWqhlw6S7xUb-Drojwue3dfigFE/edit */
   GOOGLE_SHEET_ID: '1fK5x1DqQYpijlbmGPWqhlw6S7xUb-Drojwue3dfigFE',
-  WEBHOOK_URL: 'https://script.google.com/macros/s/AKfycbyrfes6PlsGclbOvj0MVFITDhYX3zT4bA-lkS7KGs3_oQGUP3bAiMwgHFI7HvC5X61y/exec',
+  WEBHOOK_URL:
+    'https://script.google.com/macros/s/AKfycbxgfnUDUdH4jZVUdgKIM5-t23MtbPVdTK8A399aeoZVWVoyw7AkpQSLY_TjCiVzE-I/exec',
 
   products: {
     electrolytes: {

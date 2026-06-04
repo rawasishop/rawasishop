@@ -30,11 +30,20 @@ WEBHOOK_URL: 'https://script.google.com/macros/s/AKfycbyrfes6PlsGclbOvj0MVFITDhY
 
 8. ارفع الموقع أو جرّب محلياً: أتمم طلب تجريبي وتحقق من صف جديد في الجدول.
 
-## اختبار
+## اختبار (مهم)
 
-- افتح في المتصفح: `https://script.google.com/macros/s/XXXX/exec`  
-  يجب أن ترى: `Rawasi webhook OK`
+1. افتح في المتصفح رابط `/exec` من **آخر نشر** (ليس رابط قديم):
+   - يجب أن ترى بالضبط: **`Rawasi webhook OK`**
+   - إذا ظهرت صفحة Google «الملف غير موجود» → النشر ملغى أو الرابط خاطئ → أنشئ **New deployment** وانسخ `/exec` الجديد إلى `js/config.js`.
+
+2. بعد تحديث الرابط، أتمم طلباً تجريبياً من الموقع وتحقق من صف جديد في الجدول.
+
+3. الرابط الحالي في المشروع (تحقق أنه يعمل عندك):
+   `https://script.google.com/macros/s/AKfycbxgfnUDUdH4jZVUdgKIM5-t23MtbPVdTK8A399aeoZVWVoyw7AkpQSLY_TjCiVzE-I/exec`
+   انسخ **URL de l'application Web** كاملاً بزر **Copier** — لا تبني الرابط يدوياً من ID فقط.
+
 - إذا لم يظهر صف بعد الطلب: تأكد أن `WEBHOOK_URL` ينتهي بـ `/exec` وليس `/dev`.
+- الموقع يرسل الجسم بـ `Content-Type: text/plain` (متوافق مع Apps Script).
 
 ## ملاحظة
 
