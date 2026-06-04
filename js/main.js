@@ -12,6 +12,37 @@
   /* علم استخدام كوبون خصم المغادرة */
   var couponClaimed = false;
 
+  /* ====== إعدادات تتبّع الإعلانات ======
+     ضعي معرّفاتكِ هنا لتفعيل قياس مبيعات الإعلانات:
+       fbPixelId : معرّف Facebook Pixel (مثال: '123456789012345')
+       gaId      : معرّف Google GA4 / Google Ads (مثال: 'G-XXXXXXXXXX' أو 'AW-XXXXXXXXX')
+     اتركيها فارغة لتعطيل التتبّع. */
+  var TRACKING = { fbPixelId: '', gaId: '' };
+
+  function initTracking() {
+    if (TRACKING.fbPixelId) {
+      !function (f, b, e, v, n, t, s) {
+        if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
+        if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
+        t = b.createElement(e); t.async = !0; t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+      }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', TRACKING.fbPixelId); fbq('track', 'PageView');
+    }
+    if (TRACKING.gaId) {
+      var g = document.createElement('script'); g.async = true;
+      g.src = 'https://www.googletagmanager.com/gtag/js?id=' + TRACKING.gaId;
+      document.head.appendChild(g);
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { dataLayer.push(arguments); };
+      gtag('js', new Date()); gtag('config', TRACKING.gaId);
+    }
+  }
+  function trackEvent(fbName, gaName, value) {
+    try { if (window.fbq) fbq('track', fbName, { value: value, currency: 'MAD' }); } catch (e) {}
+    try { if (window.gtag) gtag('event', gaName, { value: value, currency: 'MAD' }); } catch (e) {}
+  }
+  initTracking();
+
   /* ---- سنة الفوتر ---- */
   var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -189,6 +220,11 @@
         (couponClaimed ? '\n🎁 كوبون خصم: RAWASI10 (خصم إضافي 10%)' : '');
       var waUrl = 'https://wa.me/' + STORE_WHATSAPP + '?text=' + encodeURIComponent(msg);
       window.open(waUrl, '_blank');
+
+      // قياس حدث الطلب للإعلانات (Facebook + Google)
+      var leadValue = selBundle ? parseInt(selBundle.getAttribute('data-price'), 10) : 395;
+      trackEvent('Lead', 'generate_lead', leadValue);
+      trackEvent('Purchase', 'purchase', leadValue);
 
       if (successName) successName.textContent = order.name.split(' ')[0];
       if (modal) { modal.classList.add('show'); modal.setAttribute('aria-hidden', 'false'); }
