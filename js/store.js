@@ -214,16 +214,23 @@
   function sendWebhook(payload) {
     if (!CFG.WEBHOOK_URL) {
       console.warn('WEBHOOK_URL غير مضبوط في js/config.js');
-      return Promise.resolve();
+      return Promise.resolve({ ok: false, skipped: true });
     }
+    /* form-urlencoded: متوافق مع no-cors + Google Apps Script (حقل payload) */
+    var body = 'payload=' + encodeURIComponent(JSON.stringify(payload));
     return fetch(CFG.WEBHOOK_URL, {
       method: 'POST',
       mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    }).catch(function (err) {
-      console.error('Webhook error', err);
-    });
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
+      body: body
+    })
+      .then(function () {
+        return { ok: true };
+      })
+      .catch(function (err) {
+        console.error('Webhook error', err);
+        return { ok: false, error: err };
+      });
   }
 
   function finalizeOrder(lines, customer) {

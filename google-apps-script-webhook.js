@@ -1,19 +1,19 @@
 /**
  * Google Apps Script — Webhook لطلبات رواسي
  *
- * الجدول: https://docs.google.com/spreadsheets/d/1fK5x1DqQYpijlbmGPWqhlw6S7xUb-Drojwue3dfigFE/edit
+ * الجدول (افتحه ثم Extensions → Apps Script من نفس الملف):
+ * https://docs.google.com/spreadsheets/d/1mFLx9XEPJjSVxCo41c929jtqwpluV9TADqFRLlnc7Lw/edit
  *
- * الإعداد (مرة واحدة):
- * 1. افتح الجدول → Extensions → Apps Script
- * 2. احذف الكود الافتراضي والصق هذا الملف بالكامل → Save
- * 3. شغّل الدالة setupHeaders مرة واحدة (Run) ووافق على الصلاحيات
- * 4. Deploy → New deployment → Type: Web app
- *    - Execute as: Me
- *    - Who has access: Anyone
- * 5. انسخ رابط ينتهي بـ /exec (ليس /dev) → ضعه في js/config.js → WEBHOOK_URL
+ * مهم: أنشئ السكربت من داخل هذا الجدول حتى تُكتب الطلبات فيه مباشرة.
+ *
+ * 1. الصق هذا الملف → Save
+ * 2. شغّل setupHeaders مرة واحدة (Run)
+ * 3. Deploy → Manage deployments → Edit → New version → Deploy
+ *    (أو New deployment) — Who has access: Anyone
+ * 4. انسخ URL /exec → js/config.js → WEBHOOK_URL
  */
 
-var SHEET_ID = '1fK5x1DqQYpijlbmGPWqhlw6S7xUb-Drojwue3dfigFE';
+var SHEET_ID = '1mFLx9XEPJjSVxCo41c929jtqwpluV9TADqFRLlnc7Lw';
 
 var HEADERS = [
   'date',
@@ -30,7 +30,11 @@ var HEADERS = [
 ];
 
 function getOrdersSheet() {
-  return SpreadsheetApp.openById(SHEET_ID).getSheets()[0];
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  if (!ss) {
+    ss = SpreadsheetApp.openById(SHEET_ID);
+  }
+  return ss.getSheets()[0];
 }
 
 /** شغّلها مرة من محرر Apps Script لإنشاء صف العناوين */
@@ -47,10 +51,24 @@ function setupHeaders() {
   }
 }
 
+function parseRequestBody(e) {
+  if (e && e.postData && e.postData.contents) {
+    return e.postData.contents;
+  }
+  if (e && e.parameter && e.parameter.payload) {
+    return e.parameter.payload;
+  }
+  return '';
+}
+
 function doPost(e) {
   try {
     var sheet = getOrdersSheet();
-    var data = JSON.parse(e.postData.contents);
+    var raw = parseRequestBody(e);
+    if (!raw) {
+      throw new Error('Empty body');
+    }
+    var data = JSON.parse(raw);
 
     if (sheet.getLastRow() === 0) {
       sheet.appendRow(HEADERS);
@@ -82,4 +100,25 @@ function doPost(e) {
 
 function doGet() {
   return ContentService.createTextOutput('Rawasi webhook OK');
+}
+
+/** اختبار من محرر Apps Script: Run → تحقق من صف جديد في الجدول */
+function testAppendRow() {
+  doPost({
+    postData: {
+      contents: JSON.stringify({
+        date: '04/06/2026',
+        orderid: 'rawasi-TEST-SCRIPT',
+        country: 'KSA',
+        name: 'اختبار من Apps Script',
+        phone: '966500000000',
+        product: 'رواسي هيدرا',
+        sku: 'RW-EL-001',
+        quantity: '1',
+        'total price': 199,
+        currency: 'SAR',
+        status: 'test'
+      })
+    }
+  });
 }

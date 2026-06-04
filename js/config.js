@@ -6,8 +6,8 @@ window.RAWASI_CONFIG = {
   currency: 'SAR',
   /* واتساب المغرب: 00212633405061 → 212633405061 */
   whatsapp: '212633405061',
-  /* جدول الطلبات: https://docs.google.com/spreadsheets/d/1fK5x1DqQYpijlbmGPWqhlw6S7xUb-Drojwue3dfigFE/edit */
-  GOOGLE_SHEET_ID: '1fK5x1DqQYpijlbmGPWqhlw6S7xUb-Drojwue3dfigFE',
+  /* جدول الطلبات: https://docs.google.com/spreadsheets/d/1mFLx9XEPJjSVxCo41c929jtqwpluV9TADqFRLlnc7Lw/edit */
+  GOOGLE_SHEET_ID: '1mFLx9XEPJjSVxCo41c929jtqwpluV9TADqFRLlnc7Lw',
   WEBHOOK_URL:
     'https://script.google.com/macros/s/AKfycbxgfnUDUdH4jZVUdgKIM5-t23MtbPVdTK8A399aeoZVWVoyw7AkpQSLY_TjCiVzE-I/exec',
 
