@@ -26,7 +26,10 @@ var HEADERS = [
   'quantity',
   'total price',
   'currency',
-  'status'
+  'status',
+  'city',
+  'district',
+  'address'
 ];
 
 function getOrdersSheet() {
@@ -37,17 +40,36 @@ function getOrdersSheet() {
   return ss.getSheets()[0];
 }
 
-/** شغّلها مرة من محرر Apps Script لإنشاء صف العناوين */
+/** شغّلها مرة من محرر Apps Script لإنشاء/تحديث صف العناوين */
 function setupHeaders() {
   var sheet = getOrdersSheet();
   if (sheet.getLastRow() === 0) {
     sheet.appendRow(HEADERS);
     return;
   }
-  var firstRow = sheet.getRange(1, 1, 1, HEADERS.length).getValues()[0];
-  var empty = firstRow.every(function (cell) { return !cell; });
-  if (empty) {
+  ensureHeaders(sheet);
+}
+
+/** يضمن أن صف العناوين يحتوي كل الأعمدة (بما فيها city/district/address) */
+function ensureHeaders(sheet) {
+  var lastCol = sheet.getLastColumn() || HEADERS.length;
+  var width = Math.max(lastCol, HEADERS.length);
+  var firstRow = sheet.getRange(1, 1, 1, width).getValues()[0];
+  var allEmpty = firstRow.every(function (cell) { return !cell; });
+  if (allEmpty) {
     sheet.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]);
+    return;
+  }
+  // أكمل العناوين الناقصة فقط دون المساس بالموجود
+  var changed = false;
+  for (var c = 0; c < HEADERS.length; c++) {
+    if (!firstRow[c]) {
+      firstRow[c] = HEADERS[c];
+      changed = true;
+    }
+  }
+  if (changed) {
+    sheet.getRange(1, 1, 1, firstRow.length).setValues([firstRow]);
   }
 }
 
@@ -110,6 +132,8 @@ function doPost(e) {
 
     if (sheet.getLastRow() === 0) {
       sheet.appendRow(HEADERS);
+    } else {
+      ensureHeaders(sheet);
     }
 
     sheet.appendRow([
@@ -123,7 +147,10 @@ function doPost(e) {
       pickField(data, ['quantity']) || '',
       pickTotalPrice(data),
       pickField(data, ['currency']) || 'SAR',
-      pickField(data, ['status']) || ''
+      pickField(data, ['status']) || '',
+      pickField(data, ['city']) || '',
+      pickField(data, ['district']) || '',
+      pickField(data, ['address']) || ''
     ]);
 
     return ContentService
@@ -155,7 +182,10 @@ function testAppendRow() {
         quantity: '1',
         'total price': 199,
         totalPrice: 199,
-        currency: 'SAR'
+        currency: 'SAR',
+        city: 'الرياض',
+        district: 'النرجس',
+        address: 'الرياض، النرجس، شارع الأمير محمد'
       })
     }
   });

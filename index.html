@@ -2,429 +2,273 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="صيدلية رواسي — جمال داخلي موثوق للتجاعيد، الهالات السوداء، وجفاف البشرة. مكوّنات واضحة، دفع عند الاستلام في السعودية.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#1A3A52">
+  <meta name="description" content="رواسي فيبر — كولاجين بحري للبشرة والشعر. يدعم نضارة البشرة، يقلل مظهر التجاعيد، ويقوّي الشعر. دفع عند الاستلام داخل السعودية.">
   <link rel="canonical" href="https://rawasishop.com/">
+  <meta property="og:type" content="product">
   <meta property="og:url" content="https://rawasishop.com/">
-  <meta property="og:site_name" content="صيدلية رواسي">
-  <meta property="og:title" content="رواسي | صيدلية الجمال الداخلي">
-  <meta property="og:description" content="دعم علمي للبشرة من الداخل — هيدرا • شيلد • فيبر">
+  <meta property="og:site_name" content="رواسي">
+  <meta property="og:title" content="رواسي فيبر — كولاجين بحري للبشرة والشعر">
+  <meta property="og:description" content="نضارة من الداخل • تقليل التجاعيد • شعر أقوى — دفع عند الاستلام">
   <meta property="og:locale" content="ar_SA">
-  <title>رواسي | صيدلية الجمال الداخلي — السعودية</title>
+  <title>رواسي فيبر | كولاجين بحري للبشرة والشعر — دفع عند الاستلام</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preload" as="image" href="images/product-hair-scalp.jpg">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-  <p class="urgency-bar" role="status">
-    <strong>صيدلية رواسي</strong> — تركيبات موثّقة • شحن داخل المملكة • دفع عند الاستلام
+<body class="lp">
+
+  <p class="topbar" role="status">
+    <span>✓ دفع عند الاستلام</span>
+    <span class="topbar__dot" aria-hidden="true">•</span>
+    <span>✓ شحن داخل المملكة</span>
+    <span class="topbar__dot" aria-hidden="true">•</span>
+    <span>✓ تأكيد هاتفي</span>
   </p>
-  <ul class="trust-strip" aria-label="مزايا الطلب">
-    <li>أسلوب صيدلية موثوق</li>
-    <li>مكوّنات مذكورة بوضوح</li>
-    <li>تأكيد هاتفي قبل الشحن</li>
-    <li>دفع عند الاستلام</li>
-  </ul>
-  <header class="navbar" id="top">
-    <div class="container navbar__inner">
-      <a href="index.html" class="navbar__brand" aria-label="رواسي">
-        <span class="navbar__logo" aria-hidden="true">ر</span>
-        <span class="navbar__name">رواسي</span>
-      </a>
-      <nav class="navbar__nav" aria-label="التنقل">
-        <a href="#features" class="navbar__link">معاييرنا</a>
-        <a href="#premium" class="navbar__link navbar__link--gold">المنتجات</a>
-        <a href="about.html" class="navbar__link">من نحن</a>
-      </nav>
-      <div class="navbar__actions">
-        <button type="button" class="navbar__cart" id="open-cart" aria-label="فتح السلة">
-          <svg class="navbar__cart-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
-            <path d="M6 6h15l-1.5 9h-12L6 6z"/>
-            <circle cx="9" cy="20" r="1.2"/>
-            <circle cx="18" cy="20" r="1.2"/>
-            <path d="M6 6L5 3H2"/>
-          </svg>
-          <span class="navbar__cart-badge" id="cart-badge" hidden>0</span>
-        </button>
-      </div>
+
+  <header class="lp-nav">
+    <div class="container lp-nav__inner">
+      <span class="lp-nav__brand"><span class="lp-nav__logo" aria-hidden="true">ر</span> رواسي</span>
+      <a href="#order" class="lp-nav__cta">اطلب الآن</a>
     </div>
   </header>
+
   <main>
+    <!-- SECTION 1: Hero -->
     <section class="hero" aria-labelledby="hero-title">
       <div class="container hero__grid">
+        <div class="hero__media">
+          <span class="hero__discount" id="hero-discount">خصم %</span>
+          <img src="images/product-hair-scalp.jpg" alt="رواسي فيبر — كولاجين بحري للبشرة والشعر"
+               width="900" height="900" fetchpriority="high" decoding="async">
+        </div>
+
         <div class="hero__content">
-          <span class="hero__badge-sale">صيدلية الجمال الداخلي</span>
-          <p class="hero__eyebrow">رواسي — معتمدة على مكوّنات موثّقة</p>
-          <h1 id="hero-title" class="hero__title">
-            للتجاعيد، الهالات السوداء، وجفاف البشرة — عناية صيدلانية من الداخل
-          </h1>
-          <p class="hero__subtitle">
-            <strong>صيدلية رواسي</strong> تقدّم nutricosmetics بصيغ واضحة: ترطيب خلوي، مضادات أكسدة للإشراق، وكولاجين لدعم مرونة البشرة. نبرة هادئة وعلمية — بعيداً عن وعود الإعلانات الرخيصة.
-          </p>
-          <ul class="hero__promises">
-            <li class="hero__promise"><span class="hero__promise-icon" aria-hidden="true">✓</span> تركيز على <strong>جفاف · هالات · علامات التقدم</strong></li>
-            <li class="hero__promise"><span class="hero__promise-icon" aria-hidden="true">✓</span> صيغ <strong>صيدلانية</strong> (أكياس وجامي يومي)</li>
-            <li class="hero__promise"><span class="hero__promise-icon" aria-hidden="true">✓</span> <strong>تأكيد هاتفي</strong> ودفع عند الاستلام</li>
+          <div class="rating" aria-label="تقييم 4.9 من 5">
+            <span class="rating__stars" aria-hidden="true">★★★★★</span>
+            <span class="rating__text">4.9 — أكثر من 2,400 عميلة</span>
+          </div>
+
+          <h1 id="hero-title" class="hero__title">كولاجين رواسي فيبر — نضارتكِ تبدأ من الداخل</h1>
+          <p class="hero__sub">كولاجين بحري + بيوتين + فيتامين C لدعم نضارة البشرة، تقليل مظهر التجاعيد، وتقوية الشعر والأظافر. صيغة يومية سهلة.</p>
+
+          <div class="price">
+            <span class="price__new" id="hero-price">219 ر.س</span>
+            <span class="price__old" id="hero-old">289 ر.س</span>
+            <span class="price__save" id="hero-save">وفّري 70 ر.س</span>
+          </div>
+
+          <a href="#order" class="btn btn--buy btn--block">اطلب الآن — دفع عند الاستلام</a>
+
+          <ul class="hero__assure">
+            <li>تأكيد هاتفي قبل الشحن</li>
+            <li>توصيل 2–5 أيام</li>
+            <li>مكوّنات موضّحة</li>
           </ul>
-          <div class="hero__cta">
-            <button type="button" class="btn btn--primary" data-add-bundle="electrolytes" data-qty="1" data-price="199">اطلبي الآن — من 199 ر.س</button>
-            <p class="hero__price">
-              <span class="hero__price-label">العرض</span>
-              <span class="hero__price-old">269</span>
-              <span class="hero__price-value">199 <small>ر.س</small></span>
-            </p>
-          </div>
-        </div>
-        <div class="hero__visual">
-          <div class="hero__image-wrap">
-            <img src="images/hero-electrolytes.jpg" alt="رواسي هيدرا — ترطيب داخلي لجفاف البشرة" width="900" height="1125" fetchpriority="high">
-            <div class="hero__image-label">
-              <strong>رواسي هيدرا</strong>
-              <span>ترطيب خلوي • 30 يوم</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="features" id="features" aria-labelledby="features-title">
-      <div class="container">
-        <header class="section-header">
-          <p class="section-header__eyebrow">معايير صيدلية رواسي</p>
-          <h2 id="features-title" class="section-header__title">لماذا تثقين بنا في العناية بالبشرة؟</h2>
-          <p class="section-header__desc">
-            نتحدث بلغة الصيدلية: مكوّن نشط، جرعة يومية، ومدة استخدام — دون مبالغة في النتائج. مناسب لمن يبحث عن حلول التجاعيد، الهالات، والجفاف من الداخل.
-          </p>
-        </header>
-        <div class="features__grid">
-          <article class="feature-card">
-            <h3 class="feature-card__title">جفاف البشرة</h3>
-            <p class="feature-card__text">الترطيب الخلوي يدعم مرونة البشرة ويقلل مظهر الجفاف والإرهاق على الوجه.</p>
-          </article>
-          <article class="feature-card">
-            <h3 class="feature-card__title">هالات وبهتان</h3>
-            <p class="feature-card__text">مضادات أكسدة وحماية بيئية لبشرة أكثر إشراقاً — خاصة مع التكييف والإجهاد اليومي.</p>
-          </article>
-          <article class="feature-card">
-            <h3 class="feature-card__title">علامات التقدم</h3>
-            <p class="feature-card__text">كولاجين وبيوتين لدعم البشرة والشعر من الداخل — مكمل لروتين العناية الخارجي.</p>
-          </article>
-          <article class="feature-card">
-            <h3 class="feature-card__title">شفافية المكوّنات</h3>
-            <p class="feature-card__text">كل منتج يعرض التركيبة بوضوح — كما تتوقعين من صيدلية موثوقة.</p>
-          </article>
-          <article class="feature-card">
-            <h3 class="feature-card__title">تأكيد هاتفي</h3>
-            <p class="feature-card__text">نتصل قبل الشحن للتأكد من العنوان — أسلوب طلبات العناية في السعودية.</p>
-          </article>
-          <article class="feature-card">
-            <h3 class="feature-card__title">دفع عند الاستلام</h3>
-            <p class="feature-card__text">اطلبي بثقة — وتسدّدي عند استلام الطرد في جميع مدن المملكة.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-    <section class="premium" id="premium" aria-labelledby="premium-title">
-      <div class="container">
-        <header class="section-header section-header--premium">
-          <p class="section-header__eyebrow section-header__eyebrow--gold">وصفات الصيدلية</p>
-          <h2 id="premium-title" class="section-header__title section-header__title--light">ثلاث خطوات للعناية بالبشرة من الداخل</h2>
-        </header>
-        <div class="premium__grid">
-          <article class="premium-card" id="product-electrolytes">
-            <div class="premium-card__media">
-              <span class="premium-card__ribbon">جفاف البشرة</span>
-              <img src="images/product-electrolytes.jpg" alt="أكياس إلكتروليت للحر" width="900" height="675" loading="lazy">
-            </div>
-            <div class="premium-card__body">
-              <span class="premium-card__brand">رواسي هيدرا</span>
-              <h3 class="premium-card__title">ترطيب خلوي — جفاف البشرة والتعب</h3>
-              <p class="premium-card__desc">
-                <strong>Sodium + Potassium + Magnesium + Zinc + Vitamin C</strong> — دعم الترطيب من الداخل. الجفاف يظهر على البشرة كبهتان وخطوط دقيقة؛ التوازن المعدني يساعد على مظهر أكثر حيوية.
-              </p>
-              <div class="pain-block">
-                <h4 class="pain-block__title">هل تعانين من جفاف البشرة أو مظهر مرهق؟</h4>
-                <ul class="pain-block__list">
-                  <li>بشرة مشدودة أو باهتة رغم الكريمات</li>
-                  <li>خطوط دقيقة تزداد مع قلة السوائل</li>
-                  <li>تعب يظهر على ملامح الوجه</li>
-                </ul>
-              </div>
-              <ul class="premium-card__features">
-                <li>أكياس صيدلانية — ذوبان سريع</li>
-                <li>برنامج 30 يوم للترطيب الداخلي</li>
-              </ul>
-              <fieldset class="bundle-picker">
-                <legend class="bundle-picker__legend">اختاري عرضك</legend>
-                <div class="bundle-picker__grid">
-                  <button type="button" class="bundle-option" data-add-bundle="electrolytes" data-qty="1" data-price="199">
-                    <span class="bundle-option__label">علبة واحدة</span>
-                    <strong class="bundle-option__price">199 ر.س</strong>
-                  </button>
-                  <button type="button" class="bundle-option bundle-option--hot" data-add-bundle="electrolytes" data-qty="2" data-price="349">
-                    <span class="bundle-option__badge">وفر 49 ر.س</span>
-                    <span class="bundle-option__label">علبتان</span>
-                    <strong class="bundle-option__price">349 ر.س</strong>
-                  </button>
-                  <button type="button" class="bundle-option" data-add-bundle="electrolytes" data-qty="3" data-price="479">
-                    <span class="bundle-option__badge">الأكثر توفيراً</span>
-                    <span class="bundle-option__label">ثلاث علب</span>
-                    <strong class="bundle-option__price">479 ر.س</strong>
-                  </button>
-                </div>
-              </fieldset>
-              <div class="premium-card__footer">
-                <p class="premium-card__price">
-                  <span class="premium-card__price-old">269 ر.س</span>
-                  <span class="premium-card__price-note">يبدأ من 199 ر.س — دفع عند الاستلام</span>
-                </p>
-              </div>
-            </div>
-          </article>
-          <article class="premium-card premium-card--reverse" id="product-pollution">
-            <div class="premium-card__media">
-              <span class="premium-card__ribbon premium-card__ribbon--navy">هالات وإشراق</span>
-              <img src="images/product-pollution.jpg" alt="جامي دفاع البشرة من الغبار" width="900" height="675" loading="lazy">
-            </div>
-            <div class="premium-card__body">
-              <span class="premium-card__brand">رواسي شيلد</span>
-              <h3 class="premium-card__title">جامي الإشراق — هالات سوداء وبهتان</h3>
-              <p class="premium-card__desc">
-                <strong>Astaxanthin + Olive Leaf + Rosemary Extract + Vitamin E</strong> — تركيبة nutricosmetic لمضادات الأكسدة وحماية البشرة من الإجهاد (تكييف، إرهاق، أشعة). يدعم مظهراً أكثر إشراقاً من الداخل.
-              </p>
-              <div class="pain-block">
-                <h4 class="pain-block__title">هل تقلقين من الهالات السوداء أو بشرة باهتة؟</h4>
-                <ul class="pain-block__list">
-                  <li>منطقة تحت العين داكنة أو متعبة</li>
-                  <li>لون بشرة غير موحّد في الصور</li>
-                  <li>تبحثين عن دعم داخلي وليس كريم ليلة فقط</li>
-                </ul>
-              </div>
-              <ul class="premium-card__features">
-                <li>جامي يومي — سهل الالتزام</li>
-                <li>مضادات أكسدة موثّقة في التركيبة</li>
-              </ul>
-              <fieldset class="bundle-picker">
-                <legend class="bundle-picker__legend">اختاري عرضك</legend>
-                <div class="bundle-picker__grid">
-                  <button type="button" class="bundle-option" data-add-bundle="pollution-shield" data-qty="1" data-price="239">
-                    <span class="bundle-option__label">علبة واحدة</span>
-                    <strong class="bundle-option__price">239 ر.س</strong>
-                  </button>
-                  <button type="button" class="bundle-option bundle-option--hot" data-add-bundle="pollution-shield" data-qty="2" data-price="429">
-                    <span class="bundle-option__badge">وفر 49 ر.س</span>
-                    <span class="bundle-option__label">علبتان</span>
-                    <strong class="bundle-option__price">429 ر.س</strong>
-                  </button>
-                  <button type="button" class="bundle-option" data-add-bundle="pollution-shield" data-qty="3" data-price="579">
-                    <span class="bundle-option__badge">الأكثر توفيراً</span>
-                    <span class="bundle-option__label">ثلاث علب</span>
-                    <strong class="bundle-option__price">579 ر.س</strong>
-                  </button>
-                </div>
-              </fieldset>
-              <div class="premium-card__footer">
-                <p class="premium-card__price">
-                  <span class="premium-card__price-old">309 ر.س</span>
-                  <span class="premium-card__price-note">يبدأ من 239 ر.س — دفع عند الاستلام</span>
-                </p>
-              </div>
-            </div>
-          </article>
-          <article class="premium-card" id="product-hair">
-            <div class="premium-card__media">
-              <span class="premium-card__ribbon">التجاعيد والكثافة</span>
-              <img src="images/product-hair-scalp.jpg" alt="جامي الشعر والفروة" width="900" height="675" loading="lazy">
-            </div>
-            <div class="premium-card__body">
-              <span class="premium-card__brand">رواسي فيبر</span>
-              <h3 class="premium-card__title">جامي الكولاجين — التجاعيد والشعر الرقيق</h3>
-              <p class="premium-card__desc">
-                <strong>Marine Collagen + Keratin + Biotin + Zinc + Silica</strong> — دعم البشرة والشعر من الداخل. الكولاجين والبيوتين يساهمان في مظهر مرونة البشرة وكثافة الشعر ضمن روتين عناية شامل.
-              </p>
-              <div class="pain-block">
-                <h4 class="pain-block__title">هل تلاحظين تجاعيد مبكرة أو شعراً أرق؟</h4>
-                <ul class="pain-block__list">
-                  <li>خطوط على الجبهة أو حول العين</li>
-                  <li>فقدان كثافة أو لمعان الشعر</li>
-                  <li>تريدين مكملاً يكمّل السيروم والكريم</li>
-                </ul>
-              </div>
-              <ul class="premium-card__features">
-                <li>كولاجين بحري + كيراتين + بيوتين</li>
-                <li>صيغة جامي يومية لمدة 30 يوماً</li>
-              </ul>
-              <fieldset class="bundle-picker">
-                <legend class="bundle-picker__legend">اختاري عرضك</legend>
-                <div class="bundle-picker__grid">
-                  <button type="button" class="bundle-option" data-add-bundle="hair-scalp" data-qty="1" data-price="219">
-                    <span class="bundle-option__label">علبة واحدة</span>
-                    <strong class="bundle-option__price">219 ر.س</strong>
-                  </button>
-                  <button type="button" class="bundle-option bundle-option--hot" data-add-bundle="hair-scalp" data-qty="2" data-price="399">
-                    <span class="bundle-option__badge">وفر 39 ر.س</span>
-                    <span class="bundle-option__label">علبتان</span>
-                    <strong class="bundle-option__price">399 ر.س</strong>
-                  </button>
-                  <button type="button" class="bundle-option" data-add-bundle="hair-scalp" data-qty="3" data-price="549">
-                    <span class="bundle-option__badge">الأكثر توفيراً</span>
-                    <span class="bundle-option__label">ثلاث علب</span>
-                    <strong class="bundle-option__price">549 ر.س</strong>
-                  </button>
-                </div>
-              </fieldset>
-              <div class="premium-card__footer">
-                <p class="premium-card__price">
-                  <span class="premium-card__price-old">289 ر.س</span>
-                  <span class="premium-card__price-note">يبدأ من 219 ر.س — دفع عند الاستلام</span>
-                </p>
-              </div>
-            </div>
-          </article>
-        </div>
-        <div class="premium-reviews" aria-labelledby="reviews-title">
-          <h3 id="reviews-title" class="premium-reviews__title">آراء عميلات الصيدلية</h3>
-          <div class="premium-reviews__grid">
-            <blockquote class="review-card">
-              <div class="review-card__stars">★★★★★</div>
-              <p class="review-card__text">«هيدرا غيّر مظهر جفاف بشرتي — أصبحت أكثر نعومة ولم أعد أبدو مرهقة في الصور.»</p>
-              <footer class="review-card__author"><span class="review-card__name">هند الشمري</span><span class="review-card__city">الرياض</span></footer>
-            </blockquote>
-            <blockquote class="review-card">
-              <div class="review-card__stars">★★★★★</div>
-              <p class="review-card__text">«شيلد للهالات — لاحظت إشراقاً تحت العين بعد شهر التزام. أسلوب الصيدلية يطمئن.»</p>
-              <footer class="review-card__author"><span class="review-card__name">ريم الغامدي</span><span class="review-card__city">جدة</span></footer>
-            </blockquote>
-            <blockquote class="review-card">
-              <div class="review-card__stars">★★★★★</div>
-              <p class="review-card__text">«فايبر للكولاجين — خطوطي الدقيقة أخف وشعري أقوى. أنصح به مع روتين العناية.»</p>
-              <footer class="review-card__author"><span class="review-card__name">لمى الدوسري</span><span class="review-card__city">الدمام</span></footer>
-            </blockquote>
-          </div>
         </div>
       </div>
     </section>
 
+    <!-- SECTION 2: 3 Benefits -->
+    <section class="benefits" aria-labelledby="benefits-title">
+      <div class="container">
+        <h2 id="benefits-title" class="sec-title">لماذا رواسي فيبر؟</h2>
+        <div class="benefits__grid">
+          <article class="benefit">
+            <span class="benefit__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21s-7-4.4-7-10a4 4 0 017-2.6A4 4 0 0119 11c0 5.6-7 10-7 10z"/></svg>
+            </span>
+            <h3 class="benefit__title">نضارة ومرونة</h3>
+            <p class="benefit__text">كولاجين بحري يدعم نضارة البشرة وترطيبها من الداخل ويقلّل مظهر الخطوط الدقيقة.</p>
+          </article>
+          <article class="benefit">
+            <span class="benefit__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3c3 4 5 6 5 9a5 5 0 01-10 0c0-3 2-5 5-9z"/></svg>
+            </span>
+            <h3 class="benefit__title">شعر أقوى</h3>
+            <p class="benefit__text">بيوتين وزنك لدعم كثافة الشعر ولمعانه وتقليل التساقط مع الالتزام اليومي.</p>
+          </article>
+          <article class="benefit">
+            <span class="benefit__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M20 6L9 17l-5-5"/></svg>
+            </span>
+            <h3 class="benefit__title">سهل ويومي</h3>
+            <p class="benefit__text">جرعة واحدة في اليوم — بلا وصفات معقّدة. مناسب للروتين اليومي للمرأة السعودية.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 3: Problem it solves -->
+    <section class="problem" aria-labelledby="problem-title">
+      <div class="container">
+        <h2 id="problem-title" class="sec-title">هل تلاحظين هذه العلامات؟</h2>
+        <p class="sec-lead">بعد سن 25 يبدأ إنتاج الكولاجين بالانخفاض — فتظهر آثاره على البشرة والشعر. رواسي فيبر يعوّض النقص من الداخل.</p>
+        <ul class="problem__list">
+          <li class="problem__item"><span aria-hidden="true">✕</span> خطوط دقيقة وفقدان نضارة البشرة</li>
+          <li class="problem__item"><span aria-hidden="true">✕</span> شعر يتساقط ويفقد كثافته ولمعانه</li>
+          <li class="problem__item"><span aria-hidden="true">✕</span> أظافر ضعيفة وسريعة الكسر</li>
+          <li class="problem__item"><span aria-hidden="true">✕</span> كريمات السطح لا تعوّض النقص الداخلي</li>
+        </ul>
+        <a href="#order" class="btn btn--ghost btn--block">الحل في علبة واحدة — اطلب الآن</a>
+      </div>
+    </section>
+
+    <!-- SECTION 4: Usage images -->
+    <section class="usage" aria-labelledby="usage-title">
+      <div class="container">
+        <h2 id="usage-title" class="sec-title">طريقة الاستخدام</h2>
+        <div class="usage__grid">
+          <figure class="usage__card">
+            <img src="images/product-electrolytes.jpg" alt="ملعقة كولاجين رواسي فيبر" width="600" height="600" loading="lazy" decoding="async">
+            <figcaption><strong>1.</strong> ملعقة واحدة يومياً</figcaption>
+          </figure>
+          <figure class="usage__card">
+            <img src="images/hero-electrolytes.jpg" alt="إذابة الكولاجين في الماء أو العصير" width="600" height="600" loading="lazy" decoding="async">
+            <figcaption><strong>2.</strong> أذيبيها في ماء أو عصير</figcaption>
+          </figure>
+          <figure class="usage__card">
+            <img src="images/product-pollution.jpg" alt="نتائج الالتزام بكولاجين رواسي" width="600" height="600" loading="lazy" decoding="async">
+            <figcaption><strong>3.</strong> النتائج مع الالتزام شهرياً</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 5: Reviews -->
+    <section class="reviews" aria-labelledby="reviews-title">
+      <div class="container">
+        <h2 id="reviews-title" class="sec-title">ماذا قالت عميلاتنا؟</h2>
+        <div class="reviews__grid">
+          <blockquote class="review">
+            <div class="review__stars" aria-hidden="true">★★★★★</div>
+            <p>«بعد شهرين بشرتي صارت أنضر والخطوط حول العين أخف. صار جزء من روتيني اليومي.»</p>
+            <footer><span class="review__name">هند الشمري</span><span class="review__city">الرياض</span><span class="review__verified">✓ موثّقة</span></footer>
+          </blockquote>
+          <blockquote class="review">
+            <div class="review__stars" aria-hidden="true">★★★★★</div>
+            <p>«تساقط شعري قلّ بشكل واضح وصار ألمع. الطعم خفيف وسهل أذوّبه بالعصير.»</p>
+            <footer><span class="review__name">ريم الغامدي</span><span class="review__city">جدة</span><span class="review__verified">✓ موثّقة</span></footer>
+          </blockquote>
+          <blockquote class="review">
+            <div class="review__stars" aria-hidden="true">★★★★★</div>
+            <p>«أظافري قويت والبشرة أكثر إشراقاً. الدفع عند الاستلام أراحني وطلبت مرة ثانية.»</p>
+            <footer><span class="review__name">لمى الدوسري</span><span class="review__city">الدمام</span><span class="review__verified">✓ موثّقة</span></footer>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6: FAQ -->
     <section class="faq" id="faq" aria-labelledby="faq-title">
       <div class="container">
-        <header class="section-header">
-          <p class="section-header__eyebrow">أسئلة شائعة</p>
-          <h2 id="faq-title" class="section-header__title">كل ما تحتاجين معرفته قبل الطلب</h2>
-        </header>
+        <h2 id="faq-title" class="sec-title">أسئلة شائعة</h2>
         <div class="faq__list">
           <details class="faq__item" open>
             <summary>هل الدفع عند الاستلام متاح؟</summary>
             <p>نعم، تدفعين نقداً عند استلام الطرد في جميع مدن المملكة.</p>
           </details>
           <details class="faq__item">
+            <summary>متى تظهر النتائج؟</summary>
+            <p>تختلف النتائج حسب الالتزام والحالة؛ غالباً تُلاحظ فروق من 4–8 أسابيع مع الاستخدام اليومي.</p>
+          </details>
+          <details class="faq__item">
             <summary>متى يصل الطلب؟</summary>
             <p>عادة 2–5 أيام عمل بعد تأكيد الطلب هاتفياً.</p>
           </details>
           <details class="faq__item">
-            <summary>لماذا رقم سعودي فقط؟</summary>
-            <p>الشحن والتأكيد متاحان داخل السعودية فقط — هذا يرفع نسبة التسليم ويقلّل الطلبات الوهمية.</p>
+            <summary>كيف أستخدمه؟</summary>
+            <p>ملعقة واحدة يومياً تُذاب في ماء أو عصير، يُفضّل في وقت ثابت من اليوم.</p>
           </details>
           <details class="faq__item" id="shipping">
-            <summary>سياسة الشحن والاسترجاع</summary>
-            <p>شحن داخل المملكة. استرجاع خلال 30 يوماً إن لم تكوني راضية (حسب سياسة رواسي). تواصلي معنا عبر واتساب بعد الطلب.</p>
-          </details>
-          <details class="faq__item">
-            <summary>هل تُعالج التجاعيد والهالات كالكريمات؟</summary>
-            <p>منتجاتنا مكملات غذائية تدعم البشرة من الداخل — ليست بديلاً عن كريمات العناية أو العلاج الطبي. النتائج تختلف حسب الالتزام والحالة الصحية.</p>
-          </details>
-          <details class="faq__item">
-            <summary>هل المنتجات أدوية؟</summary>
-            <p>لا، مكملات غذائية بصيغة صيدلانية. استشيري طبيبكِ أو الصيدلي عند الحمل أو الرضاعة أو الأمراض المزمنة.</p>
+            <summary>هل المنتج آمن؟</summary>
+            <p>مكمل غذائي وليس دواءً. استشيري طبيبكِ عند الحمل أو الرضاعة أو الأمراض المزمنة.</p>
           </details>
         </div>
       </div>
     </section>
+
+    <!-- SECTION 7: Quick order -->
+    <section class="order" id="order" aria-labelledby="order-title">
+      <div class="container order__box">
+        <h2 id="order-title" class="sec-title">اطلبي الآن — دقيقة واحدة</h2>
+
+        <div class="bundles" id="bundles" role="radiogroup" aria-label="اختاري العرض"></div>
+
+        <form id="order-form" class="order__form" novalidate>
+          <div class="field">
+            <label for="fullname">الاسم الكامل</label>
+            <input type="text" id="fullname" name="fullname" autocomplete="name" enterkeyhint="next" placeholder="مثال: نورة العتيبي">
+          </div>
+          <div class="field">
+            <label for="phone">رقم الجوال</label>
+            <input type="tel" id="phone" name="phone" dir="ltr" inputmode="numeric" autocomplete="tel" enterkeyhint="next" maxlength="13" placeholder="05xxxxxxxx">
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="city">المدينة</label>
+              <input type="text" id="city" name="city" autocomplete="address-level2" enterkeyhint="next" placeholder="مثال: الرياض">
+            </div>
+            <div class="field">
+              <label for="district">الحي</label>
+              <input type="text" id="district" name="district" autocomplete="address-level3" enterkeyhint="next" placeholder="مثال: النرجس">
+            </div>
+          </div>
+          <div class="field">
+            <label for="address">العنوان التفصيلي</label>
+            <input type="text" id="address" name="address" autocomplete="street-address" enterkeyhint="done" placeholder="الشارع، رقم المبنى، أقرب معلم">
+          </div>
+
+          <div class="order__summary" id="order-summary"></div>
+
+          <ul class="order__trust-grid" aria-label="ضمانات الطلب">
+            <li><span aria-hidden="true">✔</span> الدفع عند الاستلام</li>
+            <li><span aria-hidden="true">✔</span> شحن سريع 2–5 أيام</li>
+            <li><span aria-hidden="true">✔</span> استبدال واسترجاع</li>
+            <li><span aria-hidden="true">✔</span> حماية بيانات العميل</li>
+          </ul>
+
+          <button type="submit" class="btn btn--buy btn--block btn--lg" id="order-submit">تأكيد الطلب — الدفع عند الاستلام</button>
+          <p class="order__note">🔒 سنتصل بكِ لتأكيد الطلب قبل الشحن — رقم سعودي فقط</p>
+        </form>
+      </div>
+    </section>
   </main>
-  <footer class="footer">
-    <div class="container footer__inner">
-      <p class="footer__brand">صيدلية رواسي © <span id="year"></span></p>
-      <p class="footer__tagline">صيدلية رواسي للجمال الداخلي — دعم علمي للتجاعيد، الهالات السوداء، وجفاف البشرة في المملكة. مكملات غذائية وليست أدوية؛ استشيري مختصاً عند الحاجة.</p>
-      <nav class="footer__nav">
+
+  <footer class="lp-foot">
+    <div class="container">
+      <p class="lp-foot__brand">رواسي © <span id="year"></span></p>
+      <p class="lp-foot__tag">رواسي فيبر — كولاجين بحري للعناية بالبشرة والشعر في السعودية. مكمل غذائي وليس دواءً.</p>
+      <nav class="lp-foot__nav">
         <a href="about.html">من نحن</a>
-        <a href="#premium">المنتجات</a>
         <a href="#faq">الأسئلة الشائعة</a>
         <a href="#shipping">الشحن</a>
-        <a href="#" id="open-cart-footer">السلة</a>
       </nav>
     </div>
   </footer>
-  <aside class="sticky-cta" aria-label="طلب سريع">
-    <button type="button" class="sticky-cta__btn" data-add-bundle="electrolytes" data-qty="1" data-price="199">اطلبي الآن — دفع عند الاستلام</button>
-  </aside>
-  <a href="#" class="whatsapp-fab" id="whatsapp-fab" target="_blank" rel="noopener noreferrer" aria-label="واتساب">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="28" height="28" aria-hidden="true">
+
+  <!-- Sticky mobile buy bar -->
+  <div class="buybar" id="buybar" aria-hidden="false">
+    <div class="buybar__price">
+      <span class="buybar__new" id="bar-price">219 ر.س</span>
+      <span class="buybar__old" id="bar-old">289 ر.س</span>
+    </div>
+    <a href="#order" class="buybar__btn">اطلب الآن</a>
+  </div>
+
+  <a href="#" class="whatsapp-fab" id="whatsapp-fab" target="_blank" rel="noopener noreferrer" aria-label="تواصل واتساب">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="26" height="26" aria-hidden="true">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
     </svg>
   </a>
-  <!-- Cart -->
-  <div class="overlay" id="cart-overlay" aria-hidden="true"></div>
-  <aside class="drawer is-layer-hidden" id="cart-drawer" aria-label="السلة" aria-hidden="true">
-    <header class="drawer__head">
-      <h2>سلة التسوق</h2>
-      <button type="button" class="drawer__close" id="cart-close" aria-label="إغلاق">×</button>
-    </header>
-    <p class="drawer__empty" id="cart-empty">سلتك فارغة — اختاري منتجاً من التشكيلة</p>
-    <div class="drawer__body" id="cart-items"></div>
-    <footer class="drawer__foot">
-      <p class="drawer__total">المجموع: <strong id="cart-subtotal">0 ر.س</strong></p>
-      <button type="button" class="btn btn--primary btn--block" id="cart-checkout-btn">إتمام الطلب</button>
-    </footer>
-  </aside>
-  <!-- Checkout -->
-  <div class="overlay overlay--checkout" id="checkout-overlay" aria-hidden="true"></div>
-  <div class="modal is-layer-hidden" id="checkout-modal" role="dialog" aria-labelledby="checkout-title" aria-modal="true" aria-hidden="true">
-    <header class="modal__head">
-      <h2 id="checkout-title">إتمام الطلب</h2>
-      <button type="button" class="drawer__close" id="checkout-close" aria-label="إغلاق">×</button>
-    </header>
-    <div class="modal__body">
-      <div id="checkout-summary" class="checkout-summary"></div>
-      <form id="checkout-form" class="order__form" novalidate>
-        <div class="form-group">
-          <label for="fullname">الاسم الكامل</label>
-          <input type="text" id="fullname" name="fullname" autocomplete="name" aria-required="true">
-        </div>
-        <div class="form-group">
-          <label for="phone">رقم الجوال</label>
-          <input type="tel" id="phone" name="phone" placeholder="05xxxxxxxx" dir="ltr" inputmode="tel" aria-required="true">
-        </div>
-        <div class="form-group">
-          <label for="city">المدينة</label>
-          <input type="text" id="city" name="city" aria-required="true">
-        </div>
-        <div class="form-group">
-          <label for="address">العنوان</label>
-          <textarea id="address" name="address" rows="2" aria-required="true"></textarea>
-        </div>
-        <p class="checkout-trust">🔒 تأكيد هاتفي • دفع عند الاستلام • رقم سعودي (05xxxxxxxx)</p>
-        <button type="button" class="btn btn--primary btn--block" id="checkout-submit">تأكيد الطلب — الدفع عند الاستلام</button>
-        <p class="order__note">سنتصل بكِ لتأكيد الطلب قبل الشحن</p>
-      </form>
-    </div>
-  </div>
-  <!-- Upsell -->
-  <div class="overlay overlay--upsell" id="upsell-overlay" aria-hidden="true"></div>
-  <div class="modal modal--upsell is-layer-hidden" id="upsell-modal" role="dialog" aria-labelledby="upsell-title" aria-modal="true" aria-hidden="true">
-    <h2 id="upsell-title" class="upsell__title"></h2>
-    <p id="upsell-desc" class="upsell__desc"></p>
-    <div class="upsell__actions">
-      <button type="button" class="btn btn--primary btn--block" id="upsell-accept">نعم، أضف العرض</button>
-      <button type="button" class="btn btn--ghost btn--block" id="upsell-decline">لا شكراً — إرسال الطلب</button>
-    </div>
-  </div>
+
   <div class="toast" id="toast" role="status" hidden></div>
+
   <script src="js/config.js"></script>
   <script src="js/store.js"></script>
-  <script>
-    document.getElementById('open-cart-footer')?.addEventListener('click', function (e) {
-      e.preventDefault();
-      window.RawasiStore?.openCart();
-    });
-  </script>
 </body>
 </html>
