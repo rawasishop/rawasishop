@@ -36,7 +36,7 @@
 
 /* ---------- Reset ---------- */
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; max-width: 100%; }
+html { scroll-behavior: smooth; max-width: 100%; overflow-x: hidden; }
 body {
   font-family: var(--font-body);
   color: var(--ink);
