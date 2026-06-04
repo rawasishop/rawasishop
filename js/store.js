@@ -313,6 +313,7 @@
    */
   function buildSheetPayload(orderId, customer, lines, total) {
     var phone = normalizePhone(customer.phone);
+    var totalVal = Math.round(Number(total) || 0);
     return {
       date: formatDateSheet(new Date()),
       orderid: orderId,
@@ -334,7 +335,8 @@
           return String(l.qty);
         })
         .join('/'),
-      'total price': Math.round(total),
+      'total price': totalVal,
+      totalPrice: totalVal,
       currency: 'SAR'
     };
   }

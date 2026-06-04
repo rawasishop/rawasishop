@@ -81,6 +81,28 @@ function parseOrderJson(e) {
   return JSON.parse(raw);
 }
 
+/** يدعم total price / totalPrice / total_price (لا نستخدم || لأن 0 قيمة صالحة) */
+function pickField(data, keys) {
+  if (!data) return '';
+  for (var i = 0; i < keys.length; i++) {
+    var key = keys[i];
+    if (Object.prototype.hasOwnProperty.call(data, key)) {
+      var val = data[key];
+      if (val !== undefined && val !== null && val !== '') {
+        return val;
+      }
+    }
+  }
+  return '';
+}
+
+function pickTotalPrice(data) {
+  var v = pickField(data, ['total price', 'totalPrice', 'total_price', 'total']);
+  if (v === '') return '';
+  var n = Number(v);
+  return isNaN(n) ? v : n;
+}
+
 function doPost(e) {
   try {
     var sheet = getOrdersSheet();
@@ -91,17 +113,17 @@ function doPost(e) {
     }
 
     sheet.appendRow([
-      data.date || '',
-      data.orderid || '',
-      data.country || 'KSA',
-      data.name || '',
-      data.phone || '',
-      data.product || '',
-      data.sku || '',
-      data.quantity || '',
-      data['total price'] || data.totalPrice || '',
-      data.currency || 'SAR',
-      ''
+      pickField(data, ['date']) || '',
+      pickField(data, ['orderid', 'orderId']) || '',
+      pickField(data, ['country']) || 'KSA',
+      pickField(data, ['name']) || '',
+      pickField(data, ['phone']) || '',
+      pickField(data, ['product']) || '',
+      pickField(data, ['sku']) || '',
+      pickField(data, ['quantity']) || '',
+      pickTotalPrice(data),
+      pickField(data, ['currency']) || 'SAR',
+      pickField(data, ['status']) || ''
     ]);
 
     return ContentService
@@ -132,6 +154,7 @@ function testAppendRow() {
         sku: 'NMA482910',
         quantity: '1',
         'total price': 199,
+        totalPrice: 199,
         currency: 'SAR'
       })
     }
