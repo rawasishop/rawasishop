@@ -345,6 +345,23 @@
     });
   }
 
+  /* ---- زر واتساب العائم: يظهر فقط عند الوصول لأسفل الصفحة (بعد نموذج الطلب) ---- */
+  var waFloat = document.querySelector('.whatsapp-float');
+  var finalCta = document.querySelector('.final-cta');
+  if (waFloat) {
+    var toggleWa = function () {
+      var show;
+      if (finalCta) {
+        show = finalCta.getBoundingClientRect().top < window.innerHeight * 0.85;
+      } else {
+        show = (window.innerHeight + window.scrollY) > (document.body.offsetHeight - 280);
+      }
+      waFloat.classList.toggle('show', show);
+    };
+    window.addEventListener('scroll', toggleWa, { passive: true });
+    toggleWa();
+  }
+
   /* ---- إشعارات الإثبات الاجتماعي (طلبات حديثة) ---- */
   var toast = document.getElementById('socialToast');
   if (toast) {
