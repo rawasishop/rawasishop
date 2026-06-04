@@ -309,10 +309,13 @@ h1, h2, h3, h4 { font-family: var(--font-head); color: var(--plum); line-height:
 
 /* Order form */
 .order-form {
-  background: #fff; border-radius: var(--radius-lg); padding: 36px; box-shadow: var(--shadow-md);
-  border: 1px solid var(--line);
+  background: #fff; border-radius: var(--radius-lg); padding: 38px 36px; box-shadow: var(--shadow-lg);
+  border: 2px solid var(--rose-soft); position: relative; overflow: hidden;
 }
-.order-form h3 { font-size: 1.35rem; margin-bottom: 22px; }
+.order-form::before {
+  content: ''; position: absolute; inset: 0 0 auto 0; height: 6px; background: var(--grad-rose);
+}
+.order-form h3 { font-size: 1.45rem; margin-bottom: 22px; }
 .field { margin-bottom: 16px; }
 .field label { display: block; font-weight: 600; color: var(--plum); margin-bottom: 6px; font-size: .95rem; }
 .field input, .field select {
@@ -382,6 +385,24 @@ h1, h2, h3, h4 { font-family: var(--font-head); color: var(--plum); line-height:
   70% { box-shadow: 0 0 0 16px rgba(37,211,102,0); }
   100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
 }
+
+/* ---------- Floating order CTA ---------- */
+.order-float {
+  position: fixed; bottom: 26px; right: 26px; z-index: 91;
+  display: inline-flex; align-items: center; gap: 9px;
+  background: var(--grad-rose); color: #fff; font-family: var(--font-head); font-weight: 700;
+  font-size: 1.02rem; padding: 14px 24px; border-radius: 50px;
+  box-shadow: 0 12px 30px rgba(214,68,122,.45);
+  opacity: 0; visibility: hidden; transform: translateY(18px); pointer-events: none;
+  transition: opacity .35s ease, transform .35s ease, box-shadow .25s ease;
+}
+.order-float.show {
+  opacity: 1; visibility: visible; transform: none; pointer-events: auto;
+  animation: order-bob 2.6s ease-in-out infinite;
+}
+.order-float:hover { box-shadow: 0 16px 40px rgba(214,68,122,.6); }
+.order-float .of-ico { font-size: 1.2rem; }
+@keyframes order-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 
 /* ---------- Modal ---------- */
 .modal {
@@ -605,6 +626,7 @@ h1, h2, h3, h4 { font-family: var(--font-head); color: var(--plum); line-height:
 
   /* إظهار شريط الطلب الثابت ورفع العناصر العائمة فوقه */
   .sticky-cta { display: flex; }
+  .order-float { display: none; }
   .whatsapp-float { bottom: 80px; }
   .social-toast { bottom: 82px; }
 }

@@ -130,7 +130,7 @@
   /* ---- تحديث المجموع حسب الباقة المختارة ---- */
   var totalPrice = document.getElementById('totalPrice');
   function arNum(n) {
-    return n.toLocaleString('ar-EG');
+    return n.toLocaleString('en-US');
   }
   function getSelectedBundle() {
     return document.querySelector('input[name="qty"]:checked');
@@ -343,6 +343,23 @@
       }
       stickyCta.classList.toggle('show', past && !atOrder);
     });
+  }
+
+  /* ---- زر الطلب العائم: يتبع الزائرة بعد تجاوز Hero ويختفي عند نموذج الطلب ---- */
+  var orderFloat = document.querySelector('.order-float');
+  if (orderFloat) {
+    var orderSec = document.getElementById('order');
+    var toggleOrderFloat = function () {
+      var past = window.scrollY > 480;
+      var atOrder = false;
+      if (orderSec) {
+        var r = orderSec.getBoundingClientRect();
+        atOrder = r.top < window.innerHeight * 0.8 && r.bottom > 0;
+      }
+      orderFloat.classList.toggle('show', past && !atOrder);
+    };
+    window.addEventListener('scroll', toggleOrderFloat, { passive: true });
+    toggleOrderFloat();
   }
 
   /* ---- زر واتساب العائم: يظهر فقط عند الوصول لأسفل الصفحة (بعد نموذج الطلب) ---- */
