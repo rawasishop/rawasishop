@@ -315,7 +315,34 @@ h1, h2, h3, h4 { font-family: var(--font-head); color: var(--plum); line-height:
 .order-form::before {
   content: ''; position: absolute; inset: 0 0 auto 0; height: 6px; background: var(--grad-rose);
 }
-.order-form h3 { font-size: 1.45rem; margin-bottom: 22px; }
+.order-form h3 { font-size: 1.45rem; margin-bottom: 6px; }
+.form-sub { color: var(--muted); font-size: .92rem; margin-bottom: 22px; line-height: 1.5; }
+
+/* Order 3-step process */
+.order-steps {
+  display: flex; align-items: center; justify-content: space-between;
+  background: var(--pink-bg); border-radius: 14px; padding: 14px 12px; margin-bottom: 22px;
+}
+.os-step { display: flex; flex-direction: column; align-items: center; gap: 5px; flex: 1; }
+.os-num {
+  width: 30px; height: 30px; border-radius: 50%; background: var(--grad-rose); color: #fff;
+  font-family: var(--font-head); font-weight: 700; font-size: .9rem; display: grid; place-items: center;
+}
+.os-step span:last-child { font-size: .78rem; color: var(--plum); font-weight: 600; text-align: center; }
+.os-arrow { color: var(--rose-soft); font-size: 1.4rem; flex-shrink: 0; padding: 0 4px; }
+
+/* Form trust badges */
+.form-trust {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 14px 0 8px;
+}
+.form-trust span {
+  font-size: .8rem; color: var(--plum); font-weight: 600;
+  background: var(--pink-bg); padding: 6px 12px; border-radius: 30px; border: 1px solid var(--line);
+}
+
+/* Mid-page CTA */
+.mid-cta { background: var(--grad-rose); padding: 46px 0; }
+.mid-cta-text { color: rgba(255,255,255,.92); font-size: 1rem; font-weight: 600; margin-bottom: 20px; }
 .field { margin-bottom: 16px; }
 .field label { display: block; font-weight: 600; color: var(--plum); margin-bottom: 6px; font-size: .95rem; }
 .field input, .field select {
