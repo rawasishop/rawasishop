@@ -2,14 +2,14 @@
 window.RAWASI_CONFIG = {
   siteUrl: 'https://rawasishop.com',
   brand: 'رواسي',
-  tagline: 'جمالك من الداخل — للمرأة السعودية',
-  orderIdPrefix: 'rawasi',
+  tagline: 'صيدلية الجمال الداخلي — للتجاعيد، الهالات، وجفاف البشرة',
+  orderIdPrefix: 'nama',
   country: 'KSA',
   currency: 'SAR',
   whatsapp: '212633405061',
   GOOGLE_SHEET_ID: '1mFLx9XEPJjSVxCo41c929jtqwpluV9TADqFRLlnc7Lw',
   WEBHOOK_URL:
-    'https://script.google.com/macros/s/AKfycbxgfnUDUdH4jZVUdgKIM5-t23MtbPVdTK8A399aeoZVWVoyw7AkpQSLY_TjCiVzE-I/exec',
+    'https://script.google.com/macros/s/AKfycbyz-kQq4zvNK2_GrNCj9uMpOYUCxIO_beI_-8ykRZlw6Bh-7jVK1VIVVO1Wl7Tvdfc/exec',
 
   products: {
     electrolytes: {

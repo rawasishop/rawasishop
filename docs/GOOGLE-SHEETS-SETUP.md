@@ -11,6 +11,27 @@ https://docs.google.com/spreadsheets/d/1mFLx9XEPJjSVxCo41c929jtqwpluV9TADqFRLlnc
 
 | date | orderid | country | name | phone | product | sku | quantity | total price | currency | status |
 
+## شكل الـ payload (من `js/store.js`)
+
+```json
+{
+  "date": "03/06/2026",
+  "orderid": "nama48291",
+  "country": "KSA",
+  "name": "فاطمة العتيبي",
+  "phone": "96650475233",
+  "product": "رواسي هيدرا — …/رواسي شيلد — …",
+  "sku": "NMA391204/NMA582017",
+  "quantity": "2/1",
+  "total price": 588,
+  "currency": "SAR"
+}
+```
+
+- **orderid:** `nama` + 5 أرقام (مثل `nama12345`)
+- **phone:** دائماً `9665xxxxxxxx`
+- **product / sku / quantity:** مفصولة بـ `/` عند عدة منتجات
+
 ## الإعداد (من نفس الجدول)
 
 1. افتح الرابط أعلاه.
@@ -24,7 +45,7 @@ https://docs.google.com/spreadsheets/d/1mFLx9XEPJjSVxCo41c929jtqwpluV9TADqFRLlnc
 الرابط العامل (الإصدار 2):
 
 ```
-https://script.google.com/macros/s/AKfycbxgfnUDUdH4jZVUdgKIM5-t23MtbPVdTK8A399aeoZVWVoyw7AkpQSLY_TjCiVzE-I/exec
+https://script.google.com/macros/s/AKfycbyz-kQq4zvNK2_GrNCj9uMpOYUCxIO_beI_-8ykRZlw6Bh-7jVK1VIVVO1Wl7Tvdfc/exec
 ```
 
 ## اختبار
