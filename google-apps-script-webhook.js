@@ -52,23 +52,39 @@ function setupHeaders() {
 }
 
 function parseRequestBody(e) {
-  if (e && e.postData && e.postData.contents) {
-    return e.postData.contents;
+  if (!e) return '';
+
+  // حقول النموذج (application/x-www-form-urlencoded)
+  if (e.parameter && e.parameter.payload) {
+    return String(e.parameter.payload);
   }
-  if (e && e.parameter && e.parameter.payload) {
-    return e.parameter.payload;
+
+  if (!e.postData || !e.postData.contents) {
+    return '';
   }
-  return '';
+
+  var contents = String(e.postData.contents).trim();
+
+  // المتصفح يرسل أحياناً: payload=%7B...%7D
+  if (contents.indexOf('payload=') === 0) {
+    return decodeURIComponent(contents.replace(/^payload=/, '').replace(/\+/g, ' '));
+  }
+
+  return contents;
+}
+
+function parseOrderJson(e) {
+  var raw = parseRequestBody(e);
+  if (!raw) {
+    throw new Error('Empty body');
+  }
+  return JSON.parse(raw);
 }
 
 function doPost(e) {
   try {
     var sheet = getOrdersSheet();
-    var raw = parseRequestBody(e);
-    if (!raw) {
-      throw new Error('Empty body');
-    }
-    var data = JSON.parse(raw);
+    var data = parseOrderJson(e);
 
     if (sheet.getLastRow() === 0) {
       sheet.appendRow(HEADERS);
@@ -85,7 +101,7 @@ function doPost(e) {
       data.quantity || '',
       data['total price'] || data.totalPrice || '',
       data.currency || 'SAR',
-      data.status || ''
+      ''
     ]);
 
     return ContentService
@@ -108,16 +124,15 @@ function testAppendRow() {
     postData: {
       contents: JSON.stringify({
         date: '04/06/2026',
-        orderid: 'rawasi-TEST-SCRIPT',
+        orderid: 'nama12345',
         country: 'KSA',
         name: 'اختبار من Apps Script',
-        phone: '966500000000',
-        product: 'رواسي هيدرا',
-        sku: 'RW-EL-001',
+        phone: '96650475233',
+        product: 'رواسي هيدرا — أكياس الإلكتروليت وإرهاق الحر',
+        sku: 'NMA482910',
         quantity: '1',
         'total price': 199,
-        currency: 'SAR',
-        status: 'test'
+        currency: 'SAR'
       })
     }
   });

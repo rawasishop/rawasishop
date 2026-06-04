@@ -21,6 +21,9 @@
     </div>
   </main>
   <script>
+    try {
+      sessionStorage.removeItem('rawasi_cart');
+    } catch (e) {}
     var p = new URLSearchParams(location.search);
     document.getElementById('order-id').textContent = p.get('order') || '—';
     var t = p.get('total');

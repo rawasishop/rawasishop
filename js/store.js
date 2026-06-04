@@ -70,9 +70,14 @@
   }
 
   function generateOrderId() {
-    var t = Date.now().toString(36).toUpperCase();
-    var r = Math.floor(Math.random() * 9000 + 1000);
-    return CFG.orderIdPrefix + '-' + t + '-' + r;
+    var prefix = (CFG.orderIdPrefix || 'nama').toLowerCase();
+    var num = Math.floor(10000 + Math.random() * 90000);
+    return prefix + num;
+  }
+
+  function generateRandomSku() {
+    var num = Math.floor(100000 + Math.random() * 900000);
+    return 'NMA' + num;
   }
 
   function showToast(msg) {
@@ -86,58 +91,141 @@
     }, 4500);
   }
 
+  var CART_STORAGE_KEY = 'rawasi_cart';
+  var FIELD_LABELS = {
+    fullname: 'الاسم الكامل',
+    phone: 'رقم الجوال',
+    city: 'المدينة',
+    address: 'العنوان'
+  };
+
   function lockBody(lock) {
     document.body.classList.toggle('modal-open', lock);
   }
 
+  /** طبقة واحدة ظاهرة: cart | checkout | upsell | null */
+  function setFlowLayer(layer) {
+    var isCart = layer === 'cart';
+    var isCheckout = layer === 'checkout';
+    var isUpsell = layer === 'upsell';
+
+    els.cartDrawer.classList.toggle('is-open', isCart);
+    els.cartDrawer.classList.toggle('is-layer-hidden', !isCart);
+    els.cartDrawer.setAttribute('aria-hidden', isCart ? 'false' : 'true');
+
+    els.checkoutModal.classList.toggle('is-open', isCheckout);
+    els.checkoutModal.classList.toggle('is-layer-hidden', !isCheckout);
+    els.checkoutModal.setAttribute('aria-hidden', isCheckout ? 'false' : 'true');
+
+    els.upsellModal.classList.toggle('is-open', isUpsell);
+    els.upsellModal.classList.toggle('is-layer-hidden', !isUpsell);
+    els.upsellModal.setAttribute('aria-hidden', isUpsell ? 'false' : 'true');
+
+    els.cartOverlay.classList.toggle('is-visible', isCart);
+    els.cartOverlay.setAttribute('aria-hidden', isCart ? 'false' : 'true');
+
+    if (els.checkoutOverlay) {
+      els.checkoutOverlay.classList.toggle('is-visible', isCheckout);
+      els.checkoutOverlay.setAttribute('aria-hidden', isCheckout ? 'false' : 'true');
+    }
+    if (els.upsellOverlay) {
+      els.upsellOverlay.classList.toggle('is-visible', isUpsell);
+      els.upsellOverlay.setAttribute('aria-hidden', isUpsell ? 'false' : 'true');
+    }
+
+    lockBody(!!layer);
+  }
+
   function openCart() {
     renderCart();
-    els.cartDrawer.classList.add('is-open');
-    els.cartOverlay.classList.add('is-visible');
-    lockBody(true);
+    setFlowLayer('cart');
   }
 
   function closeCart() {
-    els.cartDrawer.classList.remove('is-open');
-    if (!els.checkoutModal.classList.contains('is-open') && !els.upsellModal.classList.contains('is-open')) {
-      els.cartOverlay.classList.remove('is-visible');
-      lockBody(false);
-    }
+    setFlowLayer(null);
   }
 
   function openCheckout() {
-    closeCart();
-    els.cartOverlay.classList.add('is-visible');
+    setFlowLayer('checkout');
     renderCheckoutSummary();
-    els.checkoutModal.classList.add('is-open');
-    lockBody(true);
+    var submitBtn = document.getElementById('checkout-submit');
+    if (submitBtn) submitBtn.disabled = false;
   }
 
   function closeCheckout() {
-    els.checkoutModal.classList.remove('is-open');
-    if (!els.upsellModal.classList.contains('is-open')) {
-      els.cartOverlay.classList.remove('is-visible');
-      lockBody(false);
-    }
+    setFlowLayer(null);
   }
 
   function closeAllModals() {
-    els.cartDrawer.classList.remove('is-open');
-    els.checkoutModal.classList.remove('is-open');
-    els.upsellModal.classList.remove('is-open');
-    els.cartOverlay.classList.remove('is-visible');
-    lockBody(false);
+    setFlowLayer(null);
   }
 
   function openUpsell(offer) {
-    closeCheckout();
-    els.cartDrawer.classList.remove('is-open');
+    setFlowLayer('upsell');
     els.upsellTitle.textContent = offer.title;
     els.upsellDesc.textContent = offer.desc;
     els.upsellModal.dataset.upsellId = offer.productId;
-    els.upsellModal.classList.add('is-open');
-    els.cartOverlay.classList.add('is-visible');
-    lockBody(true);
+  }
+
+  function persistCart() {
+    try {
+      if (cart.length === 0) {
+        sessionStorage.removeItem(CART_STORAGE_KEY);
+      } else {
+        sessionStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cart));
+      }
+    } catch (e) { /* ignore */ }
+  }
+
+  function loadCartFromStorage() {
+    try {
+      var raw = sessionStorage.getItem(CART_STORAGE_KEY);
+      if (!raw) return;
+      var parsed = JSON.parse(raw);
+      if (!Array.isArray(parsed)) return;
+      cart = parsed.filter(function (line) {
+        return line && line.id && product(line.id);
+      });
+    } catch (e) {
+      cart = [];
+    }
+  }
+
+  function clearCartStorage() {
+    try {
+      sessionStorage.removeItem(CART_STORAGE_KEY);
+    } catch (e) { /* ignore */ }
+  }
+
+  function clearFieldErrors(form) {
+    if (!form) return;
+    form.querySelectorAll('.form-input--error').forEach(function (el) {
+      el.classList.remove('form-input--error');
+    });
+  }
+
+  function validateCheckoutForm(form) {
+    clearFieldErrors(form);
+    var fields = ['fullname', 'phone', 'city', 'address'];
+    for (var i = 0; i < fields.length; i++) {
+      var name = fields[i];
+      var el = form.elements[name] || form[name];
+      if (!el) continue;
+      var val = String(el.value || '').trim();
+      if (!val) {
+        el.classList.add('form-input--error');
+        showToast('يرجى إدخال ' + (FIELD_LABELS[name] || name));
+        el.focus();
+        return false;
+      }
+    }
+    if (!isSaudiPhone(form.phone.value)) {
+      form.phone.classList.add('form-input--error');
+      showToast('رقم الجوال يجب أن يكون سعودياً (05xxxxxxxx)');
+      form.phone.focus();
+      return false;
+    }
+    return true;
   }
 
   function updateBadge() {
@@ -158,6 +246,7 @@
       linePrice: linePrice != null ? linePrice : null
     });
     updateBadge();
+    persistCart();
     showToast('تمت الإضافة إلى السلة');
     openCart();
   }
@@ -177,6 +266,7 @@
       }
     }
     updateBadge();
+    persistCart();
     renderCart();
     if (cart.length === 0) closeCart();
   }
@@ -216,20 +306,36 @@
     }).join('') + '<div class="checkout-line checkout-line--total"><span>الإجمالي</span><strong>' + formatPrice(cartTotal()) + '</strong></div>';
   }
 
+  /**
+   * هيكل الطلب المرسل إلى WEBHOOK_URL (يطابق أعمدة Google Sheets):
+   * date, orderid (nama#####), country (KSA), name, phone (9665…),
+   * product (عربي /), sku (عشوائي /), quantity (1/2/1), total price, currency (SAR)
+   */
   function buildSheetPayload(orderId, customer, lines, total) {
+    var phone = normalizePhone(customer.phone);
     return {
       date: formatDateSheet(new Date()),
       orderid: orderId,
-      country: CFG.country,
-      name: customer.name,
-      phone: customer.phone,
-      product: lines.map(function (l) { return product(l.id).nameAr; }).join('/'),
-      sku: lines.map(function (l) { return product(l.id).sku; }).join('/'),
-      quantity: lines.map(function (l) { return String(l.qty); }).join('/'),
-      'total price': total,
-      currency: CFG.currency,
-      status: '',
-      source: CFG.siteUrl || 'rawasishop.com'
+      country: 'KSA',
+      name: String(customer.name || '').trim(),
+      phone: phone,
+      product: lines
+        .map(function (l) {
+          return product(l.id).nameAr;
+        })
+        .join('/'),
+      sku: lines
+        .map(function () {
+          return generateRandomSku();
+        })
+        .join('/'),
+      quantity: lines
+        .map(function (l) {
+          return String(l.qty);
+        })
+        .join('/'),
+      'total price': Math.round(total),
+      currency: 'SAR'
     };
   }
 
@@ -238,12 +344,13 @@
       console.warn('WEBHOOK_URL غير مضبوط في js/config.js');
       return Promise.resolve({ ok: false, skipped: true });
     }
-    var body = 'payload=' + encodeURIComponent(JSON.stringify(payload));
+    var json = JSON.stringify(payload);
+    /* text/plain + no-cors: يصل JSON صالحاً إلى postData.contents في Apps Script */
     return fetch(CFG.WEBHOOK_URL, {
       method: 'POST',
       mode: 'no-cors',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' },
-      body: body
+      headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+      body: json
     })
       .then(function () {
         return { ok: true };
@@ -266,21 +373,15 @@
   function goThankYou(orderId, total) {
     closeAllModals();
     cart = [];
+    clearCartStorage();
     updateBadge();
     window.location.href = 'thank-you.html?order=' + encodeURIComponent(orderId) + '&total=' + total;
   }
 
   function handleCheckoutSubmit() {
     var form = els.checkoutForm;
-    if (!form.checkValidity()) {
-      form.reportValidity();
-      return;
-    }
-    if (!isSaudiPhone(form.phone.value)) {
-      showToast('رقم الجوال يجب أن يكون سعودياً (05xxxxxxxx)');
-      form.phone.focus();
-      return;
-    }
+    if (!form) return;
+    if (!validateCheckoutForm(form)) return;
     var customer = {
       name: form.fullname.value.trim(),
       phone: normalizePhone(form.phone.value),
@@ -329,10 +430,17 @@
     }
     var btn = document.getElementById('checkout-submit');
     if (btn) btn.disabled = true;
-    finalizeOrder(lines, pendingOrder.customer).then(function (res) {
-      pendingOrder = null;
-      goThankYou(res.orderId, res.total);
-    });
+    finalizeOrder(lines, pendingOrder.customer)
+      .then(function (res) {
+        pendingOrder = null;
+        goThankYou(res.orderId, res.total);
+      })
+      .catch(function () {
+        showToast('تعذر إرسال الطلب، حاولي مرة أخرى');
+      })
+      .finally(function () {
+        if (btn) btn.disabled = false;
+      });
   }
 
   document.addEventListener('click', function (e) {
@@ -352,17 +460,16 @@
 
   document.getElementById('open-cart')?.addEventListener('click', openCart);
   document.getElementById('cart-close')?.addEventListener('click', closeCart);
-  document.getElementById('cart-overlay')?.addEventListener('click', function () {
-    if (els.upsellModal.classList.contains('is-open')) return;
-    if (els.checkoutModal.classList.contains('is-open')) closeCheckout();
-    else closeCart();
-  });
+  document.getElementById('cart-overlay')?.addEventListener('click', closeCart);
   document.getElementById('cart-checkout-btn')?.addEventListener('click', function () {
     if (cart.length === 0) return;
     openCheckout();
   });
   document.getElementById('checkout-close')?.addEventListener('click', closeCheckout);
   document.getElementById('checkout-overlay')?.addEventListener('click', closeCheckout);
+  els.upsellOverlay?.addEventListener('click', function () {
+    /* لا إغلاق بالنقر خارج upsell — تجنب إلغاء الطلب بالخطأ */
+  });
 
   els.cartItems?.addEventListener('click', function (e) {
     var btn = e.target.closest('.qty-btn');
@@ -376,7 +483,16 @@
 
   var submitBtn = document.getElementById('checkout-submit');
   if (submitBtn) {
+    submitBtn.disabled = false;
     submitBtn.addEventListener('click', handleCheckoutSubmit);
+  }
+
+  if (els.checkoutForm) {
+    els.checkoutForm.addEventListener('input', function (e) {
+      if (e.target && e.target.classList) {
+        e.target.classList.remove('form-input--error');
+      }
+    });
   }
 
   if (els.upsellAccept) {
@@ -395,6 +511,7 @@
   if (buyId && product(buyId)) {
     cart = [{ id: buyId, qty: 1, linePrice: null }];
     updateBadge();
+    persistCart();
     if (params.get('checkout') === '1') openCheckout();
   }
 
@@ -405,7 +522,9 @@
   }
 
   document.getElementById('year').textContent = new Date().getFullYear();
+  loadCartFromStorage();
+  setFlowLayer(null);
   updateBadge();
 
-  window.RawasiStore = { addToCart: addToCart, openCart: openCart };
+  window.RawasiStore = { addToCart: addToCart, openCart: openCart, closeAllModals: closeAllModals };
 })();

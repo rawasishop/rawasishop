@@ -1,13 +1,13 @@
 /* ===== Design tokens ===== */
 :root {
-  --green-900: #123640;
-  --green-800: #1B4D5C;
-  --green-700: #2A7A8C;
-  --green-600: #2A7A8C;
-  --green-500: #3d96a8;
-  --green-100: #e8f2f5;
-  --gold: #B8956B;
-  --gold-light: #e8d9c4;
+  --green-900: #152d42;
+  --green-800: #1A3A52;
+  --green-700: #4A6B85;
+  --green-600: #4A6B85;
+  --green-500: #5B7C99;
+  --green-100: #eef2f6;
+  --gold: #9A7B5A;
+  --gold-light: #E8DFD0;
   --navy-900: #0c1222;
   --navy-800: #141d33;
   --navy-700: #1a2744;
@@ -15,7 +15,7 @@
   --gold-premium: #d4af37;
   --gold-shine: #f0e0b0;
   --white: #ffffff;
-  --gray-50: #f7f8f8;
+  --gray-50: #FAF8F5;
   --gray-100: #eef0ef;
   --gray-200: #d8dedc;
   --gray-500: #6b7a75;
@@ -1420,6 +1420,34 @@ body.modal-open {
   transform: translateX(0);
 }
 
+.drawer.is-layer-hidden,
+.modal.is-layer-hidden {
+  visibility: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+}
+
+.drawer.is-layer-hidden {
+  transform: translateX(100%);
+}
+
+[dir="rtl"] .drawer.is-layer-hidden {
+  transform: translateX(-100%);
+}
+
+.overlay--checkout.is-visible,
+.overlay--upsell.is-visible {
+  z-index: 175;
+}
+
+.modal.is-open {
+  z-index: 180;
+}
+
+.modal--upsell.is-open {
+  z-index: 190;
+}
+
 .drawer__head,
 .modal__head {
   display: flex;
@@ -1530,14 +1558,13 @@ body.modal-open {
   box-shadow: var(--shadow-lg);
 }
 
-.modal.is-open {
+.modal:not(.is-layer-hidden).is-open {
   opacity: 1;
   visibility: visible;
   transform: translate(-50%, -50%) scale(1);
 }
 
 .modal--upsell {
-  z-index: 180;
   padding: 1.5rem 1.25rem;
   text-align: center;
 }
@@ -1702,6 +1729,17 @@ body.modal-open {
   text-align: center;
   color: var(--gray-500);
   margin-bottom: 0.75rem;
+}
+
+.form-input--error,
+.order__form .form-input--error {
+  border-color: #c0392b;
+  box-shadow: 0 0 0 2px rgba(192, 57, 43, 0.15);
+}
+
+#checkout-submit:disabled {
+  opacity: 0.65;
+  cursor: wait;
 }
 
 @media (max-width: 520px) {
