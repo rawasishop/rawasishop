@@ -17,7 +17,7 @@
        fbPixelId : معرّف Facebook Pixel (مثال: '123456789012345')
        gaId      : معرّف Google GA4 / Google Ads (مثال: 'G-XXXXXXXXXX' أو 'AW-XXXXXXXXX')
      اتركيها فارغة لتعطيل التتبّع. */
-  var TRACKING = { fbPixelId: '', gaId: '' };
+  var TRACKING = { fbPixelId: '1007677050990489', gaId: '' };
 
   function initTracking() {
     if (TRACKING.fbPixelId) {
