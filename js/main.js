@@ -9,6 +9,20 @@
      مثال للمغرب: 2126XXXXXXXX */
   var STORE_WHATSAPP = '212633405061';
 
+  /* ====== ربط الطلبات بـ Google Sheets ======
+     رابط نشر Apps Script المنتهي بـ /exec. اتركيه فارغاً لتعطيل الحفظ في الجدول. */
+  var SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxABILHb7m188O7OqdBKifjavrcxvvRuH9KH66Q1-jil5_rv8yBR4Jgks0bqd1UHdw/exec';
+  function sendToSheet(order) {
+    if (!SHEET_WEBHOOK_URL) return;
+    try {
+      fetch(SHEET_WEBHOOK_URL, {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify(order)
+      });
+    } catch (e) {}
+  }
+
   /* علم استخدام كوبون خصم المغادرة */
   var couponClaimed = false;
 
@@ -192,10 +206,13 @@
         phone: form.phone.value.trim(),
         city: form.city.value.trim(),
         address: form.address.value.trim(),
-        qty: qtyVal,
+        qty: qtyLabel,
         total: totalPrice ? totalPrice.textContent : '',
+        coupon: couponClaimed ? 'RAWASI10' : '',
+        product: 'جهاز إزالة الشعر IPL',
         date: new Date().toISOString()
       };
+      sendToSheet(order);
       // حفظ الطلب محلياً (يمكن ربطه لاحقاً بخادم أو Google Sheets)
       try {
         var orders = JSON.parse(localStorage.getItem('rawasi_orders') || '[]');
