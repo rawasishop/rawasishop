@@ -29,13 +29,18 @@
     return CFG.products[id];
   }
 
+  function lineSubtotal(line) {
+    if (line.linePrice != null) return line.linePrice;
+    return product(line.id).price * line.qty;
+  }
+
   function cartCount() {
     return cart.reduce(function (n, line) { return n + line.qty; }, 0);
   }
 
   function cartTotal() {
     return cart.reduce(function (sum, line) {
-      return sum + product(line.id).price * line.qty;
+      return sum + lineSubtotal(line);
     }, 0);
   }
 
@@ -50,6 +55,11 @@
     if (d.indexOf('5') === 0 && d.length === 9) return '966' + d;
     if (d.length === 10 && d.charAt(0) === '0') return '966' + d.slice(1);
     return d;
+  }
+
+  function isSaudiPhone(raw) {
+    var d = normalizePhone(raw);
+    return d.length === 12 && d.indexOf('9665') === 0;
   }
 
   function formatDateSheet(d) {
@@ -138,12 +148,15 @@
     }
   }
 
-  function addToCart(id, qty) {
+  function addToCart(id, qty, linePrice) {
     qty = qty || 1;
     if (!product(id)) return;
-    var line = cart.find(function (l) { return l.id === id; });
-    if (line) line.qty += qty;
-    else cart.push({ id: id, qty: qty });
+    cart = cart.filter(function (l) { return l.id !== id; });
+    cart.push({
+      id: id,
+      qty: qty,
+      linePrice: linePrice != null ? linePrice : null
+    });
     updateBadge();
     showToast('تمت الإضافة إلى السلة');
     openCart();
@@ -153,8 +166,16 @@
     qty = Math.max(0, qty);
     var idx = cart.findIndex(function (l) { return l.id === id; });
     if (idx === -1) return;
-    if (qty === 0) cart.splice(idx, 1);
-    else cart[idx].qty = qty;
+    var line = cart[idx];
+    if (qty === 0) {
+      cart.splice(idx, 1);
+    } else {
+      line.qty = qty;
+      if (line.linePrice != null) {
+        var unit = line.linePrice / (line.qty || 1);
+        line.linePrice = Math.round(unit * qty);
+      }
+    }
     updateBadge();
     renderCart();
     if (cart.length === 0) closeCart();
@@ -175,8 +196,8 @@
         '<div class="cart-line" data-id="' + line.id + '">' +
         '<img src="' + p.image + '" alt="" width="64" height="64">' +
         '<div class="cart-line__info">' +
-        '<p class="cart-line__name">' + p.shortAr + '</p>' +
-        '<p class="cart-line__price">' + formatPrice(p.price) + '</p>' +
+        '<p class="cart-line__name">' + p.shortAr + ' × ' + line.qty + '</p>' +
+        '<p class="cart-line__price">' + formatPrice(lineSubtotal(line)) + '</p>' +
         '<div class="cart-line__qty">' +
         '<button type="button" class="qty-btn" data-action="minus" data-id="' + line.id + '" aria-label="تقليل">−</button>' +
         '<span>' + line.qty + '</span>' +
@@ -191,7 +212,7 @@
     if (!els.checkoutSummary) return;
     els.checkoutSummary.innerHTML = cart.map(function (line) {
       var p = product(line.id);
-      return '<div class="checkout-line"><span>' + p.shortAr + ' × ' + line.qty + '</span><strong>' + formatPrice(p.price * line.qty) + '</strong></div>';
+      return '<div class="checkout-line"><span>' + p.shortAr + ' × ' + line.qty + '</span><strong>' + formatPrice(lineSubtotal(line)) + '</strong></div>';
     }).join('') + '<div class="checkout-line checkout-line--total"><span>الإجمالي</span><strong>' + formatPrice(cartTotal()) + '</strong></div>';
   }
 
@@ -207,7 +228,8 @@
       quantity: lines.map(function (l) { return String(l.qty); }).join('/'),
       'total price': total,
       currency: CFG.currency,
-      status: ''
+      status: '',
+      source: CFG.siteUrl || 'rawasishop.com'
     };
   }
 
@@ -216,7 +238,6 @@
       console.warn('WEBHOOK_URL غير مضبوط في js/config.js');
       return Promise.resolve({ ok: false, skipped: true });
     }
-    /* form-urlencoded: متوافق مع no-cors + Google Apps Script (حقل payload) */
     var body = 'payload=' + encodeURIComponent(JSON.stringify(payload));
     return fetch(CFG.WEBHOOK_URL, {
       method: 'POST',
@@ -235,7 +256,7 @@
 
   function finalizeOrder(lines, customer) {
     var orderId = generateOrderId();
-    var total = lines.reduce(function (s, l) { return s + product(l.id).price * l.qty; }, 0);
+    var total = lines.reduce(function (s, l) { return s + lineSubtotal(l); }, 0);
     var payload = buildSheetPayload(orderId, customer, lines, total);
     return sendWebhook(payload).then(function () {
       return { orderId: orderId, total: total };
@@ -255,6 +276,11 @@
       form.reportValidity();
       return;
     }
+    if (!isSaudiPhone(form.phone.value)) {
+      showToast('رقم الجوال يجب أن يكون سعودياً (05xxxxxxxx)');
+      form.phone.focus();
+      return;
+    }
     var customer = {
       name: form.fullname.value.trim(),
       phone: normalizePhone(form.phone.value),
@@ -263,7 +289,9 @@
     };
     pendingOrder = {
       customer: customer,
-      lines: cart.map(function (l) { return { id: l.id, qty: l.qty }; })
+      lines: cart.map(function (l) {
+        return { id: l.id, qty: l.qty, linePrice: l.linePrice };
+      })
     };
 
     var lastLine = pendingOrder.lines[pendingOrder.lines.length - 1];
@@ -288,11 +316,18 @@
     var lines = pendingOrder.lines.slice();
     if (withUpsell && els.upsellModal.dataset.upsellId) {
       var upId = els.upsellModal.dataset.upsellId;
+      var offer = CFG.upsellOffers[upId];
+      var upProd = product(upId);
+      var upPrice = upProd.price - (offer ? offer.discount : 0);
       var existing = lines.find(function (l) { return l.id === upId; });
-      if (existing) existing.qty += 1;
-      else lines.push({ id: upId, qty: 1 });
+      if (existing) {
+        existing.qty += 1;
+        existing.linePrice = (existing.linePrice || upProd.price * existing.qty) + upPrice;
+      } else {
+        lines.push({ id: upId, qty: 1, linePrice: upPrice });
+      }
     }
-    var btn = els.checkoutForm.querySelector('[type="submit"]');
+    var btn = document.getElementById('checkout-submit');
     if (btn) btn.disabled = true;
     finalizeOrder(lines, pendingOrder.customer).then(function (res) {
       pendingOrder = null;
@@ -300,10 +335,19 @@
     });
   }
 
-  document.querySelectorAll('[data-add-cart]').forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      addToCart(btn.getAttribute('data-add-cart'), 1);
-    });
+  document.addEventListener('click', function (e) {
+    var bundleBtn = e.target.closest('[data-add-bundle]');
+    if (bundleBtn) {
+      var id = bundleBtn.getAttribute('data-add-bundle');
+      var qty = parseInt(bundleBtn.getAttribute('data-qty'), 10) || 1;
+      var price = parseInt(bundleBtn.getAttribute('data-price'), 10);
+      addToCart(id, qty, price);
+      return;
+    }
+    var cartBtn = e.target.closest('[data-add-cart]');
+    if (cartBtn) {
+      addToCart(cartBtn.getAttribute('data-add-cart'), 1);
+    }
   });
 
   document.getElementById('open-cart')?.addEventListener('click', openCart);
@@ -346,30 +390,18 @@
     });
   }
 
-  document.querySelectorAll('[data-product]').forEach(function (link) {
-    link.addEventListener('click', function (e) {
-      var id = link.getAttribute('data-product');
-      if (!id || !product(id)) return;
-      if (link.getAttribute('data-action') === 'buy') {
-        e.preventDefault();
-        cart = [{ id: id, qty: 1 }];
-        updateBadge();
-        openCheckout();
-      }
-    });
-  });
-
   var params = new URLSearchParams(window.location.search);
   var buyId = params.get('buy');
   if (buyId && product(buyId)) {
-    cart = [{ id: buyId, qty: 1 }];
+    cart = [{ id: buyId, qty: 1, linePrice: null }];
     updateBadge();
     if (params.get('checkout') === '1') openCheckout();
   }
 
   var wa = document.getElementById('whatsapp-fab');
   if (wa && CFG.whatsapp) {
-    wa.href = 'https://wa.me/' + CFG.whatsapp + '?text=' + encodeURIComponent('السلام عليكم، استفسار عن منتجات رواسي');
+    var site = CFG.siteUrl || 'https://rawasishop.com';
+    wa.href = 'https://wa.me/' + CFG.whatsapp + '?text=' + encodeURIComponent('السلام عليكم، استفسار عن منتجات رواسي من ' + site);
   }
 
   document.getElementById('year').textContent = new Date().getFullYear();
