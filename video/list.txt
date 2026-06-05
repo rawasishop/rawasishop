@@ -1,0 +1,9 @@
+file slide1.jpg
+duration 4
+file slide2.jpg
+duration 4
+file slide3.jpg
+duration 4
+file slide4.jpg
+duration 4
+file slide4.jpg
