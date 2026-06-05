@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>إتمام الطلب | RawasiShop</title>
+  <meta name="description" content="أكّدي طلبكِ الآن — دفع آمن، شحن مجاني، والدفع عند الاستلام متاح." />
+  <meta name="robots" content="noindex, follow" />
+  <meta name="theme-color" content="#d6447a" />
+  <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@500;600;700&family=Tajawal:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/checkout.css?v=20260606checkout" />
+</head>
+<body class="checkout-page">
+
+  <header class="co-header">
+    <div class="co-header-inner">
+      <a href="../" class="co-logo" aria-label="RawasiShop">
+        <span class="co-logo-mark">R</span>
+        <span class="co-logo-text">Rawasi<strong>Shop</strong></span>
+      </a>
+      <div class="co-secure" aria-label="دفع آمن">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        <span class="secure-text">دفع آمن ومشفّر SSL</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="co-main">
+    <div class="co-urgency" role="status">
+      ⚡ أكثر من <strong id="coViewers">23</strong> سعودية تكملن طلبهنّ الآن — الكمية محدودة
+    </div>
+
+    <div class="co-grid" style="margin-top:20px">
+
+      <!-- ملخص الطلب (سطح المكتب) -->
+      <aside class="co-summary" aria-label="ملخص الطلب">
+        <h2>ملخص طلبكِ</h2>
+        <div class="co-product">
+          <img class="co-product-img" src="../assets/product-official.jpg" alt="جهاز IPL" width="72" height="72" />
+          <div class="co-product-info">
+            <h3>جهاز إزالة الشعر IPL</h3>
+            <p>أصلي 100% · شحن مجاني</p>
+          </div>
+        </div>
+        <div class="co-qty-select">
+          <label for="bundleSelect">اختاري الباقة</label>
+          <select id="bundleSelect" name="bundle">
+            <option value="1" data-price="395">قطعة واحدة — 395 ريال</option>
+            <option value="2" data-price="690">قطعتان — 690 ريال</option>
+            <option value="3" data-price="950">3 قطع — 950 ريال</option>
+          </select>
+        </div>
+        <div class="co-lines" style="margin-top:18px">
+          <div class="co-line"><span>المجموع الفرعي</span><span id="coSubtotal">395 ريال</span></div>
+          <div class="co-line muted"><span>الشحن</span><span>مجاني 🚚</span></div>
+          <div class="co-line cod-fee hidden" id="coCodLine"><span>رسوم الدفع عند الاستلام</span><span id="coCodFee">+30 ريال</span></div>
+          <div class="co-line total"><span>الإجمالي</span><span id="coTotal">395 ريال</span></div>
+        </div>
+        <div class="co-trust-mini">
+          <span>🔒 دفع آمن</span>
+          <span>🔄 استرجاع 14 يوم</span>
+          <span>🛡️ منتج أصلي</span>
+        </div>
+      </aside>
+
+      <!-- نموذج الدفع -->
+      <section class="co-flow">
+
+        <!-- ملخص الجوال -->
+        <details class="co-summary-mobile">
+          <summary>ملخص الطلب <span id="coTotalMobile">395 ريال</span></summary>
+          <div class="co-lines">
+            <div class="co-line"><span>المجموع الفرعي</span><span id="coSubtotalM">395 ريال</span></div>
+            <div class="co-line muted"><span>الشحن</span><span>مجاني</span></div>
+            <div class="co-line cod-fee hidden" id="coCodLineM"><span>رسوم COD</span><span>+30 ريال</span></div>
+            <div class="co-line total"><span>الإجمالي</span><span id="coTotalM2">395 ريال</span></div>
+          </div>
+        </details>
+
+        <!-- Express: Apple Pay (iOS) -->
+        <div class="co-card co-express" id="expressCheckout">
+          <h2 class="co-card-title">⚡ دفع سريع</h2>
+          <div class="co-express-btns">
+            <div id="applePayMount"></div>
+            <div class="co-express-placeholder" id="applePayPlaceholder" hidden> Apple Pay</div>
+          </div>
+          <p class="co-express-note">متاح على أجهزة Apple — دفع بنقرة واحدة</p>
+        </div>
+
+        <div class="co-divider" id="expressDivider" hidden>أو أكملي بياناتكِ</div>
+
+        <form class="co-card" id="checkoutForm" novalidate>
+
+          <h2 class="co-card-title">📍 معلومات التوصيل</h2>
+
+          <div class="co-field">
+            <label for="fullname">الاسم الكامل</label>
+            <input type="text" id="fullname" name="fullname" placeholder="مثال: سارة العلوي" autocomplete="name" required />
+            <span class="co-err" data-for="fullname"></span>
+          </div>
+
+          <div class="co-field">
+            <label for="phone">رقم الهاتف</label>
+            <input type="tel" id="phone" name="phone" inputmode="numeric" placeholder="05XXXXXXXX" autocomplete="tel" required />
+            <span class="co-err" data-for="phone"></span>
+          </div>
+
+          <div class="co-row">
+            <div class="co-field">
+              <label for="city">المدينة</label>
+              <input type="text" id="city" name="city" placeholder="مثال: الرياض" autocomplete="address-level2" required />
+              <span class="co-err" data-for="city"></span>
+            </div>
+            <div class="co-field">
+              <label for="zip">الرمز البريدي</label>
+              <input type="text" id="zip" name="zip" placeholder="12345" inputmode="numeric" />
+              <span class="co-err" data-for="zip"></span>
+            </div>
+          </div>
+
+          <div class="co-field">
+            <label for="address">العنوان التفصيلي</label>
+            <input type="text" id="address" name="address" placeholder="الحي، الشارع، رقم المنزل" autocomplete="street-address" required />
+            <span class="co-err" data-for="address"></span>
+          </div>
+
+          <h2 class="co-card-title" style="margin-top:22px">💳 طريقة الدفع</h2>
+
+          <div class="co-pay-methods" role="radiogroup" aria-label="طريقة الدفع">
+
+            <label class="co-pay-opt">
+              <input type="radio" name="payment" value="cod" checked />
+              <span class="co-pay-inner">
+                <span class="co-pay-icon">💵</span>
+                <span class="co-pay-text">
+                  <strong>الدفع عند الاستلام (COD)</strong>
+                  <small>ادفعي عند استلام الطلب — رسوم إضافية 30 ر.س</small>
+                </span>
+                <span class="co-pay-badge">+30 ر.س</span>
+              </span>
+            </label>
+
+            <label class="co-pay-opt">
+              <input type="radio" name="payment" value="stripe" />
+              <span class="co-pay-inner">
+                <span class="co-pay-icon">💳</span>
+                <span class="co-pay-text">
+                  <strong>بطاقة ائتمان / مدى</strong>
+                  <small>Visa · Mastercard · Mada — عبر Stripe</small>
+                </span>
+              </span>
+            </label>
+
+            <label class="co-pay-opt">
+              <input type="radio" name="payment" value="tabby" />
+              <span class="co-pay-inner">
+                <span class="co-pay-icon" aria-hidden="true">🟢</span>
+                <span class="co-pay-text">
+                  <strong>تابي — Tabby</strong>
+                  <small>قسّمي على 4 دفعات بدون فوائد</small>
+                </span>
+              </span>
+            </label>
+
+            <label class="co-pay-opt">
+              <input type="radio" name="payment" value="tamara" />
+              <span class="co-pay-inner">
+                <span class="co-pay-icon" aria-hidden="true">🟣</span>
+                <span class="co-pay-text">
+                  <strong>تمارا — Tamara</strong>
+                  <small>ادفعي على دفعات مريحة</small>
+                </span>
+              </span>
+            </label>
+
+          </div>
+
+          <div id="stripeCardElement" aria-label="بطاقة Stripe"></div>
+
+          <div class="co-pay-placeholder" id="stripePlaceholder" data-provider="stripe">
+            🔧 تكامل Stripe — أضيفي <code>pk_test_...</code> في <code>payments-config.js</code>
+          </div>
+          <div class="co-pay-placeholder" id="tabbyPlaceholder" data-provider="tabby">
+            🔧 تكامل Tabby — <code>POST api.tabby.sa/api/v2/checkout</code> مع merchant_code
+          </div>
+          <div class="co-pay-placeholder" id="tamaraPlaceholder" data-provider="tamara">
+            🔧 تكامل Tamara — <code>POST /checkout</code> ثم توجيه لـ checkout_url
+          </div>
+
+          <button type="submit" class="co-submit" id="submitBtn">
+            أكّدي الطلب الآن
+          </button>
+          <p class="co-guarantee">
+            🔒 معلوماتكِ مشفّرة ومحمية · ضمان استرجاع 14 يوماً<br />
+            بالضغط على «أكّدي الطلب» توافقين على <a href="../#faq">شروط الخدمة</a>
+          </p>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer class="co-footer">
+    <p>© <span id="coYear"></span> RawasiShop · <a href="../">العودة للمتجر</a></p>
+  </footer>
+
+  <div class="co-modal" id="successModal" aria-hidden="true">
+    <div class="co-modal-box">
+      <div class="co-modal-ico">✅</div>
+      <h3>تم استلام طلبكِ!</h3>
+      <p>شكراً <span id="successName">عزيزتي</span> 💕<br>سنتصل بكِ قريباً لتأكيد التوصيل.</p>
+      <button class="co-modal-btn" id="modalClose">رائع 💕</button>
+    </div>
+  </div>
+
+  <script src="../js/payments-config.js?v=20260606checkout"></script>
+  <script src="../js/checkout.js?v=20260606checkout"></script>
+</body>
+</html>
