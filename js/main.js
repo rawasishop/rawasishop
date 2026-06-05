@@ -6,7 +6,7 @@
 
   /* ====== إعدادات المتجر ======
      ضعي هنا رقم واتساب المتجر (بصيغة دولية بدون + أو مسافات).
-     مثال للمغرب: 2126XXXXXXXX */
+     مثال للسعودية: 9665XXXXXXXX */
   var STORE_WHATSAPP = '212633405061';
 
   /* ====== ربط الطلبات بـ Google Sheets ======
@@ -52,8 +52,8 @@
     }
   }
   function trackEvent(fbName, gaName, value) {
-    try { if (window.fbq) fbq('track', fbName, { value: value, currency: 'MAD' }); } catch (e) {}
-    try { if (window.gtag) gtag('event', gaName, { value: value, currency: 'MAD' }); } catch (e) {}
+    try { if (window.fbq) fbq('track', fbName, { value: value, currency: 'SAR' }); } catch (e) {}
+    try { if (window.gtag) gtag('event', gaName, { value: value, currency: 'SAR' }); } catch (e) {}
   }
   initTracking();
 
@@ -139,7 +139,7 @@
     var sel = getSelectedBundle();
     if (!sel || !totalPrice) return;
     var price = parseInt(sel.getAttribute('data-price'), 10);
-    totalPrice.textContent = arNum(price) + ' درهم';
+    totalPrice.textContent = arNum(price) + ' ريال';
   }
   document.querySelectorAll('input[name="qty"]').forEach(function (r) {
     r.addEventListener('change', updateTotal);
@@ -382,8 +382,8 @@
   /* ---- إشعارات الإثبات الاجتماعي (طلبات حديثة) ---- */
   var toast = document.getElementById('socialToast');
   if (toast) {
-    var names = ['سارة', 'ليلى', 'نسرين', 'فاطمة', 'خديجة', 'رجاء', 'إيمان', 'سلمى', 'هند', 'أمينة', 'مريم', 'زينب'];
-    var cities = ['الدار البيضاء', 'الرباط', 'مراكش', 'طنجة', 'أكادير', 'فاس', 'مكناس', 'وجدة', 'تطوان', 'القنيطرة'];
+    var names = ['نورة', 'سارة', 'ريم', 'الجوهرة', 'لمى', 'هند', 'العنود', 'أسماء', 'دانة', 'شهد', 'منيرة', 'جواهر'];
+    var cities = ['الرياض', 'جدة', 'الدمام', 'مكة المكرمة', 'المدينة المنورة', 'الخبر', 'الطائف', 'أبها', 'تبوك', 'بريدة', 'الأحساء', 'ينبع'];
     var times = ['قبل دقيقة', 'قبل دقيقتين', 'قبل 4 دقائق', 'قبل 7 دقائق', 'قبل 12 دقيقة', 'الآن'];
     var stName = document.getElementById('stName');
     var stCity = document.getElementById('stCity');
