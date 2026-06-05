@@ -455,6 +455,8 @@ h1, h2, h3, h4 { font-family: var(--font-head); color: var(--plum); line-height:
   box-shadow: var(--shadow-sm); border: 1px solid var(--line); background: #fff;
 }
 .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .45s ease; display: block; }
+.gallery-item.contain { background: radial-gradient(circle at 50% 40%, #fff 0%, #fff5f8 100%); }
+.gallery-item.contain img { object-fit: contain; padding: 20px; }
 .gallery-item:hover img { transform: scale(1.07); }
 @media (max-width: 760px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
 
