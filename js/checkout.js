@@ -295,7 +295,6 @@
       orders.push(order);
       localStorage.setItem('rawasi_orders', JSON.stringify(orders));
     } catch (e) {}
-    openWhatsApp(order);
     trackPurchase(order.total);
     showSuccess(order.name);
   }

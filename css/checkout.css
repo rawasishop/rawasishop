@@ -226,14 +226,14 @@ button, input, select { font: inherit; }
 .co-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
 /* Payment methods */
-.co-taager-note {
+.co-order-note {
   display: flex; align-items: flex-start; gap: 12px;
   margin: 18px 0 20px; padding: 14px 16px; border-radius: 14px;
   background: linear-gradient(135deg, #e8faf8 0%, #f4fffe 100%);
   border: 1px solid rgba(4, 179, 167, 0.28);
 }
-.co-taager-note strong { display: block; color: var(--plum); font-size: .92rem; margin-bottom: 2px; }
-.co-taager-note small { color: var(--muted); font-size: .8rem; line-height: 1.45; }
+.co-order-note strong { display: block; color: var(--plum); font-size: .92rem; margin-bottom: 2px; }
+.co-order-note small { color: var(--muted); font-size: .8rem; line-height: 1.45; }
 .co-pay-methods { display: grid; gap: 10px; }
 .co-pay-opt { position: relative; cursor: pointer; display: block; }
 .co-pay-opt input { position: absolute; opacity: 0; pointer-events: none; }

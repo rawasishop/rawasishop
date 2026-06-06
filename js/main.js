@@ -227,15 +227,6 @@
 
       console.log('طلب جديد:', order);
 
-      if (TAAGER.openSellerWhatsApp) {
-        TAAGER.openSellerWhatsApp(order);
-      } else {
-        var msg = TAAGER.buildSellerWhatsApp
-          ? TAAGER.buildSellerWhatsApp(order)
-          : ('طلب جديد: ' + order.name + ' — ' + order.phone);
-        window.open('https://wa.me/' + STORE_WHATSAPP + '?text=' + encodeURIComponent(msg), '_blank');
-      }
-
       // قياس حدث الطلب للإعلانات (Facebook + Google)
       var leadValue = selBundle ? parseInt(selBundle.getAttribute('data-price'), 10) : 395;
       trackEvent('Lead', 'generate_lead', leadValue);

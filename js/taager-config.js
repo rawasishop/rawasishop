@@ -36,13 +36,15 @@ window.RAWASI_TAAGER = {
     return Math.max(0, sellPrice - this.wholesale);
   },
 
+  /* رسالة داخلية للمسوق — لا تُعرض للزبونة (تُستخدم في الجدول/تيليغرام) */
+  /* رسالة داخلية للمسوق فقط — لا تظهر للزبونة */
   buildSellerWhatsApp: function (order) {
     var unitPrice = order.unitPrice || order.sellPrice || order.totalNum || 0;
     var msg =
-      '📦 *طلب جديد — أدخله في تطبيق تاجر*\n' +
+      '📦 *طلب جديد — RawasiShop*\n' +
       '━━━━━━━━━━━━━━━━\n' +
       '🆔 SKU: ' + this.productSku + '\n' +
-      '🔗 تاجر: #' + this.productId + '\n' +
+      '🔢 رقم المنتج: #' + this.productId + '\n' +
       '🧴 ' + this.productName + '\n' +
       '👤 الاسم: ' + order.name + '\n' +
       '📞 الهاتف: ' + this.normalizeSaPhone(order.phone) + '\n' +
@@ -51,8 +53,7 @@ window.RAWASI_TAAGER = {
       '🔢 الكمية: ' + (order.qtyUnits || 1) + '\n' +
       '💰 سعر البيع: ' + unitPrice + ' ر.س\n' +
       '💵 إجمالي الطلب: ' + (order.total || '') + '\n' +
-      '🌍 السعودية · الدفع عند الاستلام\n' +
-      '⚡ افتح تاجر → أدخل الطلب الآن';
+      '🌍 السعودية · الدفع عند الاستلام';
     if (order.coupon) msg += '\n🎁 كوبون: ' + order.coupon;
     if (order.source) msg += '\n📄 المصدر: ' + order.source;
     return msg;

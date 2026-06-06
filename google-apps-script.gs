@@ -64,7 +64,7 @@ function buildAlertText_(d) {
   var tid = d.taagerId || TAAGER_PRODUCT_ID;
   var total = d.total || d.totalNum || d.sellPrice || '';
   return (
-    '📦 طلب جديد — أدخله في تاجر الآن\n' +
+    '📦 طلب جديد — RawasiShop\n' +
     '━━━━━━━━━━━━━━━━\n' +
     '👤 ' + (d.name || '') + '\n' +
     '📞 ' + (d.phone || '') + '\n' +
@@ -73,8 +73,7 @@ function buildAlertText_(d) {
     '🔢 ' + (d.qty || qtyLabel_(d)) + '\n' +
     '💰 ' + total + ' ر.س\n' +
     '🆔 ' + sku + '\n' +
-    '🔗 تاجر #' + tid + '\n' +
-    TAAGER_PRODUCT_URL
+    '🔢 رقم المنتج #' + tid
   );
 }
 
