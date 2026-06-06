@@ -84,19 +84,43 @@
 
   /* ---- تأثير الظهور عند التمرير ---- */
   var reveals = document.querySelectorAll('.reveal');
+
+  function markVisible(el) {
+    el.classList.add('visible');
+  }
+
+  function inViewport(el) {
+    var rect = el.getBoundingClientRect();
+    var h = window.innerHeight || document.documentElement.clientHeight;
+    return rect.top < h * 0.92 && rect.bottom > h * 0.08;
+  }
+
   if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          markVisible(entry.target);
           io.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12 });
-    reveals.forEach(function (el) { io.observe(el); });
+    }, { threshold: 0.05, rootMargin: '0px 0px 8% 0px' });
+    reveals.forEach(function (el) {
+      if (el.closest('.hero')) {
+        markVisible(el);
+        return;
+      }
+      if (inViewport(el)) markVisible(el);
+      io.observe(el);
+    });
   } else {
-    reveals.forEach(function (el) { el.classList.add('visible'); });
+    reveals.forEach(markVisible);
   }
+
+  window.addEventListener('load', function () {
+    reveals.forEach(function (el) {
+      if (inViewport(el)) markVisible(el);
+    });
+  }, { once: true });
 
   /* ---- العداد التنازلي (يتجدد كل يوم لإبقاء العرض "حياً") ---- */
   var cdH = document.getElementById('cdH');

@@ -266,6 +266,8 @@ h1, h2, h3, h4 {
 }
 .device-illustration { width: 100%; height: 100%; object-fit: contain; animation: floaty 5s ease-in-out infinite; }
 @keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+@keyframes floaty-mobile { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes pulse-mobile { 0%,100% { transform: scale(1); opacity: .8; } 50% { transform: scale(1.04); opacity: 1; } }
 .product-flash {
   position: absolute; bottom: 16px; left: 50%; transform: translateX(-50%);
   background: var(--grad-gold); color: #4a3300;
@@ -860,9 +862,29 @@ h1, h2, h3, h4 {
 }
 .reveal.visible { opacity: 1; transform: none; }
 
+/* الهيرو يظهر فوراً على الجوال بلا انتظار التمرير */
+@media (max-width: 980px) {
+  .hero .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .hero .hero-visual {
+    animation: hero-enter 0.75s var(--ease-out) both;
+  }
+  .hero .hero-content {
+    animation: hero-enter 0.75s var(--ease-out) 0.12s both;
+  }
+}
+@keyframes hero-enter {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: none; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
+  .hero .hero-visual, .hero .hero-content { animation: none; }
   .hero-photo, .device-illustration, .float-tag, .glow, .exit-gift,
   .order-float.show, .whatsapp-float.show, .announcement-bar span { animation: none; }
   .btn, .feature-card, .review-card, .gallery-item, .trust-item, .stat { transition: none; }
@@ -886,11 +908,11 @@ h1, h2, h3, h4 {
 
   .product-stage {
     max-width: min(420px, 94vw);
-    aspect-ratio: 3 / 2;
+    aspect-ratio: 1;
     min-height: 0;
     margin-inline: auto;
   }
-  .product-card { width: 100%; aspect-ratio: 3 / 2; }
+  .product-card { width: 100%; aspect-ratio: 1; }
   .hero-photo-card .hero-photo {
     object-fit: contain;
     object-position: center center;
@@ -922,18 +944,26 @@ h1, h2, h3, h4 {
   .hero { padding-bottom: 90px; }
   .product-stage {
     max-width: min(400px, 96vw);
-    aspect-ratio: 3 / 2;
+    aspect-ratio: 1;
     min-height: 0;
   }
-  .product-card { width: 100%; aspect-ratio: 3 / 2; border-radius: 24px; }
-  .hero-photo-card .hero-photo {
+  .product-card { width: 100%; aspect-ratio: 1; border-radius: 24px; }
+  .hero-photo-card .hero-photo,
+  .hero-photo-card .device-illustration {
     border-radius: 24px;
-    object-fit: contain;
+    object-fit: cover;
     object-position: center center;
     background: linear-gradient(180deg, #fff 0%, #fff5f8 100%);
-    animation: none;
+    animation: floaty-mobile 5s ease-in-out infinite;
+    will-change: transform;
   }
-  .float-tag { font-size: .74rem; padding: 8px 12px; animation: none; }
+  .float-tag {
+    font-size: .74rem;
+    padding: 8px 12px;
+    animation: floaty-mobile 5.5s ease-in-out infinite;
+    will-change: transform;
+  }
+  .glow { animation: pulse-mobile 4s ease-in-out infinite; }
   .tag-1 { top: 2%; right: 4%; }
   .tag-2 { top: 40%; left: 4%; }
   .tag-3 { top: 2%; left: 2%; bottom: auto; right: auto; }
