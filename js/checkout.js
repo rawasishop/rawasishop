@@ -203,11 +203,19 @@
   function sendToSheet(order) {
     var url = CFG.store && CFG.store.sheetWebhook;
     if (!url) return;
+    var payload = JSON.stringify(order);
+    try {
+      if (navigator.sendBeacon) {
+        var blob = new Blob([payload], { type: 'text/plain;charset=utf-8' });
+        if (navigator.sendBeacon(url, blob)) return;
+      }
+    } catch (e) {}
     try {
       fetch(url, {
         method: 'POST', mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(order)
+        body: payload,
+        keepalive: true
       });
     } catch (e) {}
   }

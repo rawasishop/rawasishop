@@ -10,11 +10,19 @@
 
   function sendToSheet(order) {
     if (!SHEET_WEBHOOK_URL) return;
+    var payload = JSON.stringify(order);
+    try {
+      if (navigator.sendBeacon) {
+        var blob = new Blob([payload], { type: 'text/plain;charset=utf-8' });
+        if (navigator.sendBeacon(SHEET_WEBHOOK_URL, blob)) return;
+      }
+    } catch (e) {}
     try {
       fetch(SHEET_WEBHOOK_URL, {
         method: 'POST', mode: 'no-cors',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify(order)
+        body: payload,
+        keepalive: true
       });
     } catch (e) {}
   }
