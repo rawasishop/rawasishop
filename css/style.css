@@ -283,7 +283,7 @@ h1, h2, h3, h4 {
 }
 .tag-1 { top: 6%; right: -4%; animation-delay: .3s; }
 .tag-2 { top: 44%; left: -8%; animation-delay: .9s; }
-.tag-3 { bottom: 8%; left: 0; right: auto; animation-delay: 1.4s; }
+.tag-3 { top: 6%; left: 0; bottom: auto; right: auto; animation-delay: 1.4s; }
 
 .hero-wave { position: absolute; bottom: -1px; left: 0; width: 100%; line-height: 0; }
 .hero-wave svg { width: 100%; height: 70px; }
@@ -883,7 +883,7 @@ h1, h2, h3, h4 {
   }
   .tag-1 { top: 4%; right: 2%; }
   .tag-2 { top: 42%; left: 2%; }
-  .tag-3 { bottom: 6%; left: 0; right: auto; }
+  .tag-3 { top: 4%; left: 0; bottom: auto; right: auto; }
 }
 
 @media (max-width: 760px) {
@@ -921,7 +921,7 @@ h1, h2, h3, h4 {
   .float-tag { font-size: .74rem; padding: 8px 12px; animation: none; }
   .tag-1 { top: 2%; right: 4%; }
   .tag-2 { top: 40%; left: 4%; }
-  .tag-3 { bottom: 4%; left: 2%; right: auto; }
+  .tag-3 { top: 2%; left: 2%; bottom: auto; right: auto; }
 
   .footer-grid { grid-template-columns: 1fr; gap: 26px; text-align: center; }
   .footer-col a:hover { transform: none; }
