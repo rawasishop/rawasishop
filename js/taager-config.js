@@ -6,7 +6,7 @@ window.RAWASI_TAAGER = {
   platform: 'taager',
   productId: '18267',
   productSku: 'SA04050100IPLMWD00',
-  productName: 'جهاز إزالة الشعر New IPL بالتبريد + هدية مجانية',
+  productName: 'جهاز IPL أخضر بتقنية التبريد الثلجي الذكي + هدية مجانية',
   country: 'SA',
   currency: 'SAR',
   wholesale: 170,
