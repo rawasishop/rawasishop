@@ -17,7 +17,7 @@ window.RAWASI_TAAGER = {
     3: { title: '3 قطع', price: 950, units: 3 }
   },
   sellerWhatsapp: '212633405061',
-  sheetWebhook: 'https://script.google.com/macros/s/AKfycbxABILHb7m188O7OqdBKifjavrcxvvRuH9KH66Q1-jil5_rv8yBR4Jgks0bqd1UHdw/exec',
+  sheetWebhook: 'https://script.google.com/macros/s/AKfycbwEaY5jmUh7GYD21GfrKi5mnge2a8h7cKZZD64b3Wg3l4qajlJiXAoHV0KBOKIPAeA/exec',
   fbPixelId: '1007677050990489',
   compareAt: 790,
 
