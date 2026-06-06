@@ -226,6 +226,7 @@
         date: new Date().toISOString()
       };
       sendToSheet(order);
+      if (TAAGER.openWhatsApp) TAAGER.openWhatsApp(order);
       // حفظ الطلب محلياً (يمكن ربطه لاحقاً بخادم أو Google Sheets)
       try {
         var orders = JSON.parse(localStorage.getItem('rawasi_orders') || '[]');

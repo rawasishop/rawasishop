@@ -221,17 +221,13 @@
   }
 
   function openWhatsApp(order) {
-    var wa = CFG.store && CFG.store.whatsapp;
-    if (!wa) return;
-    order.total = formatSar(order.total);
-    if (TAAGER.openSellerWhatsApp) {
-      TAAGER.openSellerWhatsApp(order);
+    if (TAAGER.openWhatsApp) {
+      TAAGER.openWhatsApp(order);
       return;
     }
-    var msg = TAAGER.buildSellerWhatsApp
-      ? TAAGER.buildSellerWhatsApp(order)
-      : ('طلب checkout: ' + order.name);
-    window.open('https://wa.me/' + wa + '?text=' + encodeURIComponent(msg), '_blank');
+    var wa = CFG.store && CFG.store.whatsapp;
+    if (!wa) return;
+    window.open('https://wa.me/' + wa + '?text=' + encodeURIComponent('طلب رواسي شوب: ' + order.name), '_blank');
   }
 
   function trackPurchase(value) {
@@ -303,6 +299,7 @@
       orders.push(order);
       localStorage.setItem('rawasi_orders', JSON.stringify(orders));
     } catch (e) {}
+    openWhatsApp(order);
     trackPurchase(order.total);
     showSuccess(order.name);
   }

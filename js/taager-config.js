@@ -63,8 +63,25 @@ window.RAWASI_TAAGER = {
     return /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
   },
 
-  openSellerWhatsApp: function (order) {
-    var msg = this.buildSellerWhatsApp(order);
+  buildCustomerWhatsApp: function (order) {
+    var total = order.total || order.totalNum || '';
+    return (
+      'السلام عليكم 🌸\n' +
+      'أود تأكيد طلبي من رواسي شوب:\n\n' +
+      '👤 الاسم: ' + order.name + '\n' +
+      '📞 الجوال: ' + this.normalizeSaPhone(order.phone) + '\n' +
+      '🏙️ المدينة: ' + order.city + '\n' +
+      '📍 العنوان: ' + order.address + '\n' +
+      '🧴 المنتج: ' + (order.product || this.productName) + '\n' +
+      '🔢 الكمية: ' + (order.qty || order.qtyUnits || 1) + '\n' +
+      '💰 المجموع: ' + total + ' ر.س\n' +
+      '💵 الدفع عند الاستلام\n\n' +
+      'شكراً لكم 💜'
+    );
+  },
+
+  openWhatsApp: function (order) {
+    var msg = this.buildCustomerWhatsApp(order);
     var phone = this.sellerWhatsapp;
     var text = encodeURIComponent(msg);
     if (this.isMobileDevice()) {
