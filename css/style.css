@@ -275,17 +275,32 @@ h1, h2, h3, h4 {
   box-shadow: 0 4px 14px rgba(201,162,74,.35);
   white-space: nowrap;
 }
+.hero-tags {
+  position: absolute;
+  z-index: 3;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: space-between;
+  align-items: flex-start;
+  pointer-events: none;
+}
 .float-tag {
-  position: absolute; z-index: 3;
+  position: relative;
   background: rgba(255,255,255,.94); color: var(--plum); font-weight: 700; font-size: .8rem;
-  padding: 10px 16px; border-radius: 14px;
+  padding: 10px 14px; border-radius: 14px;
   box-shadow: var(--shadow-md); border: 1px solid var(--line-soft);
   backdrop-filter: blur(8px);
   animation: floaty 6s ease-in-out infinite;
+  line-height: 1.35;
+  max-width: calc(50% - 4px);
 }
-.tag-1 { top: 6%; right: -4%; animation-delay: .3s; }
+.hero-tags .tag-1 { animation-delay: .3s; }
+.hero-tags .tag-3 { animation-delay: .9s; }
 .tag-2 { top: 44%; left: -8%; animation-delay: .9s; }
-.tag-3 { top: 6%; left: 0; bottom: auto; right: auto; animation-delay: 1.4s; }
 
 .hero-wave { position: absolute; bottom: -1px; left: 0; width: 100%; line-height: 0; }
 .hero-wave svg { width: 100%; height: 70px; }
@@ -918,9 +933,21 @@ h1, h2, h3, h4 {
     object-position: center center;
     background: linear-gradient(180deg, #fff 0%, #fff5f8 100%);
   }
-  .tag-1 { top: 4%; right: 2%; }
+  .hero-tags {
+    flex-direction: column;
+    align-items: stretch;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    gap: 8px;
+  }
+  .float-tag {
+    max-width: 100%;
+    font-size: .76rem;
+    padding: 8px 12px;
+    text-align: center;
+  }
   .tag-2 { top: 42%; left: 2%; }
-  .tag-3 { top: 4%; left: 0; bottom: auto; right: auto; }
 }
 
 @media (max-width: 760px) {
@@ -957,22 +984,41 @@ h1, h2, h3, h4 {
     animation: floaty-mobile 5s ease-in-out infinite;
     will-change: transform;
   }
+  .hero-tags {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+  }
   .float-tag {
-    font-size: .74rem;
+    max-width: 100%;
+    font-size: .72rem;
     padding: 8px 12px;
+    text-align: center;
     animation: floaty-mobile 5.5s ease-in-out infinite;
     will-change: transform;
   }
   .glow { animation: pulse-mobile 4s ease-in-out infinite; }
-  .tag-1 { top: 2%; right: 4%; }
   .tag-2 { top: 40%; left: 4%; }
-  .tag-3 { top: 2%; left: 2%; bottom: auto; right: auto; }
 
   .footer-grid { grid-template-columns: 1fr; gap: 26px; text-align: center; }
   .footer-col a:hover { transform: none; }
 
   .guarantee-box { flex-direction: column; text-align: center; padding: 30px 22px; }
   .guarantee-badges { justify-content: center; }
+
+  /* أزرار طويلة — سطران بلا قصّ على الجوال */
+  .btn, .btn-lg {
+    white-space: normal;
+    text-align: center;
+    line-height: 1.45;
+    padding: 14px 18px;
+    font-size: .95rem;
+    min-height: 48px;
+  }
+  .btn-block { max-width: 100%; }
 
   /* إظهار شريط الطلب الثابت ورفع العناصر العائمة فوقه */
   .sticky-cta { display: flex; }
