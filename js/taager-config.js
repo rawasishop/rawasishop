@@ -56,5 +56,20 @@ window.RAWASI_TAAGER = {
     if (order.coupon) msg += '\n🎁 كوبون: ' + order.coupon;
     if (order.source) msg += '\n📄 المصدر: ' + order.source;
     return msg;
+  },
+
+  isMobileDevice: function () {
+    return /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  },
+
+  openSellerWhatsApp: function (order) {
+    var msg = this.buildSellerWhatsApp(order);
+    var phone = this.sellerWhatsapp;
+    var text = encodeURIComponent(msg);
+    if (this.isMobileDevice()) {
+      window.location.href = 'https://api.whatsapp.com/send?phone=' + phone + '&text=' + text;
+    } else {
+      window.open('https://wa.me/' + phone + '?text=' + text, '_blank');
+    }
   }
 };

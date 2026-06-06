@@ -227,11 +227,14 @@
 
       console.log('طلب جديد:', order);
 
-      var msg = TAAGER.buildSellerWhatsApp
-        ? TAAGER.buildSellerWhatsApp(order)
-        : ('طلب جديد: ' + order.name + ' — ' + order.phone);
-      var waUrl = 'https://wa.me/' + STORE_WHATSAPP + '?text=' + encodeURIComponent(msg);
-      window.open(waUrl, '_blank');
+      if (TAAGER.openSellerWhatsApp) {
+        TAAGER.openSellerWhatsApp(order);
+      } else {
+        var msg = TAAGER.buildSellerWhatsApp
+          ? TAAGER.buildSellerWhatsApp(order)
+          : ('طلب جديد: ' + order.name + ' — ' + order.phone);
+        window.open('https://wa.me/' + STORE_WHATSAPP + '?text=' + encodeURIComponent(msg), '_blank');
+      }
 
       // قياس حدث الطلب للإعلانات (Facebook + Google)
       var leadValue = selBundle ? parseInt(selBundle.getAttribute('data-price'), 10) : 395;

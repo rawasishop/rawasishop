@@ -216,6 +216,10 @@
     var wa = CFG.store && CFG.store.whatsapp;
     if (!wa) return;
     order.total = formatSar(order.total);
+    if (TAAGER.openSellerWhatsApp) {
+      TAAGER.openSellerWhatsApp(order);
+      return;
+    }
     var msg = TAAGER.buildSellerWhatsApp
       ? TAAGER.buildSellerWhatsApp(order)
       : ('طلب checkout: ' + order.name);
