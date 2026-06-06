@@ -4,14 +4,10 @@
 (function () {
   'use strict';
 
-  /* ====== إعدادات المتجر ======
-     ضعي هنا رقم واتساب المتجر (بصيغة دولية بدون + أو مسافات).
-     مثال للسعودية: 9665XXXXXXXX */
-  var STORE_WHATSAPP = '212633405061';
+  var TAAGER = window.RAWASI_TAAGER || {};
+  var STORE_WHATSAPP = TAAGER.sellerWhatsapp || '212633405061';
+  var SHEET_WEBHOOK_URL = TAAGER.sheetWebhook || '';
 
-  /* ====== ربط الطلبات بـ Google Sheets ======
-     رابط نشر Apps Script المنتهي بـ /exec. اتركيه فارغاً لتعطيل الحفظ في الجدول. */
-  var SHEET_WEBHOOK_URL = 'https://script.google.com/macros/s/AKfycbxABILHb7m188O7OqdBKifjavrcxvvRuH9KH66Q1-jil5_rv8yBR4Jgks0bqd1UHdw/exec';
   function sendToSheet(order) {
     if (!SHEET_WEBHOOK_URL) return;
     try {
@@ -26,12 +22,7 @@
   /* علم استخدام كوبون خصم المغادرة */
   var couponClaimed = false;
 
-  /* ====== إعدادات تتبّع الإعلانات ======
-     ضعي معرّفاتكِ هنا لتفعيل قياس مبيعات الإعلانات:
-       fbPixelId : معرّف Facebook Pixel (مثال: '123456789012345')
-       gaId      : معرّف Google GA4 / Google Ads (مثال: 'G-XXXXXXXXXX' أو 'AW-XXXXXXXXX')
-     اتركيها فارغة لتعطيل التتبّع. */
-  var TRACKING = { fbPixelId: '1007677050990489', gaId: '' };
+  var TRACKING = { fbPixelId: TAAGER.fbPixelId || '', gaId: '' };
 
   function initTracking() {
     if (TRACKING.fbPixelId) {
@@ -169,9 +160,10 @@
     if (name.length < 3) { setError('fullname', 'يرجى إدخال الاسم الكامل'); ok = false; }
     else setError('fullname', '');
 
-    var phoneDigits = phone.replace(/\D/g, '');
-    if (phoneDigits.length < 9) { setError('phone', 'يرجى إدخال رقم هاتف صحيح'); ok = false; }
-    else setError('phone', '');
+    if (!TAAGER.isValidSaPhone || !TAAGER.isValidSaPhone(phone)) {
+      setError('phone', 'رقم سعودي صحيح: 05XXXXXXXX');
+      ok = false;
+    } else setError('phone', '');
 
     if (city.length < 2) { setError('city', 'يرجى إدخال المدينة'); ok = false; }
     else setError('city', '');
@@ -200,16 +192,29 @@
       var qtyVal = selBundle ? selBundle.value : '1';
       var bundleTitleEl = selBundle ? selBundle.parentNode.querySelector('.bundle-title') : null;
       var qtyLabel = bundleTitleEl ? bundleTitleEl.textContent : (qtyVal + ' قطعة');
+      var priceNum = selBundle ? parseInt(selBundle.getAttribute('data-price'), 10) : 395;
+      var qtyUnits = parseInt(qtyVal, 10) || 1;
+      var unitPrice = Math.round(priceNum / qtyUnits);
+      var phoneNorm = TAAGER.normalizeSaPhone ? TAAGER.normalizeSaPhone(form.phone.value.trim()) : form.phone.value.trim();
 
       var order = {
         name: form.fullname.value.trim(),
-        phone: form.phone.value.trim(),
+        phone: phoneNorm,
         city: form.city.value.trim(),
         address: form.address.value.trim(),
         qty: qtyLabel,
+        qtyUnits: qtyUnits,
         total: totalPrice ? totalPrice.textContent : '',
+        totalNum: priceNum,
+        unitPrice: unitPrice,
+        sellPrice: priceNum,
         coupon: couponClaimed ? 'RAWASI10' : '',
-        product: 'جهاز إزالة الشعر IPL',
+        product: TAAGER.productName || 'جهاز IPL',
+        productSku: TAAGER.productSku || '',
+        taagerId: TAAGER.productId || '',
+        country: 'SA',
+        platform: 'taager',
+        source: 'rawasishop-landing',
         date: new Date().toISOString()
       };
       sendToSheet(order);
@@ -222,19 +227,9 @@
 
       console.log('طلب جديد:', order);
 
-      // ---- إرسال الطلب تلقائياً عبر واتساب لرقم المتجر ----
-      var msg =
-        '🛍️ *طلب جديد من RawasiShop*\n' +
-        '────────────\n' +
-        '🧴 المنتج: جهاز إزالة الشعر IPL\n' +
-        '👤 الاسم: ' + order.name + '\n' +
-        '📞 الهاتف: ' + order.phone + '\n' +
-        '🏙️ المدينة: ' + order.city + '\n' +
-        '📍 العنوان: ' + order.address + '\n' +
-        '🔢 الكمية: ' + qtyLabel + '\n' +
-        '💰 المجموع: ' + order.total + '\n' +
-        '💵 الدفع: عند الاستلام' +
-        (couponClaimed ? '\n🎁 كوبون خصم: RAWASI10 (خصم إضافي 10%)' : '');
+      var msg = TAAGER.buildSellerWhatsApp
+        ? TAAGER.buildSellerWhatsApp(order)
+        : ('طلب جديد: ' + order.name + ' — ' + order.phone);
       var waUrl = 'https://wa.me/' + STORE_WHATSAPP + '?text=' + encodeURIComponent(msg);
       window.open(waUrl, '_blank');
 

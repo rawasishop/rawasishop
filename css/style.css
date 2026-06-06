@@ -522,6 +522,12 @@ h1, h2, h3, h4 {
   background: var(--pink-bg); padding: 16px 18px; border-radius: 12px; margin: 8px 0 18px;
 }
 .order-total strong { font-family: var(--font-head); font-size: 1.4rem; color: var(--rose-deep); }
+.taager-strip {
+  margin: 0 0 16px; padding: 10px 14px; border-radius: 12px;
+  background: linear-gradient(135deg, #e8faf8 0%, #f0fffe 100%);
+  border: 1px solid rgba(4, 179, 167, 0.25);
+  font-size: .82rem; font-weight: 600; color: #0d5c56; line-height: 1.5;
+}
 .form-note { text-align: center; color: var(--muted); font-size: .85rem; margin-top: 14px; }
 
 /* ---------- FAQ ---------- */

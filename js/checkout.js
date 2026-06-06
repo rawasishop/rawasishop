@@ -6,18 +6,19 @@
   'use strict';
 
   var CFG = window.RAWASI_PAYMENTS || {};
-  var COD_FEE = CFG.codFee || 30;
+  var TAAGER = window.RAWASI_TAAGER || {};
+  var COD_FEE = CFG.codFee || 0;
   var BUNDLES = {
-    1: { title: 'قطعة واحدة', price: 395 },
-    2: { title: 'قطعتان', price: 690 },
-    3: { title: '3 قطع', price: 950 }
+    1: { title: 'قطعة واحدة', price: 395, units: 1 },
+    2: { title: 'قطعتان', price: 690, units: 2 },
+    3: { title: '3 قطع', price: 950, units: 3 }
   };
 
   var form = document.getElementById('checkoutForm');
   var bundleSelect = document.getElementById('bundleSelect');
   var bundleHint = document.getElementById('bundleHint');
   var BUNDLE_HINTS = {
-    1: 'للاستخدام الشخصي',
+    1: 'جهاز واحد + هدية مجانية 🎁',
     2: 'وفّري 100 ريال + هدية مجانية 🎁',
     3: 'وفّري 235 ريال + هديتان 🎁🎁'
   };
@@ -157,7 +158,7 @@
     if (name.length < 3) { setError('fullname', 'يرجى إدخال الاسم الكامل'); ok = false; }
     else setError('fullname', '');
 
-    if (phone.replace(/\D/g, '').length < 9) { setError('phone', 'رقم هاتف غير صالح'); ok = false; }
+    if (!TAAGER.isValidSaPhone || !TAAGER.isValidSaPhone(phone)) { setError('phone', 'رقم سعودي: 05XXXXXXXX'); ok = false; }
     else setError('phone', '');
 
     if (city.length < 2) { setError('city', 'يرجى إدخال المدينة'); ok = false; }
@@ -171,18 +172,29 @@
 
   function getOrderPayload() {
     var t = calcTotals();
+    var units = t.bundle.units || 1;
+    var unitPrice = Math.round(t.subtotal / units);
     return {
       name: form.fullname.value.trim(),
-      phone: form.phone.value.trim(),
+      phone: TAAGER.normalizeSaPhone ? TAAGER.normalizeSaPhone(form.phone.value.trim()) : form.phone.value.trim(),
       city: form.city.value.trim(),
       zip: form.zip.value.trim(),
       address: form.address.value.trim(),
       qty: t.bundle.title,
+      qtyUnits: units,
+      unitPrice: unitPrice,
+      sellPrice: t.subtotal,
       subtotal: t.subtotal,
       codFee: t.codFee,
       total: t.total,
-      payment: getPaymentMethod(),
-      product: 'جهاز إزالة الشعر IPL',
+      totalNum: t.total,
+      payment: 'cod',
+      product: TAAGER.productName || 'جهاز IPL',
+      productSku: TAAGER.productSku || '',
+      taagerId: TAAGER.productId || '',
+      country: 'SA',
+      platform: 'taager',
+      source: 'rawasishop-checkout',
       date: new Date().toISOString()
     };
   }
@@ -203,25 +215,10 @@
   function openWhatsApp(order) {
     var wa = CFG.store && CFG.store.whatsapp;
     if (!wa) return;
-    var payLabel = {
-      cod: 'الدفع عند الاستلام (' + formatSar(order.total) + ')',
-      stripe: 'Stripe — ' + formatSar(order.total),
-      tabby: 'Tabby — ' + formatSar(order.subtotal),
-      tamara: 'Tamara — ' + formatSar(order.subtotal)
-    };
-    var msg =
-      '🛍️ *طلب جديد — صفحة Checkout*\n' +
-      '────────────\n' +
-      '🧴 المنتج: ' + order.product + '\n' +
-      '👤 الاسم: ' + order.name + '\n' +
-      '📞 الهاتف: ' + order.phone + '\n' +
-      '🏙️ المدينة: ' + order.city + '\n' +
-      '📍 العنوان: ' + order.address + '\n' +
-      '🔢 الكمية: ' + order.qty + '\n' +
-      '💰 المجموع الفرعي: ' + formatSar(order.subtotal) + '\n' +
-      (order.codFee ? '➕ رسوم COD: ' + formatSar(order.codFee) + '\n' : '') +
-      '💵 الإجمالي: ' + formatSar(order.total) + '\n' +
-      '💳 الطريقة: ' + (payLabel[order.payment] || order.payment);
+    order.total = formatSar(order.total);
+    var msg = TAAGER.buildSellerWhatsApp
+      ? TAAGER.buildSellerWhatsApp(order)
+      : ('طلب checkout: ' + order.name);
     window.open('https://wa.me/' + wa + '?text=' + encodeURIComponent(msg), '_blank');
   }
 
