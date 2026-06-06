@@ -14,7 +14,7 @@
   };
 
   var form = document.getElementById('checkoutForm');
-  var bundleSelect = document.getElementById('bundleSelect');
+  var bundleRadios = document.querySelectorAll('input[name="bundle"]');
   var submitBtn = document.getElementById('submitBtn');
   var modal = document.getElementById('successModal');
   var modalClose = document.getElementById('modalClose');
@@ -24,9 +24,18 @@
   function arNum(n) { return n.toLocaleString('en-US'); }
   function formatSar(n) { return arNum(n) + ' ريال'; }
 
+  function getBundleValue() {
+    var sel = document.querySelector('input[name="bundle"]:checked');
+    return sel ? sel.value : '1';
+  }
+
+  function setBundleValue(val) {
+    var radio = document.querySelector('input[name="bundle"][value="' + val + '"]');
+    if (radio) radio.checked = true;
+  }
+
   function getBundle() {
-    var val = bundleSelect ? bundleSelect.value : '1';
-    return BUNDLES[val] || BUNDLES[1];
+    return BUNDLES[getBundleValue()] || BUNDLES[1];
   }
 
   function getPaymentMethod() {
@@ -102,8 +111,8 @@
   function initFromUrl() {
     var params = new URLSearchParams(window.location.search);
     var bundle = params.get('bundle') || params.get('qty');
-    if (bundle && bundleSelect && BUNDLES[bundle]) {
-      bundleSelect.value = bundle;
+    if (bundle && BUNDLES[bundle]) {
+      setBundleValue(bundle);
     }
     var status = params.get('status');
     if (status) handleReturnStatus(status);
@@ -316,7 +325,7 @@
         processCod(order);
         submitBtn.disabled = false;
         form.reset();
-        if (bundleSelect) bundleSelect.value = '1';
+        setBundleValue('1');
         document.querySelector('input[name="payment"][value="cod"]').checked = true;
         updateTotals();
     }
@@ -469,7 +478,9 @@
     initFromUrl();
     updateTotals();
 
-    if (bundleSelect) bundleSelect.addEventListener('change', updateTotals);
+    bundleRadios.forEach(function (r) {
+      r.addEventListener('change', updateTotals);
+    });
     document.querySelectorAll('input[name="payment"]').forEach(function (r) {
       r.addEventListener('change', updateTotals);
     });
