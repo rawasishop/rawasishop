@@ -14,7 +14,13 @@
   };
 
   var form = document.getElementById('checkoutForm');
-  var bundleRadios = document.querySelectorAll('input[name="bundle"]');
+  var bundleSelect = document.getElementById('bundleSelect');
+  var bundleHint = document.getElementById('bundleHint');
+  var BUNDLE_HINTS = {
+    1: 'للاستخدام الشخصي',
+    2: 'وفّري 100 ريال + هدية مجانية 🎁',
+    3: 'وفّري 235 ريال + هديتان 🎁🎁'
+  };
   var submitBtn = document.getElementById('submitBtn');
   var modal = document.getElementById('successModal');
   var modalClose = document.getElementById('modalClose');
@@ -25,13 +31,16 @@
   function formatSar(n) { return arNum(n) + ' ريال'; }
 
   function getBundleValue() {
-    var sel = document.querySelector('input[name="bundle"]:checked');
-    return sel ? sel.value : '1';
+    return bundleSelect ? bundleSelect.value : '1';
   }
 
   function setBundleValue(val) {
-    var radio = document.querySelector('input[name="bundle"][value="' + val + '"]');
-    if (radio) radio.checked = true;
+    if (bundleSelect) bundleSelect.value = val;
+    updateBundleHint();
+  }
+
+  function updateBundleHint() {
+    if (bundleHint) bundleHint.textContent = BUNDLE_HINTS[getBundleValue()] || '';
   }
 
   function getBundle() {
@@ -478,9 +487,13 @@
     initFromUrl();
     updateTotals();
 
-    bundleRadios.forEach(function (r) {
-      r.addEventListener('change', updateTotals);
-    });
+    if (bundleSelect) {
+      bundleSelect.addEventListener('change', function () {
+        updateBundleHint();
+        updateTotals();
+      });
+    }
+    updateBundleHint();
     document.querySelectorAll('input[name="payment"]').forEach(function (r) {
       r.addEventListener('change', updateTotals);
     });

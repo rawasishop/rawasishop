@@ -45,36 +45,17 @@
             <p>أصلي 100% · شحن مجاني</p>
           </div>
         </div>
-        <div class="co-bundles-wrap">
-          <span class="co-bundles-label">اختاري الباقة</span>
-          <div class="co-bundles" id="coBundles">
-            <label class="co-bundle">
-              <input type="radio" name="bundle" value="1" data-price="395" checked />
-              <span class="co-bundle-inner">
-                <span class="co-bundle-title">قطعة واحدة</span>
-                <span class="co-bundle-price">395 ريال</span>
-                <span class="co-bundle-sub">للاستخدام الشخصي</span>
-              </span>
-            </label>
-            <label class="co-bundle co-bundle-popular">
-              <span class="co-bundle-tag">الأكثر طلباً 🔥</span>
-              <input type="radio" name="bundle" value="2" data-price="690" />
-              <span class="co-bundle-inner">
-                <span class="co-bundle-title">قطعتان</span>
-                <span class="co-bundle-price">690 ريال</span>
-                <span class="co-bundle-sub">وفّري 100 ريال + هدية مجانية 🎁</span>
-              </span>
-            </label>
-            <label class="co-bundle co-bundle-best">
-              <span class="co-bundle-tag co-bundle-tag-gold">أفضل قيمة ⭐</span>
-              <input type="radio" name="bundle" value="3" data-price="950" />
-              <span class="co-bundle-inner">
-                <span class="co-bundle-title">3 قطع</span>
-                <span class="co-bundle-price">950 ريال</span>
-                <span class="co-bundle-sub">وفّري 235 ريال + هديتان 🎁🎁</span>
-              </span>
-            </label>
+        <div class="co-bundle-select-wrap">
+          <label for="bundleSelect" class="co-bundles-label">اختاري الباقة</label>
+          <div class="co-select-field">
+            <select id="bundleSelect" name="bundle">
+              <option value="1" data-price="395">قطعة واحدة — 395 ريال</option>
+              <option value="2" data-price="690">قطعتان — 690 ريال · الأكثر طلباً 🔥</option>
+              <option value="3" data-price="950">3 قطع — 950 ريال · أفضل قيمة ⭐</option>
+            </select>
+            <span class="co-select-chevron" aria-hidden="true"></span>
           </div>
+          <p class="co-bundle-hint" id="bundleHint">للاستخدام الشخصي</p>
         </div>
         <div class="co-lines" style="margin-top:18px">
           <div class="co-line"><span>المجموع الفرعي</span><span id="coSubtotal">395 ريال</span></div>
