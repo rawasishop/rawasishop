@@ -35,7 +35,6 @@
     } catch (e) {}
   }
 
-  /* علم استخدام كوبون خصم المغادرة */
   var couponClaimed = false;
 
   var TRACKING = { fbPixelId: TAAGER.fbPixelId || '', gaId: '' };
@@ -280,6 +279,7 @@
 
       if (successName) successName.textContent = order.name.split(' ')[0];
       if (modal) { modal.classList.add('show'); modal.setAttribute('aria-hidden', 'false'); }
+      try { sessionStorage.setItem('rawasi_exit', '1'); } catch (e) {}
       form.reset();
       updateTotal();
     });
@@ -293,29 +293,51 @@
   if (modal) modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
 
-  /* ---- نافذة عرض المغادرة (Exit-Intent) ---- */
+  /* ---- نافذة المغادرة (بطيئة — ما تبانش بزربة) ---- */
   var exitModal = document.getElementById('exitModal');
   if (exitModal) {
-    var shown = false;
+    var exitShown = false;
+    var pageStart = Date.now();
+    var EXIT_MIN_MS = 90000;
+    var EXIT_MOBILE_MS = 150000;
+    var EXIT_MIN_SCROLL = 0.35;
+
+    function mayShowExit() {
+      if (exitShown) return false;
+      try {
+        if (sessionStorage.getItem('rawasi_exit')) return false;
+      } catch (e) {}
+      if (Date.now() - pageStart < EXIT_MIN_MS) return false;
+      if (modal && modal.classList.contains('show')) return false;
+      var scrollMax = document.documentElement.scrollHeight - window.innerHeight;
+      if (scrollMax > 0 && window.scrollY / scrollMax < EXIT_MIN_SCROLL) return false;
+      return true;
+    }
+
     function openExit() {
-      if (shown || sessionStorage.getItem('rawasi_exit')) return;
-      shown = true;
-      sessionStorage.setItem('rawasi_exit', '1');
+      if (!mayShowExit()) return;
+      exitShown = true;
+      try { sessionStorage.setItem('rawasi_exit', '1'); } catch (e) {}
       exitModal.classList.add('show');
       exitModal.setAttribute('aria-hidden', 'false');
     }
+
     function hideExit() {
       exitModal.classList.remove('show');
       exitModal.setAttribute('aria-hidden', 'true');
+      try { sessionStorage.setItem('rawasi_exit', '1'); } catch (e) {}
     }
-    // سطح المكتب: عند تحريك الماوس خارج أعلى الصفحة
+
     document.addEventListener('mouseout', function (e) {
+      if (window.innerWidth < 760) return;
       if (e.clientY <= 0 && !e.relatedTarget) openExit();
     });
-    // الجوال: بعد مرور وقت دون طلب
+
     setTimeout(function () {
-      if (window.innerWidth < 760) openExit();
-    }, 25000);
+      if (window.innerWidth >= 760) return;
+      if (Date.now() - pageStart < EXIT_MOBILE_MS) return;
+      openExit();
+    }, EXIT_MOBILE_MS);
 
     var exitClose = document.getElementById('exitClose');
     var exitDecline = document.getElementById('exitDecline');
@@ -325,7 +347,6 @@
     if (exitCta) exitCta.addEventListener('click', function () { couponClaimed = true; hideExit(); });
     exitModal.addEventListener('click', function (e) { if (e.target === exitModal) hideExit(); });
 
-    // نسخ كود الكوبون عند الضغط
     var couponCode = document.getElementById('couponCode');
     if (couponCode) {
       couponCode.style.cursor = 'pointer';
