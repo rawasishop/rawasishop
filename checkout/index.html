@@ -4,6 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+  <!-- Snapchat Pixel -->
+  <script type="text/javascript">
+  (function(e,t,n){if(e.snaptr)return;var a=e.snaptr=function()
+  {a.handleRequest?a.handleRequest.apply(a,arguments):a.queue.push(arguments)};
+  a.queue=[];var s='script';r=t.createElement(s);r.async=!0;
+  r.src=n;var u=t.getElementsByTagName(s)[0];
+  u.parentNode.insertBefore(r,u);})(window,document,
+  'https://sc-static.net/scevent.min.js');
+
+  snaptr('init', '0ae4a60f-bad3-4443-9ce3-7a9aa9be9f73');
+  snaptr('track', 'PAGE_VIEW');
+  </script>
+
   <!-- TikTok Pixel -->
   <script>
   !function (w, d, t) {
@@ -168,6 +181,7 @@
 
   <script src="../js/taager-config.js?v=20260606wa"></script>
   <script src="../js/payments-config.js?v=20260606wa"></script>
-  <script src="../js/checkout.js?v=20260606wa"></script>
+  <script src="../js/snapchat-pixel.js?v=20260606snap"></script>
+  <script src="../js/checkout.js?v=20260606snap"></script>
 </body>
 </html>

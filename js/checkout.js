@@ -195,6 +195,7 @@
       country: 'SA',
       platform: 'taager',
       source: 'rawasishop-checkout',
+      transaction_id: 'RS-' + Date.now(),
       date: new Date().toISOString()
     };
   }
@@ -230,9 +231,15 @@
     window.open('https://wa.me/' + wa + '?text=' + encodeURIComponent('طلب رواسي شوب: ' + order.name), '_blank');
   }
 
-  function trackPurchase(value) {
+  function trackPurchase(order) {
+    var value = typeof order === 'object'
+      ? (order.subtotal != null ? order.subtotal : order.totalNum)
+      : order;
     try {
       if (window.fbq) fbq('track', 'Purchase', { value: value, currency: 'SAR' });
+    } catch (e) {}
+    try {
+      if (window.RAWASI_SNAP) RAWASI_SNAP.trackPurchase(order);
     } catch (e) {}
   }
 
@@ -300,7 +307,7 @@
       localStorage.setItem('rawasi_orders', JSON.stringify(orders));
     } catch (e) {}
     openWhatsApp(order);
-    trackPurchase(order.total);
+    trackPurchase(order);
     showSuccess(order.name);
   }
 
@@ -426,8 +433,9 @@
       console.log('[Apple Pay] Authorized', event.payment);
       session.completePayment(ApplePaySession.STATUS_SUCCESS);
       order.payment = 'apple_pay';
+      order.transaction_id = order.transaction_id || ('RS-' + Date.now());
       sendToSheet(order);
-      trackPurchase(t.total);
+      trackPurchase(order);
       showSuccess(order.name);
     };
     session.begin();
@@ -468,7 +476,7 @@
         var order = getOrderPayload();
         order.payment = 'apple_pay_stripe';
         sendToSheet(order);
-        trackPurchase(calcTotals().total);
+        trackPurchase(order);
         showSuccess(order.name);
       });
     });
@@ -491,6 +499,10 @@
     initTracking();
     initFromUrl();
     updateTotals();
+
+    if (form && window.RAWASI_SNAP) {
+      RAWASI_SNAP.trackAddCart(calcTotals().subtotal, getBundle().units || 1);
+    }
 
     if (bundleSelect) {
       bundleSelect.addEventListener('change', function () {

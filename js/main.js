@@ -56,6 +56,10 @@
   }
   initTracking();
 
+  if (window.RAWASI_SNAP) {
+    RAWASI_SNAP.trackViewContent((TAAGER.bundles && TAAGER.bundles[1] && TAAGER.bundles[1].price) || 395);
+  }
+
   /* ---- سنة الفوتر ---- */
   var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
@@ -247,6 +251,7 @@
         country: 'SA',
         platform: 'taager',
         source: 'rawasishop-landing',
+        transaction_id: 'RS-' + Date.now(),
         date: new Date().toISOString()
       };
       sendToSheet(order);
@@ -264,6 +269,7 @@
       var leadValue = selBundle ? parseInt(selBundle.getAttribute('data-price'), 10) : 395;
       trackEvent('Lead', 'generate_lead', leadValue);
       trackEvent('Purchase', 'purchase', leadValue);
+      try { if (window.RAWASI_SNAP) RAWASI_SNAP.trackPurchase(order); } catch (e) {}
 
       if (successName) successName.textContent = order.name.split(' ')[0];
       if (modal) { modal.classList.add('show'); modal.setAttribute('aria-hidden', 'false'); }
