@@ -9,18 +9,26 @@
   var SHEET_WEBHOOK_URL = TAAGER.sheetWebhook || '';
 
   function sendToSheet(order) {
+    if (TAAGER.notifyAfterOrder) {
+      TAAGER.notifyAfterOrder(order);
+      return;
+    }
+    if (TAAGER.sendOrder) {
+      TAAGER.sendOrder(order);
+      return;
+    }
     if (!SHEET_WEBHOOK_URL) return;
     var payload = JSON.stringify(order);
     try {
       if (navigator.sendBeacon) {
-        var blob = new Blob([payload], { type: 'text/plain;charset=utf-8' });
-        if (navigator.sendBeacon(SHEET_WEBHOOK_URL, blob)) return;
+        navigator.sendBeacon(SHEET_WEBHOOK_URL, new Blob([payload], { type: 'application/json' }));
+        return;
       }
     } catch (e) {}
     try {
       fetch(SHEET_WEBHOOK_URL, {
         method: 'POST', mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        headers: { 'Content-Type': 'application/json' },
         body: payload,
         keepalive: true
       });
@@ -255,7 +263,6 @@
         date: new Date().toISOString()
       };
       sendToSheet(order);
-      if (TAAGER.openWhatsApp) TAAGER.openWhatsApp(order);
       // حفظ الطلب محلياً (يمكن ربطه لاحقاً بخادم أو Google Sheets)
       try {
         var orders = JSON.parse(localStorage.getItem('rawasi_orders') || '[]');

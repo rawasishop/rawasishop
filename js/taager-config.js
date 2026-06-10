@@ -17,7 +17,10 @@ window.RAWASI_TAAGER = {
     3: { title: '3 قطع', price: 950, units: 3 }
   },
   sellerWhatsapp: '212633405061',
-  sheetWebhook: 'https://script.google.com/macros/s/AKfycbyiOMoEAkPoKaSxkftvOWiuE3fHp6ljMTiQJ95mxQTZk5nZAgVlHEyXHYbmelUmv69R/exec',
+  sheetWebhook: 'https://script.google.com/macros/s/AKfycbyRphbjjId5QPYtd3-zvVP0aDdCXq-r647jLkJQaCzODeX-qSIRj125eS-q7-gW063m/exec',
+  /** false = الطلب يصلك عبر تيليغرام + Google Sheets فقط (بلا فتح واتساب للزبونة) */
+  openWhatsAppOnOrder: false,
+  orderNotify: 'telegram',
   fbPixelId: '1007677050990489',
   compareAt: 790,
 
@@ -89,5 +92,34 @@ window.RAWASI_TAAGER = {
     } else {
       window.open('https://wa.me/' + phone + '?text=' + text, '_blank');
     }
+  },
+
+  sendOrder: function (order) {
+    var url = this.sheetWebhook;
+    if (!url) return false;
+    var payload = JSON.stringify(order);
+    var sent = false;
+    try {
+      if (navigator.sendBeacon) {
+        sent = navigator.sendBeacon(url, new Blob([payload], { type: 'application/json' }));
+      }
+    } catch (e) {}
+    if (!sent) {
+      try {
+        fetch(url, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: payload,
+          keepalive: true
+        });
+      } catch (e) {}
+    }
+    return true;
+  },
+
+  notifyAfterOrder: function (order) {
+    this.sendOrder(order);
+    if (this.openWhatsAppOnOrder) this.openWhatsApp(order);
   }
 };

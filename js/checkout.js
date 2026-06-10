@@ -200,35 +200,33 @@
     };
   }
 
-  /* ---- Sheet + WhatsApp (COD & fallback) ---- */
+  /* ---- Google Sheets + Telegram (عبر webhook) ---- */
   function sendToSheet(order) {
+    if (TAAGER.notifyAfterOrder) {
+      TAAGER.notifyAfterOrder(order);
+      return;
+    }
+    if (TAAGER.sendOrder) {
+      TAAGER.sendOrder(order);
+      return;
+    }
     var url = CFG.store && CFG.store.sheetWebhook;
     if (!url) return;
     var payload = JSON.stringify(order);
     try {
       if (navigator.sendBeacon) {
-        var blob = new Blob([payload], { type: 'text/plain;charset=utf-8' });
-        if (navigator.sendBeacon(url, blob)) return;
+        navigator.sendBeacon(url, new Blob([payload], { type: 'application/json' }));
+        return;
       }
     } catch (e) {}
     try {
       fetch(url, {
         method: 'POST', mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        headers: { 'Content-Type': 'application/json' },
         body: payload,
         keepalive: true
       });
     } catch (e) {}
-  }
-
-  function openWhatsApp(order) {
-    if (TAAGER.openWhatsApp) {
-      TAAGER.openWhatsApp(order);
-      return;
-    }
-    var wa = CFG.store && CFG.store.whatsapp;
-    if (!wa) return;
-    window.open('https://wa.me/' + wa + '?text=' + encodeURIComponent('طلب رواسي شوب: ' + order.name), '_blank');
   }
 
   function trackPurchase(order) {
@@ -306,7 +304,6 @@
       orders.push(order);
       localStorage.setItem('rawasi_orders', JSON.stringify(orders));
     } catch (e) {}
-    openWhatsApp(order);
     trackPurchase(order);
     showSuccess(order.name);
   }
