@@ -41,8 +41,15 @@ function doPost(e) {
 
 function doGet(e) {
   if (e && e.parameter && e.parameter.test === 'telegram') {
-    var ok = sendTelegram_('✅ RawasiShop: التنبيهات تعمل.');
-    return textOut_(ok ? 'تم الإرسال ✅' : 'فشل تيليغرام ❌ — نفّذ authorizeAll من المحرر');
+    var result = sendTelegramResult_('✅ RawasiShop: التنبيهات تعمل.');
+    if (result.ok) return textOut_('تم الإرسال ✅ — راجع تيليغرام');
+    return textOut_(
+      'فشل تيليغرام ❌\n' +
+      'السبب: ' + result.hint + '\n' +
+      '1) افتح @rawasishop_orders_bot واضغط Start\n' +
+      '2) Apps Script → اختر authorizeAll → Run → وافق على الأذونات\n' +
+      '3) Déployer → Nouvelle version'
+    );
   }
   if (e && e.parameter && e.parameter.test === 'order') {
     var sample = {
@@ -144,18 +151,36 @@ function qtyLabel_(d) {
 }
 
 function sendTelegram_(text) {
-  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) return false;
-  var url = 'https://api.telegram.org/bot' + TELEGRAM_BOT_TOKEN + '/sendMessage';
-  var res = UrlFetchApp.fetch(url, {
-    method: 'post',
-    contentType: 'application/json',
-    payload: JSON.stringify({
-      chat_id: TELEGRAM_CHAT_ID,
-      text: text
-    }),
-    muteHttpExceptions: true
-  });
-  return res.getResponseCode() === 200;
+  return sendTelegramResult_(text).ok;
+}
+
+function sendTelegramResult_(text) {
+  if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
+    return { ok: false, hint: 'Token أو Chat ID ناقص' };
+  }
+  try {
+    var url = 'https://api.telegram.org/bot' + TELEGRAM_BOT_TOKEN + '/sendMessage';
+    var res = UrlFetchApp.fetch(url, {
+      method: 'post',
+      contentType: 'application/json',
+      payload: JSON.stringify({
+        chat_id: TELEGRAM_CHAT_ID,
+        text: text
+      }),
+      muteHttpExceptions: true
+    });
+    var code = res.getResponseCode();
+    if (code === 200) return { ok: true, hint: '' };
+    var body = res.getContentText();
+    var hint = 'HTTP ' + code;
+    if (code === 403) hint = 'ما بديتيش محادثة مع البوت — افتح @rawasishop_orders_bot واضغط Start';
+    else if (code === 401) hint = 'Token البوت غلط';
+    else if (code === 400) hint = 'Chat ID غلط — راجع TELEGRAM_CHAT_ID';
+    else if (body) hint += ' — ' + body;
+    return { ok: false, hint: hint };
+  } catch (err) {
+    return { ok: false, hint: 'ما عندكش أذونات UrlFetch — شغّل authorizeAll من المحرر: ' + String(err) };
+  }
 }
 
 function jsonOut_(obj) {
