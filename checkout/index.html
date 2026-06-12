@@ -126,10 +126,17 @@
             <span class="co-err" data-for="phone"></span>
           </div>
 
-          <div class="co-field">
-            <label for="city">المدينة</label>
-            <input type="text" id="city" name="city" placeholder="مثال: الرياض" autocomplete="address-level2" required />
-            <span class="co-err" data-for="city"></span>
+          <div class="co-row">
+            <div class="co-field">
+              <label for="city">المدينة</label>
+              <input type="text" id="city" name="city" placeholder="مثال: الرياض" autocomplete="address-level2" required />
+              <span class="co-err" data-for="city"></span>
+            </div>
+            <div class="co-field">
+              <label for="zip">الرمز البريدي</label>
+              <input type="text" id="zip" name="zip" placeholder="12345" inputmode="numeric" />
+              <span class="co-err" data-for="zip"></span>
+            </div>
           </div>
 
           <div class="co-field">
@@ -175,6 +182,6 @@
   <script src="../js/taager-config.js?v=20260610tg5"></script>
   <script src="../js/payments-config.js?v=20260606wa"></script>
   <script src="../js/snapchat-pixel.js?v=20260606snap"></script>
-  <script src="../js/checkout.js?v=20260610nozip"></script>
+  <script src="../js/checkout.js?v=20260610restore"></script>
 </body>
 </html>
