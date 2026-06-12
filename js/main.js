@@ -433,4 +433,31 @@
     }, 6000);
   }
 
+  /* ---- تمرير تلقائي لنموذج الطلب عند فتح الصفحة ---- */
+  function scrollToOrderForm() {
+    var hash = window.location.hash;
+    if (hash && hash !== '#order' && hash !== '#orderForm') return;
+
+    var form = document.getElementById('orderForm');
+    if (!form) return;
+
+    var header = document.getElementById('siteHeader');
+    var offset = header ? header.offsetHeight + 16 : 16;
+    var top = form.getBoundingClientRect().top + window.pageYOffset - offset;
+
+    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+  }
+
+  function initOrderScroll() {
+    requestAnimationFrame(function () {
+      setTimeout(scrollToOrderForm, 120);
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initOrderScroll);
+  } else {
+    initOrderScroll();
+  }
+
 })();
