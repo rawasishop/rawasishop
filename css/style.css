@@ -472,10 +472,12 @@ h1, h2, h3, h4 {
 
 /* Order form */
 .order-form {
+  scroll-margin-top: calc(var(--header-h) + 56px);
   background: #fff; border-radius: var(--radius-lg); padding: 40px 38px;
   box-shadow: var(--shadow-xl); border: 1px solid rgba(255,126,176,.35);
   position: relative; overflow: hidden;
 }
+#fullname { scroll-margin-top: calc(var(--header-h) + 56px); }
 .order-form::before {
   content: ''; position: absolute; inset: 0 0 auto 0; height: 6px; background: var(--grad-rose);
 }

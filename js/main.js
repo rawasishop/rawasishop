@@ -396,31 +396,44 @@
     }, 14000);
   }
 
-  /* ---- تمرير تلقائي لنموذج الطلب عند فتح الصفحة ---- */
-  function scrollToOrderForm() {
+  /* ---- تمرير تلقائي لحقول الاسم والعنوان بعد اكتمال التحميل ---- */
+  function getScrollOffset() {
+    var offset = 20;
+    var bar = document.querySelector('.announcement-bar');
+    var header = document.getElementById('siteHeader');
+    if (bar) offset += bar.offsetHeight;
+    if (header) offset += header.offsetHeight;
+    return offset;
+  }
+
+  function scrollToOrderForm(instant) {
     var hash = window.location.hash;
     if (hash && hash !== '#order' && hash !== '#orderForm') return;
 
-    var form = document.getElementById('orderForm');
-    if (!form) return;
+    var target = document.getElementById('fullname') || document.getElementById('orderForm');
+    if (!target) return;
 
-    var header = document.getElementById('siteHeader');
-    var offset = header ? header.offsetHeight + 16 : 16;
-    var top = form.getBoundingClientRect().top + window.pageYOffset - offset;
-
-    window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
-  }
-
-  function initOrderScroll() {
-    requestAnimationFrame(function () {
-      setTimeout(scrollToOrderForm, 120);
+    var top = target.getBoundingClientRect().top + window.pageYOffset - getScrollOffset();
+    window.scrollTo({
+      top: Math.max(0, top),
+      behavior: instant ? 'auto' : 'smooth'
     });
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initOrderScroll);
-  } else {
-    initOrderScroll();
+  function initOrderScroll() {
+    function run() {
+      scrollToOrderForm(false);
+      setTimeout(function () { scrollToOrderForm(true); }, 500);
+      setTimeout(function () { scrollToOrderForm(true); }, 1200);
+    }
+
+    if (document.readyState === 'complete') {
+      setTimeout(run, 200);
+    } else {
+      window.addEventListener('load', function () { setTimeout(run, 200); }, { once: true });
+    }
   }
+
+  initOrderScroll();
 
 })();
