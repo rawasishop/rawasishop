@@ -35,8 +35,6 @@
     } catch (e) {}
   }
 
-  var couponClaimed = false;
-
   var TRACKING = { fbPixelId: TAAGER.fbPixelId || '', gaId: '' };
 
   function initTracking() {
@@ -251,7 +249,7 @@
         totalNum: priceNum,
         unitPrice: unitPrice,
         sellPrice: priceNum,
-        coupon: couponClaimed ? 'RAWASI10' : '',
+        coupon: '',
         product: TAAGER.productName || 'جهاز IPL',
         productSku: TAAGER.productSku || '',
         taagerId: TAAGER.productId || '',
@@ -291,48 +289,6 @@
   if (modalClose) modalClose.addEventListener('click', closeModal);
   if (modal) modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
-
-  /* ---- نافذة عرض المغادرة (Exit-Intent) ---- */
-  var exitModal = document.getElementById('exitModal');
-  if (exitModal) {
-    var shown = false;
-    function openExit() {
-      if (shown || sessionStorage.getItem('rawasi_exit')) return;
-      shown = true;
-      sessionStorage.setItem('rawasi_exit', '1');
-      exitModal.classList.add('show');
-      exitModal.setAttribute('aria-hidden', 'false');
-    }
-    function hideExit() {
-      exitModal.classList.remove('show');
-      exitModal.setAttribute('aria-hidden', 'true');
-    }
-    document.addEventListener('mouseout', function (e) {
-      if (e.clientY <= 0 && !e.relatedTarget) openExit();
-    });
-    setTimeout(function () {
-      if (window.innerWidth < 760) openExit();
-    }, 25000);
-
-    var exitClose = document.getElementById('exitClose');
-    var exitDecline = document.getElementById('exitDecline');
-    var exitCta = document.getElementById('exitCta');
-    if (exitClose) exitClose.addEventListener('click', hideExit);
-    if (exitDecline) exitDecline.addEventListener('click', hideExit);
-    if (exitCta) exitCta.addEventListener('click', function () { couponClaimed = true; hideExit(); });
-    exitModal.addEventListener('click', function (e) { if (e.target === exitModal) hideExit(); });
-
-    var couponCode = document.getElementById('couponCode');
-    if (couponCode) {
-      couponCode.style.cursor = 'pointer';
-      couponCode.addEventListener('click', function () {
-        var code = couponCode.textContent.trim();
-        if (navigator.clipboard) { navigator.clipboard.writeText(code).catch(function () {}); }
-        var c = couponCode.closest('.coupon');
-        if (c) { c.classList.add('copied'); }
-      });
-    }
-  }
 
   /* ---- عداد المشاهدين الحي (يتذبذب لإيحاء الحركة) ---- */
   var viewersEl = document.getElementById('viewers');
