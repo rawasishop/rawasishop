@@ -59,11 +59,18 @@
     try { if (window.fbq) fbq('track', fbName, { value: value, currency: 'SAR' }); } catch (e) {}
     try { if (window.gtag) gtag('event', gaName, { value: value, currency: 'SAR' }); } catch (e) {}
   }
-  initTracking();
 
-  if (window.RAWASI_SNAP) {
-    RAWASI_SNAP.trackViewContent((TAAGER.bundles && TAAGER.bundles[1] && TAAGER.bundles[1].price) || 395);
+  function deferHeavy(fn) {
+    if ('requestIdleCallback' in window) requestIdleCallback(fn, { timeout: 4000 });
+    else window.addEventListener('load', function () { setTimeout(fn, 1500); }, { once: true });
   }
+
+  deferHeavy(function () {
+    initTracking();
+    if (window.RAWASI_SNAP) {
+      RAWASI_SNAP.trackViewContent((TAAGER.bundles && TAAGER.bundles[1] && TAAGER.bundles[1].price) || 395);
+    }
+  });
 
   /* ---- سنة الفوتر ---- */
   var yearEl = document.getElementById('year');
@@ -73,7 +80,7 @@
   var header = document.getElementById('siteHeader');
   window.addEventListener('scroll', function () {
     if (header) header.classList.toggle('scrolled', window.scrollY > 12);
-  });
+  }, { passive: true });
 
   /* ---- قائمة الجوال ---- */
   var navToggle = document.getElementById('navToggle');
@@ -385,8 +392,8 @@
     }
     setTimeout(function () {
       showToast();
-      setInterval(showToast, 13000);
-    }, 6000);
+      setInterval(showToast, 22000);
+    }, 14000);
   }
 
   /* ---- تمرير تلقائي لنموذج الطلب عند فتح الصفحة ---- */

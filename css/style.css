@@ -41,8 +41,8 @@
   --dur-med: 0.35s;
   --dur-slow: 0.7s;
 
-  --font-head: 'El Messiri', 'Tajawal', sans-serif;
-  --font-body: 'Tajawal', sans-serif;
+  --font-head: 'El Messiri', 'Tajawal', 'Segoe UI', Tahoma, sans-serif;
+  --font-body: 'Tajawal', 'Segoe UI', Tahoma, sans-serif;
 }
 
 /* ---------- Reset ---------- */

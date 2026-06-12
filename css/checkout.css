@@ -26,8 +26,8 @@
   --radius-lg: 22px;
   --maxw: 1080px;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-  --font-head: 'El Messiri', 'Tajawal', sans-serif;
-  --font-body: 'Tajawal', sans-serif;
+  --font-head: 'El Messiri', 'Tajawal', 'Segoe UI', Tahoma, sans-serif;
+  --font-body: 'Tajawal', 'Segoe UI', Tahoma, sans-serif;
 }
 
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }

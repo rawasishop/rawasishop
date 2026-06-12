@@ -488,18 +488,25 @@
     document.head.appendChild(s);
   }
 
+  function deferHeavy(fn) {
+    if ('requestIdleCallback' in window) requestIdleCallback(fn, { timeout: 4000 });
+    else window.addEventListener('load', function () { setTimeout(fn, 1500); }, { once: true });
+  }
+
   /* ---- Init ---- */
   function init() {
     var year = document.getElementById('coYear');
     if (year) year.textContent = new Date().getFullYear();
 
-    initTracking();
+    deferHeavy(initTracking);
     initFromUrl();
     updateTotals();
 
-    if (form && window.RAWASI_SNAP) {
-      RAWASI_SNAP.trackAddCart(calcTotals().subtotal, getBundle().units || 1);
-    }
+    deferHeavy(function () {
+      if (form && window.RAWASI_SNAP) {
+        RAWASI_SNAP.trackAddCart(calcTotals().subtotal, getBundle().units || 1);
+      }
+    });
 
     if (bundleSelect) {
       bundleSelect.addEventListener('change', function () {
