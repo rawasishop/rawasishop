@@ -178,7 +178,6 @@
       name: form.fullname.value.trim(),
       phone: TAAGER.normalizeSaPhone ? TAAGER.normalizeSaPhone(form.phone.value.trim()) : form.phone.value.trim(),
       city: form.city.value.trim(),
-      zip: form.zip.value.trim(),
       address: form.address.value.trim(),
       qty: t.bundle.title,
       qtyUnits: units,
