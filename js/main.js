@@ -211,18 +211,13 @@
   }
   if (cdH || cdD) { tick(); setInterval(tick, 1000); }
 
-  /* ---- تحديث السعر: العرض دائماً للقطعة · المجموع حسب الباقة ---- */
+  /* ---- تحديث السعر حسب الباقة المختارة ---- */
   var totalPrice = document.getElementById('totalPrice');
   var heroPriceNew = document.getElementById('heroPriceNew');
   var heroPriceOld = document.getElementById('heroPriceOld');
   var heroPriceTag = document.getElementById('heroPriceTag');
   var stickyPriceNew = document.getElementById('stickyPriceNew');
   var stickyPriceOld = document.getElementById('stickyPriceOld');
-
-  var unitBundle = (TAAGER.bundles && TAAGER.bundles[1]) || { price: 299, units: 1 };
-  var UNIT_PRICE = unitBundle.price || 299;
-  var UNIT_COMPARE = TAAGER.compareAt || 499;
-  var unitDiscount = Math.max(0, Math.round((1 - UNIT_PRICE / UNIT_COMPARE) * 100));
 
   function arNum(n) {
     return n.toLocaleString('en-US');
@@ -233,11 +228,11 @@
   }
 
   function getBundlePrices(sel) {
-    var price = parseInt(sel.getAttribute('data-price'), 10) || UNIT_PRICE;
+    var price = parseInt(sel.getAttribute('data-price'), 10) || 299;
     var compare = parseInt(sel.getAttribute('data-compare'), 10);
     if (!compare) {
       var units = parseInt(sel.value, 10) || 1;
-      compare = UNIT_COMPARE * units;
+      compare = (TAAGER.compareAt || 499) * units;
     }
     return { price: price, compare: compare };
   }
@@ -249,22 +244,20 @@
     });
   }
 
-  function updateUnitPriceDisplay() {
-    var unitText = arNum(UNIT_PRICE) + ' ريال';
-    var compareText = arNum(UNIT_COMPARE) + ' ريال';
-    if (heroPriceNew) heroPriceNew.innerHTML = arNum(UNIT_PRICE) + ' <small>ريال / قطعة</small>';
-    if (heroPriceOld) heroPriceOld.textContent = compareText;
-    if (heroPriceTag) heroPriceTag.textContent = '-' + unitDiscount + '%';
-    if (stickyPriceNew) stickyPriceNew.textContent = unitText;
-    if (stickyPriceOld) stickyPriceOld.textContent = compareText;
-  }
-
   function updateTotal() {
     var sel = getSelectedBundle();
     if (!sel) return;
     var p = getBundlePrices(sel);
-    if (totalPrice) totalPrice.textContent = arNum(p.price) + ' ريال';
-    updateUnitPriceDisplay();
+    var priceText = arNum(p.price) + ' ريال';
+    var compareText = arNum(p.compare) + ' ريال';
+    var discount = Math.max(0, Math.round((1 - p.price / p.compare) * 100));
+
+    if (totalPrice) totalPrice.textContent = priceText;
+    if (heroPriceNew) heroPriceNew.innerHTML = arNum(p.price) + ' <small>ريال</small>';
+    if (heroPriceOld) heroPriceOld.textContent = compareText;
+    if (heroPriceTag) heroPriceTag.textContent = '-' + discount + '%';
+    if (stickyPriceNew) stickyPriceNew.textContent = priceText;
+    if (stickyPriceOld) stickyPriceOld.textContent = compareText;
   }
 
   function onQtyChange(source) {
@@ -276,11 +269,11 @@
     if (e.target && e.target.name === 'qty') onQtyChange(e.target);
   });
 
-  document.querySelectorAll('label.pkg-card, label.bundle-compact').forEach(function (lbl) {
-    lbl.addEventListener('click', function () {
-      var input = lbl.querySelector('input[name="qty"]');
-      if (input) setTimeout(function () { onQtyChange(input); }, 0);
-    });
+  document.addEventListener('click', function (e) {
+    var lbl = e.target.closest('label.pkg-card, label.bundle-compact');
+    if (!lbl) return;
+    var input = lbl.querySelector('input[name="qty"]');
+    if (input) setTimeout(function () { onQtyChange(input); }, 0);
   });
 
   var orderFormEl = document.getElementById('orderForm');
