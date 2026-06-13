@@ -285,17 +285,10 @@ ul { list-style: none; }
 .feat-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.55; }
 
 /* ── Before/After grid ── */
-.ba-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.ba-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
 .ba-card { position: relative; border-radius: var(--radius); overflow: hidden; border: 2px solid var(--line); }
-.ba-card img { width: 100%; aspect-ratio: 3/4; object-fit: cover; }
-.ba-label {
-  position: absolute; bottom: 10px; padding: 6px 12px;
-  border-radius: 6px; font-size: 0.78rem; font-weight: 700;
-}
-.ba-label.before { right: 10px; background: rgba(0,0,0,0.65); color: #fff; }
-.ba-label.after { left: 10px; background: var(--gold); color: var(--green); }
-
-.how-steps-4 { grid-template-columns: repeat(4, 1fr) !important; }
+.ba-card img { width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: center; display: block; }
+.ba-card.ba-wide img { aspect-ratio: 16/10; }
 
 /* ── Hero (legacy helpers) ── */
 .hero-grid {
@@ -488,28 +481,17 @@ ul { list-style: none; }
   border: 1px solid var(--line);
   overflow: hidden;
 }
-.how-steps {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 0; padding: 28px 20px;
+.how-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 16px; padding: 20px;
 }
-.how-step { text-align: center; padding: 0 16px; position: relative; }
-.how-step:not(:last-child)::after {
-  content: '←'; position: absolute;
-  left: -8px; top: 40px;
-  color: var(--gold); font-size: 1.4rem; font-weight: 700;
+.how-img-card {
+  border-radius: var(--radius); overflow: hidden;
+  border: 2px solid var(--line); background: #fff;
 }
-.how-step-num {
-  width: 36px; height: 36px; border-radius: 50%;
-  background: var(--green); color: #fff;
-  font-weight: 800; display: grid; place-items: center;
-  margin: 0 auto 12px; font-size: 1rem;
+.how-img-card img {
+  width: 100%; height: auto; display: block;
 }
-.how-step img {
-  width: 100%; max-width: 140px; margin: 0 auto 12px;
-  border-radius: 12px; aspect-ratio: 4/3; object-fit: cover;
-  border: 2px solid var(--line);
-}
-.how-step p { font-size: 0.88rem; color: var(--muted); font-weight: 500; }
 
 /* ── آراء العملاء ── */
 .reviews-header {
@@ -1015,7 +997,7 @@ ul { list-style: none; }
   .hero-form-col { position: static; }
   .feat-grid { grid-template-columns: repeat(2, 1fr); }
   .ba-grid { grid-template-columns: repeat(2, 1fr); }
-  .how-steps-4 { grid-template-columns: repeat(2, 1fr) !important; }
+  .how-grid { grid-template-columns: 1fr; }
   .main-nav {
     position: fixed; top: var(--header-h); right: 0; left: 0;
     background: var(--green); flex-direction: column; padding: 20px;
@@ -1028,8 +1010,6 @@ ul { list-style: none; }
   .hero-grid { grid-template-columns: 1fr; }
   .hero-visual { order: -1; max-width: 460px; margin: 0 auto; }
   .why-grid { grid-template-columns: repeat(3, 1fr); }
-  .how-steps { grid-template-columns: 1fr; gap: 24px; }
-  .how-step:not(:last-child)::after { display: none; }
   .pkg-grid { grid-template-columns: 1fr; max-width: 340px; margin-inline: auto; }
   .pkg-featured { order: -1; }
   .conv-bottom { grid-template-columns: 1fr; }
@@ -1044,8 +1024,7 @@ ul { list-style: none; }
 @media (max-width: 600px) {
   .bundles-compact { grid-template-columns: 1fr; }
   .feat-grid { grid-template-columns: 1fr; }
-  .ba-grid { grid-template-columns: 1fr 1fr; }
-  .how-steps-4 { grid-template-columns: 1fr !important; }
+  .ba-grid { grid-template-columns: 1fr; }
   .reviews-grid { grid-template-columns: 1fr; }
   .faq-grid { grid-template-columns: 1fr; }
   .hero-mini-trust { grid-template-columns: 1fr; }
