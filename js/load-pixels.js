@@ -61,9 +61,9 @@
 
   function schedule() {
     if ('requestIdleCallback' in window) {
-      requestIdleCallback(run, { timeout: 3500 });
+      requestIdleCallback(run, { timeout: 6000 });
     } else {
-      setTimeout(run, 1200);
+      setTimeout(run, 2500);
     }
   }
 

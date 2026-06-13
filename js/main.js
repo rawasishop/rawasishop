@@ -70,17 +70,59 @@
     if (window.RAWASI_SNAP) {
       RAWASI_SNAP.trackViewContent((TAAGER.bundles && TAAGER.bundles[1] && TAAGER.bundles[1].price) || 299);
     }
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js').catch(function () {});
+    }
   });
 
   /* ---- سنة الفوتر ---- */
   var yearEl = document.getElementById('year');
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  /* ---- ظل الهيدر عند التمرير ---- */
+  /* ---- ظل الهيدر + عناصر التمرير (مجمّعة عبر rAF) ---- */
   var header = document.getElementById('siteHeader');
-  window.addEventListener('scroll', function () {
+  var stickyCta = document.getElementById('stickyCta');
+  var orderPanel = document.getElementById('orderFormPanel') || document.getElementById('order');
+  var orderFloat = document.querySelector('.order-float');
+  var orderSec = document.getElementById('order');
+  var waFloat = document.querySelector('.whatsapp-float');
+  var scrollPending = false;
+
+  function onScrollFrame() {
+    scrollPending = false;
     if (header) header.classList.toggle('scrolled', window.scrollY > 12);
+    if (stickyCta) {
+      var pastSticky = window.scrollY > 480;
+      var atForm = false;
+      if (orderPanel) {
+        var rp = orderPanel.getBoundingClientRect();
+        atForm = rp.top < window.innerHeight * 0.75 && rp.bottom > 0;
+      }
+      stickyCta.classList.toggle('show', pastSticky && !atForm);
+    }
+    if (orderFloat) {
+      var pastFloat = window.scrollY > 480;
+      var atOrder = false;
+      if (orderSec) {
+        var ro = orderSec.getBoundingClientRect();
+        atOrder = ro.top < window.innerHeight * 0.8 && ro.bottom > 0;
+      }
+      orderFloat.classList.toggle('show', pastFloat && !atOrder);
+    }
+    if (waFloat) {
+      var maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      waFloat.classList.toggle('show', window.scrollY >= maxScroll * 0.5);
+    }
+  }
+
+  window.addEventListener('scroll', function () {
+    if (!scrollPending) {
+      scrollPending = true;
+      requestAnimationFrame(onScrollFrame);
+    }
   }, { passive: true });
+  window.addEventListener('resize', onScrollFrame, { passive: true });
+  onScrollFrame();
 
   /* ---- قائمة الجوال ---- */
   var navToggle = document.getElementById('navToggle');
@@ -398,50 +440,7 @@
     }, 35000);
   }
 
-  /* ---- شريط الطلب الثابت: يظهر بعد تجاوز Hero ويختفي عند نموذج الطلب ---- */
-  var stickyCta = document.getElementById('stickyCta');
-  var orderPanel = document.getElementById('orderFormPanel') || document.getElementById('order');
-  if (stickyCta) {
-    window.addEventListener('scroll', function () {
-      var past = window.scrollY > 480;
-      var atForm = false;
-      if (orderPanel) {
-        var r = orderPanel.getBoundingClientRect();
-        atForm = r.top < window.innerHeight * 0.75 && r.bottom > 0;
-      }
-      stickyCta.classList.toggle('show', past && !atForm);
-    }, { passive: true });
-  }
-
-  /* ---- زر الطلب العائم: يتبع الزائرة بعد تجاوز Hero ويختفي عند نموذج الطلب ---- */
-  var orderFloat = document.querySelector('.order-float');
-  if (orderFloat) {
-    var orderSec = document.getElementById('order');
-    var toggleOrderFloat = function () {
-      var past = window.scrollY > 480;
-      var atOrder = false;
-      if (orderSec) {
-        var r = orderSec.getBoundingClientRect();
-        atOrder = r.top < window.innerHeight * 0.8 && r.bottom > 0;
-      }
-      orderFloat.classList.toggle('show', past && !atOrder);
-    };
-    window.addEventListener('scroll', toggleOrderFloat, { passive: true });
-    toggleOrderFloat();
-  }
-
-  /* ---- زر واتساب: يظهر في النصف الثاني من الصفحة ---- */
-  var waFloat = document.querySelector('.whatsapp-float');
-  if (waFloat) {
-    var toggleWa = function () {
-      var maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
-      var show = window.scrollY >= maxScroll * 0.5;
-      waFloat.classList.toggle('show', show);
-    };
-    window.addEventListener('scroll', toggleWa, { passive: true });
-    window.addEventListener('resize', toggleWa);
-    toggleWa();
-  }
+  /* ---- شريط الطلب الثابت + زر الطلب + واتساب: يُدار أعلاه ---- */
 
   /* ---- إشعارات الإثبات الاجتماعي (طلبات حديثة) ---- */
   var toast = document.getElementById('socialToast');
@@ -462,8 +461,8 @@
     }
     setTimeout(function () {
       showToast();
-      setInterval(showToast, 22000);
-    }, 14000);
+      setInterval(showToast, 28000);
+    }, 22000);
   }
 
 })();

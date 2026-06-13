@@ -19,16 +19,9 @@
   <meta property="og:locale" content="ar_SA" />
 
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" href="css/landing.css?v=20260606prod" as="style" />
-  <link rel="preload" href="assets/slider-store.jpg?v=20260613v7" as="image" fetchpriority="high" />
-  <link rel="preload" href="assets/slider-product.jpg?v=20260613v7" as="image" />
-  <link rel="preload" href="assets/slider-usage.jpg?v=20260613v7" as="image" />
-  <link rel="preload" href="assets/slider-lifestyle.jpg?v=20260613v7" as="image" />
-  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Tajawal:wght@400;500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
-  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Tajawal:wght@400;500;700&display=swap" /></noscript>
-  <link rel="stylesheet" href="css/landing.css?v=20260613how" />
+  <link rel="preload" href="css/landing.css?v=20260614perf" as="style" />
+  <link rel="preload" href="assets/slider-store.webp?v=20260614perf" as="image" type="image/webp" fetchpriority="high" />
+  <link rel="stylesheet" href="css/landing.css?v=20260614perf" />
 
   <script type="application/ld+json">
   {
@@ -101,19 +94,31 @@
             <div class="product-slider-viewport" dir="ltr">
               <div class="product-slider-track" id="productSliderTrack">
                 <div class="product-slide active">
-                  <img src="assets/slider-store.jpg?v=20260613v7" alt="رواسي شوب — جهاز IPL أخضر مع الدفع عند الاستلام" width="800" height="1000" />
+                  <picture>
+                    <source srcset="assets/slider-store.webp?v=20260614perf" type="image/webp" />
+                    <img src="assets/slider-store.jpg?v=20260614perf" alt="رواسي شوب — جهاز IPL أخضر مع الدفع عند الاستلام" width="800" height="1000" fetchpriority="high" decoding="async" />
+                  </picture>
                   <span class="slide-caption">رواسي شوب — الدفع عند الاستلام وشحن سريع</span>
                 </div>
                 <div class="product-slide">
-                  <img src="assets/slider-product.jpg?v=20260613v7" alt="جهاز IPL أخضر بالتبريد الثلجي — تصميم فاخر" width="800" height="1000" />
+                  <picture>
+                    <source data-srcset="assets/slider-product.webp?v=20260614perf" type="image/webp" />
+                    <img data-src="assets/slider-product.jpg?v=20260614perf" alt="جهاز IPL أخضر بالتبريد الثلجي — تصميم فاخر" width="800" height="1000" decoding="async" />
+                  </picture>
                   <span class="slide-caption">جهاز IPL أخضر — تقنية تبريد ثلجي ذكية</span>
                 </div>
                 <div class="product-slide">
-                  <img src="assets/slider-usage.jpg?v=20260613v7" alt="استخدام جهاز IPL بالتبريد الثلجي — مريح وآمن" width="800" height="1000" />
+                  <picture>
+                    <source data-srcset="assets/slider-usage.webp?v=20260614perf" type="image/webp" />
+                    <img data-src="assets/slider-usage.jpg?v=20260614perf" alt="استخدام جهاز IPL بالتبريد الثلجي — مريح وآمن" width="800" height="1000" decoding="async" />
+                  </picture>
                   <span class="slide-caption">استخدام منزلي مريح — نتائج من أول الجلسات</span>
                 </div>
                 <div class="product-slide">
-                  <img src="assets/slider-lifestyle.jpg?v=20260613v7" alt="جهاز IPL أخضر — تجربة فاخرة من المنزل" width="800" height="1000" />
+                  <picture>
+                    <source data-srcset="assets/slider-lifestyle.webp?v=20260614perf" type="image/webp" />
+                    <img data-src="assets/slider-lifestyle.jpg?v=20260614perf" alt="جهاز IPL أخضر — تجربة فاخرة من المنزل" width="800" height="1000" decoding="async" />
+                  </picture>
                   <span class="slide-caption">❄️ تبريد مزدوج — بلا ألم ولا تهيج</span>
                 </div>
               </div>
@@ -177,21 +182,30 @@
                         <label class="bundle-compact">
                           <input type="radio" name="qty" value="1" data-price="299" data-compare="499" checked />
                           <span>
-                            <img class="bundle-thumb" src="assets/pkg-1.jpg?v=20260613pkg" alt="قطعة واحدة" width="72" height="72" loading="lazy" decoding="async" />
+                            <picture>
+                              <source srcset="assets/pkg-1.webp?v=20260614perf" type="image/webp" />
+                              <img class="bundle-thumb" src="assets/pkg-1.jpg?v=20260614perf" alt="قطعة واحدة" width="72" height="72" loading="lazy" decoding="async" />
+                            </picture>
                             1 قطعة · 299 ر.س
                           </span>
                         </label>
                         <label class="bundle-compact">
                           <input type="radio" name="qty" value="2" data-price="529" data-compare="998" />
                           <span>
-                            <img class="bundle-thumb" src="assets/pkg-2.jpg?v=20260613pkg" alt="قطعتان" width="72" height="72" loading="lazy" decoding="async" />
+                            <picture>
+                              <source srcset="assets/pkg-2.webp?v=20260614perf" type="image/webp" />
+                              <img class="bundle-thumb" src="assets/pkg-2.jpg?v=20260614perf" alt="قطعتان" width="72" height="72" loading="lazy" decoding="async" />
+                            </picture>
                             2 قطعة · 529 ر.س
                           </span>
                         </label>
                         <label class="bundle-compact hot">
                           <input type="radio" name="qty" value="3" data-price="749" data-compare="1497" />
                           <span>
-                            <img class="bundle-thumb" src="assets/pkg-3.jpg?v=20260613pkg" alt="3 قطع" width="72" height="72" loading="lazy" decoding="async" />
+                            <picture>
+                              <source srcset="assets/pkg-3.webp?v=20260614perf" type="image/webp" />
+                              <img class="bundle-thumb" src="assets/pkg-3.jpg?v=20260614perf" alt="3 قطع" width="72" height="72" loading="lazy" decoding="async" />
+                            </picture>
                             3 قطع · 749 ر.س 🔥
                           </span>
                         </label>
@@ -230,7 +244,10 @@
             <span class="pkg-inner">
               <span class="pkg-label">للتجربة</span>
               <span class="pkg-qty">قطعة واحدة</span>
-              <img class="pkg-img" src="assets/pkg-1.jpg?v=20260613pkg" alt="قطعة واحدة" loading="lazy" decoding="async" />
+              <picture>
+                <source srcset="assets/pkg-1.webp?v=20260614perf" type="image/webp" />
+                <img class="pkg-img" src="assets/pkg-1.jpg?v=20260614perf" alt="قطعة واحدة" loading="lazy" decoding="async" />
+              </picture>
               <span class="pkg-old">499 ر.س</span>
               <span class="pkg-price">299 <small>ر.س</small></span>
               <span class="pkg-save">وفّري 200 ريال</span>
@@ -244,7 +261,10 @@
             <span class="pkg-inner">
               <span class="pkg-label">أفضل قيمة</span>
               <span class="pkg-qty">3 قطع + هديتان</span>
-              <img class="pkg-img" src="assets/pkg-3.jpg?v=20260613pkg" alt="3 قطع" loading="lazy" decoding="async" />
+              <picture>
+                <source srcset="assets/pkg-3.webp?v=20260614perf" type="image/webp" />
+                <img class="pkg-img" src="assets/pkg-3.jpg?v=20260614perf" alt="3 قطع" loading="lazy" decoding="async" />
+              </picture>
               <span class="pkg-old">1,497 ر.س</span>
               <span class="pkg-price">749 <small>ر.س</small></span>
               <span class="pkg-save">وفّري 748 ريال</span>
@@ -257,7 +277,10 @@
             <span class="pkg-inner">
               <span class="pkg-label">للعائلتين</span>
               <span class="pkg-qty">قطعتان + هدية</span>
-              <img class="pkg-img" src="assets/pkg-2.jpg?v=20260613pkg" alt="قطعتان" loading="lazy" decoding="async" />
+              <picture>
+                <source srcset="assets/pkg-2.webp?v=20260614perf" type="image/webp" />
+                <img class="pkg-img" src="assets/pkg-2.jpg?v=20260614perf" alt="قطعتان" loading="lazy" decoding="async" />
+              </picture>
               <span class="pkg-old">998 ر.س</span>
               <span class="pkg-price">529 <small>ر.س</small></span>
               <span class="pkg-save">وفّري 469 ريال</span>
@@ -269,9 +292,18 @@
         <div class="conv-bottom reveal">
           <div class="conv-visual">
             <div class="conv-gallery">
-              <img src="assets/conv-lifestyle-leg.jpg?v=20260613conv" alt="استخدام الجهاز في المنزل" loading="lazy" decoding="async" />
-              <img src="assets/conv-ipl-promo.jpg?v=20260613conv" alt="جهاز إزالة الشعر بتقنية IPL" loading="lazy" decoding="async" />
-              <img src="assets/conv-lifestyle-arm.jpg?v=20260613conv" alt="استخدام الجهاز على الذراع" loading="lazy" decoding="async" />
+              <picture>
+                <source srcset="assets/conv-lifestyle-leg.webp?v=20260614perf" type="image/webp" />
+                <img src="assets/conv-lifestyle-leg.jpg?v=20260614perf" alt="استخدام الجهاز في المنزل" width="360" height="480" loading="lazy" decoding="async" />
+              </picture>
+              <picture>
+                <source srcset="assets/conv-ipl-promo.webp?v=20260614perf" type="image/webp" />
+                <img src="assets/conv-ipl-promo.jpg?v=20260614perf" alt="جهاز إزالة الشعر بتقنية IPL" width="360" height="480" loading="lazy" decoding="async" />
+              </picture>
+              <picture>
+                <source srcset="assets/conv-lifestyle-arm.webp?v=20260614perf" type="image/webp" />
+                <img src="assets/conv-lifestyle-arm.jpg?v=20260614perf" alt="استخدام الجهاز على الذراع" width="360" height="480" loading="lazy" decoding="async" />
+              </picture>
             </div>
             <div class="conv-trust-grid">
               <div class="conv-trust-item"><span>🚚</span><strong>شحن مجاني</strong><small>لكل السعودية</small></div>
@@ -337,16 +369,28 @@
         <div class="how-header">طريقة الاستخدام</div>
         <div class="how-grid">
           <div class="how-img-card">
-            <img src="assets/how-body-areas.jpg?v=20260613how" alt="إزالة شعر الجسم بالكامل — المناطق والمدة" loading="lazy" decoding="async" />
+            <picture>
+              <source srcset="assets/how-body-areas.webp?v=20260614perf" type="image/webp" />
+              <img src="assets/how-body-areas.jpg?v=20260614perf" alt="إزالة شعر الجسم بالكامل — المناطق والمدة" loading="lazy" decoding="async" />
+            </picture>
           </div>
           <div class="how-img-card">
-            <img src="assets/how-3in1.jpg?v=20260613how" alt="جهاز ليزر 3 في 1 — إزالة الشعر وتجديد البشرة وعلاج حب الشباب" loading="lazy" decoding="async" />
+            <picture>
+              <source srcset="assets/how-3in1.webp?v=20260614perf" type="image/webp" />
+              <img src="assets/how-3in1.jpg?v=20260614perf" alt="جهاز ليزر 3 في 1 — إزالة الشعر وتجديد البشرة وعلاج حب الشباب" loading="lazy" decoding="async" />
+            </picture>
           </div>
           <div class="how-img-card">
-            <img src="assets/how-energy-modes.jpg?v=20260613how" alt="٥ مستويات طاقة ووضعين للوميض" loading="lazy" decoding="async" />
+            <picture>
+              <source srcset="assets/how-energy-modes.webp?v=20260614perf" type="image/webp" />
+              <img src="assets/how-energy-modes.jpg?v=20260614perf" alt="٥ مستويات طاقة ووضعين للوميض" loading="lazy" decoding="async" />
+            </picture>
           </div>
           <div class="how-img-card">
-            <img src="assets/how-cooling.jpg?v=20260613how2" alt="تصميم لوحي تبريد مزدوج — إزالة بدون ألم" loading="lazy" decoding="async" />
+            <picture>
+              <source srcset="assets/how-cooling.webp?v=20260614perf" type="image/webp" />
+              <img src="assets/how-cooling.jpg?v=20260614perf" alt="تصميم لوحي تبريد مزدوج — إزالة بدون ألم" loading="lazy" decoding="async" />
+            </picture>
           </div>
         </div>
       </div>
@@ -359,16 +403,28 @@
       <h2 class="section-title reveal">نتائج حقيقية من عملائنا</h2>
       <div class="ba-grid reveal">
         <div class="ba-card ba-wide">
-          <img src="assets/result-ba-legs.jpg?v=20260613results" alt="قبل وبعد — إزالة شعر الساقين" loading="lazy" decoding="async" />
+          <picture>
+            <source srcset="assets/result-ba-legs.webp?v=20260614perf" type="image/webp" />
+            <img src="assets/result-ba-legs.jpg?v=20260614perf" alt="قبل وبعد — إزالة شعر الساقين" loading="lazy" decoding="async" />
+          </picture>
         </div>
         <div class="ba-card ba-wide">
-          <img src="assets/result-ba-face.jpg?v=20260613results" alt="قبل وبعد — نتائج الوجه" loading="lazy" decoding="async" />
+          <picture>
+            <source srcset="assets/result-ba-face.webp?v=20260614perf" type="image/webp" />
+            <img src="assets/result-ba-face.jpg?v=20260614perf" alt="قبل وبعد — نتائج الوجه" loading="lazy" decoding="async" />
+          </picture>
         </div>
         <div class="ba-card">
-          <img src="assets/result-lifestyle-usage.jpg?v=20260613results" alt="استخدام الجهاز بسهولة في المنزل" loading="lazy" decoding="async" />
+          <picture>
+            <source srcset="assets/result-lifestyle-usage.webp?v=20260614perf" type="image/webp" />
+            <img src="assets/result-lifestyle-usage.jpg?v=20260614perf" alt="استخدام الجهاز بسهولة في المنزل" loading="lazy" decoding="async" />
+          </picture>
         </div>
         <div class="ba-card">
-          <img src="assets/result-lifestyle-group.jpg?v=20260613results" alt="عملائنا مع جهاز رواسي شوب" loading="lazy" decoding="async" />
+          <picture>
+            <source srcset="assets/result-lifestyle-group.webp?v=20260614perf" type="image/webp" />
+            <img src="assets/result-lifestyle-group.jpg?v=20260614perf" alt="عملائنا مع جهاز رواسي شوب" loading="lazy" decoding="async" />
+          </picture>
         </div>
       </div>
     </div>
@@ -499,11 +555,10 @@
     </div>
   </div>
 
-  <script src="js/sa-cities.js?v=20260605v5" defer></script>
-  <script src="js/taager-config.js?v=20260605v4" defer></script>
-  <script src="js/load-pixels.js?v=20260612perf" defer></script>
-  <script src="js/snapchat-pixel.js?v=20260606snap" defer></script>
-  <script src="js/main.js?v=20260613noscroll" defer></script>
-  <script src="js/landing.js?v=20260613nofaq" defer></script>
+  <script src="js/taager-config.js?v=20260614perf" defer></script>
+  <script src="js/snapchat-pixel.js?v=20260614perf" defer></script>
+  <script src="js/main.js?v=20260614perf" defer></script>
+  <script src="js/landing.js?v=20260614perf" defer></script>
+  <script src="js/load-pixels.js?v=20260614perf" defer></script>
 </body>
 </html>
