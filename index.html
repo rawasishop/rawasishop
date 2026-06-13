@@ -28,7 +28,7 @@
   <link rel="preload" href="assets/slider-lifestyle.jpg?v=20260613v7" as="image" />
   <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Tajawal:wght@400;500;700&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800;900&family=Tajawal:wght@400;500;700&display=swap" /></noscript>
-  <link rel="stylesheet" href="css/landing.css?v=20260613wa" />
+  <link rel="stylesheet" href="css/landing.css?v=20260613pkg" />
 
   <script type="application/ld+json">
   {
@@ -144,9 +144,9 @@
               <p class="form-sub">املئي بياناتكِ — سيتصل بكِ فريق التأكيد قبل الشحن المجاني 🇸🇦</p>
 
               <div class="hero-price-inline">
-                <span class="price-old">499 ريال</span>
-                <span class="price-new">299 <small>ريال</small></span>
-                <span class="price-tag">-40%</span>
+                <span class="price-old" id="heroPriceOld">1,497 ريال</span>
+                <span class="price-new" id="heroPriceNew">749 <small>ريال</small></span>
+                <span class="price-tag" id="heroPriceTag">-50%</span>
               </div>
 
               <div class="field">
@@ -175,16 +175,25 @@
                 <label>اختاري العرض</label>
                 <div class="bundles-compact" id="bundles">
                         <label class="bundle-compact">
-                          <input type="radio" name="qty" value="1" data-price="299" />
-                          <span>1 قطعة · 299 ر.س</span>
+                          <input type="radio" name="qty" value="1" data-price="299" data-compare="499" />
+                          <span>
+                            <img class="bundle-thumb" src="assets/pkg-1.jpg?v=20260613pkg" alt="قطعة واحدة" width="72" height="72" loading="lazy" decoding="async" />
+                            1 قطعة · 299 ر.س
+                          </span>
                         </label>
                         <label class="bundle-compact">
-                          <input type="radio" name="qty" value="2" data-price="529" />
-                          <span>2 قطعة · 529 ر.س</span>
+                          <input type="radio" name="qty" value="2" data-price="529" data-compare="998" />
+                          <span>
+                            <img class="bundle-thumb" src="assets/pkg-2.jpg?v=20260613pkg" alt="قطعتان" width="72" height="72" loading="lazy" decoding="async" />
+                            2 قطعة · 529 ر.س
+                          </span>
                         </label>
                         <label class="bundle-compact hot">
-                          <input type="radio" name="qty" value="3" data-price="749" checked />
-                          <span>3 قطع · 749 ر.س 🔥</span>
+                          <input type="radio" name="qty" value="3" data-price="749" data-compare="1497" checked />
+                          <span>
+                            <img class="bundle-thumb" src="assets/pkg-3.jpg?v=20260613pkg" alt="3 قطع" width="72" height="72" loading="lazy" decoding="async" />
+                            3 قطع · 749 ر.س 🔥
+                          </span>
                         </label>
                 </div>
               </div>
@@ -217,11 +226,11 @@
 
         <div class="pkg-grid reveal">
           <label class="pkg-card">
-            <input type="radio" name="qty" value="1" data-price="299" />
+            <input type="radio" name="qty" value="1" data-price="299" data-compare="499" />
             <span class="pkg-inner">
               <span class="pkg-label">للتجربة</span>
               <span class="pkg-qty">قطعة واحدة</span>
-              <img class="pkg-img" src="assets/g-banner.png?v=20260612banner3" alt="" loading="lazy" decoding="async" />
+              <img class="pkg-img" src="assets/pkg-1.jpg?v=20260613pkg" alt="قطعة واحدة" loading="lazy" decoding="async" />
               <span class="pkg-old">499 ر.س</span>
               <span class="pkg-price">299 <small>ر.س</small></span>
               <span class="pkg-save">وفّري 200 ريال</span>
@@ -230,12 +239,12 @@
           </label>
 
           <label class="pkg-card pkg-featured">
-            <input type="radio" name="qty" value="3" data-price="749" checked />
+            <input type="radio" name="qty" value="3" data-price="749" data-compare="1497" checked />
             <span class="pkg-ribbon">الأكثر طلباً 🔥</span>
             <span class="pkg-inner">
               <span class="pkg-label">أفضل قيمة</span>
               <span class="pkg-qty">3 قطع + هديتان</span>
-              <img class="pkg-img" src="assets/g-banner.png?v=20260612banner3" alt="" loading="lazy" decoding="async" />
+              <img class="pkg-img" src="assets/pkg-3.jpg?v=20260613pkg" alt="3 قطع" loading="lazy" decoding="async" />
               <span class="pkg-old">1,497 ر.س</span>
               <span class="pkg-price">749 <small>ر.س</small></span>
               <span class="pkg-save">وفّري 748 ريال</span>
@@ -244,11 +253,11 @@
           </label>
 
           <label class="pkg-card">
-            <input type="radio" name="qty" value="2" data-price="529" />
+            <input type="radio" name="qty" value="2" data-price="529" data-compare="998" />
             <span class="pkg-inner">
               <span class="pkg-label">للعائلتين</span>
               <span class="pkg-qty">قطعتان + هدية</span>
-              <img class="pkg-img" src="assets/g-banner.png?v=20260612banner3" alt="" loading="lazy" decoding="async" />
+              <img class="pkg-img" src="assets/pkg-2.jpg?v=20260613pkg" alt="قطعتان" loading="lazy" decoding="async" />
               <span class="pkg-old">998 ر.س</span>
               <span class="pkg-price">529 <small>ر.س</small></span>
               <span class="pkg-save">وفّري 469 ريال</span>
@@ -454,8 +463,8 @@
 
   <div class="sticky-cta" id="stickyCta">
     <div class="sticky-price">
-      <span class="sc-old">499 ريال</span>
-      <span class="sc-new">299 ريال</span>
+      <span class="sc-old" id="stickyPriceOld">1,497 ريال</span>
+      <span class="sc-new" id="stickyPriceNew">749 ريال</span>
     </div>
     <a href="#fullname" class="btn btn-gold">اطلبي الآن</a>
   </div>
@@ -478,7 +487,7 @@
   <script src="js/taager-config.js?v=20260605v4" defer></script>
   <script src="js/load-pixels.js?v=20260612perf" defer></script>
   <script src="js/snapchat-pixel.js?v=20260606snap" defer></script>
-  <script src="js/main.js?v=20260613wa2" defer></script>
+  <script src="js/main.js?v=20260613price" defer></script>
   <script src="js/landing.js?v=20260613nofaq" defer></script>
 </body>
 </html>
