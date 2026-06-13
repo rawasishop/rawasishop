@@ -81,11 +81,11 @@ ul { list-style: none; }
   gap: 16px; height: var(--header-h);
 }
 .logo { display: flex; align-items: center; gap: 10px; }
+.logo picture { display: block; flex-shrink: 0; line-height: 0; }
 .logo-mark {
   width: 40px; height: 40px; border-radius: 10px;
-  background: linear-gradient(135deg, var(--gold-glow), var(--gold));
-  color: var(--green); font-family: var(--font-display);
-  font-weight: 900; display: grid; place-items: center; font-size: 1.15rem;
+  object-fit: contain; display: block;
+  background: transparent;
 }
 .logo-text { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; color: #fff; }
 .logo-text strong { color: var(--gold-glow); }
