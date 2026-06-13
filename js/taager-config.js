@@ -12,9 +12,9 @@ window.RAWASI_TAAGER = {
   wholesale: 170,
   minSell: 200,
   bundles: {
-    1: { title: 'قطعة واحدة', price: 395, units: 1 },
-    2: { title: 'قطعتان', price: 690, units: 2 },
-    3: { title: '3 قطع', price: 950, units: 3 }
+    1: { title: 'قطعة واحدة', price: 299, units: 1 },
+    2: { title: 'قطعتان', price: 529, units: 2 },
+    3: { title: '3 قطع', price: 749, units: 3 }
   },
   sellerWhatsapp: '212633405061',
   sheetWebhook: 'https://script.google.com/macros/s/AKfycbwbAiejjtqfwj0HqzGtMEwQEo7yG7lxl9skMjIlSnz6hFdlhYCZ1ZUNQ3VTQFtZgLc/exec',
@@ -22,7 +22,7 @@ window.RAWASI_TAAGER = {
   openWhatsAppOnOrder: false,
   orderNotify: 'telegram',
   fbPixelId: '1007677050990489',
-  compareAt: 790,
+  compareAt: 499,
 
   normalizeSaPhone: function (phone) {
     var d = String(phone || '').replace(/\D/g, '');

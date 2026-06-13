@@ -68,7 +68,7 @@
   deferHeavy(function () {
     initTracking();
     if (window.RAWASI_SNAP) {
-      RAWASI_SNAP.trackViewContent((TAAGER.bundles && TAAGER.bundles[1] && TAAGER.bundles[1].price) || 395);
+      RAWASI_SNAP.trackViewContent((TAAGER.bundles && TAAGER.bundles[1] && TAAGER.bundles[1].price) || 299);
     }
   });
 
@@ -121,7 +121,7 @@
       });
     }, { threshold: 0.05, rootMargin: '0px 0px 8% 0px' });
     reveals.forEach(function (el) {
-      if (el.closest('.hero')) {
+      if (el.closest('.hero, .hero-luxury')) {
         markVisible(el);
         return;
       }
@@ -139,6 +139,7 @@
   }, { once: true });
 
   /* ---- العداد التنازلي (يتجدد كل يوم لإبقاء العرض "حياً") ---- */
+  var cdD = document.getElementById('cdD');
   var cdH = document.getElementById('cdH');
   var cdM = document.getElementById('cdM');
   var cdS = document.getElementById('cdS');
@@ -147,7 +148,7 @@
     var saved = localStorage.getItem('rawasi_deadline');
     var now = Date.now();
     if (saved && parseInt(saved, 10) > now) return parseInt(saved, 10);
-    var next = now + 8 * 60 * 60 * 1000; // 8 ساعات من أول زيارة
+    var next = now + 31 * 60 * 60 * 1000;
     localStorage.setItem('rawasi_deadline', String(next));
     return next;
   }
@@ -157,14 +158,16 @@
   function tick() {
     var diff = deadline - Date.now();
     if (diff <= 0) { deadline = getDeadline(); diff = deadline - Date.now(); }
-    var h = Math.floor(diff / 3600000);
+    var d = Math.floor(diff / 86400000);
+    var h = Math.floor((diff % 86400000) / 3600000);
     var m = Math.floor((diff % 3600000) / 60000);
     var s = Math.floor((diff % 60000) / 1000);
+    if (cdD) cdD.textContent = pad(d);
     if (cdH) cdH.textContent = pad(h);
     if (cdM) cdM.textContent = pad(m);
     if (cdS) cdS.textContent = pad(s);
   }
-  if (cdH) { tick(); setInterval(tick, 1000); }
+  if (cdH || cdD) { tick(); setInterval(tick, 1000); }
 
   /* ---- تحديث المجموع حسب الباقة المختارة ---- */
   var totalPrice = document.getElementById('totalPrice');
@@ -203,7 +206,7 @@
     var name = form.fullname.value.trim();
     var phone = form.phone.value.trim();
     var city = form.city.value.trim();
-    var address = form.address.value.trim();
+    var address = form.address ? form.address.value.trim() : '';
 
     if (name.length < 3) { setError('fullname', 'يرجى إدخال الاسم الكامل'); ok = false; }
     else setError('fullname', '');
@@ -213,16 +216,22 @@
       ok = false;
     } else setError('phone', '');
 
-    if (city.length < 2) { setError('city', 'يرجى إدخال المدينة'); ok = false; }
+    if (city.length < 2) { setError('city', 'يرجى اختيار أو كتابة اسم المدينة'); ok = false; }
+    else if (/[A-Za-z]/.test(city)) { setError('city', 'يرجى كتابة اسم المدينة بالعربية فقط'); ok = false; }
     else setError('city', '');
 
-    if (address.length < 5) { setError('address', 'يرجى إدخال عنوان واضح'); ok = false; }
+    if (address.length < 5) { setError('address', 'يرجى إدخال العنوان بالتفصيل'); ok = false; }
     else setError('address', '');
 
     return ok;
   }
 
   if (form) {
+    if (form.city) {
+      form.city.addEventListener('input', function () {
+        this.value = this.value.replace(/[A-Za-z]/g, '');
+      });
+    }
     // قبول الأرقام فقط في حقل الهاتف
     form.phone.addEventListener('input', function () {
       this.value = this.value.replace(/[^\d+ ]/g, '');
@@ -238,9 +247,10 @@
 
       var selBundle = getSelectedBundle();
       var qtyVal = selBundle ? selBundle.value : '1';
-      var bundleTitleEl = selBundle ? selBundle.parentNode.querySelector('.bundle-title') : null;
-      var qtyLabel = bundleTitleEl ? bundleTitleEl.textContent : (qtyVal + ' قطعة');
-      var priceNum = selBundle ? parseInt(selBundle.getAttribute('data-price'), 10) : 395;
+      var label = selBundle ? selBundle.closest('label') : null;
+      var bundleTitleEl = label ? (label.querySelector('.pkg-qty') || label.querySelector('.offer-qty') || label.querySelector('span')) : null;
+      var qtyLabel = bundleTitleEl ? bundleTitleEl.textContent.trim() : (qtyVal + ' قطعة');
+      var priceNum = selBundle ? parseInt(selBundle.getAttribute('data-price'), 10) : 299;
       var qtyUnits = parseInt(qtyVal, 10) || 1;
       var unitPrice = Math.round(priceNum / qtyUnits);
       var phoneNorm = TAAGER.normalizeSaPhone ? TAAGER.normalizeSaPhone(form.phone.value.trim()) : form.phone.value.trim();
@@ -277,7 +287,7 @@
       console.log('طلب جديد:', order);
 
       // قياس حدث الطلب للإعلانات (Facebook + Google)
-      var leadValue = selBundle ? parseInt(selBundle.getAttribute('data-price'), 10) : 395;
+      var leadValue = selBundle ? parseInt(selBundle.getAttribute('data-price'), 10) : 299;
       trackEvent('Lead', 'generate_lead', leadValue);
       trackEvent('Purchase', 'purchase', leadValue);
       try { if (window.RAWASI_SNAP) RAWASI_SNAP.trackPurchase(order); } catch (e) {}
@@ -326,17 +336,17 @@
 
   /* ---- شريط الطلب الثابت: يظهر بعد تجاوز Hero ويختفي عند نموذج الطلب ---- */
   var stickyCta = document.getElementById('stickyCta');
-  var orderSection = document.getElementById('order');
+  var orderPanel = document.getElementById('orderFormPanel') || document.getElementById('order');
   if (stickyCta) {
     window.addEventListener('scroll', function () {
-      var past = window.scrollY > 600;
-      var atOrder = false;
-      if (orderSection) {
-        var r = orderSection.getBoundingClientRect();
-        atOrder = r.top < window.innerHeight && r.bottom > 0;
+      var past = window.scrollY > 480;
+      var atForm = false;
+      if (orderPanel) {
+        var r = orderPanel.getBoundingClientRect();
+        atForm = r.top < window.innerHeight * 0.75 && r.bottom > 0;
       }
-      stickyCta.classList.toggle('show', past && !atOrder);
-    });
+      stickyCta.classList.toggle('show', past && !atForm);
+    }, { passive: true });
   }
 
   /* ---- زر الطلب العائم: يتبع الزائرة بعد تجاوز Hero ويختفي عند نموذج الطلب ---- */
@@ -356,20 +366,16 @@
     toggleOrderFloat();
   }
 
-  /* ---- زر واتساب العائم: يظهر فقط عند الوصول لأسفل الصفحة (بعد نموذج الطلب) ---- */
+  /* ---- زر واتساب: يظهر في النصف الثاني من الصفحة ---- */
   var waFloat = document.querySelector('.whatsapp-float');
-  var finalCta = document.querySelector('.final-cta');
   if (waFloat) {
     var toggleWa = function () {
-      var show;
-      if (finalCta) {
-        show = finalCta.getBoundingClientRect().top < window.innerHeight * 0.85;
-      } else {
-        show = (window.innerHeight + window.scrollY) > (document.body.offsetHeight - 280);
-      }
+      var maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+      var show = window.scrollY >= maxScroll * 0.5;
       waFloat.classList.toggle('show', show);
     };
     window.addEventListener('scroll', toggleWa, { passive: true });
+    window.addEventListener('resize', toggleWa);
     toggleWa();
   }
 
@@ -399,7 +405,7 @@
   /* ---- تمرير تلقائي لحقول الاسم والعنوان بعد اكتمال التحميل ---- */
   function getScrollOffset() {
     var offset = 20;
-    var bar = document.querySelector('.announcement-bar');
+    var bar = document.querySelector('.trust-bar');
     var header = document.getElementById('siteHeader');
     if (bar) offset += bar.offsetHeight;
     if (header) offset += header.offsetHeight;
@@ -408,9 +414,9 @@
 
   function scrollToOrderForm(instant) {
     var hash = window.location.hash;
-    if (hash && hash !== '#order' && hash !== '#orderForm') return;
+    if (hash && hash !== '#order' && hash !== '#orderForm' && hash !== '#fullname' && hash !== '#orderFormPanel') return;
 
-    var target = document.getElementById('fullname') || document.getElementById('orderForm');
+    var target = document.getElementById('fullname') || document.getElementById('orderFormPanel') || document.getElementById('orderForm');
     if (!target) return;
 
     var top = target.getBoundingClientRect().top + window.pageYOffset - getScrollOffset();
