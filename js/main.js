@@ -169,27 +169,90 @@
   }
   if (cdH || cdD) { tick(); setInterval(tick, 1000); }
 
-  /* ---- تحديث المجموع حسب الباقة المختارة ---- */
+  /* ---- تحديث السعر: العرض دائماً للقطعة · المجموع حسب الباقة ---- */
   var totalPrice = document.getElementById('totalPrice');
+  var heroPriceNew = document.getElementById('heroPriceNew');
+  var heroPriceOld = document.getElementById('heroPriceOld');
+  var heroPriceTag = document.getElementById('heroPriceTag');
+  var stickyPriceNew = document.getElementById('stickyPriceNew');
+  var stickyPriceOld = document.getElementById('stickyPriceOld');
+
+  var unitBundle = (TAAGER.bundles && TAAGER.bundles[1]) || { price: 299, units: 1 };
+  var UNIT_PRICE = unitBundle.price || 299;
+  var UNIT_COMPARE = TAAGER.compareAt || 499;
+  var unitDiscount = Math.max(0, Math.round((1 - UNIT_PRICE / UNIT_COMPARE) * 100));
+
   function arNum(n) {
     return n.toLocaleString('en-US');
   }
+
   function getSelectedBundle() {
     return document.querySelector('input[name="qty"]:checked');
   }
+
+  function getBundlePrices(sel) {
+    var price = parseInt(sel.getAttribute('data-price'), 10) || UNIT_PRICE;
+    var compare = parseInt(sel.getAttribute('data-compare'), 10);
+    if (!compare) {
+      var units = parseInt(sel.value, 10) || 1;
+      compare = UNIT_COMPARE * units;
+    }
+    return { price: price, compare: compare };
+  }
+
+  function syncQtyRadios(value) {
+    var val = String(value);
+    document.querySelectorAll('input[name="qty"]').forEach(function (r) {
+      r.checked = r.value === val;
+    });
+  }
+
+  function updateUnitPriceDisplay() {
+    var unitText = arNum(UNIT_PRICE) + ' ريال';
+    var compareText = arNum(UNIT_COMPARE) + ' ريال';
+    if (heroPriceNew) heroPriceNew.innerHTML = arNum(UNIT_PRICE) + ' <small>ريال / قطعة</small>';
+    if (heroPriceOld) heroPriceOld.textContent = compareText;
+    if (heroPriceTag) heroPriceTag.textContent = '-' + unitDiscount + '%';
+    if (stickyPriceNew) stickyPriceNew.textContent = unitText;
+    if (stickyPriceOld) stickyPriceOld.textContent = compareText;
+  }
+
   function updateTotal() {
     var sel = getSelectedBundle();
-    if (!sel || !totalPrice) return;
-    var price = parseInt(sel.getAttribute('data-price'), 10);
-    totalPrice.textContent = arNum(price) + ' ريال';
+    if (!sel) return;
+    var p = getBundlePrices(sel);
+    if (totalPrice) totalPrice.textContent = arNum(p.price) + ' ريال';
+    updateUnitPriceDisplay();
   }
-  document.querySelectorAll('input[name="qty"]').forEach(function (r) {
-    r.addEventListener('change', updateTotal);
+
+  function onQtyChange(source) {
+    if (source && source.name === 'qty') syncQtyRadios(source.value);
+    updateTotal();
+  }
+
+  document.addEventListener('change', function (e) {
+    if (e.target && e.target.name === 'qty') onQtyChange(e.target);
   });
+
+  document.querySelectorAll('label.pkg-card, label.bundle-compact').forEach(function (lbl) {
+    lbl.addEventListener('click', function () {
+      var input = lbl.querySelector('input[name="qty"]');
+      if (input) setTimeout(function () { onQtyChange(input); }, 0);
+    });
+  });
+
+  var orderFormEl = document.getElementById('orderForm');
+  if (orderFormEl) {
+    orderFormEl.addEventListener('change', function (e) {
+      if (e.target && e.target.name === 'qty') onQtyChange(e.target);
+    });
+  }
+
+  syncQtyRadios('1');
   updateTotal();
 
   /* ---- التحقق من نموذج الطلب ---- */
-  var form = document.getElementById('orderForm');
+  var form = orderFormEl;
   var modal = document.getElementById('successModal');
   var modalClose = document.getElementById('modalClose');
   var successName = document.getElementById('successName');
@@ -295,6 +358,7 @@
       if (successName) successName.textContent = order.name.split(' ')[0];
       if (modal) { modal.classList.add('show'); modal.setAttribute('aria-hidden', 'false'); }
       form.reset();
+      syncQtyRadios('1');
       updateTotal();
     });
   }
