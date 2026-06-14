@@ -1,5 +1,5 @@
 /* =========================================================
-   RawasiShop — TikTok Pixel helpers + تحميل فوري للـ stub
+   RawasiShop — TikTok Pixel helpers
    ========================================================= */
 (function () {
   'use strict';
@@ -67,19 +67,24 @@
 
   function ttqTrack(event, props) {
     try {
-      if (!window.ttq) return;
-      var run = function () {
-        if (props) window.ttq.track(event, props);
-        else window.ttq.track(event);
+      if (!window.ttq || typeof window.ttq.track !== 'function') return;
+      var payload = props || {};
+      var fire = function () {
+        window.ttq.track(event, payload);
       };
-      if (typeof window.ttq.ready === 'function') window.ttq.ready(run);
-      else run();
+      if (typeof window.ttq.ready === 'function') window.ttq.ready(fire);
+      else fire();
     } catch (e) { /* ignore */ }
   }
 
   window.RAWASI_TIKTOK = {
     trackInitiateCheckout: function () {
-      ttqTrack('InitiateCheckout', buildPayload(DEFAULT_VALUE, 1));
+      ttqTrack('InitiateCheckout', {
+        value: DEFAULT_VALUE,
+        currency: CURRENCY,
+        content_name: PRODUCT_NAME,
+        content_type: 'product'
+      });
     },
 
     trackAddToCart: function (value, quantity) {
@@ -87,7 +92,9 @@
     },
 
     trackCompletePayment: function (value, quantity) {
-      ttqTrack('CompletePayment', buildPayload(value, quantity));
+      var payload = buildPayload(value, quantity);
+      ttqTrack('CompletePayment', payload);
+      ttqTrack('PlaceAnOrder', payload);
     },
 
     fromBundle: function (sel) {

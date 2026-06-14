@@ -48,7 +48,9 @@
       RAWASI_SNAP.trackViewContent((TAAGER.bundles && TAAGER.bundles[1] && TAAGER.bundles[1].price) || 299);
     }
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js').catch(function () {});
+      navigator.serviceWorker.register('/sw.js?v=3').then(function (reg) {
+        reg.update();
+      }).catch(function () {});
     }
   });
 
@@ -408,13 +410,19 @@
       console.log('طلب جديد:', order);
 
       if (orderSent) {
-        // قياس حدث الطلب للإعلانات (Facebook + Google + TikTok)
         var leadValue = priceNum;
         trackEvent('Lead', 'generate_lead', leadValue);
         trackEvent('Purchase', 'purchase', leadValue);
         try { if (window.RAWASI_SNAP) RAWASI_SNAP.trackPurchase(order); } catch (e) {}
         try {
           if (window.RAWASI_TIKTOK) RAWASI_TIKTOK.trackCompletePayment(priceNum, qtyUnits);
+          else if (window.ttq) window.ttq.track('CompletePayment', {
+            content_name: 'جهاز إزالة الشعر',
+            content_type: 'product',
+            quantity: qtyUnits,
+            value: priceNum,
+            currency: 'SAR'
+          });
         } catch (e) {}
       }
 
