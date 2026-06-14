@@ -260,7 +260,18 @@
     if (tiktokCheckoutStarted) return;
     tiktokCheckoutStarted = true;
     try {
-      if (window.RAWASI_TIKTOK) RAWASI_TIKTOK.trackInitiateCheckout();
+      if (!window.RAWASI_TIKTOK) return;
+      var sel = getSelectedBundle();
+      var b = RAWASI_TIKTOK.fromBundle(sel);
+      RAWASI_TIKTOK.trackInitiateCheckout(b.value, b.quantity);
+    } catch (e) { /* ignore */ }
+  }
+
+  function trackTikTokPurchase(value, quantity, eventId) {
+    try {
+      if (!window.RAWASI_TIKTOK) return;
+      RAWASI_TIKTOK.trackSubmitForm(value, quantity, eventId);
+      RAWASI_TIKTOK.trackCompletePayment(value, quantity, eventId);
     } catch (e) { /* ignore */ }
   }
 
@@ -409,21 +420,13 @@
 
       console.log('طلب جديد:', order);
 
+      trackTikTokPurchase(priceNum, qtyUnits, order.transaction_id);
+
       if (orderSent) {
         var leadValue = priceNum;
         trackEvent('Lead', 'generate_lead', leadValue);
         trackEvent('Purchase', 'purchase', leadValue);
         try { if (window.RAWASI_SNAP) RAWASI_SNAP.trackPurchase(order); } catch (e) {}
-        try {
-          if (window.RAWASI_TIKTOK) RAWASI_TIKTOK.trackCompletePayment(priceNum, qtyUnits);
-          else if (window.ttq) window.ttq.track('CompletePayment', {
-            content_name: 'جهاز إزالة الشعر',
-            content_type: 'product',
-            quantity: qtyUnits,
-            value: priceNum,
-            currency: 'SAR'
-          });
-        } catch (e) {}
       }
 
       if (successName) successName.textContent = order.name.split(' ')[0];

@@ -44,11 +44,12 @@
     return TAAGER.productSku || 'SA04050100IPLMWD00';
   }
 
-  function buildPayload(value, quantity) {
+  function buildPayload(value, quantity, eventId) {
     var qty = quantity || 1;
     var val = value != null ? value : DEFAULT_VALUE;
+    var unitPrice = qty > 0 ? Math.round((val / qty) * 100) / 100 : val;
     var contentId = getContentId();
-    return {
+    var payload = {
       content_id: contentId,
       content_name: PRODUCT_NAME,
       content_type: 'product',
@@ -60,41 +61,46 @@
         content_type: 'product',
         content_name: PRODUCT_NAME,
         quantity: qty,
-        price: val
+        price: unitPrice
       }]
     };
+    if (eventId) payload.event_id = eventId;
+    return payload;
   }
 
   function ttqTrack(event, props) {
     try {
-      if (!window.ttq || typeof window.ttq.track !== 'function') return;
+      if (!window.ttq) return;
       var payload = props || {};
-      var fire = function () {
+      if (typeof window.ttq.track === 'function') {
         window.ttq.track(event, payload);
-      };
-      if (typeof window.ttq.ready === 'function') window.ttq.ready(fire);
-      else fire();
+      } else if (Array.isArray(window.ttq)) {
+        window.ttq.push(['track', event, payload]);
+      }
     } catch (e) { /* ignore */ }
   }
 
   window.RAWASI_TIKTOK = {
-    trackInitiateCheckout: function () {
-      ttqTrack('InitiateCheckout', {
-        value: DEFAULT_VALUE,
-        currency: CURRENCY,
-        content_name: PRODUCT_NAME,
-        content_type: 'product'
-      });
+    trackViewContent: function (value) {
+      ttqTrack('ViewContent', buildPayload(value, 1));
+    },
+
+    trackInitiateCheckout: function (value, quantity) {
+      ttqTrack('InitiateCheckout', buildPayload(value, quantity));
     },
 
     trackAddToCart: function (value, quantity) {
       ttqTrack('AddToCart', buildPayload(value, quantity));
     },
 
-    trackCompletePayment: function (value, quantity) {
-      var payload = buildPayload(value, quantity);
-      ttqTrack('CompletePayment', payload);
+    trackSubmitForm: function (value, quantity, eventId) {
+      ttqTrack('SubmitForm', buildPayload(value, quantity, eventId));
+    },
+
+    trackCompletePayment: function (value, quantity, eventId) {
+      var payload = buildPayload(value, quantity, eventId);
       ttqTrack('PlaceAnOrder', payload);
+      ttqTrack('CompletePayment', payload);
     },
 
     fromBundle: function (sel) {
@@ -105,4 +111,12 @@
       };
     }
   };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () {
+      window.RAWASI_TIKTOK.trackViewContent(DEFAULT_VALUE);
+    }, { once: true });
+  } else {
+    window.RAWASI_TIKTOK.trackViewContent(DEFAULT_VALUE);
+  }
 })();
