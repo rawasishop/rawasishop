@@ -39,37 +39,55 @@
     }(window, document, 'ttq');
   }
 
+  function getContentId() {
+    var TAAGER = window.RAWASI_TAAGER || {};
+    return TAAGER.productSku || 'SA04050100IPLMWD00';
+  }
+
+  function buildPayload(value, quantity) {
+    var qty = quantity || 1;
+    var val = value != null ? value : DEFAULT_VALUE;
+    var contentId = getContentId();
+    return {
+      content_id: contentId,
+      content_name: PRODUCT_NAME,
+      content_type: 'product',
+      quantity: qty,
+      value: val,
+      currency: CURRENCY,
+      contents: [{
+        content_id: contentId,
+        content_type: 'product',
+        content_name: PRODUCT_NAME,
+        quantity: qty,
+        price: val
+      }]
+    };
+  }
+
   function ttqTrack(event, props) {
     try {
-      if (window.ttq && typeof window.ttq.track === 'function') {
+      if (!window.ttq) return;
+      var run = function () {
         if (props) window.ttq.track(event, props);
         else window.ttq.track(event);
-      }
+      };
+      if (typeof window.ttq.ready === 'function') window.ttq.ready(run);
+      else run();
     } catch (e) { /* ignore */ }
   }
 
   window.RAWASI_TIKTOK = {
     trackInitiateCheckout: function () {
-      ttqTrack('InitiateCheckout');
+      ttqTrack('InitiateCheckout', buildPayload(DEFAULT_VALUE, 1));
     },
 
     trackAddToCart: function (value, quantity) {
-      ttqTrack('AddToCart', {
-        content_name: PRODUCT_NAME,
-        quantity: quantity || 1,
-        value: value != null ? value : DEFAULT_VALUE,
-        currency: CURRENCY
-      });
+      ttqTrack('AddToCart', buildPayload(value, quantity));
     },
 
     trackCompletePayment: function (value, quantity) {
-      ttqTrack('CompletePayment', {
-        content_name: PRODUCT_NAME,
-        content_type: 'product',
-        quantity: quantity || 1,
-        value: value != null ? value : DEFAULT_VALUE,
-        currency: CURRENCY
-      });
+      ttqTrack('CompletePayment', buildPayload(value, quantity));
     },
 
     fromBundle: function (sel) {

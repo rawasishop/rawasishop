@@ -428,8 +428,26 @@
     form.addEventListener('focusin', trackTikTokInitiateCheckout, { once: true });
 
     document.querySelectorAll('a[href="#fullname"]').forEach(function (link) {
-      link.addEventListener('click', trackTikTokAddToCart);
+      link.addEventListener('click', function () {
+        trackTikTokAddToCart();
+        trackTikTokInitiateCheckout();
+      });
     });
+
+    var formPanel = document.getElementById('orderFormPanel');
+    if (formPanel && 'IntersectionObserver' in window) {
+      var checkoutObs = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            trackTikTokInitiateCheckout();
+            checkoutObs.disconnect();
+          }
+        });
+      }, { threshold: 0.2 });
+      checkoutObs.observe(formPanel);
+    } else if (formPanel) {
+      trackTikTokInitiateCheckout();
+    }
   }
 
   /* ---- إغلاق النافذة ---- */
