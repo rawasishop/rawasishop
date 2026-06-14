@@ -9,30 +9,7 @@
   var SHEET_WEBHOOK_URL = TAAGER.sheetWebhook || '';
 
   function sendToSheet(order) {
-    if (TAAGER.notifyAfterOrder) {
-      TAAGER.notifyAfterOrder(order);
-      return;
-    }
-    if (TAAGER.sendOrder) {
-      TAAGER.sendOrder(order);
-      return;
-    }
-    if (!SHEET_WEBHOOK_URL) return;
-    var payload = JSON.stringify(order);
-    try {
-      if (navigator.sendBeacon) {
-        navigator.sendBeacon(SHEET_WEBHOOK_URL, new Blob([payload], { type: 'application/json' }));
-        return;
-      }
-    } catch (e) {}
-    try {
-      fetch(SHEET_WEBHOOK_URL, {
-        method: 'POST', mode: 'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body: payload,
-        keepalive: true
-      });
-    } catch (e) {}
+    return deliverOrder(order);
   }
 
   var TRACKING = { fbPixelId: TAAGER.fbPixelId || '', gaId: '' };
@@ -263,6 +240,52 @@
   function onQtyChange(source) {
     if (source && source.name === 'qty') syncQtyRadios(source.value);
     updateTotal();
+    trackTikTokAddToCart();
+  }
+
+  var tiktokCheckoutStarted = false;
+
+  function trackTikTokAddToCart() {
+    try {
+      if (!window.RAWASI_TIKTOK) return;
+      var sel = getSelectedBundle();
+      var b = RAWASI_TIKTOK.fromBundle(sel);
+      RAWASI_TIKTOK.trackAddToCart(b.value, b.quantity);
+    } catch (e) { /* ignore */ }
+  }
+
+  function trackTikTokInitiateCheckout() {
+    if (tiktokCheckoutStarted) return;
+    tiktokCheckoutStarted = true;
+    try {
+      if (window.RAWASI_TIKTOK) RAWASI_TIKTOK.trackInitiateCheckout();
+    } catch (e) { /* ignore */ }
+  }
+
+  function deliverOrder(order) {
+    if (TAAGER.notifyAfterOrder) {
+      TAAGER.notifyAfterOrder(order);
+      return true;
+    }
+    if (TAAGER.sendOrder) return !!TAAGER.sendOrder(order);
+    if (!SHEET_WEBHOOK_URL) return false;
+    var payload = JSON.stringify(order);
+    try {
+      if (navigator.sendBeacon) {
+        return navigator.sendBeacon(SHEET_WEBHOOK_URL, new Blob([payload], { type: 'application/json' }));
+      }
+    } catch (e) {}
+    try {
+      fetch(SHEET_WEBHOOK_URL, {
+        method: 'POST', mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: payload,
+        keepalive: true
+      });
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
   document.addEventListener('change', function (e) {
@@ -374,7 +397,7 @@
         transaction_id: 'RS-' + Date.now(),
         date: new Date().toISOString()
       };
-      sendToSheet(order);
+      var orderSent = sendToSheet(order);
       // حفظ الطلب محلياً (يمكن ربطه لاحقاً بخادم أو Google Sheets)
       try {
         var orders = JSON.parse(localStorage.getItem('rawasi_orders') || '[]');
@@ -384,17 +407,28 @@
 
       console.log('طلب جديد:', order);
 
-      // قياس حدث الطلب للإعلانات (Facebook + Google)
-      var leadValue = selBundle ? parseInt(selBundle.getAttribute('data-price'), 10) : 299;
-      trackEvent('Lead', 'generate_lead', leadValue);
-      trackEvent('Purchase', 'purchase', leadValue);
-      try { if (window.RAWASI_SNAP) RAWASI_SNAP.trackPurchase(order); } catch (e) {}
+      if (orderSent) {
+        // قياس حدث الطلب للإعلانات (Facebook + Google + TikTok)
+        var leadValue = priceNum;
+        trackEvent('Lead', 'generate_lead', leadValue);
+        trackEvent('Purchase', 'purchase', leadValue);
+        try { if (window.RAWASI_SNAP) RAWASI_SNAP.trackPurchase(order); } catch (e) {}
+        try {
+          if (window.RAWASI_TIKTOK) RAWASI_TIKTOK.trackCompletePayment(priceNum, qtyUnits);
+        } catch (e) {}
+      }
 
       if (successName) successName.textContent = order.name.split(' ')[0];
       if (modal) { modal.classList.add('show'); modal.setAttribute('aria-hidden', 'false'); }
       form.reset();
       syncQtyRadios('1');
       updateTotal();
+    });
+
+    form.addEventListener('focusin', trackTikTokInitiateCheckout, { once: true });
+
+    document.querySelectorAll('a[href="#fullname"]').forEach(function (link) {
+      link.addEventListener('click', trackTikTokAddToCart);
     });
   }
 

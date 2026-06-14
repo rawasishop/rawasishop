@@ -1,4 +1,4 @@
-/* تحميل بيكسلات الإعلانات بعد عرض الصفحة — أسرع للزوار على الجوال */
+/* تحميل Snapchat Pixel بعد عرض الصفحة — TikTok يُحمّل عبر tiktok-pixel.js */
 (function () {
   'use strict';
 
@@ -20,40 +20,8 @@
     snaptr('track', 'PAGE_VIEW');
   }
 
-  function loadTikTok() {
-    if (window.ttq && window.ttq.load) return;
-    !function (w, d, t) {
-      w.TiktokAnalyticsObject = t;
-      var ttq = w[t] = w[t] || [];
-      ttq.methods = ['page', 'track', 'identify', 'instances', 'debug', 'on', 'off', 'once', 'ready', 'alias', 'group', 'enableCookie', 'disableCookie', 'holdConsent', 'revokeConsent', 'grantConsent'];
-      ttq.setAndDefer = function (obj, m) {
-        obj[m] = function () { obj.push([m].concat(Array.prototype.slice.call(arguments, 0))); };
-      };
-      for (var i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i]);
-      ttq.load = function (id, n) {
-        var r = 'https://analytics.tiktok.com/i18n/pixel/events.js';
-        ttq._i = ttq._i || {};
-        ttq._i[id] = [];
-        ttq._i[id]._u = r;
-        ttq._t = ttq._t || {};
-        ttq._t[id] = +new Date();
-        ttq._o = ttq._o || {};
-        ttq._o[id] = n || {};
-        var s = d.createElement('script');
-        s.type = 'text/javascript';
-        s.async = true;
-        s.src = r + '?sdkid=' + id + '&lib=' + t;
-        var e = d.getElementsByTagName('script')[0];
-        e.parentNode.insertBefore(s, e);
-      };
-      ttq.load('D8JK65JC77UAEKHUODQ0');
-      ttq.page();
-    }(window, document, 'ttq');
-  }
-
   function run() {
     loadSnapchat();
-    loadTikTok();
     try {
       document.dispatchEvent(new CustomEvent('rawasi:pixels-ready'));
     } catch (e) {}
