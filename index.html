@@ -169,9 +169,23 @@
                 <span class="err" data-for="phone"></span>
               </div>
               <div class="field">
-                <label for="city">🏙️ المدينة</label>
-                <input type="text" id="city" name="city" list="cityList" placeholder="اختاري مدينتكِ من القائمة" required autocomplete="off" />
-                <datalist id="cityList"></datalist>
+                <label for="city">🏛️ المحافظة</label>
+                <select id="city" name="city" required>
+                  <option value="" disabled selected>اختاري المحافظة</option>
+                  <option value="المنطقة الشرقية">المنطقة الشرقية</option>
+                  <option value="منطقة الباحة">منطقة الباحة</option>
+                  <option value="منطقة الجوف">منطقة الجوف</option>
+                  <option value="منطقة الحدود الشمالية">منطقة الحدود الشمالية</option>
+                  <option value="منطقة الرياض">منطقة الرياض</option>
+                  <option value="منطقة القصيم">منطقة القصيم</option>
+                  <option value="منطقة المدينة المنورة">منطقة المدينة المنورة</option>
+                  <option value="منطقة تبوك">منطقة تبوك</option>
+                  <option value="منطقة جازان">منطقة جازان</option>
+                  <option value="منطقة حائل">منطقة حائل</option>
+                  <option value="منطقة عسير">منطقة عسير</option>
+                  <option value="منطقة مكة المكرمة">منطقة مكة المكرمة</option>
+                  <option value="منطقة نجران">منطقة نجران</option>
+                </select>
                 <span class="err" data-for="city"></span>
               </div>
               <div class="field">

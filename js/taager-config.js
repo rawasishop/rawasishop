@@ -51,7 +51,7 @@ window.RAWASI_TAAGER = {
       '🧴 ' + this.productName + '\n' +
       '👤 الاسم: ' + order.name + '\n' +
       '📞 الهاتف: ' + this.normalizeSaPhone(order.phone) + '\n' +
-      '🏙️ المدينة: ' + order.city + '\n' +
+      '🏛️ المحافظة: ' + order.city + '\n' +
       '📍 العنوان: ' + order.address + '\n' +
       '🔢 الكمية: ' + (order.qtyUnits || 1) + '\n' +
       '💰 سعر البيع: ' + unitPrice + ' ر.س\n' +
@@ -73,7 +73,7 @@ window.RAWASI_TAAGER = {
       'أود تأكيد طلبي من رواسي شوب:\n\n' +
       '👤 الاسم: ' + order.name + '\n' +
       '📞 الجوال: ' + this.normalizeSaPhone(order.phone) + '\n' +
-      '🏙️ المدينة: ' + order.city + '\n' +
+      '🏛️ المحافظة: ' + order.city + '\n' +
       '📍 العنوان: ' + order.address + '\n' +
       '🧴 المنتج: ' + (order.product || this.productName) + '\n' +
       '🔢 الكمية: ' + (order.qty || order.qtyUnits || 1) + '\n' +

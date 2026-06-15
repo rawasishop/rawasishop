@@ -1,4 +1,4 @@
-/* شريط المخزون + سلايدر المنتج + مدن (تحميل كسول) */
+/* شريط المخزون + سلايدر المنتج */
 (function () {
   'use strict';
 
@@ -17,37 +17,6 @@
   if (stockEl) {
     var obs = new MutationObserver(updateStockBar);
     obs.observe(stockEl, { childList: true, characterData: true, subtree: true });
-  }
-
-  var cityList = document.getElementById('cityList');
-  var cityInput = document.getElementById('city');
-
-  function populateCities() {
-    if (!cityList || cityList.children.length) return;
-    var cities = window.RAWASI_SA_CITIES || [];
-    cities.forEach(function (name) {
-      var opt = document.createElement('option');
-      opt.value = name;
-      cityList.appendChild(opt);
-    });
-  }
-
-  function loadCitiesScript(cb) {
-    if (window.RAWASI_SA_CITIES) { cb(); return; }
-    var s = document.createElement('script');
-    s.src = 'js/sa-cities.js?v=20260614perf';
-    s.defer = true;
-    s.onload = cb;
-    document.body.appendChild(s);
-  }
-
-  if (cityInput) {
-    cityInput.addEventListener('input', function () {
-      this.value = this.value.replace(/[A-Za-z]/g, '');
-    });
-    cityInput.addEventListener('focus', function () {
-      loadCitiesScript(populateCities);
-    }, { once: true });
   }
 
   /* ── سلايدر — تحميل الصور عند الحاجة ── */

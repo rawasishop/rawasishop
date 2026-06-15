@@ -350,8 +350,7 @@
       ok = false;
     } else setError('phone', '');
 
-    if (city.length < 2) { setError('city', 'يرجى اختيار أو كتابة اسم المدينة'); ok = false; }
-    else if (/[A-Za-z]/.test(city)) { setError('city', 'يرجى كتابة اسم المدينة بالعربية فقط'); ok = false; }
+    if (!city) { setError('city', 'يرجى اختيار المحافظة'); ok = false; }
     else setError('city', '');
 
     if (address.length < 5) { setError('address', 'يرجى إدخال العنوان بالتفصيل'); ok = false; }
@@ -361,11 +360,6 @@
   }
 
   if (form) {
-    if (form.city) {
-      form.city.addEventListener('input', function () {
-        this.value = this.value.replace(/[A-Za-z]/g, '');
-      });
-    }
     // قبول الأرقام فقط في حقل الهاتف
     form.phone.addEventListener('input', function () {
       this.value = this.value.replace(/[^\d+ ]/g, '');
