@@ -882,6 +882,35 @@ ul { list-style: none; }
   font-size: 0.88rem; line-height: 1.65;
 }
 
+/* ── سياسة الاسترجاع ── */
+.policy-intro {
+  text-align: center; color: var(--muted); max-width: 640px;
+  margin: -8px auto 28px; font-size: 0.95rem; line-height: 1.7;
+}
+.policy-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 18px; margin-bottom: 24px;
+}
+.policy-card {
+  background: var(--green-card); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 22px 20px;
+}
+.policy-ico { display: block; font-size: 1.6rem; margin-bottom: 10px; }
+.policy-card h3 {
+  font-size: 0.95rem; color: var(--green-mid);
+  margin-bottom: 8px; font-weight: 700;
+}
+.policy-card p { font-size: 0.86rem; color: var(--muted); line-height: 1.65; }
+.policy-card strong { color: var(--ink); }
+.policy-note {
+  text-align: center; font-size: 0.86rem; color: var(--muted);
+  background: var(--gold-soft); border: 1px solid var(--gold-line);
+  border-radius: var(--radius); padding: 14px 18px; margin-bottom: 20px;
+}
+.policy-cta { text-align: center; }
+.footer-copy a { color: var(--gold-glow); text-decoration: underline; text-underline-offset: 3px; }
+.footer-copy a:hover { opacity: 0.9; }
+
 /* ── Footer ── */
 .site-footer {
   background: var(--green);
@@ -1025,6 +1054,7 @@ ul { list-style: none; }
   .faq-grid { grid-template-columns: repeat(2, 1fr); }
   .reviews-grid { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: repeat(2, 1fr); }
+  .policy-grid { grid-template-columns: repeat(2, 1fr); }
   .trust-bar-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
 }
 @media (max-width: 600px) {
@@ -1035,6 +1065,7 @@ ul { list-style: none; }
   .faq-grid { grid-template-columns: 1fr; }
   .hero-mini-trust { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
+  .policy-grid { grid-template-columns: 1fr; }
   .trust-bar { font-size: 0.72rem; }
   .site-footer { padding-bottom: 88px; }
   .whatsapp-float {
