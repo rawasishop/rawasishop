@@ -259,6 +259,11 @@ ul { list-style: none; }
 .bundles-compact {
   display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
 }
+
+/* اختيار العرض في النموذج — مخفي على الهاتف، يبقى في التابلت والكمبيوتر */
+@media (max-width: 767px) {
+  .offer-picker-desktop { display: none; }
+}
 .bundle-compact { cursor: pointer; }
 .bundle-compact input { position: absolute; opacity: 0; pointer-events: none; }
 .bundle-compact span {
