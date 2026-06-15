@@ -463,6 +463,13 @@
   if (modal) modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
 
+  if (waFloat) {
+    waFloat.addEventListener('click', function () {
+      var nameField = document.getElementById('fullname');
+      if (nameField) setTimeout(function () { nameField.focus(); }, 400);
+    });
+  }
+
   /* ---- عداد المشاهدين الحي (يتذبذب لإيحاء الحركة) ---- */
   var viewersEl = document.getElementById('viewers');
   if (viewersEl) {
