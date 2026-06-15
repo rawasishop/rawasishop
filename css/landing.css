@@ -185,7 +185,8 @@ ul { list-style: none; }
   direction: rtl;
 }
 .product-seal {
-  position: absolute; top: 10px; left: 10px; z-index: 2;
+  position: absolute; top: 12px; left: 12px; z-index: 6;
+  pointer-events: none;
 }
 .promo-seal {
   position: relative;
