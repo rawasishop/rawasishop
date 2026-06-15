@@ -180,22 +180,22 @@
               </div>
               <div class="field">
                 <label for="city">🏛️ المحافظة</label>
-                <select id="city" name="city" required>
-                  <option value="" disabled selected>اختاري المحافظة</option>
-                  <option value="المنطقة الشرقية">المنطقة الشرقية</option>
-                  <option value="منطقة الباحة">منطقة الباحة</option>
-                  <option value="منطقة الجوف">منطقة الجوف</option>
-                  <option value="منطقة الحدود الشمالية">منطقة الحدود الشمالية</option>
-                  <option value="منطقة الرياض">منطقة الرياض</option>
-                  <option value="منطقة القصيم">منطقة القصيم</option>
-                  <option value="منطقة المدينة المنورة">منطقة المدينة المنورة</option>
-                  <option value="منطقة تبوك">منطقة تبوك</option>
-                  <option value="منطقة جازان">منطقة جازان</option>
-                  <option value="منطقة حائل">منطقة حائل</option>
-                  <option value="منطقة عسير">منطقة عسير</option>
-                  <option value="منطقة مكة المكرمة">منطقة مكة المكرمة</option>
-                  <option value="منطقة نجران">منطقة نجران</option>
-                </select>
+                <input type="text" id="city" name="city" list="governorateList" placeholder="اختاري من القائمة أو اكتبي اسم المحافظة" required autocomplete="off" />
+                <datalist id="governorateList">
+                  <option value="المنطقة الشرقية"></option>
+                  <option value="منطقة الباحة"></option>
+                  <option value="منطقة الجوف"></option>
+                  <option value="منطقة الحدود الشمالية"></option>
+                  <option value="منطقة الرياض"></option>
+                  <option value="منطقة القصيم"></option>
+                  <option value="منطقة المدينة المنورة"></option>
+                  <option value="منطقة تبوك"></option>
+                  <option value="منطقة جازان"></option>
+                  <option value="منطقة حائل"></option>
+                  <option value="منطقة عسير"></option>
+                  <option value="منطقة مكة المكرمة"></option>
+                  <option value="منطقة نجران"></option>
+                </datalist>
                 <span class="err" data-for="city"></span>
               </div>
               <div class="field">
@@ -629,7 +629,7 @@
 
   <script src="js/taager-config.js?v=20260614perf" defer></script>
   <script src="js/snapchat-pixel.js?v=20260614perf" defer></script>
-  <script src="js/main.js?v=20260615wa" defer></script>
+  <script src="js/main.js?v=20260615gov" defer></script>
   <script src="js/landing.js?v=20260614perf" defer></script>
   <script src="js/load-pixels.js?v=20260614perf" defer></script>
 </body>
