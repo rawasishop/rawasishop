@@ -21,7 +21,7 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preload" href="css/landing.css?v=20260614perf" as="style" />
   <link rel="preload" href="assets/slider-store.webp?v=20260614perf" as="image" type="image/webp" fetchpriority="high" />
-  <link rel="stylesheet" href="css/landing.css?v=20260615mobile" />
+  <link rel="stylesheet" href="css/landing.css?v=20260615conv" />
   <script src="js/tiktok-pixel.js?v=20260605tt4"></script>
 
   <script type="application/ld+json">
@@ -46,8 +46,8 @@
 
   <div class="trust-bar">
     <div class="container trust-bar-grid">
-      <span>💵 الدفع عند الاستلام</span>
-      <span>🚚 شحن مجاني لكل المحافظات</span>
+      <span>🇸🇦 توصيل سعودي</span>
+      <span>📞 تأكيد من رقم سعودي</span>
       <span>🎁 هدية مع كل طلب</span>
       <span>⭐ <strong>+25,000</strong> عميلة سعيدة</span>
     </div>
@@ -159,8 +159,9 @@
           <!-- نموذج الطلب ثابت بجانب السلايدر -->
           <div class="hero-form-col">
             <div class="order-form order-form-hero" id="orderFormPanel">
-              <h3>اطلبي الآن والدفع عند الاستلام</h3>
-              <p class="form-sub">املئي بياناتكِ — سيتصل بكِ فريق التأكيد قبل الشحن المجاني 🇸🇦</p>
+              <h3>اطلبي الآن — 299 ر.س والدفع عند الاستلام</h3>
+              <p class="form-sub">🇸🇦 شحن للسعودية · يتصل بكِ فريق التأكيد من <strong>رقم سعودي</strong> قبل الشحن</p>
+              <p class="form-sa-trust">نفس سعر الإعلان · لا دفع مقدّم · ادفعي عند الاستلام فقط</p>
 
               <div class="hero-price-inline">
                 <span class="price-old" id="heroPriceOld">499 ريال</span>
@@ -199,8 +200,8 @@
                 <span class="err" data-for="city"></span>
               </div>
               <div class="field">
-                <label for="address">📍 العنوان</label>
-                <input type="text" id="address" name="address" placeholder="مثال: حي النخيل — شارع الملك فهد" required autocomplete="street-address" />
+                <label for="address">📍 الحي والمدينة</label>
+                <input type="text" id="address" name="address" placeholder="مثال: حي النخيل — الرياض" required autocomplete="street-address" />
                 <span class="err" data-for="address"></span>
               </div>
 
@@ -341,12 +342,11 @@
             </div>
           </div>
 
-          <div class="conv-urgency">
-            <div class="conv-urgency-head">
-              <span class="conv-pulse"></span>
-              <strong>العرض ينتهي قريباً — لا تفوّتي الفرصة!</strong>
+            <div class="conv-urgency">
+            <div class="conv-urgency-head conv-urgency-soft">
+              <strong>عرض محدود — اطلبي الآن والدفع عند الاستلام</strong>
             </div>
-            <div class="countdown" id="countdown" aria-label="ينتهي العرض خلال">
+            <div class="countdown countdown-desktop" id="countdown" aria-label="ينتهي العرض خلال">
               <div class="cd-box"><strong id="cdD">00</strong><small>يوم</small></div>
               <div class="cd-sep">:</div>
               <div class="cd-box"><strong id="cdH">00</strong><small>ساعة</small></div>
@@ -355,14 +355,12 @@
               <div class="cd-sep">:</div>
               <div class="cd-box"><strong id="cdS">00</strong><small>ثانية</small></div>
             </div>
-            <div class="conv-stock">
+            <div class="conv-stock conv-stock-soft">
               <div class="conv-stock-top">
-                <span>⚠️ متبقي <strong id="stockLeft">7</strong> قطع فقط!</span>
-                <span class="conv-stock-pct">مخزون محدود</span>
+                <span>📦 كمية محدودة لهذا العرض</span>
               </div>
-              <div class="stock-bar"><div class="stock-bar-fill" id="stockBar"></div></div>
             </div>
-            <p class="live-viewers">🔥 <strong id="viewers">23</strong> سعودية تشاهدن العرض الآن</p>
+            <p class="live-viewers live-viewers-off">🔥 <strong id="viewers">23</strong> سعودية تشاهدن العرض الآن</p>
             <div class="conv-rating">
               <span class="conv-stars">★★★★★</span>
               <span>4.9/5 من +25,000 عميلة سعودية</span>
@@ -576,12 +574,12 @@
         <article class="policy-card">
           <span class="policy-ico">💬</span>
           <h3>كيف تطلبين الاسترجاع؟</h3>
-          <p>راسلينا على واتساب مع: الاسم، رقم الجوال، رقم الطلب، سبب الطلب، وصور المنتج. نرفع طلبكِ لشركة الشحن ونُبلغكِ بالنتيجة.</p>
+          <p>تواصلي مع <strong>فريق التأكيد</strong> عند اتصالهم بكِ، أو اذكري طلب الاسترجاع في نموذج الطلب مع: الاسم، رقم الجوال، سبب الطلب، وصور المنتج.</p>
         </article>
       </div>
-      <p class="policy-note reveal">⏱ المعالجة تستغرق عادةً 3–7 أيام عمل بعد استلام المنتج والتحقق منه. استرداد المبلغ يتم حسب طريقة الدفع الأصلية (تحويل بنكي للطلبات COD).</p>
+      <p class="policy-note reveal">⏱ المعالجة تستغرق عادةً 3–7 أيام عمل بعد استلام المنتج والتحقق منه.</p>
       <div class="policy-cta reveal">
-        <a href="https://wa.me/212633405061?text=مرحباً، أرغب بالاستفسار عن سياسة الاسترجاع" class="btn btn-gold" target="_blank" rel="noopener">تواصلي معنا عبر واتساب</a>
+        <a href="#fullname" class="btn btn-gold">اطلبي الآن من النموذج ↑</a>
       </div>
     </div>
   </section>
@@ -629,7 +627,7 @@
 
   <script src="js/taager-config.js?v=20260614perf" defer></script>
   <script src="js/snapchat-pixel.js?v=20260614perf" defer></script>
-  <script src="js/main.js?v=20260615gov" defer></script>
+  <script src="js/main.js?v=20260615conv" defer></script>
   <script src="js/landing.js?v=20260614perf" defer></script>
   <script src="js/load-pixels.js?v=20260614perf" defer></script>
 </body>

@@ -71,7 +71,7 @@
     scrollPending = false;
     if (header) header.classList.toggle('scrolled', window.scrollY > 12);
     if (stickyCta) {
-      var pastSticky = window.scrollY > 480;
+      var pastSticky = window.scrollY > 280;
       var atForm = false;
       if (orderPanel) {
         var rp = orderPanel.getBoundingClientRect();
@@ -354,7 +354,7 @@
     else if (/[A-Za-z]/.test(city)) { setError('city', 'يرجى كتابة اسم المحافظة بالعربية فقط'); ok = false; }
     else setError('city', '');
 
-    if (address.length < 5) { setError('address', 'يرجى إدخال العنوان بالتفصيل'); ok = false; }
+    if (address.length < 3) { setError('address', 'يرجى إدخال الحي والمدينة'); ok = false; }
     else setError('address', '');
 
     return ok;
@@ -488,26 +488,12 @@
     }, 4000);
   }
 
-  /* ---- تناقص المخزون ببطء (إلحاح) ---- */
-  var stockEl = document.getElementById('stockLeft');
-  if (stockEl) {
-    var stock = parseInt(localStorage.getItem('rawasi_stock') || '7', 10);
-    if (isNaN(stock) || stock < 2) stock = 7;
-    stockEl.textContent = stock;
-    setInterval(function () {
-      if (stock > 2 && Math.random() < 0.5) {
-        stock--;
-        stockEl.textContent = stock;
-        localStorage.setItem('rawasi_stock', String(stock));
-      }
-    }, 35000);
-  }
-
   /* ---- شريط الطلب الثابت + زر الطلب + واتساب: يُدار أعلاه ---- */
 
-  /* ---- إشعارات الإثبات الاجتماعي (طلبات حديثة) ---- */
+  /* ---- إشعارات الإثبات الاجتماعي (معطّلة لتحسين الثقة) ---- */
   var toast = document.getElementById('socialToast');
-  if (toast) {
+  var enableSocialProof = false;
+  if (toast && enableSocialProof) {
     var names = ['نورة', 'سارة', 'ريم', 'الجوهرة', 'لمى', 'هند', 'العنود', 'أسماء', 'دانة', 'شهد', 'منيرة', 'جواهر'];
     var cities = ['الرياض', 'جدة', 'الدمام', 'مكة المكرمة', 'المدينة المنورة', 'الخبر', 'الطائف', 'أبها', 'تبوك', 'بريدة', 'الأحساء', 'ينبع'];
     var times = ['قبل دقيقة', 'قبل دقيقتين', 'قبل 4 دقائق', 'قبل 7 دقائق', 'قبل 12 دقيقة', 'الآن'];
