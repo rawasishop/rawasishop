@@ -341,6 +341,8 @@
     var phone = form.phone.value.trim();
     var city = form.city.value.trim();
     var address = form.address ? form.address.value.trim() : '';
+    var districtEl = form.district;
+    var district = districtEl ? districtEl.value.trim() : '';
 
     if (name.length < 3) { setError('fullname', 'يرجى إدخال الاسم الكامل'); ok = false; }
     else setError('fullname', '');
@@ -350,11 +352,23 @@
       ok = false;
     } else setError('phone', '');
 
+    if (form.phone2 && form.phone2.value.trim()) {
+      if (!TAAGER.isValidSaPhone(form.phone2.value.trim())) {
+        setError('phone2', 'رقم إضافي صحيح: 05XXXXXXXX أو اتركيه فارغاً');
+        ok = false;
+      } else setError('phone2', '');
+    } else if (form.phone2) setError('phone2', '');
+
     if (city.length < 2) { setError('city', 'يرجى إدخال أو اختيار المحافظة'); ok = false; }
     else if (/[A-Za-z]/.test(city)) { setError('city', 'يرجى كتابة اسم المحافظة بالعربية فقط'); ok = false; }
     else setError('city', '');
 
-    if (address.length < 3) { setError('address', 'يرجى إدخال الحي والمدينة'); ok = false; }
+    if (districtEl) {
+      if (district.length < 2) { setError('district', 'يرجى إدخال اسم الحي'); ok = false; }
+      else setError('district', '');
+    }
+
+    if (address.length < 5) { setError('address', 'يرجى إدخال العنوان التفصيلي (شارع، مبنى، معلم)'); ok = false; }
     else setError('address', '');
 
     return ok;
@@ -388,12 +402,22 @@
       var qtyUnits = parseInt(qtyVal, 10) || 1;
       var unitPrice = Math.round(priceNum / qtyUnits);
       var phoneNorm = TAAGER.normalizeSaPhone ? TAAGER.normalizeSaPhone(form.phone.value.trim()) : form.phone.value.trim();
+      var districtVal = form.district ? form.district.value.trim() : '';
+      var streetVal = form.address.value.trim();
+      var fullAddress = districtVal ? districtVal + ' — ' + streetVal : streetVal;
+      var phone2Val = form.phone2 && form.phone2.value.trim()
+        ? (TAAGER.normalizeSaPhone ? TAAGER.normalizeSaPhone(form.phone2.value.trim()) : form.phone2.value.trim())
+        : '';
+      var notesVal = form.notes ? form.notes.value.trim() : '';
 
       var order = {
         name: form.fullname.value.trim(),
         phone: phoneNorm,
+        phone2: phone2Val,
         city: form.city.value.trim(),
-        address: form.address.value.trim(),
+        district: districtVal,
+        address: fullAddress,
+        notes: notesVal,
         qty: qtyLabel,
         qtyUnits: qtyUnits,
         total: totalPrice ? totalPrice.textContent : '',
