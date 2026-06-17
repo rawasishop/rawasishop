@@ -133,6 +133,7 @@ function buildAlertText_(d) {
   return (
     '📦 طلب جديد — RawasiShop\n' +
     '━━━━━━━━━━━━━━━━\n' +
+    '🧴 ' + (d.product || '') + '\n' +
     '👤 ' + (d.name || '') + '\n' +
     '📞 ' + (d.phone || '') + '\n' +
     '🏙️ ' + (d.city || '') + '\n' +
@@ -141,7 +142,9 @@ function buildAlertText_(d) {
     '💰 ' + total + ' ر.س\n' +
     '💳 ' + payment + '\n' +
     '🆔 SKU: ' + sku + '\n' +
-    '🔢 رقم المنتج #' + tid + '\n' +
+    '🔢 المنتج: ' + (d.taagerId || tid) + '\n' +
+    '🏪 المنصة: ' + (d.platform || 'taager') + '\n' +
+    (d.supplierUrl ? '🔗 ' + d.supplierUrl + '\n' : '') +
     '🌍 السعودية'
   );
 }

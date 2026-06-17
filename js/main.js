@@ -405,8 +405,9 @@
         productSku: TAAGER.productSku || '',
         taagerId: TAAGER.productId || '',
         country: 'SA',
-        platform: 'taager',
-        source: 'rawasishop-landing',
+        platform: TAAGER.platform || 'taager',
+        source: TAAGER.pageSource || 'rawasishop-landing',
+        supplierUrl: TAAGER.supplierUrl || '',
         transaction_id: 'RS-' + Date.now(),
         date: new Date().toISOString()
       };

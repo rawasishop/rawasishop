@@ -5,9 +5,22 @@
   'use strict';
 
   var PIXEL_ID = 'D8JK65JC77UAEKHUODQ0';
-  var PRODUCT_NAME = 'جهاز إزالة الشعر';
   var CURRENCY = 'SAR';
-  var DEFAULT_VALUE = 299;
+
+  function storeConfig() {
+    return window.RAWASI_TAAGER || {};
+  }
+
+  function productName() {
+    var T = storeConfig();
+    return T.productName || 'جهاز إزالة الشعر';
+  }
+
+  function defaultValue() {
+    var T = storeConfig();
+    if (T.bundles && T.bundles[1] && T.bundles[1].price) return T.bundles[1].price;
+    return 299;
+  }
 
   if (!(window.ttq && window.ttq.load)) {
     !function (w, d, t) {
@@ -46,12 +59,13 @@
 
   function buildPayload(value, quantity, eventId) {
     var qty = quantity || 1;
-    var val = value != null ? value : DEFAULT_VALUE;
+    var val = value != null ? value : defaultValue();
     var unitPrice = qty > 0 ? Math.round((val / qty) * 100) / 100 : val;
     var contentId = getContentId();
+    var name = productName();
     var payload = {
       content_id: contentId,
-      content_name: PRODUCT_NAME,
+      content_name: name,
       content_type: 'product',
       quantity: qty,
       value: val,
@@ -59,7 +73,7 @@
       contents: [{
         content_id: contentId,
         content_type: 'product',
-        content_name: PRODUCT_NAME,
+        content_name: name,
         quantity: qty,
         price: unitPrice
       }]
@@ -104,9 +118,9 @@
     },
 
     fromBundle: function (sel) {
-      if (!sel) return { value: DEFAULT_VALUE, quantity: 1 };
+      if (!sel) return { value: defaultValue(), quantity: 1 };
       return {
-        value: parseInt(sel.getAttribute('data-price'), 10) || DEFAULT_VALUE,
+        value: parseInt(sel.getAttribute('data-price'), 10) || defaultValue(),
         quantity: parseInt(sel.value, 10) || 1
       };
     }
@@ -114,9 +128,9 @@
 
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function () {
-      window.RAWASI_TIKTOK.trackViewContent(DEFAULT_VALUE);
+      window.RAWASI_TIKTOK.trackViewContent(defaultValue());
     }, { once: true });
   } else {
-    window.RAWASI_TIKTOK.trackViewContent(DEFAULT_VALUE);
+    window.RAWASI_TIKTOK.trackViewContent(defaultValue());
   }
 })();
