@@ -375,7 +375,7 @@
   }
 
   if (form) {
-    if (form.city) {
+    if (form.city && form.city.tagName !== 'SELECT') {
       form.city.addEventListener('input', function () {
         this.value = this.value.replace(/[A-Za-z]/g, '');
       });

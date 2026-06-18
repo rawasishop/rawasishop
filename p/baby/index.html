@@ -79,22 +79,22 @@
               </div>
               <div>
                 <label for="city" class="block text-sm font-bold text-gray-700 mb-2">المحافظة</label>
-                <input type="text" id="city" name="city" list="governorateList" placeholder="اختاري من القائمة أو اكتبي اسم المحافظة" required autocomplete="off" class="w-full p-4 border border-pink-200 rounded-xl focus:border-pink-400 focus:outline-none text-base bg-white" />
-                <datalist id="governorateList">
-                  <option value="منطقة الرياض"></option>
-                  <option value="منطقة مكة المكرمة"></option>
-                  <option value="المنطقة الشرقية"></option>
-                  <option value="منطقة المدينة المنورة"></option>
-                  <option value="منطقة القصيم"></option>
-                  <option value="منطقة عسير"></option>
-                  <option value="منطقة تبوك"></option>
-                  <option value="منطقة حائل"></option>
-                  <option value="منطقة الحدود الشمالية"></option>
-                  <option value="منطقة جازان"></option>
-                  <option value="منطقة نجران"></option>
-                  <option value="منطقة الباحة"></option>
-                  <option value="منطقة الجوف"></option>
-                </datalist>
+                <select id="city" name="city" required autocomplete="off" class="w-full p-4 border border-pink-200 rounded-xl focus:border-pink-400 focus:outline-none text-base bg-white">
+                  <option value="" disabled selected>اختاري المحافظة</option>
+                  <option value="منطقة الرياض">منطقة الرياض</option>
+                  <option value="منطقة مكة المكرمة">منطقة مكة المكرمة</option>
+                  <option value="المنطقة الشرقية">المنطقة الشرقية</option>
+                  <option value="منطقة المدينة المنورة">منطقة المدينة المنورة</option>
+                  <option value="منطقة القصيم">منطقة القصيم</option>
+                  <option value="منطقة عسير">منطقة عسير</option>
+                  <option value="منطقة تبوك">منطقة تبوك</option>
+                  <option value="منطقة حائل">منطقة حائل</option>
+                  <option value="منطقة الحدود الشمالية">منطقة الحدود الشمالية</option>
+                  <option value="منطقة جازان">منطقة جازان</option>
+                  <option value="منطقة نجران">منطقة نجران</option>
+                  <option value="منطقة الباحة">منطقة الباحة</option>
+                  <option value="منطقة الجوف">منطقة الجوف</option>
+                </select>
                 <span class="err" data-for="city"></span>
               </div>
               <div>
