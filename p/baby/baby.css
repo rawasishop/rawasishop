@@ -99,10 +99,16 @@ a { color: inherit; text-decoration: none; }
 
 .hero__media { display: flex; flex-direction: column; gap: 1.25rem; }
 
+.hero__visual {
+  position: relative;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,.1), 0 8px 10px -6px rgba(0,0,0,.1);
+}
+
 .hero__img {
   width: 100%;
-  border-radius: 1.5rem;
-  box-shadow: 0 20px 25px -5px rgba(0,0,0,.1), 0 8px 10px -6px rgba(0,0,0,.1);
+  display: block;
   object-fit: cover;
   aspect-ratio: 4 / 5;
   max-height: 420px;
@@ -110,6 +116,30 @@ a { color: inherit; text-decoration: none; }
 
 @media (min-width: 1024px) {
   .hero__img { max-height: none; }
+}
+
+.hero__product {
+  position: absolute;
+  bottom: 0.75rem;
+  left: 30%;
+  width: 38%;
+  max-width: 11rem;
+  z-index: 2;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,.22));
+  pointer-events: none;
+}
+
+.hero__product img {
+  width: 100%;
+  height: auto;
+}
+
+@media (min-width: 640px) {
+  .hero__product {
+    bottom: 1rem;
+    left: 32%;
+    max-width: 12.5rem;
+  }
 }
 
 .hero__badges {

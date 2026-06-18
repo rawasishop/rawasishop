@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" as="image" href="assets/hero.webp" type="image/webp" fetchpriority="high" />
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="baby.css?v=20260618perf" />
+  <link rel="stylesheet" href="baby.css?v=20260618overlay" />
   <script src="../../js/ksadrop-baby-config.js?v=20260618perf" defer></script>
   <script src="../../js/tiktok-pixel.js?v=20260618perf" defer></script>
 </head>
@@ -96,10 +96,16 @@
         </div>
 
         <div class="hero__media">
-          <picture>
-            <source srcset="assets/hero.webp" type="image/webp" />
-            <img src="assets/hero.jpg" alt="أم سعودية مع طفلها" class="hero__img" width="640" height="800" fetchpriority="high" decoding="async" />
-          </picture>
+          <div class="hero__visual">
+            <picture>
+              <source srcset="assets/hero.webp" type="image/webp" />
+              <img src="assets/hero.jpg" alt="أم سعودية مع طفلها" class="hero__img" width="640" height="800" fetchpriority="high" decoding="async" />
+            </picture>
+            <picture class="hero__product">
+              <source srcset="assets/hero-product.webp" type="image/webp" />
+              <img src="assets/hero-product.png" alt="مبرد أظافر الأطفال الكهربائي" width="416" height="442" loading="lazy" decoding="async" />
+            </picture>
+          </div>
           <div class="hero__badges">
             <span class="badge">✅ ضمان الجودة</span>
             <span class="badge">🚚 شحن سريع</span>
