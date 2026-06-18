@@ -3,368 +3,219 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>مبرد أظافر كهربائي للأطفال | 99 ر.س — RawasiShop</title>
-  <meta name="description" content="مبرد أظافر كهربائي للأطفال — آمن، هادئ، 6 رؤوس حسب العمر. دفع عند الاستلام في كل السعودية." />
-  <meta name="theme-color" content="#4a3f5c" />
+  <title>مبرد أظافر الأطفال الكهربائي الآمن | 99 ر.س — RawasiShop</title>
+  <meta name="description" content="مبرد أظافر الأطفال — آمن، هادئ، 6 رؤوس. دفع عند الاستلام في كل السعودية." />
+  <meta name="theme-color" content="#fff9fa" />
   <link rel="canonical" href="https://www.rawasishop.com/p/baby/" />
-  <meta property="og:title" content="مبرد أظافر كهربائي للأطفال — 99 ر.س" />
-  <meta property="og:description" content="قصّي أظافر طفلكِ بأمان — بلا مقص، بلا بكاء، بلا خوف." />
-  <meta property="og:image" content="https://www.rawasishop.com/p/baby/assets/product-image-0.jpg" />
+  <meta property="og:title" content="مبرد أظافر الأطفال — 99 ر.س" />
+  <meta property="og:image" content="https://www.rawasishop.com/p/baby/assets/hero.jpg" />
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
-  <link rel="stylesheet" href="baby.css?v=20260618lux" />
-  <script src="../../js/ksadrop-baby-config.js?v=20260618lux" defer></script>
-  <script src="../../js/tiktok-pixel.js?v=20260618lux" defer></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Tajawal', 'sans-serif'] },
+          colors: { brand: { DEFAULT: '#ec4899', dark: '#db2777' } }
+        }
+      }
+    };
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .invalid { border-color: #f43f5e !important; }
+    .err { color: #e11d48; font-size: 0.8rem; margin-top: 0.25rem; min-height: 1rem; }
+    .modal { position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,.5); display: flex; align-items: center; justify-content: center; padding: 1rem; opacity: 0; pointer-events: none; transition: .3s; }
+    .modal.show { opacity: 1; pointer-events: auto; }
+    .sticky-cta { position: fixed; bottom: 0; left: 0; right: 0; z-index: 90; background: #fff; border-top: 1px solid #fce7f3; padding: .75rem 1rem calc(.75rem + env(safe-area-inset-bottom)); display: flex; align-items: center; gap: .75rem; box-shadow: 0 -8px 24px rgba(236,72,153,.12); transform: translateY(110%); transition: .35s; }
+    .sticky-cta.show { transform: translateY(0); }
+  </style>
+  <script src="../../js/ksadrop-baby-config.js?v=20260618tw" defer></script>
+  <script src="../../js/tiktok-pixel.js?v=20260618tw" defer></script>
 </head>
-<body class="nl-page">
+<body class="bg-[#fff9fa] text-gray-800 font-sans pb-24">
 
-  <div class="nl-ribbon">🎁 عرض محدود — وفّري 50 ر.س · الدفع عند الاستلام في كل السعودية 🇸🇦</div>
+<form id="orderForm" novalidate>
+  <input type="radio" name="qty" value="1" data-price="99" data-compare="199" checked hidden aria-hidden="true" />
 
-  <header class="nl-header" id="siteHeader">
-    <div class="nl-wrap nl-header-inner">
-      <a href="/" class="nl-brand">
-        <img src="../../assets/logo.jpg" alt="" width="42" height="42" decoding="async" />
-        Rawasi<em>Shop</em>
-      </a>
-      <nav class="nl-nav" id="mainNav">
-        <a href="#home">الرئيسية</a>
-        <a href="#story">لماذا؟</a>
-        <a href="#features">المميزات</a>
-        <a href="#ages">الرؤوس</a>
-        <a href="#reviews">آراء الأمهات</a>
-        <a href="/">جهاز IPL</a>
-      </nav>
-      <a href="#fullname" class="nl-btn nl-btn-primary hide-m">اطلبي الآن</a>
-      <button type="button" class="nl-menu-btn" id="navToggle" aria-label="القائمة"><span></span><span></span><span></span></button>
+  <!-- HERO -->
+  <section class="bg-white py-12 md:py-16" id="home">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+      <div>
+        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">
+          قص أظافر طفلك أصبح <span class="text-pink-500">أسهل وأكثر أماناً</span> 🤍
+        </h1>
+        <p class="mt-6 text-lg md:text-xl text-gray-600 leading-relaxed">
+          وداعاً للخوف من المقص والجروح مع مبرد الأظافر الكهربائي المصمم خصيصاً للأطفال
+        </p>
+        <div class="mt-6 flex flex-wrap gap-3 text-sm font-bold text-gray-600">
+          <span class="bg-pink-50 px-4 py-2 rounded-full">✅ ضمان الجودة</span>
+          <span class="bg-pink-50 px-4 py-2 rounded-full">🚚 شحن سريع</span>
+          <span class="bg-pink-50 px-4 py-2 rounded-full">💵 الدفع عند الاستلام</span>
+        </div>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="#order" class="bg-pink-500 text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-pink-600 transition">اطلب الآن</a>
+          <a href="#offer" class="border-2 border-pink-500 text-pink-500 px-8 py-4 rounded-xl font-bold hover:bg-pink-50 transition">احصل على خصم اليوم</a>
+        </div>
+      </div>
+      <div>
+        <img src="assets/hero.jpg" alt="أم سعودية مع طفلها" class="rounded-3xl shadow-xl w-full object-cover aspect-[4/5]" width="640" height="800" fetchpriority="high" />
+      </div>
     </div>
-  </header>
+  </section>
 
-  <form id="orderForm" novalidate>
-
-    <!-- ═══ HERO + نموذج كامل ═══ -->
-    <section class="nl-hero" id="home">
-      <div class="nl-wrap nl-hero-grid reverse">
-        <div class="nl-reveal">
-          <div class="nl-gallery" id="nlGallery">
-            <div class="nl-thumbs" role="tablist">
-              <button type="button" class="nl-thumb active" data-i="0" aria-label="صورة 1"><img src="assets/product-image-0.jpg" alt="" /></button>
-              <button type="button" class="nl-thumb" data-i="1" aria-label="صورة 2"><img src="assets/product-image-1.jpg" alt="" loading="lazy" /></button>
-              <button type="button" class="nl-thumb" data-i="2" aria-label="صورة 3"><img src="assets/product-image-6.jpg" alt="" loading="lazy" /></button>
-              <button type="button" class="nl-thumb" data-i="3" aria-label="صورة 4"><img src="assets/product-image-7.jpg" alt="" loading="lazy" /></button>
-            </div>
-            <div class="nl-stage">
-              <img id="nlMainImg" src="assets/product-image-0.jpg" alt="مبرد أظافر كهربائي للأطفال" width="800" height="800" fetchpriority="high" />
-              <span class="nl-float-badge b1">👶 من الولادة</span>
-              <span class="nl-float-badge b2">🔇 هادئ جداً</span>
-            </div>
-          </div>
+  <!-- PROBLEMS -->
+  <section class="py-14 md:py-16">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-12">المشكلة التي تواجه <span class="text-pink-500">كل أم</span></h2>
+      <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-pink-100">
+          <div class="text-3xl mb-3">😰</div>
+          <h3 class="text-xl font-bold mb-3">الخوف من الجروح</h3>
+          <p class="text-gray-600">الأصابع الصغيرة تحتاج عناية خاصة وحذراً دائماً</p>
         </div>
-
-        <div class="nl-reveal">
-          <span class="nl-eyebrow">✨ الأكثر طلباً من الأمهات السعوديات</span>
-          <h1>مبرد أظافر <span>كهربائي للأطفال</span> — بأمان تام</h1>
-          <p class="nl-lead">ودّعي المقص والخوف والبكاء. تقنية طحن لطيفة + 6 رؤوس ملوّنة حسب العمر + إضاءة LED — قصّي أظافر طفلكِ وهو نايم.</p>
-
-          <div class="nl-stats">
-            <div class="nl-stat"><strong>6</strong><small>رؤوس حسب العمر</small></div>
-            <div class="nl-stat"><strong>99</strong><small>ريال فقط COD</small></div>
-            <div class="nl-stat"><strong>4.9</strong><small>تقييم الأمهات</small></div>
-          </div>
-
-          <div class="nl-order-card" id="orderFormPanel">
-            <h2>اطلبي الآن — ادفعي عند الاستلام</h2>
-            <p class="nl-order-sub">🇸🇦 يتصل بكِ فريق التأكيد من <strong>رقم سعودي</strong> قبل الشحن · لا دفع مقدّم</p>
-
-            <div class="nl-price-row">
-              <span class="nl-price-now" id="heroPriceNew">99 <small>ر.س</small></span>
-              <span class="nl-price-old" id="heroPriceOld">149 ريال</span>
-              <span class="nl-save" id="heroPriceTag">وفّري 50 ر.س</span>
-            </div>
-
-            <div class="nl-cod-strip">💚 الدفع عند الاستلام — افحصي الطرد قبل الدفع</div>
-
-            <div class="nl-fields">
-              <div class="nl-field">
-                <label for="fullname">الاسم الكامل *</label>
-                <input type="text" id="fullname" name="fullname" placeholder="مثال: فاطمة أحمد العتيبي" required autocomplete="name" />
-                <span class="err" data-for="fullname"></span>
-              </div>
-
-              <div class="nl-fields-2">
-                <div class="nl-field">
-                  <label for="phone">رقم الجوال *</label>
-                  <input type="tel" id="phone" name="phone" inputmode="numeric" placeholder="05XXXXXXXX" required autocomplete="tel" />
-                  <span class="err" data-for="phone"></span>
-                </div>
-                <div class="nl-field">
-                  <label for="phone2">رقم إضافي (اختياري)</label>
-                  <input type="tel" id="phone2" name="phone2" inputmode="numeric" placeholder="05XXXXXXXX" autocomplete="tel" />
-                  <span class="err" data-for="phone2"></span>
-                  <span class="hint">للتأكيد إذا تعذّر الوصول للرقم الأول</span>
-                </div>
-              </div>
-
-              <div class="nl-field">
-                <label for="city">المحافظة *</label>
-                <input type="text" id="city" name="city" list="governorateList" placeholder="اختاري أو اكتبي اسم المحافظة" required autocomplete="off" />
-                <datalist id="governorateList">
-                  <option value="منطقة الرياض"></option>
-                  <option value="منطقة مكة المكرمة"></option>
-                  <option value="المنطقة الشرقية"></option>
-                  <option value="منطقة المدينة المنورة"></option>
-                  <option value="منطقة القصيم"></option>
-                  <option value="منطقة عسير"></option>
-                  <option value="منطقة تبوك"></option>
-                  <option value="منطقة حائل"></option>
-                  <option value="منطقة الحدود الشمالية"></option>
-                  <option value="منطقة جازان"></option>
-                  <option value="منطقة نجران"></option>
-                  <option value="منطقة الباحة"></option>
-                  <option value="منطقة الجوف"></option>
-                </datalist>
-                <span class="err" data-for="city"></span>
-              </div>
-
-              <div class="nl-field">
-                <label for="district">الحي *</label>
-                <input type="text" id="district" name="district" placeholder="مثال: حي النخيل، حي الروضة" required autocomplete="address-level3" />
-                <span class="err" data-for="district"></span>
-              </div>
-
-              <div class="nl-field">
-                <label for="address">العنوان التفصيلي *</label>
-                <input type="text" id="address" name="address" placeholder="الشارع، رقم المبنى، أقرب معلم (مسجد، محطة، مدرسة...)" required autocomplete="street-address" />
-                <span class="err" data-for="address"></span>
-              </div>
-
-              <div class="nl-field">
-                <label for="notes">ملاحظات التوصيل (اختياري)</label>
-                <textarea id="notes" name="notes" rows="2" placeholder="مثال: اتصلي قبل الوصول · الطابق الثاني"></textarea>
-              </div>
-
-              <div class="nl-field">
-                <label>اختاري العرض *</label>
-                <div class="nl-bundles" id="bundles">
-                  <label class="nl-bundle">
-                    <input type="radio" name="qty" value="1" data-price="99" data-compare="149" checked />
-                    <img src="assets/product-image-0.jpg" alt="" width="56" height="56" />
-                    <div class="nl-bundle-info">
-                      <strong class="pkg-qty">قطعة واحدة</strong>
-                      <span>مثالية للتجربة</span>
-                    </div>
-                    <span class="nl-bundle-price">99 ر.س</span>
-                  </label>
-                  <label class="nl-bundle">
-                    <input type="radio" name="qty" value="2" data-price="179" data-compare="298" />
-                    <img src="assets/product-image-6.jpg" alt="" width="56" height="56" loading="lazy" />
-                    <div class="nl-bundle-info">
-                      <strong class="pkg-qty">قطعتان</strong>
-                      <span>هدية لصديقة أو أخت — الأفضل قيمة 🔥</span>
-                    </div>
-                    <span class="nl-bundle-price">179 ر.س</span>
-                  </label>
-                </div>
-              </div>
-
-              <div class="nl-total">
-                <span>المجموع الكلي</span>
-                <span id="totalPrice">99 ريال</span>
-              </div>
-
-              <button type="submit" class="nl-btn nl-btn-primary nl-btn-block">🔒 تأكيد الطلب — الدفع عند الاستلام</button>
-              <div class="nl-form-trust">
-                <span>🚚 2–5 أيام</span>
-                <span>📞 تأكيد هاتفي</span>
-                <span>📦 افحصي قبل الدفع</span>
-                <span>🔄 استبدال عيوب</span>
-              </div>
-            </div>
-          </div>
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-pink-100">
+          <div class="text-3xl mb-3">👶</div>
+          <h3 class="text-xl font-bold mb-3">الطفل يتحرك كثيراً</h3>
+          <p class="text-gray-600">يصعب قص الأظافر بالمقص التقليدي بأمان</p>
+        </div>
+        <div class="bg-white p-8 rounded-2xl shadow-sm border border-pink-100">
+          <div class="text-3xl mb-3">💔</div>
+          <h3 class="text-xl font-bold mb-3">توتر الأم</h3>
+          <p class="text-gray-600">خوف دائم أثناء قص أظافر الطفل كل أسبوع</p>
         </div>
       </div>
-    </section>
-
-    <!-- ═══ القصة / الألم ═══ -->
-    <section class="nl-section alt" id="story">
-      <div class="nl-wrap">
-        <div class="nl-section-head nl-reveal">
-          <h2>هل تعرفين هذا الشعور؟</h2>
-          <p>كل أم سعودية مرت بهذا — والحل أبسط مما تتخيلين</p>
-        </div>
-        <div class="nl-bento nl-reveal">
-          <article class="nl-bento-card"><div class="ico">😰</div><h3>الخوف من جرح الإصبع</h3><p>المقص التقليدي خطر — إصبع صغير يتحرك وفجأة دمعة وذعر.</p></article>
-          <article class="nl-bento-card"><div class="ico">😢</div><h3>البكاء كل أسبوع</h3><p>الطفل يرفض قص الأظافر — وتأجلينها مرّة بعد مرّة.</p></article>
-          <article class="nl-bento-card"><div class="ico">😣</div><h3>خدوش الوجه والعينين</h3><p>أظافر طويلة = خدوش على وجه الطفل وأنتِ نائمة.</p></article>
-          <article class="nl-bento-card wide"><div class="ico">🌙</div><h3>أفضل وقت للقص = أثناء النوم</h3><p>المبرد الكهربائي هادئ جداً — قصّي أظافر طفلكِ وهو نايم بدون ما يصحى. إضاءة LED تساعدكِ ترين كل إصبع بوضوح.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ فيديو ═══ -->
-    <section class="nl-section" id="video">
-      <div class="nl-wrap">
-        <div class="nl-section-head nl-reveal">
-          <h2>شاهدي الفرق بنفسك</h2>
-          <p>30 ثانية تكفي لتعرفي ليش آلاف الأمهات اختارن هذا المنتج</p>
-        </div>
-        <div class="nl-video-frame nl-reveal">
-          <video controls playsinline poster="assets/product-image-7.jpg">
-            <source src="assets/demo.mp4" type="video/mp4" />
-          </video>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ مميزات ═══ -->
-    <section class="nl-section alt" id="features">
-      <div class="nl-wrap">
-        <div class="nl-section-head nl-reveal">
-          <h2>ليش الأمهات يحبونه؟</h2>
-          <p>6 مميزات تجعل قص الأظافر تجربة هادئة وآمنة</p>
-        </div>
-        <div class="nl-features nl-reveal">
-          <article class="nl-feat" data-n="01"><h3>آمن بدون حواف حادة</h3><p>تقنية الطحن الدائري اللطيف — مناسب للمواليد من أول يوم.</p></article>
-          <article class="nl-feat" data-n="02"><h3>هادئ جداً 🔇</h3><p>محرك منخفض الضوضاء — لا يوقظ الطفل أثناء النوم.</p></article>
-          <article class="nl-feat" data-n="03"><h3>إضاءة LED 💡</h3><p>شوفي بوضوح كل إصبع في الظلام — دقة وأمان أعلى.</p></article>
-          <article class="nl-feat" data-n="04"><h3>6 رؤوس ملوّنة</h3><p>لون لكل عمر — المنتج يكبر مع طفلكِ.</p></article>
-          <article class="nl-feat" data-n="05"><h3>سرعتان + اتجاهان</h3><p>تحكم كامل لكل يد بسهولة.</p></article>
-          <article class="nl-feat" data-n="06"><h3>علبة محمولة 👜</h3><p>خفيفة 13.5 سم — للبيت والسفر والحقيبة.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ الرؤوس حسب العمر ═══ -->
-    <section class="nl-section" id="ages">
-      <div class="nl-wrap">
-        <div class="nl-section-head nl-reveal">
-          <h2>6 رؤوس — لكل مرحلة عمرية</h2>
-          <p>اختاري الرأس المناسب — آمن ولطيف دائماً</p>
-        </div>
-        <div class="nl-ages nl-reveal">
-          <div class="nl-age"><span class="nl-age-dot" style="background:#f3f4f6"></span><div><strong>أبيض</strong><span>0–3 أشهر · الألطف للمواليد</span></div><em>مواليد</em></div>
-          <div class="nl-age"><span class="nl-age-dot" style="background:#60a5fa"></span><div><strong>أزرق</strong><span>3–6 أشهر · ناعم للرضّع</span></div><em>رضيع</em></div>
-          <div class="nl-age"><span class="nl-age-dot" style="background:#fb923c"></span><div><strong>برتقالي</strong><span>6–12 شهر · للأطفال النشطين</span></div><em>طفل</em></div>
-          <div class="nl-age"><span class="nl-age-dot" style="background:#4ade80"></span><div><strong>أخضر</strong><span>12+ شهر · أقوى قليلاً</span></div><em>كبير</em></div>
-          <div class="nl-age"><span class="nl-age-dot" style="background:#9ca3af"></span><div><strong>معدني</strong><span>تلميع وتنعيم السطح</span></div><em>للكبار</em></div>
-          <div class="nl-age"><span class="nl-age-dot" style="background:#e5e7eb"></span><div><strong>أسطواني</strong><span>زوايا وأطراف دقيقة</span></div><em>دقة</em></div>
-        </div>
-        <div class="nl-kit nl-reveal">
-          <div class="nl-kit-item"><img src="assets/product-image-4.jpg" alt="" loading="lazy" /><strong>6 رؤوس طحن</strong><small>بسماكات مختلفة</small></div>
-          <div class="nl-kit-item"><img src="assets/product-image-6.jpg" alt="" loading="lazy" /><strong>علبة تخزين</strong><small>شفافة ومحمولة</small></div>
-          <div class="nl-kit-item"><img src="assets/product-image-0.jpg" alt="" loading="lazy" /><strong>الجهاز الكهربائي</strong><small>بطارية مدمجة</small></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ مقارنة ═══ -->
-    <section class="nl-section alt">
-      <div class="nl-wrap">
-        <div class="nl-section-head nl-reveal">
-          <h2>مبرد كهربائي vs مقص تقليدي</h2>
-        </div>
-        <div class="nl-compare nl-reveal">
-          <div class="nl-compare-box bad">
-            <h3>❌ المقص التقليدي</h3>
-            <ul>
-              <li>خطر جرح الإصبع</li>
-              <li>الطفل يبكي ويرفض</li>
-              <li>تحتاج إضاءة قوية</li>
-              <li>صعب على المبتدئات</li>
-              <li>لا يناسب المواليد</li>
-            </ul>
-          </div>
-          <div class="nl-compare-box good">
-            <h3>✅ المبرد الكهربائي</h3>
-            <ul>
-              <li>طحن لطيف بدون حواف</li>
-              <li>هادئ — مناسب أثناء النوم</li>
-              <li>إضاءة LED مدمجة</li>
-              <li>سهل لأي أم</li>
-              <li>من الولادة حتى الكبار</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ آراء ═══ -->
-    <section class="nl-section" id="reviews">
-      <div class="nl-wrap">
-        <div class="nl-section-head nl-reveal">
-          <h2>ماذا تقول الأمهات السعوديات؟</h2>
-          <p>⭐ 4.9/5 — تجارب حقيقية</p>
-        </div>
-        <div class="nl-reviews nl-reveal">
-          <blockquote class="nl-review"><div class="nl-stars">★★★★★</div><q>كنت أخاف أقصّ أظافر بنتي كل أسبوع. مع المبرد الكهربائي صارت العملية دقيقتين وهي نايمة — ما أقدر أستغني عنه.</q><cite>نورة العتيبي — الرياض · شراء موثّق</cite></blockquote>
-          <blockquote class="nl-review"><div class="nl-stars">★★★★★</div><q>الرؤوس الملونة حسب العمر فكرة عبقرية. ولدي 4 أشهر والرأس الأبيض ناعم جداً — ما صار أي جرح.</q><cite>سارة القحطاني — جدة · شراء موثّق</cite></blockquote>
-          <blockquote class="nl-review"><div class="nl-stars">★★★★★</div><q>وصل بسرعة والدفع عند الاستلام خلاني أطلب بدون تردد. أنصح فيه كل أم جديدة في السعودية.</q><cite>منى الشمري — الدمام · شراء موثّق</cite></blockquote>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ FAQ ═══ -->
-    <section class="nl-section alt" id="faq">
-      <div class="nl-wrap">
-        <div class="nl-section-head nl-reveal"><h2>أسئلة شائعة</h2></div>
-        <div class="nl-faq nl-reveal">
-          <div class="nl-faq-item"><button type="button" class="nl-faq-q">هل المنتج آمن للمواليد؟ <span>+</span></button><div class="nl-faq-a">نعم. تقنية طحن لطيفة بدون حواف حادة، مع رأس أبيض ناعم جداً للمواليد 0–3 أشهر.</div></div>
-          <div class="nl-faq-item"><button type="button" class="nl-faq-q">كم مدة التوصيل؟ <span>+</span></button><div class="nl-faq-a">2–5 أيام عمل لمعظم مدن السعودية. يتصل بكِ فريق التأكيد قبل الشحن.</div></div>
-          <div class="nl-faq-item"><button type="button" class="nl-faq-q">كيف أدفع؟ <span>+</span></button><div class="nl-faq-a">الدفع عند الاستلام (COD) — تدفعين للمندوب عند استلام الطرد فقط. بدون بطاقة أو تحويل مسبق.</div></div>
-          <div class="nl-faq-item"><button type="button" class="nl-faq-q">ماذا يشمل الطلب؟ <span>+</span></button><div class="nl-faq-a">الجهاز الكهربائي + 6 رؤوس طحن بألوان مختلفة + علبة تخزين شفافة محمولة.</div></div>
-          <div class="nl-faq-item"><button type="button" class="nl-faq-q">هل يمكن الاسترجاع؟ <span>+</span></button><div class="nl-faq-a">نعم في حال عيب مصنعي — تواصلي خلال 7 أيام من الاستلام مع صور واضحة.</div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══ سياسة ═══ -->
-    <section class="nl-section" id="policy">
-      <div class="nl-wrap">
-        <div class="nl-section-head nl-reveal"><h2>سياسة الاسترجاع</h2><p>RawasiShop · الدفع عند الاستلام</p></div>
-        <div class="nl-policy-grid nl-reveal">
-          <article class="nl-policy"><div class="ico">💵</div><h3>الدفع عند الاستلام</h3><p>تدفعين فقط عند استلام الطرد. افحصي المنتج أمام المندوب.</p></article>
-          <article class="nl-policy"><div class="ico">📞</div><h3>تأكيد قبل الشحن</h3><p>يتصل بكِ فريق التأكيد من رقم سعودي.</p></article>
-          <article class="nl-policy"><div class="ico">🔧</div><h3>عيب مصنعي</h3><p>استبدال خلال 7 أيام مع صور واضحة.</p></article>
-          <article class="nl-policy"><div class="ico">📋</div><h3>شروط القبول</h3><p>غير مستخدم + التغليف الأصلي + جميع الرؤوس.</p></article>
-        </div>
-      </div>
-    </section>
-
-  </form>
-
-  <footer class="nl-footer">
-    <div class="nl-wrap">
-      <div class="nl-footer-links">
-        <a href="#home">الرئيسية</a>
-        <a href="/">جهاز IPL</a>
-        <a href="#policy">الاسترجاع</a>
-        <a href="#fullname">اطلبي الآن</a>
-      </div>
-      <p>مبرد أظافر كهربائي للأطفال · SKU: KSA-075</p>
-      <small>© <span id="year"></span> RawasiShop — توصيل لكل السعودية</small>
     </div>
-  </footer>
+  </section>
 
-  <div class="modal" id="successModal" aria-hidden="true">
-    <div class="modal-box">
-      <div class="modal-ico">✅</div>
-      <h3>تم استلام طلبكِ!</h3>
-      <p>شكراً <span id="successName">عزيزتي</span> 💕<br>سيتصل بكِ فريق التأكيد قريباً من رقم سعودي.</p>
-      <button type="button" class="nl-btn nl-btn-primary" id="modalClose">رائع 💕</button>
+  <!-- PRODUCT -->
+  <section class="bg-white py-14 md:py-16">
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 md:gap-12 items-center">
+      <div class="space-y-4">
+        <img src="assets/product.jpg" alt="مبرد أظافر الأطفال الكهربائي" class="rounded-3xl shadow-lg w-full" loading="lazy" />
+        <img src="assets/usage.jpg" alt="استخدام آمن أثناء نوم الطفل" class="rounded-3xl shadow-lg w-full" loading="lazy" />
+      </div>
+      <div>
+        <h2 class="text-3xl md:text-4xl font-extrabold mb-8">الحل الآمن الذي <span class="text-pink-500">تثق به كل أم</span></h2>
+        <ul class="space-y-4 text-lg">
+          <li class="flex gap-3"><span class="text-pink-500">✅</span> آمن 100% على أظافر الأطفال</li>
+          <li class="flex gap-3"><span class="text-pink-500">✅</span> هادئ جداً ولا يوقظ الطفل</li>
+          <li class="flex gap-3"><span class="text-pink-500">✅</span> مزود بإضاءة LED للاستخدام الليلي</li>
+          <li class="flex gap-3"><span class="text-pink-500">✅</span> 6 رؤوس حسب العمر</li>
+          <li class="flex gap-3"><span class="text-pink-500">✅</span> سرعتان واتجاهان</li>
+          <li class="flex gap-3"><span class="text-pink-500">✅</span> مناسب للمواليد وحتى الكبار</li>
+        </ul>
+      </div>
     </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="py-14 md:py-16">
+    <div class="max-w-6xl mx-auto px-6">
+      <h2 class="text-center text-3xl md:text-4xl font-extrabold mb-4">تجارب أمهات سعوديات 🤍</h2>
+      <p class="text-center text-pink-500 font-bold text-xl mb-10">+5000 أم سعيدة</p>
+      <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-pink-100">
+          <div class="text-amber-400 tracking-widest">★★★★★</div>
+          <p class="mt-4 text-gray-700">أفضل منتج اشتريته لطفلي، آمن جداً وسهل الاستخدام</p>
+          <p class="mt-4 text-sm font-bold text-pink-500">أم سارة — الرياض</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-pink-100">
+          <div class="text-amber-400 tracking-widest">★★★★★</div>
+          <p class="mt-4 text-gray-700">كنت أخاف من المقص التقليدي، الآن ارتحت تماماً</p>
+          <p class="mt-4 text-sm font-bold text-pink-500">أم نورة — جدة</p>
+        </div>
+        <div class="bg-white rounded-2xl p-6 shadow-sm border border-pink-100">
+          <div class="text-amber-400 tracking-widest">★★★★★</div>
+          <p class="mt-4 text-gray-700">منتج ممتاز وأنصح به لكل أم</p>
+          <p class="mt-4 text-sm font-bold text-pink-500">أم منى — الدمام</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OFFER -->
+  <section class="py-14 md:py-16 bg-pink-50" id="offer">
+    <div class="max-w-4xl mx-auto text-center px-6">
+      <h2 class="text-3xl md:text-4xl font-extrabold mb-6">عرض خاص اليوم فقط 🔥</h2>
+      <div class="bg-white rounded-3xl p-8 md:p-10 shadow-xl border border-pink-100">
+        <p class="text-gray-400 line-through text-2xl" id="heroPriceOld">199 ريال</p>
+        <h3 class="text-5xl md:text-6xl text-pink-500 font-extrabold my-4" id="heroPriceNew">99 <span class="text-2xl">ريال</span></h3>
+        <p class="text-lg text-gray-600">يشمل: الجهاز + 6 رؤوس + علبة تخزين</p>
+        <p class="mt-4 text-lg font-bold text-gray-700">🚚 شحن سريع + 💵 الدفع عند الاستلام + ✅ ضمان الجودة</p>
+        <p class="mt-6 bg-amber-50 text-amber-800 font-bold py-3 px-4 rounded-xl inline-block">⚠️ الكمية محدودة والعرض ينتهي قريباً</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORDER FORM -->
+  <section class="py-14 md:py-16" id="order">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="bg-white rounded-3xl shadow-xl p-8 md:p-10 border border-pink-100" id="orderFormPanel">
+        <h2 class="text-center text-3xl md:text-4xl font-extrabold mb-2 text-pink-500">اطلبي الآن قبل نفاد الكمية</h2>
+        <p class="text-center text-gray-500 mb-8">🇸🇦 تأكيد هاتفي من رقم سعودي · لا دفع مقدّم</p>
+
+        <div class="space-y-5">
+          <div>
+            <input type="text" id="fullname" name="fullname" placeholder="الاسم الكامل *" required autocomplete="name" class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-pink-400 focus:outline-none" />
+            <span class="err" data-for="fullname"></span>
+          </div>
+          <div>
+            <input type="tel" id="phone" name="phone" inputmode="numeric" placeholder="رقم الهاتف * (05XXXXXXXX)" required autocomplete="tel" class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-pink-400 focus:outline-none" />
+            <span class="err" data-for="phone"></span>
+          </div>
+          <div>
+            <input type="text" id="city" name="city" list="cityList" placeholder="المدينة *" required autocomplete="off" class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-pink-400 focus:outline-none" />
+            <datalist id="cityList">
+              <option value="الرياض"></option><option value="جدة"></option><option value="الدمام"></option>
+              <option value="مكة المكرمة"></option><option value="المدينة المنورة"></option><option value="الخبر"></option>
+            </datalist>
+            <span class="err" data-for="city"></span>
+          </div>
+          <div>
+            <input type="text" id="address" name="address" placeholder="العنوان الكامل * (الحي، الشارع، المبنى)" required autocomplete="street-address" class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-pink-400 focus:outline-none" />
+            <span class="err" data-for="address"></span>
+          </div>
+
+          <div class="flex justify-between items-center py-3 border-t border-pink-100 font-bold text-lg">
+            <span>المجموع</span>
+            <span class="text-pink-500 text-2xl" id="totalPrice">99 ريال</span>
+          </div>
+
+          <button type="submit" class="w-full bg-pink-500 text-white py-5 rounded-xl text-xl font-bold hover:bg-pink-600 transition shadow-lg shadow-pink-200">
+            🔒 تأكيد الطلب الآن
+          </button>
+          <p class="text-center text-sm text-gray-500">بياناتكِ آمنة ولن تُشارك مع أي طرف ثالث</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</form>
+
+<footer class="bg-gray-900 text-white py-10 text-center text-sm">
+  <p class="mb-2">مبرد أظافر الأطفال الكهربائي الآمن · SKU: KSA-075</p>
+  <p class="opacity-70">© <span id="year"></span> RawasiShop — شحن لكل السعودية · <a href="/" class="text-pink-300 hover:underline">جهاز IPL</a></p>
+</footer>
+
+<div class="modal" id="successModal" aria-hidden="true">
+  <div class="bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl">
+    <div class="text-5xl mb-4">✅</div>
+    <h3 class="text-2xl font-extrabold text-pink-500 mb-3">تم استلام طلبكِ!</h3>
+    <p class="text-gray-600 mb-6">شكراً <span id="successName">عزيزتي</span> 💕<br>سيتصل بكِ فريق التأكيد قريباً.</p>
+    <button type="button" id="modalClose" class="bg-pink-500 text-white px-8 py-3 rounded-xl font-bold">رائع 💕</button>
   </div>
+</div>
 
-  <div class="sticky-cta" id="stickyCta">
-    <div class="sticky-price">
-      <span class="sc-old" id="stickyPriceOld">149 ريال</span>
-      <span class="sc-new" id="stickyPriceNew">99 ريال</span>
-    </div>
-    <a href="#fullname" class="nl-btn nl-btn-primary">اطلبي الآن</a>
+<div class="sticky-cta" id="stickyCta">
+  <div class="font-bold whitespace-nowrap">
+    <span class="block text-xs text-gray-400 line-through" id="stickyPriceOld">199 ريال</span>
+    <span class="text-pink-500 text-lg" id="stickyPriceNew">99 ريال</span>
   </div>
+  <a href="#order" class="flex-1 bg-pink-500 text-white text-center py-3 rounded-xl font-bold">اطلبي الآن</a>
+</div>
 
-  <a href="#fullname" class="whatsapp-float" id="waFloat" aria-label="انتقلي لنموذج الطلب">
-    <svg viewBox="0 0 32 32" width="28" height="28" fill="currentColor" aria-hidden="true"><path d="M16 .5C7.4.5.5 7.4.5 16c0 2.8.7 5.4 2 7.7L.5 31.5l8-2c2.2 1.2 4.8 1.9 7.5 1.9 8.6 0 15.5-6.9 15.5-15.5S24.6.5 16 .5z"/></svg>
-  </a>
-
-  <script src="../../js/main.js?v=20260618lux" defer></script>
-  <script src="baby.js?v=20260618lux" defer></script>
+<script src="../../js/main.js?v=20260618tw" defer></script>
 </body>
 </html>

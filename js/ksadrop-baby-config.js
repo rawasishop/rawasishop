@@ -6,7 +6,7 @@ window.RAWASI_TAAGER = {
   platform: 'ksadrop',
   productId: 'baby-nail-clippers',
   productSku: 'KSA-075',
-  productName: 'مبرد أظافر كهربائي للأطفال',
+  productName: 'مبرد أظافر الأطفال الكهربائي الآمن',
   supplierUrl: 'https://ksadrop.com/products/baby-nail-clippers',
   pageSource: 'rawasishop-baby',
   country: 'SA',
@@ -22,7 +22,7 @@ window.RAWASI_TAAGER = {
   openWhatsAppOnOrder: false,
   orderNotify: 'telegram',
   fbPixelId: '1007677050990489',
-  compareAt: 149,
+  compareAt: 199,
 
   normalizeSaPhone: function (phone) {
     var d = String(phone || '').replace(/\D/g, '');
