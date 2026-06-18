@@ -18,6 +18,11 @@
     })(window, document, 'https://sc-static.net/scevent.min.js');
     snaptr('init', '0ae4a60f-bad3-4443-9ce3-7a9aa9be9f73');
     snaptr('track', 'PAGE_VIEW');
+    if (window.RAWASI_SNAP) {
+      var T = window.RAWASI_TAAGER || {};
+      var price = T.bundles && T.bundles[1] && T.bundles[1].price;
+      RAWASI_SNAP.trackViewContent(price);
+    }
   }
 
   function run() {

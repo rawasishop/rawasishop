@@ -44,9 +44,6 @@
 
   deferHeavy(function () {
     initTracking();
-    if (window.RAWASI_SNAP) {
-      RAWASI_SNAP.trackViewContent((TAAGER.bundles && TAAGER.bundles[1] && TAAGER.bundles[1].price) || 299);
-    }
     if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('/sw.js?v=3').then(function (reg) {
         reg.update();

@@ -40,7 +40,7 @@
         price: parseValue(price != null ? price : DEFAULT_PRICE),
         currency: CURRENCY,
         item_ids: [SKU],
-        item_category: 'beauty',
+        item_category: TAAGER.pageSource === 'rawasishop-baby' ? 'baby' : 'beauty',
         description: TAAGER.productName || 'IPL Device'
       });
     },
