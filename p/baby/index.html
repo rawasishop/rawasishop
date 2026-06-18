@@ -40,28 +40,75 @@
 <form id="orderForm" novalidate>
   <input type="radio" name="qty" value="1" data-price="99" data-compare="199" checked hidden aria-hidden="true" />
 
-  <!-- HERO -->
-  <section class="bg-white py-12 md:py-16" id="home">
-    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
-      <div>
-        <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">
-          قص أظافر طفلك أصبح <span class="text-pink-500">أسهل وأكثر أماناً</span> 🤍
-        </h1>
-        <p class="mt-6 text-lg md:text-xl text-gray-600 leading-relaxed">
-          وداعاً للخوف من المقص والجروح مع مبرد الأظافر الكهربائي المصمم خصيصاً للأطفال
-        </p>
-        <div class="mt-6 flex flex-wrap gap-3 text-sm font-bold text-gray-600">
-          <span class="bg-pink-50 px-4 py-2 rounded-full">✅ ضمان الجودة</span>
-          <span class="bg-pink-50 px-4 py-2 rounded-full">🚚 شحن سريع</span>
-          <span class="bg-pink-50 px-4 py-2 rounded-full">💵 الدفع عند الاستلام</span>
+  <!-- HERO + نموذج الطلب (أعلى الصفحة) -->
+  <section class="bg-white py-8 md:py-12" id="home">
+    <div class="max-w-7xl mx-auto px-6">
+      <h1 class="text-3xl md:text-5xl font-extrabold leading-tight text-center lg:text-right">
+        قص أظافر طفلك أصبح <span class="text-pink-500">أسهل وأكثر أماناً</span> 🤍
+      </h1>
+      <p class="mt-4 text-lg text-gray-600 text-center lg:text-right max-w-2xl lg:ms-0 lg:me-auto">
+        وداعاً للخوف من المقص والجروح — مبرد كهربائي آمن للأطفال
+      </p>
+
+      <div class="grid lg:grid-cols-2 gap-8 mt-8 items-start">
+        <!-- النموذج أولاً على الجوال -->
+        <div class="order-1" id="order">
+          <div class="bg-white rounded-3xl shadow-xl p-6 md:p-8 border-2 border-pink-200 ring-4 ring-pink-50" id="orderFormPanel">
+            <div class="text-center mb-6 pb-5 border-b border-pink-100" id="offer">
+              <span class="inline-block bg-pink-500 text-white text-sm font-bold px-4 py-1.5 rounded-full mb-3">🔥 عرض اليوم فقط</span>
+              <p class="text-gray-400 line-through text-lg" id="heroPriceOld">199 ريال</p>
+              <p class="text-4xl md:text-5xl text-pink-500 font-extrabold my-1" id="heroPriceNew">99 <span class="text-xl">ريال</span></p>
+              <p class="text-sm text-gray-500">💵 الدفع عند الاستلام · 🚚 شحن سريع</p>
+            </div>
+
+            <h2 class="text-xl md:text-2xl font-extrabold mb-1 text-pink-500 text-center">اطلبي الآن قبل نفاد الكمية</h2>
+            <p class="text-center text-gray-500 text-sm mb-5">🇸🇦 تأكيد هاتفي من رقم سعودي · لا دفع مقدّم</p>
+
+            <div class="space-y-4">
+              <div>
+                <input type="text" id="fullname" name="fullname" placeholder="الاسم الكامل *" required autocomplete="name" class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-pink-400 focus:outline-none text-base" />
+                <span class="err" data-for="fullname"></span>
+              </div>
+              <div>
+                <input type="tel" id="phone" name="phone" inputmode="numeric" placeholder="رقم الهاتف * (05XXXXXXXX)" required autocomplete="tel" class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-pink-400 focus:outline-none text-base" />
+                <span class="err" data-for="phone"></span>
+              </div>
+              <div>
+                <input type="text" id="city" name="city" list="cityList" placeholder="المدينة *" required autocomplete="off" class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-pink-400 focus:outline-none text-base" />
+                <datalist id="cityList">
+                  <option value="الرياض"></option><option value="جدة"></option><option value="الدمام"></option>
+                  <option value="مكة المكرمة"></option><option value="المدينة المنورة"></option><option value="الخبر"></option>
+                </datalist>
+                <span class="err" data-for="city"></span>
+              </div>
+              <div>
+                <input type="text" id="address" name="address" placeholder="العنوان الكامل * (الحي، الشارع، المبنى)" required autocomplete="street-address" class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-pink-400 focus:outline-none text-base" />
+                <span class="err" data-for="address"></span>
+              </div>
+
+              <div class="flex justify-between items-center py-3 border-t border-pink-100 font-bold text-lg">
+                <span>المجموع</span>
+                <span class="text-pink-500 text-2xl" id="totalPrice">99 ريال</span>
+              </div>
+
+              <button type="submit" class="w-full bg-pink-500 text-white py-4 md:py-5 rounded-xl text-lg md:text-xl font-bold hover:bg-pink-600 transition shadow-lg shadow-pink-200">
+                🔒 تأكيد الطلب الآن
+              </button>
+              <p class="text-center text-xs text-gray-500">بياناتكِ آمنة ولن تُشارك مع أي طرف ثالث</p>
+            </div>
+          </div>
         </div>
-        <div class="mt-8 flex flex-wrap gap-4">
-          <a href="#order" class="bg-pink-500 text-white px-8 py-4 rounded-xl text-lg font-bold hover:bg-pink-600 transition">اطلب الآن</a>
-          <a href="#offer" class="border-2 border-pink-500 text-pink-500 px-8 py-4 rounded-xl font-bold hover:bg-pink-50 transition">احصل على خصم اليوم</a>
+
+        <!-- الصورة والثقة -->
+        <div class="order-2 space-y-5">
+          <img src="assets/hero.jpg" alt="أم سعودية مع طفلها" class="rounded-3xl shadow-xl w-full object-cover aspect-[4/5] max-h-[420px] lg:max-h-none" width="640" height="800" fetchpriority="high" />
+          <div class="flex flex-wrap gap-2 text-sm font-bold text-gray-600 justify-center lg:justify-start">
+            <span class="bg-pink-50 px-4 py-2 rounded-full">✅ ضمان الجودة</span>
+            <span class="bg-pink-50 px-4 py-2 rounded-full">🚚 شحن سريع</span>
+            <span class="bg-pink-50 px-4 py-2 rounded-full">👶 من الولادة</span>
+          </div>
+          <p class="text-center lg:text-right text-amber-700 bg-amber-50 font-bold py-3 px-4 rounded-xl text-sm">⚠️ الكمية محدودة — يشمل: الجهاز + 6 رؤوس + علبة تخزين</p>
         </div>
-      </div>
-      <div>
-        <img src="assets/hero.jpg" alt="أم سعودية مع طفلها" class="rounded-3xl shadow-xl w-full object-cover aspect-[4/5]" width="640" height="800" fetchpriority="high" />
       </div>
     </div>
   </section>
@@ -111,6 +158,84 @@
     </div>
   </section>
 
+  <!-- طريقة الاستعمال حسب عمر طفلك -->
+  <section class="py-14 md:py-16 bg-pink-50/60" id="ages">
+    <div class="max-w-3xl mx-auto px-6">
+      <h2 class="text-center text-3xl md:text-4xl font-extrabold mb-3">طريقة الاستعمال <span class="text-pink-500">حسب عمر طفلك</span></h2>
+      <p class="text-center text-xl font-bold text-gray-800 mb-2">6 رؤوس — لكل مرحلة عمرية</p>
+      <p class="text-center text-gray-500 mb-10">اختاري الرأس المناسب — آمن ولطيف دائماً</p>
+
+      <div class="space-y-3">
+        <div class="bg-white rounded-2xl p-4 md:p-5 shadow-sm border border-pink-100 flex items-center gap-4">
+          <span class="w-10 h-10 rounded-full bg-gray-100 border-2 border-white shadow shrink-0" aria-hidden="true"></span>
+          <div class="flex-1 min-w-0">
+            <strong class="block text-gray-900">أبيض</strong>
+            <span class="text-sm text-gray-500">0–3 أشهر · الألطف للمواليد</span>
+          </div>
+          <span class="text-sm font-bold text-pink-500 shrink-0">مواليد</span>
+        </div>
+        <div class="bg-white rounded-2xl p-4 md:p-5 shadow-sm border border-pink-100 flex items-center gap-4">
+          <span class="w-10 h-10 rounded-full bg-blue-400 border-2 border-white shadow shrink-0" aria-hidden="true"></span>
+          <div class="flex-1 min-w-0">
+            <strong class="block text-gray-900">أزرق</strong>
+            <span class="text-sm text-gray-500">3–6 أشهر · ناعم للرضّع</span>
+          </div>
+          <span class="text-sm font-bold text-pink-500 shrink-0">رضيع</span>
+        </div>
+        <div class="bg-white rounded-2xl p-4 md:p-5 shadow-sm border border-pink-100 flex items-center gap-4">
+          <span class="w-10 h-10 rounded-full bg-orange-400 border-2 border-white shadow shrink-0" aria-hidden="true"></span>
+          <div class="flex-1 min-w-0">
+            <strong class="block text-gray-900">برتقالي</strong>
+            <span class="text-sm text-gray-500">6–12 شهر · للأطفال النشطين</span>
+          </div>
+          <span class="text-sm font-bold text-pink-500 shrink-0">طفل</span>
+        </div>
+        <div class="bg-white rounded-2xl p-4 md:p-5 shadow-sm border border-pink-100 flex items-center gap-4">
+          <span class="w-10 h-10 rounded-full bg-green-400 border-2 border-white shadow shrink-0" aria-hidden="true"></span>
+          <div class="flex-1 min-w-0">
+            <strong class="block text-gray-900">أخضر</strong>
+            <span class="text-sm text-gray-500">12+ شهر · أقوى قليلاً</span>
+          </div>
+          <span class="text-sm font-bold text-pink-500 shrink-0">كبير</span>
+        </div>
+        <div class="bg-white rounded-2xl p-4 md:p-5 shadow-sm border border-pink-100 flex items-center gap-4">
+          <span class="w-10 h-10 rounded-full bg-gray-400 border-2 border-white shadow shrink-0" aria-hidden="true"></span>
+          <div class="flex-1 min-w-0">
+            <strong class="block text-gray-900">معدني</strong>
+            <span class="text-sm text-gray-500">تلميع وتنعيم السطح</span>
+          </div>
+          <span class="text-sm font-bold text-pink-500 shrink-0">للكبار</span>
+        </div>
+        <div class="bg-white rounded-2xl p-4 md:p-5 shadow-sm border border-pink-100 flex items-center gap-4">
+          <span class="w-10 h-10 rounded-full bg-gray-200 border-2 border-white shadow shrink-0" aria-hidden="true"></span>
+          <div class="flex-1 min-w-0">
+            <strong class="block text-gray-900">أسطواني</strong>
+            <span class="text-sm text-gray-500">زوايا وأطراف دقيقة</span>
+          </div>
+          <span class="text-sm font-bold text-pink-500 shrink-0">دقة</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-10">
+        <div class="bg-white rounded-2xl p-5 text-center shadow-sm border border-pink-100">
+          <img src="assets/kit-heads.jpg" alt="6 رؤوس طحن" class="w-20 h-20 object-cover rounded-xl mx-auto mb-3" loading="lazy" />
+          <strong class="block text-sm font-bold text-gray-800">6 رؤوس طحن</strong>
+          <span class="text-xs text-gray-500">بسماكات مختلفة</span>
+        </div>
+        <div class="bg-white rounded-2xl p-5 text-center shadow-sm border border-pink-100">
+          <img src="assets/kit-case.jpg" alt="علبة تخزين" class="w-20 h-20 object-cover rounded-xl mx-auto mb-3" loading="lazy" />
+          <strong class="block text-sm font-bold text-gray-800">علبة تخزين</strong>
+          <span class="text-xs text-gray-500">شفافة ومحمولة</span>
+        </div>
+        <div class="bg-white rounded-2xl p-5 text-center shadow-sm border border-pink-100">
+          <img src="assets/kit-device.jpg" alt="الجهاز الكهربائي" class="w-20 h-20 object-cover rounded-xl mx-auto mb-3" loading="lazy" />
+          <strong class="block text-sm font-bold text-gray-800">الجهاز الكهربائي</strong>
+          <span class="text-xs text-gray-500">بطارية مدمجة</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- TESTIMONIALS -->
   <section class="py-14 md:py-16">
     <div class="max-w-6xl mx-auto px-6">
@@ -136,62 +261,7 @@
     </div>
   </section>
 
-  <!-- OFFER -->
-  <section class="py-14 md:py-16 bg-pink-50" id="offer">
-    <div class="max-w-4xl mx-auto text-center px-6">
-      <h2 class="text-3xl md:text-4xl font-extrabold mb-6">عرض خاص اليوم فقط 🔥</h2>
-      <div class="bg-white rounded-3xl p-8 md:p-10 shadow-xl border border-pink-100">
-        <p class="text-gray-400 line-through text-2xl" id="heroPriceOld">199 ريال</p>
-        <h3 class="text-5xl md:text-6xl text-pink-500 font-extrabold my-4" id="heroPriceNew">99 <span class="text-2xl">ريال</span></h3>
-        <p class="text-lg text-gray-600">يشمل: الجهاز + 6 رؤوس + علبة تخزين</p>
-        <p class="mt-4 text-lg font-bold text-gray-700">🚚 شحن سريع + 💵 الدفع عند الاستلام + ✅ ضمان الجودة</p>
-        <p class="mt-6 bg-amber-50 text-amber-800 font-bold py-3 px-4 rounded-xl inline-block">⚠️ الكمية محدودة والعرض ينتهي قريباً</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ORDER FORM -->
-  <section class="py-14 md:py-16" id="order">
-    <div class="max-w-3xl mx-auto px-6">
-      <div class="bg-white rounded-3xl shadow-xl p-8 md:p-10 border border-pink-100" id="orderFormPanel">
-        <h2 class="text-center text-3xl md:text-4xl font-extrabold mb-2 text-pink-500">اطلبي الآن قبل نفاد الكمية</h2>
-        <p class="text-center text-gray-500 mb-8">🇸🇦 تأكيد هاتفي من رقم سعودي · لا دفع مقدّم</p>
-
-        <div class="space-y-5">
-          <div>
-            <input type="text" id="fullname" name="fullname" placeholder="الاسم الكامل *" required autocomplete="name" class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-pink-400 focus:outline-none" />
-            <span class="err" data-for="fullname"></span>
-          </div>
-          <div>
-            <input type="tel" id="phone" name="phone" inputmode="numeric" placeholder="رقم الهاتف * (05XXXXXXXX)" required autocomplete="tel" class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-pink-400 focus:outline-none" />
-            <span class="err" data-for="phone"></span>
-          </div>
-          <div>
-            <input type="text" id="city" name="city" list="cityList" placeholder="المدينة *" required autocomplete="off" class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-pink-400 focus:outline-none" />
-            <datalist id="cityList">
-              <option value="الرياض"></option><option value="جدة"></option><option value="الدمام"></option>
-              <option value="مكة المكرمة"></option><option value="المدينة المنورة"></option><option value="الخبر"></option>
-            </datalist>
-            <span class="err" data-for="city"></span>
-          </div>
-          <div>
-            <input type="text" id="address" name="address" placeholder="العنوان الكامل * (الحي، الشارع، المبنى)" required autocomplete="street-address" class="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-pink-400 focus:outline-none" />
-            <span class="err" data-for="address"></span>
-          </div>
-
-          <div class="flex justify-between items-center py-3 border-t border-pink-100 font-bold text-lg">
-            <span>المجموع</span>
-            <span class="text-pink-500 text-2xl" id="totalPrice">99 ريال</span>
-          </div>
-
-          <button type="submit" class="w-full bg-pink-500 text-white py-5 rounded-xl text-xl font-bold hover:bg-pink-600 transition shadow-lg shadow-pink-200">
-            🔒 تأكيد الطلب الآن
-          </button>
-          <p class="text-center text-sm text-gray-500">بياناتكِ آمنة ولن تُشارك مع أي طرف ثالث</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- TESTIMONIALS -->
 </form>
 
 <footer class="bg-gray-900 text-white py-10 text-center text-sm">
@@ -213,7 +283,7 @@
     <span class="block text-xs text-gray-400 line-through" id="stickyPriceOld">199 ريال</span>
     <span class="text-pink-500 text-lg" id="stickyPriceNew">99 ريال</span>
   </div>
-  <a href="#order" class="flex-1 bg-pink-500 text-white text-center py-3 rounded-xl font-bold">اطلبي الآن</a>
+  <a href="#fullname" class="flex-1 bg-pink-500 text-white text-center py-3 rounded-xl font-bold">اطلبي الآن</a>
 </div>
 
 <script src="../../js/main.js?v=20260618tw" defer></script>
