@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" as="image" href="assets/hero.webp" type="image/webp" fetchpriority="high" />
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="baby.css?v=20260619urgency" />
+  <link rel="stylesheet" href="baby.css?v=20260619trustform" />
   <script src="../../js/ksadrop-baby-config.js?v=20260618snap" defer></script>
   <script src="../../js/snapchat-pixel.js?v=20260618snap" defer></script>
   <script src="../../js/load-pixels.js?v=20260618snap" defer></script>
@@ -26,6 +26,13 @@
   <input type="radio" name="qty" value="1" data-price="99" data-compare="199" checked hidden aria-hidden="true" />
 
   <section class="hero" id="home">
+    <div class="hero__banner">
+      <picture>
+        <source srcset="assets/hero.webp" type="image/webp" />
+        <img src="assets/hero.jpg" alt="أم سعودية تستخدم مبرد الأظافر على طفلها النائم" class="hero__banner-img" width="819" height="1024" fetchpriority="high" decoding="async" />
+      </picture>
+    </div>
+
     <div class="container">
       <ul class="trust-bar" aria-label="مزايا التسوق">
         <li>✅ شحن سريع لكل السعودية</li>
@@ -33,14 +40,13 @@
         <li>✅ ضمان الجودة</li>
       </ul>
       <h1 class="hero__title">
-        قص أظافر طفلك أصبح <span class="text-pink">أسهل وأكثر أماناً</span> 🤍
+        قص أظافر طفلك أصبح <span class="text-pink">أسهل وأكثر هدوءًا</span> 🤍
       </h1>
       <p class="hero__subtitle">
         وداعاً للخوف من المقص والجروح — مبرد كهربائي آمن للأطفال
       </p>
 
-      <div class="hero__grid">
-        <div id="order">
+      <div class="hero__form-wrap" id="order">
           <div class="order-panel" id="orderFormPanel">
             <div class="order-panel__offer" id="offer">
               <span class="order-panel__tag">💕 لأن طفلكِ يستحق الأمان والراحة</span>
@@ -100,27 +106,18 @@
                 <span class="form-total__amount" id="totalPrice">99 ريال</span>
               </div>
 
+              <ul class="form-trust">
+                <li>✅ آمن ولطيف على أظافر الأطفال</li>
+                <li>✅ هادئ ولا يوقظ الطفل</li>
+                <li>✅ الدفع عند الاستلام</li>
+              </ul>
+
               <button type="submit" class="btn-submit">🔒 تأكيد الطلب الآن</button>
               <p class="form-privacy">بياناتكِ آمنة ولن تُشارك مع أي طرف ثالث</p>
             </div>
           </div>
-        </div>
-
-        <div class="hero__media">
-          <div class="hero__visual">
-            <picture>
-              <source srcset="assets/hero.webp" type="image/webp" />
-              <img src="assets/hero.jpg" alt="عناية هادئة وأمان لطفلك — مبرد أظافر الأطفال" class="hero__img" width="819" height="1024" fetchpriority="high" decoding="async" />
-            </picture>
-          </div>
-          <div class="hero__badges">
-            <span class="badge">✅ ضمان الجودة</span>
-            <span class="badge">🚚 شحن سريع</span>
-            <span class="badge">👶 من الولادة</span>
-          </div>
-          <p class="badge badge--amber">⚠️ الكمية محدودة — يشمل: الجهاز + 6 رؤوس + علبة تخزين</p>
-        </div>
       </div>
+      <p class="hero__kit-note">⚠️ الكمية محدودة — يشمل: الجهاز + 6 رؤوس + علبة تخزين</p>
     </div>
   </section>
 
@@ -150,10 +147,6 @@
   <section class="section section--white">
     <div class="container split">
       <div class="split__images">
-        <picture>
-          <source srcset="assets/product.webp" type="image/webp" />
-          <img src="assets/product.jpg" alt="مبرد أظافر الأطفال الكهربائي" class="rounded-img" loading="lazy" decoding="async" width="600" height="600" />
-        </picture>
         <picture>
           <source srcset="assets/usage.webp" type="image/webp" />
           <img src="assets/usage.jpg" alt="أم سعودية مع طفلها — مبرد أظافر الأطفال الكهربائي" class="rounded-img" loading="lazy" decoding="async" width="709" height="721" />

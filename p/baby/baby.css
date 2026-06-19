@@ -48,11 +48,71 @@ a { color: inherit; text-decoration: none; }
 /* Hero */
 .hero {
   background: #fff;
-  padding: 2rem 0;
+  padding: 0 0 2rem;
 }
 
 @media (min-width: 768px) {
-  .hero { padding: 3rem 0; }
+  .hero { padding-bottom: 3rem; }
+}
+
+.hero__banner {
+  width: 100%;
+  margin-bottom: 1.25rem;
+  overflow: hidden;
+  background: #fdf2f8;
+}
+
+.hero__banner-img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center top;
+  aspect-ratio: 4 / 5;
+  max-height: min(78vh, 520px);
+}
+
+@media (min-width: 640px) {
+  .hero__banner-img {
+    aspect-ratio: 16 / 10;
+    max-height: min(62vh, 560px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero__banner-img {
+    max-height: 600px;
+  }
+}
+
+.hero__form-wrap {
+  max-width: 36rem;
+  margin: 1.75rem auto 0;
+}
+
+@media (min-width: 1024px) {
+  .hero__form-wrap {
+    margin: 2rem 0 0;
+    max-width: 32rem;
+  }
+}
+
+.hero__kit-note {
+  text-align: center;
+  color: #b45309;
+  background: #fffbeb;
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  margin: 1.25rem 0 0;
+}
+
+@media (min-width: 1024px) {
+  .hero__kit-note { text-align: right; }
+}
+
+.hero .container {
+  padding-top: 0.25rem;
 }
 
 .trust-bar {
@@ -117,19 +177,7 @@ a { color: inherit; text-decoration: none; }
   .hero__subtitle {
     text-align: right;
     max-width: 42rem;
-    margin-inline-start: auto;
   }
-}
-
-.hero__grid {
-  display: grid;
-  gap: 2rem;
-  margin-top: 2rem;
-  align-items: start;
-}
-
-@media (min-width: 1024px) {
-  .hero__grid { grid-template-columns: 1fr 1fr; }
 }
 
 .hero__media { display: flex; flex-direction: column; gap: 1.25rem; }
@@ -392,6 +440,29 @@ a { color: inherit; text-decoration: none; }
 .form-total__amount {
   color: #ec4899;
   font-size: 1.5rem;
+}
+
+.form-trust {
+  list-style: none;
+  margin: 0;
+  padding: 0.875rem 1rem;
+  background: #fdf2f8;
+  border: 1px solid #fbcfe8;
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-trust li {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #831843;
+  line-height: 1.45;
+}
+
+@media (min-width: 640px) {
+  .form-trust li { font-size: 0.875rem; }
 }
 
 .btn-submit {
