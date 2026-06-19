@@ -145,8 +145,6 @@
   if (storeConfig().deferPixelLoad) {
     if (document.readyState === 'complete') scheduleActivate();
     else window.addEventListener('load', scheduleActivate, { once: true });
-  } else if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', activateTikTok, { once: true });
   } else {
     activateTikTok();
   }
