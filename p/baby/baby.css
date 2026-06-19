@@ -85,7 +85,7 @@ a { color: inherit; text-decoration: none; }
   width: 100%;
   display: block;
   object-fit: cover;
-  object-position: center top;
+  object-position: center 15%;
   aspect-ratio: 4 / 5;
   max-height: min(72vh, 460px);
 }
