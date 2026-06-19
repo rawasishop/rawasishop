@@ -32,6 +32,8 @@
       };
       for (var i = 0; i < ttq.methods.length; i++) ttq.setAndDefer(ttq, ttq.methods[i]);
       ttq.load = function (id, n) {
+        if (ttq._loaded) return;
+        ttq._loaded = true;
         var r = 'https://analytics.tiktok.com/i18n/pixel/events.js';
         ttq._i = ttq._i || {};
         ttq._i[id] = [];
@@ -47,9 +49,23 @@
         var e = d.getElementsByTagName('script')[0];
         e.parentNode.insertBefore(s, e);
       };
-      ttq.load(PIXEL_ID);
-      ttq.page();
     }(window, document, 'ttq');
+  }
+
+  function activateTikTok() {
+    if (window.ttq && typeof window.ttq.load === 'function') {
+      window.ttq.load(PIXEL_ID);
+      window.ttq.page();
+    }
+    window.RAWASI_TIKTOK.trackViewContent(defaultValue());
+  }
+
+  function scheduleActivate() {
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(activateTikTok, { timeout: 5000 });
+    } else {
+      setTimeout(activateTikTok, 2000);
+    }
   }
 
   function getContentId() {
@@ -126,11 +142,12 @@
     }
   };
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () {
-      window.RAWASI_TIKTOK.trackViewContent(defaultValue());
-    }, { once: true });
+  if (storeConfig().deferPixelLoad) {
+    if (document.readyState === 'complete') scheduleActivate();
+    else window.addEventListener('load', scheduleActivate, { once: true });
+  } else if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', activateTikTok, { once: true });
   } else {
-    window.RAWASI_TIKTOK.trackViewContent(defaultValue());
+    activateTikTok();
   }
 })();

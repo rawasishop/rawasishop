@@ -43,7 +43,7 @@ a { color: inherit; text-decoration: none; }
 .text-center { text-align: center; }
 
 .font-bold { font-weight: 700; }
-.font-extrabold { font-weight: 800; }
+.font-extrabold { font-weight: 700; }
 
 /* Hero */
 .hero {
@@ -181,7 +181,7 @@ a { color: inherit; text-decoration: none; }
 
 .hero__title {
   font-size: 1.875rem;
-  font-weight: 800;
+  font-weight: 700;
   line-height: 1.25;
   text-align: center;
   margin: 0;
@@ -329,7 +329,7 @@ a { color: inherit; text-decoration: none; }
 .order-panel__price {
   color: #ec4899;
   font-size: 2.25rem;
-  font-weight: 800;
+  font-weight: 700;
   margin: 0.25rem 0;
 }
 
@@ -383,7 +383,7 @@ a { color: inherit; text-decoration: none; }
 
 .order-panel__heading {
   font-size: 1.25rem;
-  font-weight: 800;
+  font-weight: 700;
   color: #ec4899;
   text-align: center;
   margin: 0 0 0.25rem;
@@ -523,7 +523,15 @@ a { color: inherit; text-decoration: none; }
 }
 
 /* Sections */
-.section { padding: 3.5rem 0; }
+.section {
+  padding: 3.5rem 0;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 420px;
+}
+
+.hero {
+  content-visibility: visible;
+}
 
 @media (min-width: 768px) {
   .section { padding: 4rem 0; }
@@ -534,7 +542,7 @@ a { color: inherit; text-decoration: none; }
 
 .section__title {
   font-size: 1.875rem;
-  font-weight: 800;
+  font-weight: 700;
   margin: 0 0 3rem;
   text-align: center;
 }

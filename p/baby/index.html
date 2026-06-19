@@ -12,19 +12,21 @@
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="preload" as="image" href="assets/hero.webp?v=black-hijab" type="image/webp" fetchpriority="high" />
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="baby.css?v=20260619blackhero" />
-  <script src="../../js/ksadrop-baby-config.js?v=20260618snap" defer></script>
-  <script src="../../js/snapchat-pixel.js?v=20260618snap" defer></script>
-  <script src="../../js/load-pixels.js?v=20260618snap" defer></script>
-  <script src="../../js/tiktok-pixel.js?v=20260618snap" defer></script>
+  <link rel="preload" href="baby.css?v=20260619perf" as="style" />
+  <link rel="preload" as="image" href="assets/hero-640.webp?v=black-hijab" type="image/webp" fetchpriority="high" media="(max-width: 640px)" />
+  <link rel="preload" as="image" href="assets/hero.webp?v=black-hijab" type="image/webp" fetchpriority="high" media="(min-width: 641px)" />
+  <link rel="stylesheet" href="baby.css?v=20260619perf" />
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet" /></noscript>
 </head>
 <body>
 
   <div class="hero__banner hero__banner--top">
     <picture>
-      <source srcset="assets/hero.webp?v=black-hijab" type="image/webp" />
+      <source
+        srcset="assets/hero-640.webp?v=black-hijab 640w, assets/hero.webp?v=black-hijab 960w"
+        sizes="(max-width: 640px) 100vw, 28rem"
+        type="image/webp" />
       <img src="assets/hero.jpg?v=black-hijab" alt="أم سعودية بالحجاب الأسود تستخدم مبرد الأظافر على طفلها النائم — عناية هادئة" class="hero__banner-img" width="819" height="1024" fetchpriority="high" decoding="async" />
     </picture>
   </div>
@@ -265,7 +267,7 @@
       <div>
         <picture>
           <source srcset="assets/delivery.webp" type="image/webp" />
-          <img src="assets/delivery.png" alt="توصيل المنتج لباب البيت — الدفع عند الاستلام" class="rounded-img" loading="lazy" decoding="async" width="960" height="720" />
+          <img src="assets/delivery.jpg" alt="توصيل المنتج لباب البيت — الدفع عند الاستلام" class="rounded-img" loading="lazy" decoding="async" width="720" height="540" />
         </picture>
       </div>
       <div class="delivery-text">
@@ -333,6 +335,10 @@
   <a href="#fullname" class="sticky-cta__btn">اطلبي الآن</a>
 </div>
 
-<script src="../../js/main.js?v=20260619fix" defer></script>
+<script src="../../js/ksadrop-baby-config.js?v=20260619perf" defer></script>
+<script src="../../js/snapchat-pixel.js?v=20260619perf" defer></script>
+<script src="../../js/load-pixels.js?v=20260619perf" defer></script>
+<script src="../../js/tiktok-pixel.js?v=20260619perf" defer></script>
+<script src="../../js/main.js?v=20260619perf" defer></script>
 </body>
 </html>
