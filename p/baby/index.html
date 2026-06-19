@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" as="image" href="assets/hero.webp" type="image/webp" fetchpriority="high" />
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="baby.css?v=20260618fields" />
+  <link rel="stylesheet" href="baby.css?v=20260619urgency" />
   <script src="../../js/ksadrop-baby-config.js?v=20260618snap" defer></script>
   <script src="../../js/snapchat-pixel.js?v=20260618snap" defer></script>
   <script src="../../js/load-pixels.js?v=20260618snap" defer></script>
@@ -27,6 +27,11 @@
 
   <section class="hero" id="home">
     <div class="container">
+      <ul class="trust-bar" aria-label="مزايا التسوق">
+        <li>✅ شحن سريع لكل السعودية</li>
+        <li>✅ الدفع عند الاستلام</li>
+        <li>✅ ضمان الجودة</li>
+      </ul>
       <h1 class="hero__title">
         قص أظافر طفلك أصبح <span class="text-pink">أسهل وأكثر أماناً</span> 🤍
       </h1>
@@ -41,11 +46,15 @@
               <span class="order-panel__tag">💕 لأن طفلكِ يستحق الأمان والراحة</span>
               <p class="order-panel__old-price" id="heroPriceOld">199 ريال</p>
               <p class="order-panel__price" id="heroPriceNew">99 <span>ريال</span></p>
+              <div class="order-urgency" aria-live="polite">
+                <p class="order-urgency__deal">🔥 العرض ينتهي اليوم — <strong id="urgencyTimer">--:--:--</strong></p>
+                <p class="order-urgency__stock">⚠️ متبقي <strong id="stockCount">17</strong> قطعة فقط</p>
+              </div>
               <p class="order-panel__note">💵 الدفع عند الاستلام · 🚚 شحن سريع</p>
             </div>
 
-            <h2 class="order-panel__heading">اطلبي الآن قبل نفاد الكمية</h2>
-            <p class="order-panel__sub">🇸🇦 تأكيد هاتفي من رقم سعودي · لا دفع مقدّم</p>
+            <h2 class="order-panel__heading">احمي أصابع طفلك اليوم 🤍</h2>
+            <p class="order-panel__sub">اطلبي الآن والدفع عند الاستلام</p>
 
             <div class="form-stack">
               <div class="form-row">
@@ -101,11 +110,7 @@
           <div class="hero__visual">
             <picture>
               <source srcset="assets/hero.webp" type="image/webp" />
-              <img src="assets/hero.jpg" alt="أم سعودية مع طفلها" class="hero__img" width="640" height="800" fetchpriority="high" decoding="async" />
-            </picture>
-            <picture class="hero__product">
-              <source srcset="assets/hero-product.webp" type="image/webp" />
-              <img src="assets/hero-product.png" alt="مبرد أظافر الأطفال الكهربائي" width="416" height="442" loading="lazy" decoding="async" />
+              <img src="assets/hero.jpg" alt="عناية هادئة وأمان لطفلك — مبرد أظافر الأطفال" class="hero__img" width="819" height="1024" fetchpriority="high" decoding="async" />
             </picture>
           </div>
           <div class="hero__badges">
@@ -151,13 +156,13 @@
         </picture>
         <picture>
           <source srcset="assets/usage.webp" type="image/webp" />
-          <img src="assets/usage.jpg" alt="استخدام آمن أثناء نوم الطفل" class="rounded-img" loading="lazy" decoding="async" width="960" height="960" />
+          <img src="assets/usage.jpg" alt="أم سعودية مع طفلها — مبرد أظافر الأطفال الكهربائي" class="rounded-img" loading="lazy" decoding="async" width="709" height="721" />
         </picture>
       </div>
       <div>
         <h2 class="section__title section__title--left">الحل الآمن الذي <span class="text-pink">تثق به كل أم</span></h2>
         <ul class="feature-list">
-          <li><span>✅</span> آمن 100% على أظافر الأطفال</li>
+          <li><span>✅</span> مصمم بلطف ليناسب أظافر الأطفال الحساسة</li>
           <li><span>✅</span> هادئ جداً ولا يوقظ الطفل</li>
           <li><span>✅</span> مزود بإضاءة LED للاستخدام الليلي</li>
           <li><span>✅</span> 6 رؤوس حسب العمر</li>
@@ -327,6 +332,39 @@
   <a href="#fullname" class="sticky-cta__btn">اطلبي الآن</a>
 </div>
 
+<script>
+(function () {
+  var el = document.getElementById('urgencyTimer');
+  if (!el) return;
+
+  function pad(n) { return n < 10 ? '0' + n : String(n); }
+
+  function riyadhParts() {
+    var parts = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Asia/Riyadh',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: false
+    }).formatToParts(new Date());
+    var map = {};
+    parts.forEach(function (p) { if (p.type !== 'literal') map[p.type] = +p.value; });
+    return map;
+  }
+
+  function tick() {
+    var t = riyadhParts();
+    var left = (23 - t.hour) * 3600 + (59 - t.minute) * 60 + (59 - t.second);
+    var h = Math.floor(left / 3600);
+    var m = Math.floor((left % 3600) / 60);
+    var s = left % 60;
+    el.textContent = pad(h) + ':' + pad(m) + ':' + pad(s);
+  }
+
+  tick();
+  setInterval(tick, 1000);
+})();
+</script>
 <script src="../../js/main.js?v=20260618snap" defer></script>
 </body>
 </html>
