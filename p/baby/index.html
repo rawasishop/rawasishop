@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preload" as="image" href="assets/hero.webp" type="image/webp" fetchpriority="high" />
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="baby.css?v=20260619trustform" />
+  <link rel="stylesheet" href="baby.css?v=20260619fix" />
   <script src="../../js/ksadrop-baby-config.js?v=20260618snap" defer></script>
   <script src="../../js/snapchat-pixel.js?v=20260618snap" defer></script>
   <script src="../../js/load-pixels.js?v=20260618snap" defer></script>
@@ -22,17 +22,17 @@
 </head>
 <body>
 
+  <div class="hero__banner hero__banner--top">
+    <picture>
+      <source srcset="assets/hero.webp" type="image/webp" />
+      <img src="assets/hero.jpg" alt="أم سعودية تستخدم مبرد الأظافر على طفلها النائم" class="hero__banner-img" width="819" height="1024" fetchpriority="high" decoding="async" />
+    </picture>
+  </div>
+
 <form id="orderForm" novalidate>
   <input type="radio" name="qty" value="1" data-price="99" data-compare="199" checked hidden aria-hidden="true" />
 
   <section class="hero" id="home">
-    <div class="hero__banner">
-      <picture>
-        <source srcset="assets/hero.webp" type="image/webp" />
-        <img src="assets/hero.jpg" alt="أم سعودية تستخدم مبرد الأظافر على طفلها النائم" class="hero__banner-img" width="819" height="1024" fetchpriority="high" decoding="async" />
-      </picture>
-    </div>
-
     <div class="container">
       <ul class="trust-bar" aria-label="مزايا التسوق">
         <li>✅ شحن سريع لكل السعودية</li>
@@ -53,8 +53,8 @@
               <p class="order-panel__old-price" id="heroPriceOld">199 ريال</p>
               <p class="order-panel__price" id="heroPriceNew">99 <span>ريال</span></p>
               <div class="order-urgency" aria-live="polite">
-                <p class="order-urgency__deal">🔥 العرض ينتهي اليوم — <strong id="urgencyTimer">--:--:--</strong></p>
-                <p class="order-urgency__stock">⚠️ متبقي <strong id="stockCount">17</strong> قطعة فقط</p>
+                <p class="order-urgency__deal">🔥 العرض ينتهي اليوم</p>
+                <p class="order-urgency__stock">⚠️ متبقي <strong>17</strong> قطعة فقط</p>
               </div>
               <p class="order-panel__note">💵 الدفع عند الاستلام · 🚚 شحن سريع</p>
             </div>
@@ -325,39 +325,6 @@
   <a href="#fullname" class="sticky-cta__btn">اطلبي الآن</a>
 </div>
 
-<script>
-(function () {
-  var el = document.getElementById('urgencyTimer');
-  if (!el) return;
-
-  function pad(n) { return n < 10 ? '0' + n : String(n); }
-
-  function riyadhParts() {
-    var parts = new Intl.DateTimeFormat('en-GB', {
-      timeZone: 'Asia/Riyadh',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      hour12: false
-    }).formatToParts(new Date());
-    var map = {};
-    parts.forEach(function (p) { if (p.type !== 'literal') map[p.type] = +p.value; });
-    return map;
-  }
-
-  function tick() {
-    var t = riyadhParts();
-    var left = (23 - t.hour) * 3600 + (59 - t.minute) * 60 + (59 - t.second);
-    var h = Math.floor(left / 3600);
-    var m = Math.floor((left % 3600) / 60);
-    var s = left % 60;
-    el.textContent = pad(h) + ':' + pad(m) + ':' + pad(s);
-  }
-
-  tick();
-  setInterval(tick, 1000);
-})();
-</script>
-<script src="../../js/main.js?v=20260618snap" defer></script>
+<script src="../../js/main.js?v=20260619fix" defer></script>
 </body>
 </html>
