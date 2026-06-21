@@ -406,6 +406,7 @@
         ? (TAAGER.normalizeSaPhone ? TAAGER.normalizeSaPhone(form.phone2.value.trim()) : form.phone2.value.trim())
         : '';
       var notesVal = form.notes ? form.notes.value.trim() : '';
+      var traffic = window.RAWASI_TRAFFIC ? RAWASI_TRAFFIC.get() : {};
 
       var order = {
         name: form.fullname.value.trim(),
@@ -428,6 +429,11 @@
         country: 'SA',
         platform: TAAGER.platform || 'taager',
         source: TAAGER.pageSource || 'rawasishop-landing',
+        adSource: traffic.adSource || 'direct',
+        adSourceLabel: traffic.adSourceLabel || 'مباشر',
+        utm_source: traffic.utm_source || '',
+        utm_medium: traffic.utm_medium || '',
+        utm_campaign: traffic.utm_campaign || '',
         supplierUrl: TAAGER.supplierUrl || '',
         transaction_id: 'RS-' + Date.now(),
         date: new Date().toISOString()

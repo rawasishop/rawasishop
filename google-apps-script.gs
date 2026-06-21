@@ -111,6 +111,7 @@ function appendOrderRow_(d) {
   sheet.appendRow([
     new Date(),
     d.source || 'rawasishop',
+    adSourceLabel_(d),
     'KSA',
     d.name || '',
     "'" + (d.phone || ''),
@@ -121,7 +122,8 @@ function appendOrderRow_(d) {
     qty,
     total,
     'SAR',
-    d.payment || 'cod'
+    d.payment || 'cod',
+    d.utm_campaign || ''
   ]);
 }
 
@@ -143,10 +145,32 @@ function buildAlertText_(d) {
     '💳 ' + payment + '\n' +
     '🆔 SKU: ' + sku + '\n' +
     '🔢 المنتج: ' + (d.taagerId || tid) + '\n' +
-    '🏪 المنصة: ' + (d.platform || 'taager') + '\n' +
+    '📣 مصدر الإعلان: ' + adSourceLabel_(d) + '\n' +
+    (d.utm_campaign ? '🎯 الحملة: ' + d.utm_campaign + '\n' : '') +
+    '🏪 المورد: ' + supplierLabel_(d) + '\n' +
     (d.supplierUrl ? '🔗 ' + d.supplierUrl + '\n' : '') +
     '🌍 السعودية'
   );
+}
+
+function adSourceLabel_(d) {
+  if (d.adSourceLabel) return d.adSourceLabel;
+  var map = {
+    facebook: 'فيسبوك / إنستغرام',
+    tiktok: 'تيك توك',
+    snapchat: 'سناب شات',
+    google: 'جوجل',
+    direct: 'مباشر',
+    referral: 'رابط خارجي'
+  };
+  var key = String(d.adSource || '').toLowerCase();
+  return map[key] || d.adSource || 'غير معروف';
+}
+
+function supplierLabel_(d) {
+  var p = String(d.platform || '').toLowerCase();
+  if (p === 'ksadrop') return 'KSA Drop';
+  return d.platform || 'taager';
 }
 
 function qtyLabel_(d) {
