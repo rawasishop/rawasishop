@@ -45,7 +45,7 @@
   deferHeavy(function () {
     initTracking();
     if (!TAAGER.skipServiceWorker && 'serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js?v=3').then(function (reg) {
+      navigator.serviceWorker.register('/sw.js?v=4').then(function (reg) {
         reg.update();
       }).catch(function () {});
     }

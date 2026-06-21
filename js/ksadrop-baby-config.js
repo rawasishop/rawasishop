@@ -24,8 +24,9 @@ window.RAWASI_TAAGER = {
   fbPixelId: '1007677050990489',
   snapPixelId: '0ae4a60f-bad3-4443-9ce3-7a9aa9be9f73',
   compareAt: 199,
-  deferPixelLoad: false,
-  skipServiceWorker: true,
+  deferPixelLoad: true,
+  pixelPlatforms: ['facebook'],
+  skipServiceWorker: false,
 
   normalizeSaPhone: function (phone) {
     var d = String(phone || '').replace(/\D/g, '');

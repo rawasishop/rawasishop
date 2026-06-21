@@ -7,7 +7,7 @@ html {
 
 body {
   margin: 0;
-  font-family: 'Tajawal', sans-serif;
+  font-family: 'Tajawal', system-ui, -apple-system, 'Segoe UI', sans-serif;
   background: #fff9fa;
   color: #1f2937;
   line-height: 1.5;
