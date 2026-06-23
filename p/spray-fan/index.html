@@ -7,10 +7,10 @@
   <meta name="theme-color" content="#0a1628">
   <link rel="canonical" href="https://www.rawasishop.com/p/spray-fan/" />
   <meta property="og:title" content="مروحة الرذاذ المزدوجة — 159 ر.س" />
-  <meta property="og:image" content="https://www.rawasishop.com/p/spray-fan/images/20-marketing-hero-bedroom.png" />
+  <meta property="og:image" content="https://www.rawasishop.com/p/spray-fan/images/hero-ad.png" />
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
   <title>مروحة الرذاذ المزدوجة | تبريد فوري ورذاذ منعش — 159 ر.س</title>
-  <link rel="preload" as="image" href="images/20-marketing-hero-bedroom.png" fetchpriority="high" />
+  <link rel="preload" as="image" href="images/hero-ad.png" fetchpriority="high" media="(max-width: 1024px)" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
@@ -80,7 +80,61 @@
     }
 
     .wrap { position: relative; z-index: 1; }
+    .page-flex { display: flex; flex-direction: column; }
     .container { width: min(1140px, 92vw); margin: 0 auto; }
+
+    /* ─── Mobile / tablet: banner + form first ─── */
+    .mobile-hero-banner {
+      display: none;
+      position: relative;
+      z-index: 2;
+      line-height: 0;
+      background: #060d18;
+    }
+    .mobile-hero-banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+      max-height: min(72vh, 680px);
+      object-fit: cover;
+      object-position: center top;
+    }
+    .order-section--mobile-first {
+      padding-top: 0;
+    }
+    .order-section--mobile-first .order-box {
+      max-width: none;
+      border-radius: 0 0 24px 24px;
+      margin-top: 0;
+    }
+
+    @media (max-width: 1024px) {
+      .mobile-hero-banner { display: block; }
+      .hud-bar { display: none; }
+      .page-flex .order-section { order: 1; }
+      .page-flex .main-content { order: 2; }
+      .main-content .hero { display: none; }
+      .main-content nav { padding-top: 10px; padding-bottom: 10px; }
+      .main-content .nav-cta { display: none; }
+      .order-section { padding: 0 0 40px; }
+      .order-section .container { width: 100%; padding: 0; }
+      .order-section .order-box {
+        border-radius: 0 0 20px 20px;
+        border-top: none;
+        padding: 20px 16px 24px;
+      }
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        font-size: 16px;
+        padding: 15px 16px;
+      }
+    }
+
+    @media (min-width: 1025px) {
+      .page-flex .main-content { order: 1; }
+      .page-flex .order-section { order: 2; }
+    }
 
     /* ─── Top HUD bar ─── */
     .hud-bar {
@@ -879,6 +933,17 @@
     <div class="snow-canvas" id="snowCanvas"></div>
   </div>
 
+  <div class="mobile-hero-banner">
+    <img
+      src="images/hero-ad.png"
+      alt="من حرّ الصيف إلى برودة المنقذ — مروحة الرذاذ المزدوجة 159 ر.س"
+      width="1536"
+      height="1024"
+      fetchpriority="high"
+      decoding="async"
+    />
+  </div>
+
   <div class="hud-bar">
     <div class="hud-item"><span class="hud-dot"></span> COOLING SYS ONLINE</div>
     <div class="hud-item">LOC: <span class="hud-temp">السعودية 🇸🇦</span></div>
@@ -886,7 +951,73 @@
     <div class="hud-item">STATUS: <span class="hud-temp">READY</span></div>
   </div>
 
-  <div class="wrap">
+  <div class="wrap page-flex">
+    <!-- ORDER — يظهر مباشرة تحت البanner على الجوال والتابلت -->
+    <section class="order-section order-section--mobile-first order-section--priority" id="order">
+      <div class="container">
+        <div class="order-box" id="orderFormPanel">
+          <p class="section-tag">INITIATE ORDER</p>
+          <h2>اطلب مروحة الرذاذ المزدوجة الآن 🛒</h2>
+          <p class="order-hint">املأ البيانات — سيتصل بك فريق التأكيد خلال دقائق لإتمام الطلب</p>
+          <div class="cod-strip">💚 ادفع عند الاستلام — <span id="totalPrice">159 ريال</span> فقط</div>
+
+          <form id="orderForm" novalidate>
+            <input type="radio" name="qty" value="1" data-price="159" data-compare="199" checked hidden aria-hidden="true" />
+            <div class="form-group" id="fg-name">
+              <label for="fullname">الاسم الكامل *</label>
+              <input type="text" id="fullname" name="fullname" placeholder="مثال: محمد العتيبي" required autocomplete="name">
+              <span class="err" data-for="fullname"></span>
+            </div>
+            <div class="form-group" id="fg-phone">
+              <label for="phone">رقم الجوال *</label>
+              <input type="tel" id="phone" name="phone" placeholder="05xxxxxxxx" inputmode="numeric" required autocomplete="tel" dir="ltr">
+              <span class="err" data-for="phone"></span>
+            </div>
+            <div class="form-group" id="fg-city">
+              <label for="city">المدينة *</label>
+              <select id="city" name="city" required>
+                <option value="">اختار مدينتك</option>
+                <option>الرياض</option>
+                <option>جدة</option>
+                <option>مكة المكرمة</option>
+                <option>المدينة المنورة</option>
+                <option>الدمام</option>
+                <option>الخبر</option>
+                <option>الظهران</option>
+                <option>الطائف</option>
+                <option>بريدة</option>
+                <option>تبوك</option>
+                <option>أبها</option>
+                <option>خميس مشيط</option>
+                <option>حائل</option>
+                <option>نجران</option>
+                <option>جازان</option>
+                <option>الجبيل</option>
+                <option>ينبع</option>
+                <option>أخرى</option>
+              </select>
+              <span class="err" data-for="city"></span>
+            </div>
+            <div class="form-group" id="fg-district">
+              <label for="district">الحي *</label>
+              <input type="text" id="district" name="district" placeholder="اسم الحي" required>
+              <span class="err" data-for="district"></span>
+            </div>
+            <div class="form-group" id="fg-address">
+              <label for="address">العنوان التفصيلي *</label>
+              <textarea id="address" name="address" rows="2" placeholder="الشارع، رقم المبنى، أقرب معلم" required></textarea>
+              <span class="err" data-for="address"></span>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;margin-top:8px;">
+              ✅ تأكيد الطلب — 159 ر.س COD
+            </button>
+            <p class="form-note">بالضغط على تأكيد الطلب، توافق على استقبال مكالمة التأكيد لإتمام التوصيل</p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <div class="main-content">
     <div class="container">
       <nav>
         <div>
@@ -1169,70 +1300,7 @@
       </div>
     </section>
 
-    <!-- ORDER -->
-    <section class="order-section" id="order">
-      <div class="container">
-        <div class="order-box">
-          <p class="section-tag">INITIATE ORDER</p>
-          <h2>اطلب مروحة الرذاذ المزدوجة الآن 🛒</h2>
-          <p class="order-hint">املأ البيانات — سيتصل بك فريق التأكيد خلال دقائق لإتمام الطلب</p>
-          <div class="cod-strip">💚 ادفع عند الاستلام — <span id="totalPrice">159 ريال</span> فقط</div>
-
-          <form id="orderForm" novalidate>
-            <input type="radio" name="qty" value="1" data-price="159" data-compare="199" checked hidden aria-hidden="true" />
-            <div class="form-group" id="fg-name">
-              <label for="fullname">الاسم الكامل *</label>
-              <input type="text" id="fullname" name="fullname" placeholder="مثال: محمد العتيبي" required autocomplete="name">
-              <span class="err" data-for="fullname"></span>
-            </div>
-            <div class="form-group" id="fg-phone">
-              <label for="phone">رقم الجوال *</label>
-              <input type="tel" id="phone" name="phone" placeholder="05xxxxxxxx" inputmode="numeric" required autocomplete="tel" dir="ltr">
-              <span class="err" data-for="phone"></span>
-            </div>
-            <div class="form-group" id="fg-city">
-              <label for="city">المدينة *</label>
-              <select id="city" name="city" required>
-                <option value="">اختار مدينتك</option>
-                <option>الرياض</option>
-                <option>جدة</option>
-                <option>مكة المكرمة</option>
-                <option>المدينة المنورة</option>
-                <option>الدمام</option>
-                <option>الخبر</option>
-                <option>الظهران</option>
-                <option>الطائف</option>
-                <option>بريدة</option>
-                <option>تبوك</option>
-                <option>أبها</option>
-                <option>خميس مشيط</option>
-                <option>حائل</option>
-                <option>نجران</option>
-                <option>جازان</option>
-                <option>الجبيل</option>
-                <option>ينبع</option>
-                <option>أخرى</option>
-              </select>
-              <span class="err" data-for="city"></span>
-            </div>
-            <div class="form-group" id="fg-district">
-              <label for="district">الحي *</label>
-              <input type="text" id="district" name="district" placeholder="اسم الحي" required>
-              <span class="err" data-for="district"></span>
-            </div>
-            <div class="form-group" id="fg-address">
-              <label for="address">العنوان التفصيلي *</label>
-              <textarea id="address" name="address" rows="2" placeholder="الشارع، رقم المبنى، أقرب معلم" required></textarea>
-              <span class="err" data-for="address"></span>
-            </div>
-            <button type="submit" class="btn btn-primary" style="width:100%;margin-top:8px;">
-              ✅ تأكيد الطلب — 159 ر.س COD
-            </button>
-            <p class="form-note">بالضغط على تأكيد الطلب، توافق على استقبال مكالمة التأكيد لإتمام التوصيل</p>
-          </form>
-        </div>
-      </div>
-    </section>
+    </div><!-- /.main-content -->
 
     <!-- FAQ -->
     <section>
