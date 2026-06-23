@@ -1,0 +1,123 @@
+/* =========================================================
+   RawasiShop × Gulf COD — مروحة الرذاذ المزدوجة
+   SKU: D-726-KSA | تكلفة: 46 + 26 توصيل = 72 ر.س
+   ========================================================= */
+window.RAWASI_TAAGER = {
+  platform: 'gulfcod',
+  productId: 'double-ended-spray-fan',
+  productSku: 'D-726-KSA',
+  productName: 'مروحة الرذاذ المزدوجة — Double Ended Spray Fan',
+  supplierUrl: 'https://sa.gulf-5hop.com/product/duel-mist-fan/',
+  pageSource: 'rawasishop-spray-fan',
+  country: 'SA',
+  currency: 'SAR',
+  wholesale: 72,
+  minSell: 149,
+  bundles: {
+    1: { title: 'قطعة واحدة', price: 159, units: 1 }
+  },
+  sellerWhatsapp: '212633405061',
+  sheetWebhook: 'https://script.google.com/macros/s/AKfycbwbAiejjtqfwj0HqzGtMEwQEo7yG7lxl9skMjIlSnz6hFdlhYCZ1ZUNQ3VTQFtZgLc/exec',
+  openWhatsAppOnOrder: false,
+  orderNotify: 'telegram',
+  fbPixelId: '1007677050990489',
+  compareAt: 199,
+  deferPixelLoad: true,
+  pixelPlatforms: ['facebook'],
+  skipServiceWorker: false,
+
+  normalizeSaPhone: function (phone) {
+    var d = String(phone || '').replace(/\D/g, '');
+    if (d.indexOf('966') === 0) d = '0' + d.slice(3);
+    if (d.length === 9 && d.charAt(0) === '5') d = '0' + d;
+    return d;
+  },
+
+  isValidSaPhone: function (phone) {
+    return /^05\d{8}$/.test(this.normalizeSaPhone(phone));
+  },
+
+  profitEstimate: function (sellPrice) {
+    return Math.max(0, sellPrice - this.wholesale);
+  },
+
+  buildSellerWhatsApp: function (order) {
+    var unitPrice = order.unitPrice || order.sellPrice || order.totalNum || 0;
+    var msg =
+      '📦 *طلب جديد — RawasiShop*\n' +
+      '━━━━━━━━━━━━━━━━\n' +
+      '🏪 المورد: Gulf COD\n' +
+      '🔗 ' + this.supplierUrl + '\n' +
+      '🆔 SKU: ' + this.productSku + '\n' +
+      '🧴 ' + this.productName + '\n' +
+      '👤 الاسم: ' + order.name + '\n' +
+      '📞 الهاتف: ' + this.normalizeSaPhone(order.phone) + '\n' +
+      '🏛️ المحافظة: ' + order.city + '\n' +
+      '📍 العنوان: ' + order.address + '\n' +
+      '🔢 الكمية: ' + (order.qtyUnits || 1) + '\n' +
+      '💰 سعر البيع: ' + unitPrice + ' ر.س\n' +
+      '💵 إجمالي الطلب: ' + (order.total || '') + '\n' +
+      '🌍 السعودية · الدفع عند الاستلام';
+    if (order.source) msg += '\n📄 المصدر: ' + order.source;
+    return msg;
+  },
+
+  isMobileDevice: function () {
+    return /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  },
+
+  buildCustomerWhatsApp: function (order) {
+    var total = order.total || order.totalNum || '';
+    return (
+      'السلام عليكم 🌸\n' +
+      'أود تأكيد طلبي من رواسي شوب:\n\n' +
+      '👤 الاسم: ' + order.name + '\n' +
+      '📞 الجوال: ' + this.normalizeSaPhone(order.phone) + '\n' +
+      '🏛️ المحافظة: ' + order.city + '\n' +
+      '📍 العنوان: ' + order.address + '\n' +
+      '🧴 المنتج: ' + (order.product || this.productName) + '\n' +
+      '🔢 الكمية: ' + (order.qty || order.qtyUnits || 1) + '\n' +
+      '💰 المجموع: ' + total + ' ر.س\n' +
+      '💵 الدفع عند الاستلام\n\n' +
+      'شكراً لكم 💜'
+    );
+  },
+
+  openWhatsApp: function (order) {
+    var msg = this.buildCustomerWhatsApp(order);
+    var phone = this.sellerWhatsapp;
+    var text = encodeURIComponent(msg);
+    if (this.isMobileDevice()) {
+      window.location.href = 'https://api.whatsapp.com/send?phone=' + phone + '&text=' + text;
+    } else {
+      window.open('https://wa.me/' + phone + '?text=' + text, '_blank');
+    }
+  },
+
+  sendOrder: function (order) {
+    var url = this.sheetWebhook;
+    if (!url) return false;
+    var payload = JSON.stringify(order);
+    var blob = new Blob([payload], { type: 'text/plain;charset=utf-8' });
+    var sent = false;
+    try {
+      if (navigator.sendBeacon) sent = navigator.sendBeacon(url, blob);
+    } catch (e) {}
+    try {
+      fetch(url, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: payload,
+        keepalive: true
+      });
+      sent = true;
+    } catch (e) {}
+    return sent;
+  },
+
+  notifyAfterOrder: function (order) {
+    this.sendOrder(order);
+    if (this.openWhatsAppOnOrder) this.openWhatsApp(order);
+  }
+};

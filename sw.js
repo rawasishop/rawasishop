@@ -1,5 +1,5 @@
 /* RawasiShop — تخزين مؤقت للصور فقط (JS/CSS دائماً من الشبكة) */
-var CACHE = 'rawasi-v4';
+var CACHE = 'rawasi-v5';
 
 self.addEventListener('install', function (e) {
   self.skipWaiting();
