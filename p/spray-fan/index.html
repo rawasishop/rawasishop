@@ -123,13 +123,17 @@
       .order-section .order-box {
         border-radius: 0 0 20px 20px;
         border-top: none;
-        padding: 20px 16px 24px;
+        padding: 12px 12px 20px;
+        max-width: none;
       }
-      .form-group input,
-      .form-group select,
-      .form-group textarea {
+      .order-section .order-panel {
+        border-radius: 0 0 18px 18px;
+        border-top: none;
+      }
+      .form-field input,
+      .form-field select {
         font-size: 16px;
-        padding: 15px 16px;
+        padding: 1rem;
       }
     }
 
@@ -685,96 +689,200 @@
     .review p { font-size: 0.95rem; color: var(--text); }
     .review-meta { margin-top: 12px; font-size: 0.82rem; color: var(--muted); font-weight: 700; }
 
-    /* Order form */
+    /* Order form — baby-style layout, ice theme */
     .order-section {
       background:
         radial-gradient(ellipse 70% 50% at 50% 100%, rgba(0, 212, 255, 0.1), transparent),
         rgba(6, 13, 24, 0.5);
     }
     .order-box {
-      max-width: 520px;
+      max-width: 36rem;
       margin: 0 auto;
-      padding: 32px 24px;
-      border-radius: 24px;
-      background: rgba(18, 34, 64, 0.85);
-      border: 1px solid var(--frost-border);
-      box-shadow: 0 0 60px rgba(0, 212, 255, 0.12);
-      backdrop-filter: blur(16px);
+      padding: 0;
+      border: none;
+      background: transparent;
+      box-shadow: none;
     }
-    .order-box h2 {
+    .order-panel {
+      background: linear-gradient(180deg, #ffffff 0%, #f0f9ff 55%, #e0f2fe 100%);
+      border-radius: 1.25rem;
+      box-shadow:
+        0 16px 40px rgba(0, 100, 180, 0.12),
+        0 2px 8px rgba(0, 212, 255, 0.08);
+      padding: 1.25rem;
+      border: 2px solid rgba(0, 212, 255, 0.35);
+    }
+    @media (min-width: 768px) {
+      .order-panel { padding: 1.75rem; }
+    }
+    .order-panel__offer {
       text-align: center;
-      font-size: 1.6rem;
-      margin-bottom: 6px;
+      margin-bottom: 1.25rem;
+      padding: 1rem 0.75rem 1.15rem;
+      background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(224, 242, 254, 0.85) 100%);
+      border-radius: 1rem;
+      border: 1px solid rgba(0, 212, 255, 0.35);
     }
-    .order-hint {
+    .order-panel__tag {
+      display: inline-block;
+      background: linear-gradient(135deg, #0099cc, #0066ff);
+      color: #fff;
+      font-size: 0.875rem;
+      font-weight: 700;
+      padding: 0.375rem 1rem;
+      border-radius: 9999px;
+      margin-bottom: 0.75rem;
+    }
+    .order-panel__old-price {
+      color: #9ca3af;
+      text-decoration: line-through;
+      font-size: 1.125rem;
+      margin: 0;
+    }
+    .order-panel__price {
+      color: #0284c7;
+      font-size: 2.25rem;
+      font-weight: 800;
+      margin: 0.25rem 0;
+    }
+    .order-panel__price span { font-size: 1.25rem; }
+    .order-urgency {
+      margin: 0.75rem 0 0.5rem;
+      padding: 0.625rem 0.75rem;
+      background: #fff7ed;
+      border: 1px solid #fed7aa;
+      border-radius: 0.75rem;
       text-align: center;
-      color: var(--muted);
-      font-size: 0.92rem;
-      margin-bottom: 20px;
     }
-    .cod-strip {
+    .order-urgency__deal,
+    .order-urgency__stock {
+      margin: 0;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      line-height: 1.5;
+    }
+    .order-urgency__deal { color: #c2410c; }
+    .order-urgency__stock { margin-top: 0.25rem; color: #b45309; }
+    .order-urgency__stock strong { color: #dc2626; font-size: 0.9375rem; }
+    .order-panel__note {
+      font-size: 0.875rem;
+      color: #64748b;
+      margin: 0;
+    }
+    .order-panel__heading {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #0369a1;
+      text-align: center;
+      margin: 0 0 0.25rem;
+    }
+    .order-panel__sub {
+      text-align: center;
+      color: #475569;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      margin: 0 0 1rem;
+    }
+    .form-stack {
       display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 12px;
-      border-radius: 12px;
-      background: rgba(0, 255, 136, 0.08);
-      border: 1px solid rgba(0, 255, 136, 0.3);
-      color: #00ff88;
-      font-weight: 700;
-      font-size: 0.9rem;
-      margin-bottom: 20px;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 1.125rem;
+      border-radius: 1rem;
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(186, 230, 253, 0.9);
     }
-    .form-group { margin-bottom: 14px; }
-    .form-group label {
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+    @media (min-width: 480px) {
+      .form-row { grid-template-columns: 1fr 1fr; }
+    }
+    .form-field label {
       display: block;
+      font-size: 0.875rem;
       font-weight: 700;
-      font-size: 0.88rem;
-      margin-bottom: 6px;
-      color: var(--ice);
+      color: #334155;
+      margin-bottom: 0.5rem;
     }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
+    .form-field input,
+    .form-field select {
       width: 100%;
-      padding: 14px 16px;
-      border-radius: 12px;
-      border: 1px solid rgba(0, 212, 255, 0.25);
-      background: rgba(10, 22, 40, 0.8);
-      color: var(--text);
-      font-family: inherit;
+      padding: 1rem;
+      border: 2px solid #7dd3fc;
+      border-radius: 0.75rem;
+      font: inherit;
       font-size: 1rem;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      background: #fff;
+      color: #1e293b;
     }
-    .form-group input::placeholder,
-    .form-group textarea::placeholder { color: #5a7a9a; }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
+    .form-field input:focus,
+    .form-field select:focus {
       outline: none;
-      border-color: var(--ice-glow);
-      box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.15);
+      border-color: #0284c7;
+      box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2);
     }
-    .form-group select option { background: var(--arctic-mid); }
-    .form-note {
+    .form-field input.invalid,
+    .form-field select.invalid {
+      border-color: #f43f5e !important;
+    }
+    .form-field input[dir="ltr"] { text-align: right; }
+    .form-field select option { background: #fff; color: #1e293b; }
+    .form-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.75rem 0;
+      border-top: 1px solid #bae6fd;
+      font-weight: 700;
+      font-size: 1.125rem;
+      color: #334155;
+    }
+    .form-total__amount {
+      color: #0284c7;
+      font-size: 1.5rem;
+    }
+    .form-trust {
+      list-style: none;
+      margin: 0;
+      padding: 0.875rem 1rem;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      border: 1px solid #7dd3fc;
+      border-radius: 0.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .form-trust li {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: #0c4a6e;
+      line-height: 1.45;
+    }
+    .btn-submit {
+      width: 100%;
+      padding: 1rem 1.25rem;
+      border: none;
+      border-radius: 0.75rem;
+      font: inherit;
+      font-size: 1.0625rem;
+      font-weight: 800;
+      cursor: pointer;
+      color: #fff;
+      background: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+      box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
+    }
+    .btn-submit:active { transform: scale(0.98); }
+    .form-privacy {
       text-align: center;
-      font-size: 0.78rem;
-      color: var(--muted);
-      margin-top: 12px;
+      font-size: 0.75rem;
+      color: #64748b;
+      margin: 0;
     }
-    .form-error {
-      color: #ff6b6b;
-      font-size: 0.8rem;
-      margin-top: 4px;
-      display: none;
-    }
-    .form-group.invalid .form-error { display: block; }
-    .form-group.invalid input,
-    .form-group.invalid select,
-    .form-group.invalid textarea {
-      border-color: #ff6b6b;
-    }
+    .order-box h2 { display: none; }
+    .order-hint, .cod-strip, .form-group, .form-note { display: none; }
 
     /* FAQ */
     .faq-item {
@@ -848,11 +956,11 @@
       border-color: #ff6b6b;
     }
     .err {
-      color: #ff6b6b;
+      color: #e11d48;
       font-size: 0.8rem;
-      margin-top: 4px;
+      margin-top: 0.25rem;
       display: block;
-      min-height: 1.1em;
+      min-height: 1em;
     }
 
     .modal {
@@ -959,63 +1067,76 @@
     <!-- ORDER — يظهر مباشرة تحت البanner على الجوال والتابلت -->
     <section class="order-section order-section--mobile-first order-section--priority" id="order">
       <div class="container">
-        <div class="order-box" id="orderFormPanel">
-          <p class="section-tag">INITIATE ORDER</p>
-          <h2>اطلب مروحة الرذاذ المزدوجة الآن 🛒</h2>
-          <p class="order-hint">املأ البيانات — سيتصل بك فريق التأكيد خلال دقائق لإتمام الطلب</p>
-          <div class="cod-strip">💚 ادفع عند الاستلام — <span id="totalPrice">159 ريال</span> فقط</div>
+        <div class="order-box order-panel" id="orderFormPanel">
+          <div class="order-panel__offer" id="offer">
+            <span class="order-panel__tag">❄️ تبريد فوري — عرض محدود</span>
+            <p class="order-panel__old-price" id="heroPriceOld">199 ريال</p>
+            <p class="order-panel__price" id="heroPriceNew">159 <span>ريال</span></p>
+            <div class="order-urgency" aria-live="polite">
+              <p class="order-urgency__deal">🔥 العرض ينتهي اليوم</p>
+              <p class="order-urgency__stock">⚠️ <strong>الكمية محدودة</strong> — اطلب الآن قبل نفاد المخزون</p>
+            </div>
+            <p class="order-panel__note">💵 الدفع عند الاستلام · 🚚 شحن سريع</p>
+          </div>
+
+          <h2 class="order-panel__heading">اطلب مروحة الرذاذ المزدوجة الآن 🛒</h2>
+          <p class="order-panel__sub">املأ البيانات — الدفع عند الاستلام</p>
 
           <form id="orderForm" novalidate>
             <input type="radio" name="qty" value="1" data-price="159" data-compare="199" checked hidden aria-hidden="true" />
-            <div class="form-group" id="fg-name">
-              <label for="fullname">الاسم الكامل *</label>
-              <input type="text" id="fullname" name="fullname" placeholder="مثال: محمد العتيبي" required autocomplete="name">
-              <span class="err" data-for="fullname"></span>
+            <div class="form-stack">
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="fullname">الاسم الكامل</label>
+                  <input type="text" id="fullname" name="fullname" placeholder="مثال: محمد العتيبي" required autocomplete="name" />
+                  <span class="err" data-for="fullname"></span>
+                </div>
+                <div class="form-field">
+                  <label for="phone">رقم الهاتف</label>
+                  <input type="tel" id="phone" name="phone" inputmode="numeric" placeholder="05xxxxxxxx" required autocomplete="tel" dir="ltr" />
+                  <span class="err" data-for="phone"></span>
+                </div>
+              </div>
+              <div class="form-field">
+                <label for="city">المحافظة</label>
+                <select id="city" name="city" required autocomplete="off">
+                  <option value="" disabled selected>اختار المحافظة</option>
+                  <option value="منطقة الرياض">منطقة الرياض</option>
+                  <option value="منطقة مكة المكرمة">منطقة مكة المكرمة</option>
+                  <option value="المنطقة الشرقية">المنطقة الشرقية</option>
+                  <option value="منطقة المدينة المنورة">منطقة المدينة المنورة</option>
+                  <option value="منطقة القصيم">منطقة القصيم</option>
+                  <option value="منطقة عسير">منطقة عسير</option>
+                  <option value="منطقة تبوك">منطقة تبوك</option>
+                  <option value="منطقة حائل">منطقة حائل</option>
+                  <option value="منطقة الحدود الشمالية">منطقة الحدود الشمالية</option>
+                  <option value="منطقة جازان">منطقة جازان</option>
+                  <option value="منطقة نجران">منطقة نجران</option>
+                  <option value="منطقة الباحة">منطقة الباحة</option>
+                  <option value="منطقة الجوف">منطقة الجوف</option>
+                </select>
+                <span class="err" data-for="city"></span>
+              </div>
+              <div class="form-field">
+                <label for="address">العنوان الكامل</label>
+                <input type="text" id="address" name="address" placeholder="الحي، الشارع، رقم المبنى، أقرب معلم" required autocomplete="street-address" />
+                <span class="err" data-for="address"></span>
+              </div>
+
+              <div class="form-total">
+                <span>المجموع</span>
+                <span class="form-total__amount" id="totalPrice">159 ريال</span>
+              </div>
+
+              <ul class="form-trust">
+                <li>✅ مروحتان + رذاذ منعش للتبريد الفوري</li>
+                <li>✅ شحن USB — محمولة لأي مكان</li>
+                <li>✅ الدفع عند الاستلام</li>
+              </ul>
+
+              <button type="submit" class="btn-submit">🔒 تأكيد الطلب الآن</button>
+              <p class="form-privacy">بياناتك آمنة ولن تُشارك مع أي طرف ثالث</p>
             </div>
-            <div class="form-group" id="fg-phone">
-              <label for="phone">رقم الجوال *</label>
-              <input type="tel" id="phone" name="phone" placeholder="05xxxxxxxx" inputmode="numeric" required autocomplete="tel" dir="ltr">
-              <span class="err" data-for="phone"></span>
-            </div>
-            <div class="form-group" id="fg-city">
-              <label for="city">المدينة *</label>
-              <select id="city" name="city" required>
-                <option value="">اختار مدينتك</option>
-                <option>الرياض</option>
-                <option>جدة</option>
-                <option>مكة المكرمة</option>
-                <option>المدينة المنورة</option>
-                <option>الدمام</option>
-                <option>الخبر</option>
-                <option>الظهران</option>
-                <option>الطائف</option>
-                <option>بريدة</option>
-                <option>تبوك</option>
-                <option>أبها</option>
-                <option>خميس مشيط</option>
-                <option>حائل</option>
-                <option>نجران</option>
-                <option>جازان</option>
-                <option>الجبيل</option>
-                <option>ينبع</option>
-                <option>أخرى</option>
-              </select>
-              <span class="err" data-for="city"></span>
-            </div>
-            <div class="form-group" id="fg-district">
-              <label for="district">الحي *</label>
-              <input type="text" id="district" name="district" placeholder="اسم الحي" required>
-              <span class="err" data-for="district"></span>
-            </div>
-            <div class="form-group" id="fg-address">
-              <label for="address">العنوان التفصيلي *</label>
-              <textarea id="address" name="address" rows="2" placeholder="الشارع، رقم المبنى، أقرب معلم" required></textarea>
-              <span class="err" data-for="address"></span>
-            </div>
-            <button type="submit" class="btn btn-primary" style="width:100%;margin-top:8px;">
-              ✅ تأكيد الطلب — 159 ر.س COD
-            </button>
-            <p class="form-note">بالضغط على تأكيد الطلب، توافق على استقبال مكالمة التأكيد لإتمام التوصيل</p>
           </form>
         </div>
       </div>
