@@ -7,13 +7,15 @@
   <meta name="theme-color" content="#0a1628">
   <link rel="canonical" href="https://www.rawasishop.com/p/spray-fan/" />
   <meta property="og:title" content="مروحة الرذاذ المزدوجة — 159 ر.س" />
-  <meta property="og:image" content="https://www.rawasishop.com/p/spray-fan/images/hero-ad.png" />
+  <meta property="og:image" content="https://www.rawasishop.com/p/spray-fan/images/hero-ad.webp" />
   <link rel="icon" type="image/svg+xml" href="../../favicon.svg" />
   <title>مروحة الرذاذ المزدوجة | تبريد فوري ورذاذ منعش — 159 ر.س</title>
-  <link rel="preload" as="image" href="images/hero-ad.png" fetchpriority="high" media="(max-width: 1024px)" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+  <link rel="dns-prefetch" href="https://connect.facebook.net" />
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="preload" as="image" href="images/hero-ad-640.webp?v=20260623" type="image/webp" fetchpriority="high" media="(max-width: 640px)" />
+  <link rel="preload" as="image" href="images/hero-ad.webp?v=20260623" type="image/webp" fetchpriority="high" media="(min-width: 641px)" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet" /></noscript>
   <style>
     :root {
       --ice: #b8f4ff;
@@ -34,7 +36,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
-      font-family: 'Tajawal', sans-serif;
+      font-family: 'Tajawal', system-ui, -apple-system, 'Segoe UI', sans-serif;
       background: var(--arctic);
       color: var(--text);
       line-height: 1.7;
@@ -111,6 +113,7 @@
     @media (max-width: 1024px) {
       .mobile-hero-banner { display: block; }
       .hud-bar { display: none; }
+      .bg-scene { display: none; }
       .page-flex .order-section { order: 1; }
       .page-flex .main-content { order: 2; }
       .page-flex .faq-section { order: 3; }
@@ -190,7 +193,7 @@
       padding: 16px 0;
     }
     .logo {
-      font-family: 'Orbitron', sans-serif;
+      font-family: 'Tajawal', system-ui, sans-serif;
       font-weight: 900;
       font-size: 1.15rem;
       background: var(--cta);
@@ -1046,14 +1049,18 @@
   </div>
 
   <div class="mobile-hero-banner">
-    <img
-      src="images/hero-ad.png"
-      alt="من حرّ الصيف إلى برودة المنقذ — مروحة الرذاذ المزدوجة 159 ر.س"
-      width="1536"
-      height="1024"
-      fetchpriority="high"
-      decoding="async"
-    />
+    <picture>
+      <source srcset="images/hero-ad-640.webp?v=20260623" type="image/webp" media="(max-width: 640px)" />
+      <source srcset="images/hero-ad.webp?v=20260623" type="image/webp" />
+      <img
+        src="images/hero-ad.png"
+        alt="من حرّ الصيف إلى برودة المنقذ — مروحة الرذاذ المزدوجة 159 ر.س"
+        width="1536"
+        height="1024"
+        fetchpriority="high"
+        decoding="async"
+      />
+    </picture>
   </div>
 
   <div class="hud-bar">
@@ -1478,42 +1485,51 @@
   </div>
 
   <script>
-    (function initSnow() {
-      const canvas = document.getElementById('snowCanvas');
-      const chars = ['❄', '✦', '·', '❅'];
-      for (let i = 0; i < 35; i++) {
-        const f = document.createElement('span');
-        f.className = 'flake';
-        f.textContent = chars[i % chars.length];
-        f.style.left = Math.random() * 100 + '%';
-        f.style.fontSize = (6 + Math.random() * 10) + 'px';
-        f.style.animationDuration = (6 + Math.random() * 10) + 's';
-        f.style.animationDelay = (Math.random() * 8) + 's';
-        f.style.opacity = 0.3 + Math.random() * 0.5;
-        canvas.appendChild(f);
-      }
-    })();
+    function deferPageFx(fn) {
+      if ('requestIdleCallback' in window) requestIdleCallback(fn, { timeout: 3000 });
+      else setTimeout(fn, 1200);
+    }
 
-    // Countdown (resets daily — creates urgency)
-    (function initCountdown() {
-      const end = new Date();
+    deferPageFx(function () {
+      if (window.matchMedia('(min-width: 1025px)').matches) {
+        var canvas = document.getElementById('snowCanvas');
+        if (!canvas) return;
+        var chars = ['❄', '✦', '·', '❅'];
+        for (var i = 0; i < 18; i++) {
+          var f = document.createElement('span');
+          f.className = 'flake';
+          f.textContent = chars[i % chars.length];
+          f.style.left = Math.random() * 100 + '%';
+          f.style.fontSize = (6 + Math.random() * 8) + 'px';
+          f.style.animationDuration = (8 + Math.random() * 8) + 's';
+          f.style.animationDelay = (Math.random() * 6) + 's';
+          f.style.opacity = 0.3 + Math.random() * 0.4;
+          canvas.appendChild(f);
+        }
+      }
+    });
+
+    deferPageFx(function () {
+      var cdH = document.getElementById('cd-h');
+      if (!cdH) return;
+      var end = new Date();
       end.setHours(23, 59, 59, 999);
       function tick() {
-        const now = new Date();
-        let diff = end - now;
+        var now = new Date();
+        var diff = end - now;
         if (diff < 0) diff = 0;
-        const h = Math.floor(diff / 3600000);
-        const m = Math.floor((diff % 3600000) / 60000);
-        const s = Math.floor((diff % 60000) / 1000);
-        document.getElementById('cd-h').textContent = String(h).padStart(2, '0');
+        var h = Math.floor(diff / 3600000);
+        var m = Math.floor((diff % 3600000) / 60000);
+        var s = Math.floor((diff % 60000) / 1000);
+        cdH.textContent = String(h).padStart(2, '0');
         document.getElementById('cd-m').textContent = String(m).padStart(2, '0');
         document.getElementById('cd-s').textContent = String(s).padStart(2, '0');
       }
       tick();
       setInterval(tick, 1000);
-    })();
+    });
 
-    document.querySelectorAll('.faq-q').forEach(btn => {
+    document.querySelectorAll('.faq-q').forEach(function (btn) {
       btn.addEventListener('click', () => {
         const item = btn.parentElement;
         const was = item.classList.contains('open');
@@ -1522,9 +1538,9 @@
       });
     });
   </script>
-  <script src="../../js/gulfcod-spray-fan-config.js?v=20260619spray" defer></script>
-  <script src="../../js/traffic-source.js?v=20260619spray" defer></script>
-  <script src="../../js/facebook-pixel.js?v=20260619spray" defer></script>
-  <script src="../../js/main.js?v=20260619spray" defer></script>
+  <script src="../../js/gulfcod-spray-fan-config.js?v=20260623perf" defer></script>
+  <script src="../../js/traffic-source.js?v=20260623perf" defer></script>
+  <script src="../../js/facebook-pixel.js?v=20260623perf" defer></script>
+  <script src="../../js/main.js?v=20260623perf" defer></script>
 </body>
 </html>

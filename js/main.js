@@ -15,7 +15,7 @@
   var TRACKING = { fbPixelId: TAAGER.fbPixelId || '', gaId: '' };
 
   function initTracking() {
-    if (TRACKING.fbPixelId && !window.fbq) {
+    if (TRACKING.fbPixelId && !window.fbq && !TAAGER.deferPixelLoad) {
       !function (f, b, e, v, n, t, s) {
         if (f.fbq) return; n = f.fbq = function () { n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments); };
         if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = [];
@@ -45,7 +45,7 @@
   deferHeavy(function () {
     initTracking();
     if (!TAAGER.skipServiceWorker && 'serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/sw.js?v=4').then(function (reg) {
+      navigator.serviceWorker.register('/sw.js?v=6').then(function (reg) {
         reg.update();
       }).catch(function () {});
     }
@@ -251,6 +251,20 @@
       var b = RAWASI_TIKTOK.fromBundle(sel);
       RAWASI_TIKTOK.trackAddToCart(b.value, b.quantity);
     } catch (e) { /* ignore */ }
+  }
+
+  function trackFacebookInitiateCheckout() {
+    try {
+      if (!window.RAWASI_FB) return;
+      var sel = getSelectedBundle();
+      var priceNum = sel ? parseInt(sel.getAttribute('data-price'), 10) : defaultValue();
+      RAWASI_FB.trackInitiateCheckout(priceNum);
+    } catch (e) { /* ignore */ }
+  }
+
+  function defaultValue() {
+    if (TAAGER.bundles && TAAGER.bundles[1] && TAAGER.bundles[1].price) return TAAGER.bundles[1].price;
+    return 159;
   }
 
   function trackTikTokInitiateCheckout() {
@@ -464,7 +478,10 @@
       updateTotal();
     });
 
-    form.addEventListener('focusin', trackTikTokInitiateCheckout, { once: true });
+    form.addEventListener('focusin', function () {
+      trackTikTokInitiateCheckout();
+      trackFacebookInitiateCheckout();
+    }, { once: true });
 
     document.querySelectorAll('a[href="#fullname"]').forEach(function (link) {
       link.addEventListener('click', function () {
