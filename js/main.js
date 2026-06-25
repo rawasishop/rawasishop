@@ -484,7 +484,24 @@
     }, { once: true });
 
     document.querySelectorAll('a[href="#fullname"]').forEach(function (link) {
-      link.addEventListener('click', function () {
+      link.addEventListener('click', function (e) {
+        var panel = document.getElementById('orderFormPanel') || document.getElementById('order');
+        if (panel) {
+          var r = panel.getBoundingClientRect();
+          var inFormZone = r.top < window.innerHeight * 0.65 && r.bottom > 80;
+          if (inFormZone) {
+            e.preventDefault();
+            if (typeof form.requestSubmit === 'function') form.requestSubmit();
+            else form.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+          }
+        }
+        trackTikTokAddToCart();
+        trackTikTokInitiateCheckout();
+      });
+    });
+
+    document.querySelectorAll('button[form="orderForm"]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
         trackTikTokAddToCart();
         trackTikTokInitiateCheckout();
       });

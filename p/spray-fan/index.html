@@ -138,6 +138,9 @@
         font-size: 16px;
         padding: 1rem;
       }
+      .form-stack {
+        padding-bottom: calc(0.5rem + env(safe-area-inset-bottom));
+      }
     }
 
     @media (min-width: 1025px) {
@@ -920,7 +923,7 @@
     .faq-item.open .faq-a { display: block; }
     .faq-item.open .faq-q span { transform: rotate(45deg); }
 
-    /* Sticky CTA */
+    /* Sticky CTA — مخفي عند النموذج، يظهر فقط بعد التمرير (main.js يضيف .show) */
     .sticky-bar {
       position: fixed;
       bottom: 0;
@@ -935,6 +938,11 @@
       align-items: center;
       gap: 12px;
       box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.4);
+      transform: translateY(110%);
+      transition: transform 0.35s ease;
+    }
+    .sticky-bar.show {
+      transform: translateY(0);
     }
     .sticky-price {
       font-family: 'Orbitron', sans-serif;
@@ -944,6 +952,13 @@
       white-space: nowrap;
     }
     .sticky-bar .btn-primary { flex: 1; padding: 14px; font-size: 0.95rem; }
+    .sticky-bar__submit {
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      text-align: center;
+      text-decoration: none;
+    }
 
     footer {
       text-align: center;
@@ -1472,7 +1487,7 @@
 
   <div class="sticky-bar" id="stickyCta">
     <div class="sticky-price">159 ر.س</div>
-    <a href="#fullname" class="btn btn-primary">اطلب الآن COD</a>
+    <button type="submit" form="orderForm" class="btn btn-primary sticky-bar__submit">اطلب الآن COD</button>
   </div>
 
   <div class="modal" id="successModal" aria-hidden="true">
@@ -1538,9 +1553,9 @@
       });
     });
   </script>
-  <script src="../../js/gulfcod-spray-fan-config.js?v=20260623perf" defer></script>
-  <script src="../../js/traffic-source.js?v=20260623perf" defer></script>
-  <script src="../../js/facebook-pixel.js?v=20260623perf" defer></script>
-  <script src="../../js/main.js?v=20260623perf" defer></script>
+  <script src="../../js/gulfcod-spray-fan-config.js?v=20260625fix" defer></script>
+  <script src="../../js/traffic-source.js?v=20260625fix" defer></script>
+  <script src="../../js/facebook-pixel.js?v=20260625fix" defer></script>
+  <script src="../../js/main.js?v=20260625fix" defer></script>
 </body>
 </html>
