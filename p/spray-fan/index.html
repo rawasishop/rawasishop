@@ -139,7 +139,11 @@
         padding: 1rem;
       }
       .form-stack {
-        padding-bottom: calc(0.5rem + env(safe-area-inset-bottom));
+        padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
+      }
+      /* الشريط السفلي يغطي زر الإرسال — نخفيه على الجوال */
+      .sticky-bar {
+        display: none !important;
       }
     }
 
@@ -881,6 +885,22 @@
       box-shadow: 0 8px 24px rgba(37, 99, 235, 0.35);
     }
     .btn-submit:active { transform: scale(0.98); }
+    .form-submit-wrap {
+      margin-top: 0.25rem;
+    }
+    @media (max-width: 1024px) {
+      .form-submit-wrap {
+        position: sticky;
+        bottom: calc(8px + env(safe-area-inset-bottom));
+        z-index: 160;
+        padding: 0.5rem 0 0.25rem;
+        background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.95) 35%, #fff 100%);
+      }
+      .btn-submit {
+        font-size: 1.125rem;
+        padding: 1.125rem 1.25rem;
+      }
+    }
     .form-privacy {
       text-align: center;
       font-size: 0.75rem;
@@ -1145,6 +1165,10 @@
                 <span class="err" data-for="address"></span>
               </div>
 
+              <div class="form-submit-wrap">
+                <button type="submit" class="btn-submit" id="orderSubmit">🔒 تأكيد الطلب الآن</button>
+              </div>
+
               <div class="form-total">
                 <span>المجموع</span>
                 <span class="form-total__amount" id="totalPrice">159 ريال</span>
@@ -1156,7 +1180,6 @@
                 <li>✅ الدفع عند الاستلام</li>
               </ul>
 
-              <button type="submit" class="btn-submit">🔒 تأكيد الطلب الآن</button>
               <p class="form-privacy">بياناتك آمنة ولن تُشارك مع أي طرف ثالث</p>
             </div>
           </form>
@@ -1553,9 +1576,9 @@
       });
     });
   </script>
-  <script src="../../js/gulfcod-spray-fan-config.js?v=20260625fix" defer></script>
-  <script src="../../js/traffic-source.js?v=20260625fix" defer></script>
-  <script src="../../js/facebook-pixel.js?v=20260625fix" defer></script>
-  <script src="../../js/main.js?v=20260625fix" defer></script>
+  <script src="../../js/gulfcod-spray-fan-config.js?v=20260625fix2" defer></script>
+  <script src="../../js/traffic-source.js?v=20260625fix2" defer></script>
+  <script src="../../js/facebook-pixel.js?v=20260625fix2" defer></script>
+  <script src="../../js/main.js?v=20260625fix2" defer></script>
 </body>
 </html>

@@ -400,7 +400,10 @@
       e.preventDefault();
       if (!validate()) {
         var firstInvalid = form.querySelector('.invalid');
-        if (firstInvalid) firstInvalid.focus();
+        if (firstInvalid) {
+          firstInvalid.focus();
+          try { firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (scrollErr) {}
+        }
         return;
       }
 
