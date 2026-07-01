@@ -575,6 +575,17 @@
     footer .logo { display: block; margin-bottom: 8px; }
     footer p { font-size: 0.85rem; color: rgba(245,235,224,.45); }
 
+    /* جوال: النموذج أولاً — نفس إصلاح المروحة */
+    main { display: flex; flex-direction: column; }
+    @media (max-width: 768px) {
+      #order { order: -1; padding-top: 12px; }
+      #order .order-info { display: none; }
+      #order .order-box { padding: 20px 18px; }
+      .form-control { font-size: 16px; padding: 14px 16px; }
+      .sticky-bar { display: none !important; }
+      footer { padding-bottom: 24px; }
+    }
+
     .form-control.invalid { border-color: #c0392b; background: #fff5f5; }
     .err { display: block; color: #c0392b; font-size: 0.8rem; margin-top: 4px; min-height: 1.1em; }
     .form-total {
@@ -868,8 +879,8 @@
   </section>
 </main>
 
-<div class="sticky-bar">
-  <button type="submit" form="orderForm" class="sticky-bar__submit" id="stickyOrder">اطلب الحين — 199 ر.س</button>
+<div class="sticky-bar" aria-hidden="true">
+  <button type="button" class="sticky-bar__submit" id="stickyOrder">اطلب الحين — 199 ر.س</button>
 </div>
 
 <div class="modal" id="successModal" aria-hidden="true">
@@ -902,6 +913,18 @@
     });
   }
 
+  var sticky = document.getElementById('stickyOrder');
+  if (sticky) {
+    sticky.addEventListener('click', function () {
+      var orderEl = document.getElementById('order');
+      if (orderEl) orderEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setTimeout(function () {
+        var nameEl = document.getElementById('fullname');
+        if (nameEl) nameEl.focus();
+      }, 450);
+    });
+  }
+
   var orderSection = document.getElementById('order');
   var stickyBar = document.querySelector('.sticky-bar');
   if (orderSection && stickyBar && 'IntersectionObserver' in window) {
@@ -922,9 +945,9 @@
   }
 })();
 </script>
-<script src="../../js/gulfcod-zhuse-config.js?v=20260619zhuse2" defer></script>
-<script src="../../js/traffic-source.js?v=20260619zhuse2" defer></script>
-<script src="../../js/facebook-pixel.js?v=20260619zhuse2" defer></script>
-<script src="../../js/main.js?v=20260619zhuse2" defer></script>
+<script src="../../js/gulfcod-zhuse-config.js?v=20260619zhuse3" defer></script>
+<script src="../../js/traffic-source.js?v=20260619zhuse3" defer></script>
+<script src="../../js/facebook-pixel.js?v=20260619zhuse3" defer></script>
+<script src="../../js/main.js?v=20260619zhuse3" defer></script>
 </body>
 </html>
