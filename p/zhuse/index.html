@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>صندوق تخزين مقعد السيارة متعدد الوظائف | ZHUSE</title>
+  <meta name="description" content="صندوق تخزين ZHUSE بجلد PU فاخر وشاحن 120W — USB-C و USB-A وولاعة. تركيب فوري بين المقعد والكونسول. الدفع عند الاستلام." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --leather-light: #d4a574;
+      --leather: #b8895a;
+      --leather-mid: #a07245;
+      --leather-dark: #7a5532;
+      --leather-deep: #4a3420;
+      --stitch: #e8dcc8;
+      --stitch-dim: rgba(232, 220, 200, 0.35);
+      --cream: #f5ebe0;
+      --cream-soft: #faf6f0;
+      --ink: #1a1410;
+      --ink-soft: #3d2e22;
+      --text-on-leather: #2a1f14;
+      --text-muted: #6b5340;
+      --accent: #2ecc71;
+      --radius: 14px;
+      --radius-sm: 10px;
+      --shadow: 0 12px 40px rgba(26, 20, 16, 0.28);
+      --shadow-deep: 0 24px 60px rgba(26, 20, 16, 0.4);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Tajawal", sans-serif;
+      background: var(--ink);
+      color: var(--cream);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+
+    /* Leather texture base */
+    .leather-bg {
+      background:
+        radial-gradient(ellipse 120% 80% at 20% 0%, rgba(255,255,255,.08), transparent 50%),
+        radial-gradient(ellipse 80% 60% at 80% 100%, rgba(0,0,0,.15), transparent 45%),
+        linear-gradient(165deg, var(--leather-light) 0%, var(--leather) 28%, var(--leather-mid) 55%, var(--leather-dark) 100%);
+    }
+
+    .leather-panel {
+      position: relative;
+      border-radius: var(--radius);
+      border: 2px solid var(--leather-deep);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.22),
+        inset 0 -2px 4px rgba(0,0,0,.12),
+        var(--shadow);
+      overflow: hidden;
+    }
+    .leather-panel::before {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border: 1.5px dashed var(--stitch-dim);
+      border-radius: calc(var(--radius) - 6px);
+      pointer-events: none;
+      z-index: 1;
+    }
+    .leather-panel > * { position: relative; z-index: 2; }
+
+    .stitch-line {
+      height: 3px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--stitch) 0 6px,
+        transparent 6px 12px
+      );
+      opacity: 0.55;
+      margin: 0 auto;
+      max-width: 120px;
+    }
+
+    .wrap { width: min(1120px, 92vw); margin-inline: auto; }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(26, 20, 16, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(184, 137, 90, 0.2);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      gap: 16px;
+    }
+    .logo {
+      font-weight: 800;
+      font-size: 1.35rem;
+      letter-spacing: 0.12em;
+      color: var(--leather-light);
+      text-decoration: none;
+    }
+    .header-cta {
+      background: linear-gradient(180deg, var(--leather-light), var(--leather-mid));
+      color: var(--text-on-leather);
+      padding: 10px 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      text-decoration: none;
+      border: 2px solid var(--leather-deep);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 4px 14px rgba(0,0,0,.25);
+      white-space: nowrap;
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      min-height: min(92vh, 820px);
+      display: grid;
+      align-items: center;
+      padding: clamp(32px, 6vw, 64px) 0;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to top, var(--ink) 0%, transparent 35%),
+        linear-gradient(to left, rgba(26,20,16,.85) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url("images/product-in-car.png") center/cover no-repeat;
+      filter: brightness(0.45) saturate(0.9);
+    }
+    .hero-grid {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(28px, 5vw, 48px);
+      align-items: center;
+    }
+    @media (min-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr 1fr; }
+    }
+    .hero-copy h1 {
+      font-size: clamp(1.85rem, 4.5vw, 2.75rem);
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 12px;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: var(--cream);
+      color: var(--text-on-leather);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 16px;
+      border: 2px dashed var(--leather-mid);
+    }
+    .hero-copy p {
+      color: rgba(245, 235, 224, 0.88);
+      font-size: clamp(1rem, 2vw, 1.12rem);
+      max-width: 42ch;
+      margin-bottom: 20px;
+    }
+    .hero-price {
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+    .hero-price .now {
+      font-size: clamp(2rem, 5vw, 2.6rem);
+      font-weight: 800;
+      color: var(--leather-light);
+    }
+    .hero-price .was {
+      font-size: 1.1rem;
+      color: rgba(245,235,224,.45);
+      text-decoration: line-through;
+    }
+    .hero-price .tag {
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+    .hero-product {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero-product img {
+      width: min(100%, 420px);
+      height: auto;
+      filter: drop-shadow(0 28px 48px rgba(0,0,0,.55));
+      animation: float 5s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--cream);
+      color: var(--text-on-leather);
+      padding: 16px 36px;
+      border-radius: var(--radius-sm);
+      font-weight: 800;
+      font-size: 1.05rem;
+      text-decoration: none;
+      border: 2px solid var(--leather-mid);
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-deep); }
+
+    /* Promo strip */
+    .promo-strip {
+      padding: 0 0 clamp(40px, 6vw, 64px);
+    }
+    .promo-strip img {
+      width: 100%;
+      border-radius: var(--radius);
+      border: 3px solid var(--leather-dark);
+      box-shadow: var(--shadow-deep);
+    }
+
+    /* Order section */
+    #order {
+      padding: clamp(48px, 8vw, 80px) 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(184,137,90,.12), transparent),
+        var(--ink);
+    }
+    .order-layout {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+    @media (min-width: 960px) {
+      .order-layout { grid-template-columns: 1fr 1.05fr; }
+    }
+    .order-info h2 {
+      font-size: clamp(1.6rem, 3.5vw, 2rem);
+      margin-bottom: 12px;
+      color: var(--leather-light);
+    }
+    .order-info p { color: rgba(245,235,224,.75); margin-bottom: 20px; }
+    .order-perks {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+    .order-perks li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.95rem;
+      color: var(--cream);
+    }
+    .order-perks li::before {
+      content: "✓";
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      background: rgba(184,137,90,.25);
+      border-radius: 50%;
+      color: var(--leather-light);
+      font-weight: 700;
+      font-size: 0.75rem;
+    }
+    .order-box {
+      padding: clamp(24px, 4vw, 36px);
+    }
+    .order-box.leather-panel { color: var(--text-on-leather); }
+    .order-box h3 {
+      font-size: 1.25rem;
+      margin-bottom: 6px;
+      text-align: center;
+    }
+    .order-box .sub {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+    .cod-banner {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      background: rgba(255,255,255,.35);
+      border: 1.5px dashed var(--leather-mid);
+      border-radius: var(--radius-sm);
+      margin-bottom: 20px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .form-group { margin-bottom: 14px; }
+    .form-group label {
+      display: block;
+      font-weight: 700;
+      font-size: 0.88rem;
+      margin-bottom: 5px;
+    }
+    .form-group label span { color: #c0392b; }
+    .form-control {
+      width: 100%;
+      padding: 13px 16px;
+      border: 2px solid var(--leather-mid);
+      border-radius: var(--radius-sm);
+      background: var(--cream-soft);
+      font-family: inherit;
+      font-size: 1rem;
+      color: var(--text-on-leather);
+      direction: rtl;
+    }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--leather-dark);
+      box-shadow: 0 0 0 3px rgba(184,137,90,.25);
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 520px) { .form-row { grid-template-columns: 1fr; } }
+    .btn-submit {
+      width: 100%;
+      margin-top: 8px;
+      padding: 16px;
+      border: none;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(180deg, var(--leather-light), var(--leather-dark));
+      color: var(--cream);
+      font-family: inherit;
+      font-size: 1.1rem;
+      font-weight: 800;
+      cursor: pointer;
+      border: 2px solid var(--leather-deep);
+      box-shadow: var(--shadow);
+      transition: transform 0.2s;
+    }
+    .btn-submit:hover { transform: translateY(-1px); }
+    .order-confirm {
+      display: none;
+      text-align: center;
+      padding: 24px 12px;
+    }
+    .order-confirm.show { display: block; }
+    .order-confirm .icon {
+      font-size: 3rem;
+      margin-bottom: 12px;
+    }
+    .order-confirm h4 {
+      color: var(--leather-deep);
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+    }
+
+    /* Features */
+    section.section {
+      padding: clamp(48px, 8vw, 72px) 0;
+    }
+    .section-head {
+      text-align: center;
+      margin-bottom: clamp(32px, 5vw, 48px);
+    }
+    .section-head h2 {
+      font-size: clamp(1.5rem, 3.5vw, 2rem);
+      color: var(--leather-light);
+      margin: 10px 0 8px;
+    }
+    .section-head p {
+      color: rgba(245,235,224,.65);
+      max-width: 52ch;
+      margin-inline: auto;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    @media (min-width: 640px) { .features-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 960px) { .features-grid { grid-template-columns: repeat(3, 1fr); } }
+    .feat-card {
+      padding: 24px 22px;
+      color: var(--text-on-leather);
+    }
+    .feat-card .icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.35);
+      border: 1.5px dashed var(--leather-mid);
+      display: grid;
+      place-items: center;
+      font-size: 1.4rem;
+      margin-bottom: 14px;
+    }
+    .feat-card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 6px;
+    }
+    .feat-card p {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Gallery */
+    .gallery {
+      background: linear-gradient(180deg, var(--ink) 0%, #221a14 100%);
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+    @media (min-width: 720px) {
+      .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    }
+    .gallery-item {
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      border: 2px solid var(--leather-dark);
+      aspect-ratio: 4/3;
+      background: var(--ink-soft);
+    }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .gallery-item:hover img { transform: scale(1.04); }
+    .gallery-item.featured {
+      grid-column: span 2;
+      aspect-ratio: 16/9;
+    }
+    @media (min-width: 720px) {
+      .gallery-item.featured { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+    }
+
+    /* Specs */
+    .specs-table {
+      width: 100%;
+      border-collapse: collapse;
+      color: var(--text-on-leather);
+    }
+    .specs-table tr {
+      border-bottom: 1px dashed var(--stitch-dim);
+    }
+    .specs-table tr:last-child { border-bottom: none; }
+    .specs-table th,
+    .specs-table td {
+      padding: 14px 12px;
+      text-align: right;
+      font-size: 0.95rem;
+    }
+    .specs-table th {
+      font-weight: 700;
+      color: var(--leather-deep);
+      width: 38%;
+    }
+    .specs-table td { color: var(--text-muted); }
+
+    /* Trust */
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+    @media (min-width: 720px) { .trust-grid { grid-template-columns: repeat(4, 1fr); } }
+    .trust-item {
+      text-align: center;
+      padding: 20px 14px;
+      background: rgba(184,137,90,.08);
+      border: 1px dashed rgba(184,137,90,.3);
+      border-radius: var(--radius-sm);
+    }
+    .trust-item .icon { font-size: 1.6rem; margin-bottom: 8px; }
+    .trust-item h4 { font-size: 0.95rem; color: var(--leather-light); margin-bottom: 4px; }
+    .trust-item p { font-size: 0.8rem; color: rgba(245,235,224,.55); }
+
+    /* Sticky mobile CTA */
+    .sticky-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 99;
+      padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+      background: rgba(26,20,16,.96);
+      border-top: 1px solid rgba(184,137,90,.25);
+      backdrop-filter: blur(10px);
+    }
+    @media (max-width: 768px) {
+      .sticky-bar { display: block; }
+      .sticky-bar.is-hidden { display: none; }
+    }
+    .sticky-bar button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: var(--radius-sm);
+      background: linear-gradient(180deg, var(--leather-light), var(--leather-mid));
+      color: var(--text-on-leather);
+      font-family: inherit;
+      font-weight: 800;
+      font-size: 1rem;
+      cursor: pointer;
+      border: 2px solid var(--leather-deep);
+    }
+
+    footer {
+      padding: 40px 0 100px;
+      text-align: center;
+      border-top: 1px solid rgba(184,137,90,.15);
+    }
+    footer .logo { display: block; margin-bottom: 8px; }
+    footer p { font-size: 0.85rem; color: rgba(245,235,224,.45); }
+
+    .form-control.invalid { border-color: #c0392b; background: #fff5f5; }
+    .err { display: block; color: #c0392b; font-size: 0.8rem; margin-top: 4px; min-height: 1.1em; }
+    .form-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 16px 0 8px;
+      padding: 12px 16px;
+      background: rgba(255,255,255,.35);
+      border: 1.5px dashed var(--leather-mid);
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      color: var(--text-on-leather);
+    }
+    .form-total__amount { font-size: 1.15rem; color: var(--leather-deep); }
+
+    .modal {
+      position: fixed; inset: 0; z-index: 200;
+      display: grid; place-items: center;
+      background: rgba(26,20,16,.72);
+      opacity: 0; visibility: hidden;
+      transition: opacity .3s, visibility .3s;
+      padding: 20px;
+    }
+    .modal.show { opacity: 1; visibility: visible; }
+    .modal__box {
+      width: min(420px, 92vw);
+      padding: 32px 28px;
+      text-align: center;
+      border-radius: var(--radius);
+      background: var(--cream-soft);
+      border: 3px solid var(--leather-dark);
+      box-shadow: var(--shadow-deep);
+      color: var(--text-on-leather);
+    }
+    .modal__icon { font-size: 2.5rem; margin-bottom: 12px; }
+    .modal__title { font-size: 1.35rem; margin-bottom: 10px; font-weight: 800; }
+    .modal__text { color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; margin-bottom: 18px; }
+    .btn-modal {
+      border: none;
+      padding: 12px 28px;
+      border-radius: 999px;
+      background: linear-gradient(180deg, var(--leather-light), var(--leather-mid));
+      color: var(--text-on-leather);
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      border: 2px solid var(--leather-deep);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="wrap header-inner">
+    <a class="logo" href="#hero">ZHUSE</a>
+    <a class="header-cta" href="#order">اطلب الحين</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="hero">
+    <div class="hero-bg" aria-hidden="true"></div>
+    <div class="wrap hero-grid">
+      <div class="hero-copy">
+        <span class="hero-badge">متعدد الوظائف</span>
+        <h1>صندوق تخزين مقعد السيارة</h1>
+        <p>يملأ الفجوة بين المقعد والكونسول — جلد PU مخيط فاخر، تخزين عملي، وشاحن 120W لثلاثة أجهزة في وقت واحد.</p>
+        <div class="hero-price">
+          <span class="now">199 ر.س</span>
+          <span class="was">299 ر.س</span>
+          <span class="tag">وفر 33%</span>
+        </div>
+        <a class="btn-primary" href="#order">اطلب الآن — الدفع عند الاستلام</a>
+      </div>
+      <div class="hero-product">
+        <img src="assets/product-cut.png" alt="صندوق ZHUSE ZS-CA-003C" width="420" height="420" loading="eager" />
+      </div>
+    </div>
+  </section>
+
+  <section class="promo-strip wrap">
+    <img src="images/product-promo.png" alt="صندوق تخزين مقعد السيارة متعدد الوظائف ZHUSE" loading="lazy" />
+  </section>
+
+  <section id="order">
+    <div class="wrap order-layout">
+      <div class="order-info">
+        <h2>اطلب صندوق ZHUSE الآن</h2>
+        <p>املأ البيانات — سنتصل لتأكيد الطلب. الدفع عند استلام المنتج.</p>
+        <ul class="order-perks">
+          <li>توصيل لجميع مدن السعودية</li>
+          <li>ضمان 14 يوم</li>
+          <li>شحن 120W مدمج — جاهز للاستخدام</li>
+          <li>تركيب فوري بدون أدوات</li>
+        </ul>
+      </div>
+      <div class="order-box leather-panel leather-bg order-panel" id="orderFormPanel">
+        <h3>نموذج الطلب</h3>
+        <p class="sub">ZHUSE ZS-CA-003C — <span id="heroPriceNew">199 ريال</span></p>
+        <div class="cod-banner">💵 الدفع عند الاستلام (COD)</div>
+        <form id="orderForm" novalidate>
+          <input type="radio" name="qty" value="1" data-price="199" data-compare="299" checked hidden aria-hidden="true" />
+          <input type="radio" name="qty" value="2" data-price="398" data-compare="598" hidden aria-hidden="true" />
+          <input type="radio" name="qty" value="3" data-price="597" data-compare="897" hidden aria-hidden="true" />
+          <div class="form-group">
+            <label for="fullname">الاسم الكامل <span>*</span></label>
+            <input class="form-control" type="text" id="fullname" name="fullname" required placeholder="مثال: محمد العتيبي" autocomplete="name" />
+            <span class="err" data-for="fullname"></span>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">رقم الجوال <span>*</span></label>
+              <input class="form-control" type="tel" id="phone" name="phone" inputmode="numeric" required placeholder="05xxxxxxxx" dir="ltr" autocomplete="tel" />
+              <span class="err" data-for="phone"></span>
+            </div>
+            <div class="form-group">
+              <label for="city">المحافظة <span>*</span></label>
+              <select class="form-control" id="city" name="city" required autocomplete="off">
+                <option value="" disabled selected>اختار المحافظة</option>
+                <option value="منطقة الرياض">منطقة الرياض</option>
+                <option value="منطقة مكة المكرمة">منطقة مكة المكرمة</option>
+                <option value="المنطقة الشرقية">المنطقة الشرقية</option>
+                <option value="منطقة المدينة المنورة">منطقة المدينة المنورة</option>
+                <option value="منطقة القصيم">منطقة القصيم</option>
+                <option value="منطقة عسير">منطقة عسير</option>
+                <option value="منطقة تبوك">منطقة تبوك</option>
+                <option value="منطقة حائل">منطقة حائل</option>
+                <option value="منطقة الحدود الشمالية">منطقة الحدود الشمالية</option>
+                <option value="منطقة جازان">منطقة جازان</option>
+                <option value="منطقة نجران">منطقة نجران</option>
+                <option value="منطقة الباحة">منطقة الباحة</option>
+                <option value="منطقة الجوف">منطقة الجوف</option>
+              </select>
+              <span class="err" data-for="city"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="address">العنوان التفصيلي <span>*</span></label>
+            <input class="form-control" type="text" id="address" name="address" required placeholder="الحي، الشارع، رقم المنزل، أقرب معلم" autocomplete="street-address" />
+            <span class="err" data-for="address"></span>
+          </div>
+          <div class="form-group">
+            <label for="qtySelect">الكمية</label>
+            <select class="form-control" id="qtySelect">
+              <option value="1">1 — 199 ر.س</option>
+              <option value="2">2 — 398 ر.س</option>
+              <option value="3">3 — 597 ر.س</option>
+            </select>
+          </div>
+          <div class="form-total">
+            <span>المجموع</span>
+            <span class="form-total__amount" id="totalPrice">199 ريال</span>
+          </div>
+          <button type="submit" class="btn-submit" id="orderSubmit">🔒 تأكيد الطلب الآن</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="features">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="stitch-line"></div>
+        <h2>لماذا ZHUSE؟</h2>
+        <p>تصميم جلدي أنيق يناسب داخلية أي سيارة — وظائف متعددة في قطعة واحدة</p>
+      </div>
+      <div class="features-grid">
+        <article class="feat-card leather-panel leather-bg">
+          <div class="icon">⚡</div>
+          <h3>شحن سريع 120W</h3>
+          <p>USB-C 30W + USB-A 22.5W + ولاعة 72W — شحن ثلاثة أجهزة معًا.</p>
+        </article>
+        <article class="feat-card leather-panel leather-bg">
+          <div class="icon">📦</div>
+          <h3>تخزين ذكي</h3>
+          <p>مساحة عميقة للهاتف والمحفظة والمفاتيح — لا مزيد من الفوضى في السيارة.</p>
+        </article>
+        <article class="feat-card leather-panel leather-bg">
+          <div class="icon">🧵</div>
+          <h3>جلد PU مخيط</h3>
+          <p>مظهر فاخر بخياطة واضحة يتناسب مع مقاعد السيارة الجلدية.</p>
+        </article>
+        <article class="feat-card leather-panel leather-bg">
+          <div class="icon">🔧</div>
+          <h3>تركيب فوري</h3>
+          <p>يُركّب بين المقعد والكونسول بدون أدوات — ثبات آمن أثناء القيادة.</p>
+        </article>
+        <article class="feat-card leather-panel leather-bg">
+          <div class="icon">🛡️</div>
+          <h3>مواد متينة</h3>
+          <p>PU + ABS + PC مقاومة للخدش والحرارة — يدوم معك.</p>
+        </article>
+        <article class="feat-card leather-panel leather-bg">
+          <div class="icon">🇸🇦</div>
+          <h3>توصيل سعودي</h3>
+          <p>الدفع عند الاستلام لجميع مدن المملكة.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section gallery" id="gallery">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="stitch-line"></div>
+        <h2>معرض الصور</h2>
+        <p>شاهد المنتج في السيارة ومن كل الزوايا</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item featured">
+          <img src="images/product-installed.png" alt="ZHUSE مثبت بين المقاعد" loading="lazy" />
+        </div>
+        <div class="gallery-item">
+          <img src="images/product-in-car.png" alt="ZHUSE داخل السيارة" loading="lazy" />
+        </div>
+        <div class="gallery-item">
+          <img src="images/charger-ports.png" alt="منافذ الشحن USB-C و USB-A والولاعة" loading="lazy" />
+        </div>
+        <div class="gallery-item">
+          <img src="images/product-side.png" alt="منظر جانبي للمنتج" loading="lazy" />
+        </div>
+        <div class="gallery-item">
+          <img src="images/product-unboxing.png" alt="تغليف المنتج" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="specs">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="stitch-line"></div>
+        <h2>المواصفات التقنية</h2>
+      </div>
+      <div class="leather-panel leather-bg" style="padding: clamp(20px, 4vw, 32px);">
+        <table class="specs-table">
+          <tr><th>الموديل</th><td>ZHUSE ZS-CA-003C</td></tr>
+          <tr><th>الأبعاد</th><td>265 × 166 × 45 مم</td></tr>
+          <tr><th>الوزن</th><td>380 جرام</td></tr>
+          <tr><th>الطاقة الإجمالية</th><td>120 واط</td></tr>
+          <tr><th>USB-C</th><td>30W — شحن سريع</td></tr>
+          <tr><th>USB-A</th><td>22.5W</td></tr>
+          <tr><th>ولاعة السيارة</th><td>72W</td></tr>
+          <tr><th>المواد</th><td>PU + ABS + PC</td></tr>
+          <tr><th>الضمان</th><td>14 يوم</td></tr>
+          <tr><th>السعر</th><td>199 ر.س (بدل 299 ر.س)</td></tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="stitch-line"></div>
+        <h2>تسوق بثقة</h2>
+      </div>
+      <div class="trust-grid">
+        <div class="trust-item">
+          <div class="icon">🚚</div>
+          <h4>توصيل سريع</h4>
+          <p>لجميع مناطق KSA</p>
+        </div>
+        <div class="trust-item">
+          <div class="icon">💵</div>
+          <h4>COD</h4>
+          <p>ادفع عند الاستلام</p>
+        </div>
+        <div class="trust-item">
+          <div class="icon">↩️</div>
+          <h4>ضمان 14 يوم</h4>
+          <p>استبدال أو استرجاع</p>
+        </div>
+        <div class="trust-item">
+          <div class="icon">📞</div>
+          <h4>تأكيد الطلب</h4>
+          <p>مكالمة قبل الشحن</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div class="sticky-bar">
+  <button type="submit" form="orderForm" class="sticky-bar__submit" id="stickyOrder">اطلب الحين — 199 ر.س</button>
+</div>
+
+<div class="modal" id="successModal" aria-hidden="true">
+  <div class="modal__box">
+    <div class="modal__icon">✅</div>
+    <h3 class="modal__title">تم حجز طلبك بنجاح!</h3>
+    <p class="modal__text">شكراً <span id="successName">عزيزنا</span> 🙏<br>لضمان عدم إلغاء الطلب، يرجى الاستعداد لاستقبال مكالمة فريق التأكيد.<br>📞 أبقِ هاتفك في المتناول.</p>
+    <button type="button" id="modalClose" class="btn-modal">رائع 👍</button>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span class="logo">ZHUSE</span>
+    <p>صندوق تخزين مقعد السيارة متعدد الوظائف · ZS-CA-003C</p>
+    <p style="margin-top:8px">© 2026 — جميع الحقوق محفوظة</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var qtySelect = document.getElementById('qtySelect');
+  if (qtySelect) {
+    qtySelect.addEventListener('change', function () {
+      var radio = document.querySelector('input[name="qty"][value="' + this.value + '"]');
+      if (radio) {
+        radio.checked = true;
+        radio.dispatchEvent(new Event('change', { bubbles: true }));
+      }
+    });
+  }
+
+  var orderSection = document.getElementById('order');
+  var stickyBar = document.querySelector('.sticky-bar');
+  if (orderSection && stickyBar && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        stickyBar.classList.toggle('is-hidden', entry.isIntersecting);
+      });
+    }, { threshold: 0.35 }).observe(orderSection);
+  }
+
+  var modalClose = document.getElementById('modalClose');
+  var modal = document.getElementById('successModal');
+  if (modalClose && modal) {
+    modalClose.addEventListener('click', function () {
+      modal.classList.remove('show');
+      modal.setAttribute('aria-hidden', 'true');
+    });
+  }
+})();
+</script>
+<script src="../../js/gulfcod-zhuse-config.js?v=20260619zhuse1" defer></script>
+<script src="../../js/traffic-source.js?v=20260619zhuse1" defer></script>
+<script src="../../js/facebook-pixel.js?v=20260619zhuse1" defer></script>
+<script src="../../js/main.js?v=20260619zhuse1" defer></script>
+</body>
+</html>
