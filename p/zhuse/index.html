@@ -312,9 +312,41 @@
       background: rgba(255,255,255,.35);
       border: 1.5px dashed var(--leather-mid);
       border-radius: var(--radius-sm);
-      margin-bottom: 20px;
+      margin-bottom: 12px;
       font-weight: 600;
       font-size: 0.9rem;
+    }
+    .offer-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .offer-tag {
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 999px;
+      background: #6c3eb6;
+      color: #fff;
+    }
+    .offer-tag--save {
+      background: var(--accent);
+    }
+    .stock-note {
+      font-size: 0.85rem;
+      color: #c0392b;
+      font-weight: 700;
+      margin-bottom: 16px;
+      padding: 10px 12px;
+      background: rgba(192,57,43,.08);
+      border: 1px dashed rgba(192,57,43,.35);
+      border-radius: var(--radius-sm);
+    }
+    .hero-copy .stock-note {
+      color: #ffb4a8;
+      background: rgba(192,57,43,.15);
+      border-color: rgba(255,180,168,.35);
     }
     .form-group { margin-bottom: 14px; }
     .form-group label {
@@ -616,6 +648,7 @@
           <span class="was">299 ر.س</span>
           <span class="tag">وفر 33%</span>
         </div>
+        <p class="stock-note" style="max-width:42ch;margin-bottom:16px">⚠️ الكمية محدودة (20–30 قطعة) — اطلب قبل نفاد المخزون</p>
         <a class="btn-primary" href="#order">اطلب الآن — الدفع عند الاستلام</a>
       </div>
       <div class="hero-product">
@@ -642,12 +675,18 @@
       </div>
       <div class="order-box leather-panel leather-bg order-panel" id="orderFormPanel">
         <h3>نموذج الطلب</h3>
-        <p class="sub">ZHUSE ZS-CA-003C — <span id="heroPriceNew">199 ريال</span></p>
+        <p class="sub">Gulf COD · SA050101ZE0099 — <span id="heroPriceNew">199 ريال</span></p>
+        <div class="offer-tags">
+          <span class="offer-tag">20% خصم على قطعتين</span>
+          <span class="offer-tag offer-tag--save">خصومات حتى 4 قطع</span>
+        </div>
+        <p class="stock-note">⚠️ الكمية المتاحة محدودة — 20 إلى 30 قطعة</p>
         <div class="cod-banner">💵 الدفع عند الاستلام (COD)</div>
         <form id="orderForm" novalidate>
           <input type="radio" name="qty" value="1" data-price="199" data-compare="299" checked hidden aria-hidden="true" />
-          <input type="radio" name="qty" value="2" data-price="398" data-compare="598" hidden aria-hidden="true" />
-          <input type="radio" name="qty" value="3" data-price="597" data-compare="897" hidden aria-hidden="true" />
+          <input type="radio" name="qty" value="2" data-price="318" data-compare="598" hidden aria-hidden="true" />
+          <input type="radio" name="qty" value="3" data-price="477" data-compare="897" hidden aria-hidden="true" />
+          <input type="radio" name="qty" value="4" data-price="636" data-compare="1196" hidden aria-hidden="true" />
           <div class="form-group">
             <label for="fullname">الاسم الكامل <span>*</span></label>
             <input class="form-control" type="text" id="fullname" name="fullname" required placeholder="مثال: محمد العتيبي" autocomplete="name" />
@@ -689,8 +728,9 @@
             <label for="qtySelect">الكمية</label>
             <select class="form-control" id="qtySelect">
               <option value="1">1 — 199 ر.س</option>
-              <option value="2">2 — 398 ر.س</option>
-              <option value="3">3 — 597 ر.س</option>
+              <option value="2">2 — 318 ر.س (خصم 20%)</option>
+              <option value="3">3 — 477 ر.س</option>
+              <option value="4">4 — 636 ر.س</option>
             </select>
           </div>
           <div class="form-total">
@@ -780,6 +820,7 @@
       </div>
       <div class="leather-panel leather-bg" style="padding: clamp(20px, 4vw, 32px);">
         <table class="specs-table">
+          <tr><th>رمز Gulf COD</th><td>SA050101ZE0099</td></tr>
           <tr><th>الموديل</th><td>ZHUSE ZS-CA-003C</td></tr>
           <tr><th>الأبعاد</th><td>265 × 166 × 45 مم</td></tr>
           <tr><th>الوزن</th><td>380 جرام</td></tr>
@@ -789,7 +830,7 @@
           <tr><th>ولاعة السيارة</th><td>72W</td></tr>
           <tr><th>المواد</th><td>PU + ABS + PC</td></tr>
           <tr><th>الضمان</th><td>14 يوم</td></tr>
-          <tr><th>السعر</th><td>199 ر.س (بدل 299 ر.س)</td></tr>
+          <tr><th>السعر</th><td>199 ر.س — خصم 20% على قطعتين (318 ر.س)</td></tr>
         </table>
       </div>
     </div>
@@ -881,9 +922,9 @@
   }
 })();
 </script>
-<script src="../../js/gulfcod-zhuse-config.js?v=20260619zhuse1" defer></script>
-<script src="../../js/traffic-source.js?v=20260619zhuse1" defer></script>
-<script src="../../js/facebook-pixel.js?v=20260619zhuse1" defer></script>
-<script src="../../js/main.js?v=20260619zhuse1" defer></script>
+<script src="../../js/gulfcod-zhuse-config.js?v=20260619zhuse2" defer></script>
+<script src="../../js/traffic-source.js?v=20260619zhuse2" defer></script>
+<script src="../../js/facebook-pixel.js?v=20260619zhuse2" defer></script>
+<script src="../../js/main.js?v=20260619zhuse2" defer></script>
 </body>
 </html>

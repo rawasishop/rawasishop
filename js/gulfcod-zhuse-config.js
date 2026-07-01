@@ -1,22 +1,23 @@
 /* =========================================================
-   RawasiShop — ZHUSE صندوق تخزين مقعد السيارة
-   SKU: ZS-CA-003C | 120W شحن سريع
+   RawasiShop × Gulf COD — صندوق تخزين مقعد السيارة
+   SKU: SA050101ZE0099 | تكلفة: 120 ر.س | أقل سعر بيع: 145 ر.س
    ========================================================= */
 window.RAWASI_TAAGER = {
-  platform: 'supplier',
-  productId: 'zhuse-car-seat-organizer',
-  productSku: 'ZS-CA-003C',
-  productName: 'صندوق تخزين مقعد السيارة متعدد الوظائف — ZHUSE 120W',
+  platform: 'gulfcod',
+  productId: 'car-seat-storage-box',
+  productSku: 'SA050101ZE0099',
+  productName: 'صندوق تخزين مقعد السيارة متعدد الوظائف',
   supplierUrl: 'https://sa.gulf-5hop.com/',
   pageSource: 'rawasishop-zhuse',
   country: 'SA',
   currency: 'SAR',
-  wholesale: 99,
-  minSell: 149,
+  wholesale: 120,
+  minSell: 145,
   bundles: {
     1: { title: 'قطعة واحدة', price: 199, units: 1 },
-    2: { title: 'قطعتان', price: 398, units: 2 },
-    3: { title: '3 قطع', price: 597, units: 3 }
+    2: { title: 'قطعتان — خصم 20%', price: 318, units: 2 },
+    3: { title: '3 قطع', price: 477, units: 3 },
+    4: { title: '4 قطع', price: 636, units: 4 }
   },
   sellerWhatsapp: '212633405061',
   sheetWebhook: 'https://script.google.com/macros/s/AKfycbwbAiejjtqfwj0HqzGtMEwQEo7yG7lxl9skMjIlSnz6hFdlhYCZ1ZUNQ3VTQFtZgLc/exec',
@@ -39,11 +40,36 @@ window.RAWASI_TAAGER = {
     return /^05\d{8}$/.test(this.normalizeSaPhone(phone));
   },
 
-  profitEstimate: function (sellPrice) {
-    return Math.max(0, sellPrice - this.wholesale);
+  profitEstimate: function (sellPrice, qtyUnits) {
+    var units = qtyUnits || 1;
+    var cost = units >= 2 ? this.wholesale * units * 0.8 : this.wholesale * units;
+    return Math.max(0, sellPrice - cost);
   },
 
-  buildSellerWhatsApp: function () { return ''; },
+  buildSellerWhatsApp: function (order) {
+    var unitPrice = order.unitPrice || order.sellPrice || order.totalNum || 0;
+    var msg =
+      '📦 *طلب جديد — RawasiShop*\n' +
+      '━━━━━━━━━━━━━━━━\n' +
+      '🏪 المورد: Gulf COD\n' +
+      '🔗 ' + this.supplierUrl + '\n' +
+      '🆔 SKU: ' + this.productSku + '\n' +
+      '📦 ' + this.productName + '\n' +
+      '👤 الاسم: ' + order.name + '\n' +
+      '📞 الهاتف: ' + this.normalizeSaPhone(order.phone) + '\n' +
+      '🏛️ المحافظة: ' + order.city + '\n' +
+      '📍 العنوان: ' + order.address + '\n' +
+      '🔢 الكمية: ' + (order.qtyUnits || 1) + '\n' +
+      '💰 سعر البيع: ' + unitPrice + ' ر.س\n' +
+      '💵 إجمالي الطلب: ' + (order.total || '') + '\n' +
+      '🌍 السعودية · الدفع عند الاستلام';
+    if (order.source) msg += '\n📄 المصدر: ' + order.source;
+    return msg;
+  },
+
+  isMobileDevice: function () {
+    return /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  },
 
   buildCustomerWhatsApp: function (order) {
     var total = order.total || order.totalNum || '';
@@ -66,7 +92,7 @@ window.RAWASI_TAAGER = {
     var msg = this.buildCustomerWhatsApp(order);
     var phone = this.sellerWhatsapp;
     var text = encodeURIComponent(msg);
-    if (/Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    if (this.isMobileDevice()) {
       window.location.href = 'https://api.whatsapp.com/send?phone=' + phone + '&text=' + text;
     } else {
       window.open('https://wa.me/' + phone + '?text=' + text, '_blank');
