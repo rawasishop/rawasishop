@@ -148,6 +148,25 @@ a { color: inherit; text-decoration: none; }
   max-height: min(72vh, 460px);
 }
 
+@media (max-width: 767px) {
+  .hero__banner-img {
+    max-height: min(40vh, 280px);
+    aspect-ratio: 16 / 11;
+  }
+
+  #order {
+    scroll-margin-top: 0.75rem;
+  }
+
+  .sticky-cta {
+    display: none !important;
+  }
+
+  body {
+    padding-bottom: 1.5rem;
+  }
+}
+
 @media (min-width: 640px) {
   .hero__banner--top {
     padding-inline: 1.5rem;

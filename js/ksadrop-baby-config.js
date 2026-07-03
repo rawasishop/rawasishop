@@ -26,7 +26,7 @@ window.RAWASI_TAAGER = {
   compareAt: 199,
   deferPixelLoad: true,
   pixelPlatforms: ['facebook'],
-  skipServiceWorker: false,
+  skipServiceWorker: true,
 
   normalizeSaPhone: function (phone) {
     var d = String(phone || '').replace(/\D/g, '');
