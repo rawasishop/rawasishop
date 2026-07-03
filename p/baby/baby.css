@@ -22,6 +22,64 @@ img {
 
 a { color: inherit; text-decoration: none; }
 
+/* شريط العرض الحصري — أول ما تراه من الإعلان */
+.exclusive-bar {
+  background: linear-gradient(90deg, #be185d 0%, #ec4899 50%, #be185d 100%);
+  background-size: 200% 100%;
+  animation: exclusive-shine 3s ease-in-out infinite;
+  color: #fff;
+  text-align: center;
+  padding: 0.625rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.4;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 16px rgba(190, 24, 93, 0.35);
+}
+
+@keyframes exclusive-shine {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.exclusive-bar__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem 0.75rem;
+  max-width: 72rem;
+  margin-inline: auto;
+}
+
+.exclusive-bar__badge {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.2rem 0.6rem;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+.exclusive-bar__prices s {
+  opacity: 0.85;
+  text-decoration: line-through;
+}
+
+.exclusive-bar__prices strong {
+  font-size: 1rem;
+}
+
+.exclusive-bar__ends {
+  color: #fef08a;
+  white-space: nowrap;
+}
+
+@media (min-width: 640px) {
+  .exclusive-bar { font-size: 0.9375rem; padding: 0.75rem 1rem; }
+  .exclusive-bar__prices strong { font-size: 1.125rem; }
+}
+
 .container {
   width: 100%;
   max-width: 72rem;
@@ -48,11 +106,104 @@ a { color: inherit; text-decoration: none; }
 /* Hero */
 .hero {
   background: #fff;
-  padding: 0 0 2rem;
+  padding: 1rem 0 2rem;
 }
 
 @media (min-width: 768px) {
-  .hero { padding-bottom: 3rem; }
+  .hero { padding: 1.25rem 0 3rem; }
+}
+
+.hero-layout {
+  display: grid;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+@media (min-width: 1024px) {
+  .hero-layout {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+    gap: 2.5rem;
+    align-items: center;
+  }
+}
+
+.hero-layout__visual {
+  max-width: 28rem;
+  margin-inline: auto;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .hero-layout__visual {
+    max-width: none;
+    margin-inline: 0;
+  }
+}
+
+.hero-showcase {
+  margin: 0;
+}
+
+.hero-showcase__frame {
+  position: relative;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background: linear-gradient(145deg, #e0f2fe 0%, #fdf2f8 100%);
+  box-shadow:
+    0 20px 40px rgba(190, 24, 93, 0.14),
+    0 0 0 1px rgba(251, 207, 232, 0.8);
+}
+
+.hero-showcase__img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center 42%;
+}
+
+.hero-showcase__badge {
+  position: absolute;
+  font-weight: 700;
+  line-height: 1.2;
+  border-radius: 9999px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.hero-showcase__badge--safe {
+  top: 0.75rem;
+  inset-inline-start: 0.75rem;
+  background: rgba(255, 255, 255, 0.95);
+  color: #047857;
+  font-size: 0.8125rem;
+  padding: 0.4rem 0.75rem;
+  backdrop-filter: blur(6px);
+}
+
+.hero-showcase__badge--price {
+  bottom: 0.75rem;
+  inset-inline-end: 0.75rem;
+  background: linear-gradient(135deg, #be185d, #ec4899);
+  color: #fff;
+  font-size: 1.125rem;
+  padding: 0.45rem 0.9rem;
+}
+
+.hero-showcase__badge--price small {
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.hero-showcase__caption {
+  margin: 0.625rem 0 0;
+  text-align: center;
+  font-size: 0.8125rem;
+  color: #6b7280;
+  font-weight: 700;
+}
+
+@media (min-width: 1024px) {
+  .hero-showcase__caption { text-align: right; }
 }
 
 .hero__banner {
@@ -74,11 +225,11 @@ a { color: inherit; text-decoration: none; }
 }
 
 .hero .container {
-  padding-top: 1rem;
+  padding-top: 0;
 }
 
 @media (min-width: 768px) {
-  .hero .container { padding-top: 1.25rem; }
+  .hero .container { padding-top: 0; }
 }
 
 .hero__banner-img {
@@ -327,7 +478,31 @@ a { color: inherit; text-decoration: none; }
   font-weight: 700;
   padding: 0.375rem 1rem;
   border-radius: 9999px;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.order-panel__was-label,
+.order-panel__now-label {
+  margin: 0;
+  font-size: 0.75rem;
+  color: #9ca3af;
+  font-weight: 700;
+}
+
+.order-panel__now-label {
+  color: #ec4899;
+  margin-top: 0.25rem;
+}
+
+.order-panel__save {
+  margin: 0.35rem 0 0;
+  font-size: 0.9375rem;
+  color: #16a34a;
+  font-weight: 700;
+}
+
+.order-panel__save strong {
+  font-size: 1.0625rem;
 }
 
 .order-panel__old-price {
@@ -384,6 +559,38 @@ a { color: inherit; text-decoration: none; }
 .order-urgency__stock strong {
   color: #dc2626;
   font-size: 0.9375rem;
+}
+
+.offer-countdown {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0 0.35rem;
+}
+
+.offer-countdown__box {
+  background: #fff;
+  border: 1px solid #fdba74;
+  border-radius: 0.5rem;
+  min-width: 3.25rem;
+  padding: 0.35rem 0.5rem;
+  text-align: center;
+}
+
+.offer-countdown__num {
+  display: block;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #c2410c;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.offer-countdown__lbl {
+  display: block;
+  font-size: 0.625rem;
+  color: #9a3412;
+  margin-top: 0.125rem;
 }
 
 .order-panel__note {
@@ -610,16 +817,25 @@ a { color: inherit; text-decoration: none; }
 .split__images { display: flex; flex-direction: column; gap: 1rem; }
 
 @media (min-width: 768px) {
-  .split__images .rounded-img {
-    max-height: 260px;
+  .split__images .rounded-img:not(.rounded-img--lead) {
+    max-height: 200px;
     object-fit: cover;
     object-position: center;
+  }
+
+  .split__images .rounded-img--lead {
+    max-height: 320px;
+    object-position: center 42%;
   }
 }
 
 @media (min-width: 1024px) {
-  .split__images .rounded-img {
+  .split__images .rounded-img:not(.rounded-img--lead) {
     max-height: 220px;
+  }
+
+  .split__images .rounded-img--lead {
+    max-height: 300px;
   }
 }
 
@@ -627,6 +843,15 @@ a { color: inherit; text-decoration: none; }
   width: 100%;
   border-radius: 1.5rem;
   box-shadow: 0 10px 15px -3px rgba(0,0,0,.1);
+}
+
+.rounded-img--lead {
+  box-shadow:
+    0 16px 32px rgba(190, 24, 93, 0.12),
+    0 0 0 2px rgba(251, 207, 232, 0.9);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  object-position: center 42%;
 }
 
 .feature-list {
@@ -865,6 +1090,13 @@ a { color: inherit; text-decoration: none; }
 .sticky-cta.show { transform: translateY(0); }
 
 .sticky-cta__price { font-weight: 700; white-space: nowrap; }
+.sticky-cta__label {
+  display: block;
+  font-size: 0.625rem;
+  color: #ec4899;
+  font-weight: 700;
+  text-transform: none;
+}
 .sticky-cta__old { display: block; font-size: 0.75rem; color: #9ca3af; text-decoration: line-through; }
 .sticky-cta__new { color: #ec4899; font-size: 1.125rem; }
 
