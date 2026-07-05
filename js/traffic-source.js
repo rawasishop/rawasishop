@@ -53,7 +53,8 @@
         adSourceLabel: labelFor(adSource),
         utm_source: params.get('utm_source') || '',
         utm_medium: params.get('utm_medium') || '',
-        utm_campaign: params.get('utm_campaign') || ''
+        utm_campaign: params.get('utm_campaign') || '',
+        fbclid: params.get('fbclid') || ''
       };
       sessionStorage.setItem('rawasi_traffic', JSON.stringify(data));
       return data;

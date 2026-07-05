@@ -106,16 +106,20 @@ window.RAWASI_TAAGER = {
     try {
       if (navigator.sendBeacon) sent = navigator.sendBeacon(url, blob);
     } catch (e) {}
-    try {
-      fetch(url, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: payload,
-        keepalive: true
-      });
-      sent = true;
-    } catch (e) {}
+    function postOrder() {
+      try {
+        fetch(url, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: payload,
+          keepalive: true
+        });
+        sent = true;
+      } catch (e) {}
+    }
+    postOrder();
+    setTimeout(postOrder, 800);
     return sent;
   },
 

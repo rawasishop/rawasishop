@@ -451,6 +451,7 @@
         utm_source: traffic.utm_source || '',
         utm_medium: traffic.utm_medium || '',
         utm_campaign: traffic.utm_campaign || '',
+        fbclid: traffic.fbclid || '',
         supplierUrl: TAAGER.supplierUrl || '',
         transaction_id: 'RS-' + Date.now(),
         date: new Date().toISOString()
