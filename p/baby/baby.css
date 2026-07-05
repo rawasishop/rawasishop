@@ -142,16 +142,28 @@ a { color: inherit; text-decoration: none; }
 .hero__banner-img {
   width: 100%;
   display: block;
-  object-fit: cover;
-  object-position: center 15%;
-  aspect-ratio: 4 / 5;
-  max-height: min(72vh, 460px);
+  object-fit: contain;
+  object-position: center top;
+  aspect-ratio: 819 / 1024;
+  max-height: min(78vh, 520px);
+  background: #fdf2f8;
 }
 
 @media (max-width: 767px) {
+  .hero__banner--top {
+    padding-inline: 0.5rem;
+  }
+
+  .hero__banner--top picture {
+    max-width: 100%;
+  }
+
   .hero__banner-img {
-    max-height: min(40vh, 280px);
-    aspect-ratio: 16 / 11;
+    width: 100%;
+    max-height: none;
+    aspect-ratio: 819 / 1024;
+    object-fit: contain;
+    object-position: center top;
   }
 
   #order {
@@ -178,8 +190,8 @@ a { color: inherit; text-decoration: none; }
 
   .hero__banner-img {
     border-radius: 1rem;
-    aspect-ratio: 16 / 10;
-    max-height: min(50vh, 420px);
+    max-height: min(62vh, 480px);
+    object-fit: contain;
   }
 }
 
@@ -189,8 +201,8 @@ a { color: inherit; text-decoration: none; }
   }
 
   .hero__banner-img {
-    max-height: 380px;
-    aspect-ratio: 4 / 5;
+    max-height: 480px;
+    object-fit: contain;
   }
 }
 

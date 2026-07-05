@@ -4,7 +4,7 @@
 const PAGE = 'https://www.rawasishop.com/p/baby/';
 const WEBHOOK =
   'https://script.google.com/macros/s/AKfycbwbAiejjtqfwj0HqzGtMEwQEo7yG7lxl9skMjIlSnz6hFdlhYCZ1ZUNQ3VTQFtZgLc/exec';
-const CACHE_TAG = '20260703babyfix';
+const CACHE_TAG = '20260705hero';
 
 const now = new Date().toLocaleString('ar-SA', { timeZone: 'Asia/Riyadh' });
 
