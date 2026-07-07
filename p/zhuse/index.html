@@ -204,10 +204,13 @@
 
     /* Order section */
     #order {
-      padding: clamp(48px, 8vw, 80px) 0;
+      padding: clamp(16px, 4vw, 48px) 0 clamp(48px, 8vw, 80px);
       background:
         radial-gradient(ellipse 80% 50% at 50% 0%, rgba(184,137,90,.12), transparent),
         var(--ink);
+    }
+    #order.order-after-hero {
+      padding-top: clamp(12px, 2.5vw, 20px);
     }
     .order-layout {
       display: grid;
@@ -785,43 +788,9 @@
           decoding="async" />
       </picture>
     </div>
-    <div class="hero-banner__cta wrap">
-      <p class="hero-banner__price">199 ر.س <s>299 ر.س</s></p>
-      <a class="btn-primary" href="#order">اطلب الحين — الدفع عند الاستلام</a>
-    </div>
   </section>
 
-  <section class="problem-section">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="stitch-line"></div>
-        <h2>هل تعرف هذا الموقف؟</h2>
-        <p>نفس المشكلة التي يعرضها الإعلان — والحل بين يديك</p>
-      </div>
-      <div class="problem-grid">
-        <article class="problem-card">
-          <div class="emoji">📱</div>
-          <h3>الجوال يسقط</h3>
-          <p>جوالك ومفاتيحك وحاجاتك تسقط تحت المقعد ويصعب إخراجها</p>
-        </article>
-        <article class="problem-card">
-          <div class="emoji">😤</div>
-          <h3>تضيع في الفجوة</h3>
-          <p>تضيع بين المقعد والكونسول وأنت تقود أو تتوقف</p>
-        </article>
-        <article class="problem-card">
-          <div class="emoji">🔌</div>
-          <h3>فوضى الشواحن</h3>
-          <p>أسلاك متشابكة ولا منفذ كافٍ لشحن أجهزتك</p>
-        </article>
-      </div>
-      <div class="solution-banner">
-        <p>✨ ZHUSE يملأ الفجوة — تخزين + شحن 120W في قطعة واحدة · 199 ر.س فقط</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="order">
+  <section id="order" class="order-after-hero">
     <div class="wrap order-layout">
       <div class="order-info">
         <h2>اطلب منظم ZHUSE الآن</h2>
@@ -875,7 +844,7 @@
             </div>
             <div class="form-group">
               <label for="city">المحافظة <span>*</span></label>
-              <select class="form-control" id="city" name="city" required autocomplete="off">
+              <select class="form-control" id="city" name="city" required autocomplete="address-level1">
                 <option value="" disabled selected>اختار المحافظة</option>
                 <option value="منطقة الرياض">منطقة الرياض</option>
                 <option value="منطقة مكة المكرمة">منطقة مكة المكرمة</option>
@@ -914,6 +883,36 @@
           </div>
           <button type="submit" class="btn-submit" id="orderSubmit">🔒 اطلب الحين — 199 ر.س · الدفع عند الاستلام</button>
         </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="problem-section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="stitch-line"></div>
+        <h2>هل تعرف هذا الموقف؟</h2>
+        <p>نفس المشكلة التي يعرضها الإعلان — والحل بين يديك</p>
+      </div>
+      <div class="problem-grid">
+        <article class="problem-card">
+          <div class="emoji">📱</div>
+          <h3>الجوال يسقط</h3>
+          <p>جوالك ومفاتيحك وحاجاتك تسقط تحت المقعد ويصعب إخراجها</p>
+        </article>
+        <article class="problem-card">
+          <div class="emoji">😤</div>
+          <h3>تضيع في الفجوة</h3>
+          <p>تضيع بين المقعد والكونسول وأنت تقود أو تتوقف</p>
+        </article>
+        <article class="problem-card">
+          <div class="emoji">🔌</div>
+          <h3>فوضى الشواحن</h3>
+          <p>أسلاك متشابكة ولا منفذ كافٍ لشحن أجهزتك</p>
+        </article>
+      </div>
+      <div class="solution-banner">
+        <p>✨ ZHUSE يملأ الفجوة — تخزين + شحن 120W في قطعة واحدة · 199 ر.س فقط</p>
       </div>
     </div>
   </section>
@@ -1058,9 +1057,9 @@
   }
 })();
 </script>
-<script src="../../js/gulfcod-zhuse-config.js?v=20260707v2" defer></script>
-<script src="../../js/traffic-source.js?v=20260707v2" defer></script>
-<script src="../../js/facebook-pixel.js?v=20260707v2" defer></script>
-<script src="../../js/main.js?v=20260707v2" defer></script>
+<script src="../../js/gulfcod-zhuse-config.js?v=20260707form" defer></script>
+<script src="../../js/traffic-source.js?v=20260707form" defer></script>
+<script src="../../js/facebook-pixel.js?v=20260707form" defer></script>
+<script src="../../js/main.js?v=20260707form" defer></script>
 </body>
 </html>
