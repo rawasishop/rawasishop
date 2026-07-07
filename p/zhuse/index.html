@@ -421,38 +421,26 @@
       line-height: 1.6;
     }
 
-    /* Gallery */
-    .gallery {
+    /* Showcase — صورتان ترويجيتان */
+    .showcase {
       background: linear-gradient(180deg, var(--ink) 0%, #221a14 100%);
     }
-    .gallery-grid {
+    .showcase-stack {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
+      gap: clamp(18px, 3vw, 28px);
     }
-    @media (min-width: 720px) {
-      .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 18px; }
-    }
-    .gallery-item {
-      border-radius: var(--radius-sm);
+    .showcase-card {
+      border-radius: var(--radius);
       overflow: hidden;
-      border: 2px solid var(--leather-dark);
-      aspect-ratio: 4/3;
+      border: 3px solid var(--leather-dark);
+      box-shadow: var(--shadow-deep);
       background: var(--ink-soft);
+      line-height: 0;
     }
-    .gallery-item img {
+    .showcase-card img {
+      display: block;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.4s ease;
-    }
-    .gallery-item:hover img { transform: scale(1.04); }
-    .gallery-item.featured {
-      grid-column: span 2;
-      aspect-ratio: 16/9;
-    }
-    @media (min-width: 720px) {
-      .gallery-item.featured { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+      height: auto;
     }
 
     /* Specs */
@@ -930,96 +918,36 @@
     </div>
   </section>
 
-  <section class="section" id="features">
+  <section class="section showcase" id="gallery">
     <div class="wrap">
       <div class="section-head">
         <div class="stitch-line"></div>
-        <h2>لماذا ZHUSE؟</h2>
-        <p>تصميم جلدي أنيق يناسب داخلية أي سيارة — وظائف متعددة في قطعة واحدة</p>
+        <h2>شاهد المنتج</h2>
+        <p>تركيب فوري · شحن 120W · الدفع عند الاستلام</p>
       </div>
-      <div class="features-grid">
-        <article class="feat-card leather-panel leather-bg">
-          <div class="icon">⚡</div>
-          <h3>شحن سريع 120W</h3>
-          <p>USB-C 30W + USB-A 22.5W + ولاعة 72W — شحن ثلاثة أجهزة معًا.</p>
-        </article>
-        <article class="feat-card leather-panel leather-bg">
-          <div class="icon">📦</div>
-          <h3>تخزين ذكي</h3>
-          <p>مساحة عميقة للهاتف والمحفظة والمفاتيح — لا مزيد من الفوضى في السيارة.</p>
-        </article>
-        <article class="feat-card leather-panel leather-bg">
-          <div class="icon">🧵</div>
-          <h3>جلد PU مخيط</h3>
-          <p>مظهر فاخر بخياطة واضحة يتناسب مع مقاعد السيارة الجلدية.</p>
-        </article>
-        <article class="feat-card leather-panel leather-bg">
-          <div class="icon">🔧</div>
-          <h3>تركيب فوري</h3>
-          <p>يُركّب بين المقعد والكونسول بدون أدوات — ثبات آمن أثناء القيادة.</p>
-        </article>
-        <article class="feat-card leather-panel leather-bg">
-          <div class="icon">🛡️</div>
-          <h3>مواد متينة</h3>
-          <p>PU + ABS + PC مقاومة للخدش والحرارة — يدوم معك.</p>
-        </article>
-        <article class="feat-card leather-panel leather-bg">
-          <div class="icon">🇸🇦</div>
-          <h3>توصيل سعودي</h3>
-          <p>الدفع عند الاستلام لجميع مدن المملكة.</p>
-        </article>
+      <div class="showcase-stack">
+        <figure class="showcase-card">
+          <img
+            src="assets/gallery-collage.webp?v=20260707gallery"
+            alt="منظم ZHUSE في السيارة — تخزين الجوال والمفاتيح وشحن USB"
+            width="720"
+            height="956"
+            loading="lazy"
+            decoding="async" />
+        </figure>
+        <figure class="showcase-card">
+          <img
+            src="assets/product-infographic.webp?v=20260707gallery"
+            alt="مواصفات صندوق تخزين مقعد السيارة ZHUSE — 120W شحن سريع وتخزين ذكي"
+            width="682"
+            height="1024"
+            loading="lazy"
+            decoding="async" />
+        </figure>
       </div>
-    </div>
-  </section>
-
-  <section class="section gallery" id="gallery">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="stitch-line"></div>
-        <h2>معرض الصور</h2>
-        <p>شاهد المنتج في السيارة ومن كل الزوايا</p>
-      </div>
-      <div class="gallery-grid">
-        <div class="gallery-item featured">
-          <img src="images/product-installed.webp?v=20260707zhusepro" alt="ZHUSE مثبت بين المقاعد" loading="lazy" decoding="async" />
-        </div>
-        <div class="gallery-item">
-          <img src="images/product-in-car.webp?v=20260707zhusepro" alt="ZHUSE داخل السيارة" loading="lazy" decoding="async" />
-        </div>
-        <div class="gallery-item">
-          <img src="images/charger-ports.webp?v=20260707zhusepro" alt="منافذ الشحن USB-C و USB-A والولاعة" loading="lazy" decoding="async" />
-        </div>
-        <div class="gallery-item">
-          <img src="images/product-side.webp?v=20260707zhusepro" alt="منظر جانبي للمنتج" loading="lazy" decoding="async" />
-        </div>
-        <div class="gallery-item">
-          <img src="images/product-unboxing.webp?v=20260707zhusepro" alt="تغليف المنتج" loading="lazy" decoding="async" />
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="specs">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="stitch-line"></div>
-        <h2>المواصفات التقنية</h2>
-      </div>
-      <div class="leather-panel leather-bg" style="padding: clamp(20px, 4vw, 32px);">
-        <table class="specs-table">
-          <tr><th>رمز Gulf COD</th><td>SA050101ZE0099</td></tr>
-          <tr><th>الموديل</th><td>ZHUSE ZS-CA-003C</td></tr>
-          <tr><th>الأبعاد</th><td>265 × 166 × 45 مم</td></tr>
-          <tr><th>الوزن</th><td>380 جرام</td></tr>
-          <tr><th>الطاقة الإجمالية</th><td>120 واط</td></tr>
-          <tr><th>USB-C</th><td>30W — شحن سريع</td></tr>
-          <tr><th>USB-A</th><td>22.5W</td></tr>
-          <tr><th>ولاعة السيارة</th><td>72W</td></tr>
-          <tr><th>المواد</th><td>PU + ABS + PC</td></tr>
-          <tr><th>الضمان</th><td>14 يوم</td></tr>
-          <tr><th>السعر</th><td>199 ر.س — خصم 20% على قطعتين (318 ر.س)</td></tr>
-        </table>
-      </div>
+      <p style="text-align:center;margin-top:20px">
+        <a class="btn-primary" href="#order">اطلب الحين — 199 ر.س</a>
+      </p>
     </div>
   </section>
 
