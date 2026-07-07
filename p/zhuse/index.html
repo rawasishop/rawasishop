@@ -9,7 +9,7 @@
   <link rel="canonical" href="https://www.rawasishop.com/p/zhuse/" />
   <meta property="og:title" content="منظم مقعد السيارة — 199 ر.س فقط" />
   <meta property="og:description" content="جوالك ومفاتيحك لا تضيع بعد اليوم. شحن 120W · الدفع عند الاستلام." />
-  <meta property="og:image" content="https://www.rawasishop.com/p/zhuse/assets/showcase-main.webp" />
+  <meta property="og:image" content="https://www.rawasishop.com/p/zhuse/assets/landing-page.webp" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
@@ -830,6 +830,93 @@
       color: rgba(245, 235, 224, 0.85);
     }
     .trust-bar li { white-space: nowrap; }
+
+    /* نموذج علوي أنيق */
+    .page-form-top {
+      padding: clamp(14px, 3vw, 28px) 0 clamp(10px, 2vw, 18px);
+      background:
+        radial-gradient(ellipse 90% 60% at 50% 0%, rgba(184, 137, 90, 0.14), transparent 70%),
+        var(--ink);
+    }
+    .page-form-top .wrap {
+      width: min(520px, 94vw);
+    }
+    .page-form-top .order-layout {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+    .page-form-top .order-info { display: none; }
+    .page-form-top .order-box {
+      padding: clamp(18px, 4vw, 28px);
+      border-radius: calc(var(--radius) + 2px);
+    }
+    .page-form-top .offer-head {
+      margin-bottom: 12px;
+      padding-bottom: 12px;
+    }
+    .page-form-top .offer-head__now {
+      font-size: clamp(1.6rem, 6vw, 2rem);
+    }
+    .page-form-top h3 {
+      font-size: 1.05rem;
+    }
+    .page-form-top .sub,
+    .page-form-top .offer-tags,
+    .page-form-top .stock-note {
+      display: none;
+    }
+    .page-form-top .mobile-form-lead {
+      display: block;
+      background: transparent;
+      padding: 0 0 10px;
+    }
+    .page-form-top .mobile-form-lead h2 {
+      font-size: clamp(1.15rem, 4.5vw, 1.35rem);
+    }
+    .page-form-top .cod-banner {
+      margin-bottom: 16px;
+      justify-content: center;
+    }
+
+    /* صفحة الهبوط — صورة واحدة */
+    .landing-page {
+      padding: 0 0 clamp(24px, 4vw, 40px);
+      background: var(--ink);
+    }
+    .landing-page__wrap {
+      width: min(520px, 100%);
+      margin: 0 auto;
+    }
+    .landing-page__btn {
+      display: block;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      border: none;
+      background: none;
+      cursor: zoom-in;
+      font: inherit;
+      line-height: 0;
+    }
+    .landing-page__btn:focus-visible {
+      outline: 3px solid var(--leather-light);
+      outline-offset: 4px;
+    }
+    .landing-page__btn img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .landing-page__hint {
+      display: block;
+      line-height: 1.45;
+      padding: 10px 14px;
+      text-align: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(245, 235, 224, 0.65);
+      background: rgba(26, 20, 16, 0.5);
+    }
   </style>
 </head>
 <body>
@@ -853,39 +940,14 @@
 </ul>
 
 <main>
-  <section class="hero-banner" id="hero">
-    <div class="hero-banner__frame">
-      <picture>
-        <source
-          srcset="assets/showcase-main-800.webp?v=20260707v2 800w, assets/showcase-main.webp?v=20260707v2 1100w"
-          sizes="(max-width: 800px) 100vw, 1100px"
-          type="image/webp" />
-        <img
-          src="assets/showcase-main.webp?v=20260707v2"
-          alt="صندوق تخزين مقعد السيارة متعدد الوظائف ZHUSE — شحن 120W ومحتويات العبوة"
-          width="1024"
-          height="1024"
-          fetchpriority="high"
-          decoding="async" />
-      </picture>
-    </div>
-  </section>
-
-  <section id="order" class="order-after-hero">
+  <section id="order" class="page-form-top">
     <div class="wrap order-layout">
-      <div class="order-info">
-        <h2>اطلب منظم ZHUSE الآن</h2>
-        <p>نفس المنتج في الإعلان — املأ البيانات وسنتصل لتأكيد الطلب قبل الشحن.</p>
-        <ul class="order-perks">
-          <li>توصيل لجميع مدن السعودية</li>
-          <li>ضمان 14 يوم</li>
-          <li>شحن 120W مدمج — جاهز للاستخدام</li>
-          <li>تركيب فوري بدون أدوات</li>
-        </ul>
+      <div class="order-info" aria-hidden="true">
+        <h2>اطلب منظم ZHUSE</h2>
       </div>
       <div class="order-box leather-panel leather-bg order-panel" id="orderFormPanel">
         <div class="mobile-form-lead">
-          <h2>اطلب الحين — 199 ر.س</h2>
+          <h2>اطلب منظمك الذكي — 199 ر.س</h2>
           <p>الدفع عند الاستلام · شحن لكل السعودية</p>
         </div>
         <div class="offer-head">
@@ -902,10 +964,10 @@
         <h3>أكمل طلبك الآن</h3>
         <p class="sub">نؤكد طلبك بالاتصال · الدفع عند الاستلام</p>
         <div class="offer-tags">
-          <span class="offer-tag">قطعتان — 318 ر.س (خصم 20%)</span>
-          <span class="offer-tag offer-tag--save">شحن 120W مدمج</span>
+          <span class="offer-tag">قطعتان — 318 ر.س</span>
+          <span class="offer-tag offer-tag--save">شحن 120W</span>
         </div>
-        <p class="stock-note">⚠️ الكمية محدودة — اطلب قبل نفاد المخزون</p>
+        <p class="stock-note">⚠️ الكمية محدودة</p>
         <div class="cod-banner">💵 الدفع عند الاستلام — لا دفع مقدماً</div>
         <form id="orderForm" novalidate>
           <input type="radio" name="qty" value="1" data-price="199" data-compare="299" checked hidden aria-hidden="true" />
@@ -917,32 +979,30 @@
             <input class="form-control" type="text" id="fullname" name="fullname" required placeholder="مثال: محمد العتيبي" autocomplete="name" />
             <span class="err" data-for="fullname"></span>
           </div>
-          <div class="form-row">
-            <div class="form-group">
-              <label for="phone">رقم الجوال <span>*</span></label>
-              <input class="form-control" type="tel" id="phone" name="phone" inputmode="numeric" required placeholder="05xxxxxxxx" dir="ltr" autocomplete="tel" />
-              <span class="err" data-for="phone"></span>
-            </div>
-            <div class="form-group">
-              <label for="city">المحافظة <span>*</span></label>
-              <select class="form-control" id="city" name="city" required autocomplete="address-level1">
-                <option value="" disabled selected>اختار المحافظة</option>
-                <option value="منطقة الرياض">منطقة الرياض</option>
-                <option value="منطقة مكة المكرمة">منطقة مكة المكرمة</option>
-                <option value="المنطقة الشرقية">المنطقة الشرقية</option>
-                <option value="منطقة المدينة المنورة">منطقة المدينة المنورة</option>
-                <option value="منطقة القصيم">منطقة القصيم</option>
-                <option value="منطقة عسير">منطقة عسير</option>
-                <option value="منطقة تبوك">منطقة تبوك</option>
-                <option value="منطقة حائل">منطقة حائل</option>
-                <option value="منطقة الحدود الشمالية">منطقة الحدود الشمالية</option>
-                <option value="منطقة جازان">منطقة جازان</option>
-                <option value="منطقة نجران">منطقة نجران</option>
-                <option value="منطقة الباحة">منطقة الباحة</option>
-                <option value="منطقة الجوف">منطقة الجوف</option>
-              </select>
-              <span class="err" data-for="city"></span>
-            </div>
+          <div class="form-group">
+            <label for="phone">رقم الجوال <span>*</span></label>
+            <input class="form-control" type="tel" id="phone" name="phone" inputmode="numeric" required placeholder="05xxxxxxxx" dir="ltr" autocomplete="tel" />
+            <span class="err" data-for="phone"></span>
+          </div>
+          <div class="form-group">
+            <label for="city">المحافظة <span>*</span></label>
+            <select class="form-control" id="city" name="city" required autocomplete="address-level1">
+              <option value="" disabled selected>اختار المحافظة</option>
+              <option value="منطقة الرياض">منطقة الرياض</option>
+              <option value="منطقة مكة المكرمة">منطقة مكة المكرمة</option>
+              <option value="المنطقة الشرقية">المنطقة الشرقية</option>
+              <option value="منطقة المدينة المنورة">منطقة المدينة المنورة</option>
+              <option value="منطقة القصيم">منطقة القصيم</option>
+              <option value="منطقة عسير">منطقة عسير</option>
+              <option value="منطقة تبوك">منطقة تبوك</option>
+              <option value="منطقة حائل">منطقة حائل</option>
+              <option value="منطقة الحدود الشمالية">منطقة الحدود الشمالية</option>
+              <option value="منطقة جازان">منطقة جازان</option>
+              <option value="منطقة نجران">منطقة نجران</option>
+              <option value="منطقة الباحة">منطقة الباحة</option>
+              <option value="منطقة الجوف">منطقة الجوف</option>
+            </select>
+            <span class="err" data-for="city"></span>
           </div>
           <div class="form-group">
             <label for="address">العنوان التفصيلي <span>*</span></label>
@@ -968,90 +1028,19 @@
     </div>
   </section>
 
-  <section class="problem-section">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="stitch-line"></div>
-        <h2>هل تعرف هذا الموقف؟</h2>
-        <p>نفس المشكلة التي يعرضها الإعلان — والحل بين يديك</p>
-      </div>
-      <div class="problem-grid">
-        <article class="problem-card">
-          <div class="emoji">📱</div>
-          <h3>الجوال يسقط</h3>
-          <p>جوالك ومفاتيحك وحاجاتك تسقط تحت المقعد ويصعب إخراجها</p>
-        </article>
-        <article class="problem-card">
-          <div class="emoji">😤</div>
-          <h3>تضيع في الفجوة</h3>
-          <p>تضيع بين المقعد والكونسول وأنت تقود أو تتوقف</p>
-        </article>
-        <article class="problem-card">
-          <div class="emoji">🔌</div>
-          <h3>فوضى الشواحن</h3>
-          <p>أسلاك متشابكة ولا منفذ كافٍ لشحن أجهزتك</p>
-        </article>
-      </div>
-      <div class="solution-banner">
-        <p>✨ ZHUSE يملأ الفجوة — تخزين + شحن 120W في قطعة واحدة · 199 ر.س فقط</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section showcase" id="gallery">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="stitch-line"></div>
-        <h2>شاهد المنتج</h2>
-        <p>تركيب فوري · شحن 120W · الدفع عند الاستلام</p>
-      </div>
-      <div class="showcase-stack">
-        <button type="button" class="showcase-card showcase-card--zoom" id="detailImageBtn" aria-label="تكبير صورة المواصفات">
-          <img
-            id="detailImage"
-            src="assets/showcase-detail.webp?v=20260707zoom"
-            alt="مواصفات ZHUSE — 120W شحن سريع، تخزين ذكي، توافق مع كل السيارات"
-            width="682"
-            height="1024"
-            loading="lazy"
-            decoding="async" />
-          <span class="showcase-zoom-hint">اضغط على الصورة للتكبير والوضوح 🔍</span>
-        </button>
-      </div>
-      <p style="text-align:center;margin-top:20px">
-        <a class="btn-primary" href="#order">اطلب الحين — 199 ر.س</a>
-      </p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap">
-      <div class="section-head">
-        <div class="stitch-line"></div>
-        <h2>تسوق بثقة</h2>
-      </div>
-      <div class="trust-grid">
-        <div class="trust-item">
-          <div class="icon">🚚</div>
-          <h4>توصيل سريع</h4>
-          <p>لجميع مناطق KSA</p>
-        </div>
-        <div class="trust-item">
-          <div class="icon">💵</div>
-          <h4>COD</h4>
-          <p>ادفع عند الاستلام</p>
-        </div>
-        <div class="trust-item">
-          <div class="icon">↩️</div>
-          <h4>ضمان 14 يوم</h4>
-          <p>استبدال أو استرجاع</p>
-        </div>
-        <div class="trust-item">
-          <div class="icon">📞</div>
-          <h4>تأكيد الطلب</h4>
-          <p>مكالمة قبل الشحن</p>
-        </div>
-      </div>
+  <section class="landing-page" id="hero">
+    <div class="landing-page__wrap">
+      <button type="button" class="landing-page__btn" id="detailImageBtn" aria-label="تكبير صفحة المنتج">
+        <img
+          id="detailImage"
+          src="assets/landing-page.webp?v=20260708lp"
+          alt="صندوق تخزين جانبي لمقعد السيارة الفخم ZHUSE — شحن 120W وتنظيم ذكي"
+          width="287"
+          height="1024"
+          loading="lazy"
+          decoding="async" />
+        <span class="landing-page__hint">اضغط على الصورة للتكبير 🔍</span>
+      </button>
     </div>
   </section>
 </main>
@@ -1066,7 +1055,7 @@
     <img
       class="image-lightbox__img"
       id="imageLightboxImg"
-      src="assets/showcase-detail.png?v=20260707zoom"
+      src="assets/landing-page-hd.webp?v=20260708lp"
       alt="مواصفات ZHUSE — عرض مكبّر" />
     <p class="image-lightbox__caption">اسحب للتصفح · اضغط × أو خارج الصورة للإغلاق</p>
   </div>
@@ -1178,9 +1167,9 @@
   });
 })();
 </script>
-<script src="../../js/gulfcod-zhuse-config.js?v=20260707zoom" defer></script>
-<script src="../../js/traffic-source.js?v=20260707zoom" defer></script>
-<script src="../../js/facebook-pixel.js?v=20260707zoom" defer></script>
-<script src="../../js/main.js?v=20260707zoom" defer></script>
+<script src="../../js/gulfcod-zhuse-config.js?v=20260708lp" defer></script>
+<script src="../../js/traffic-source.js?v=20260708lp" defer></script>
+<script src="../../js/facebook-pixel.js?v=20260708lp" defer></script>
+<script src="../../js/main.js?v=20260708lp" defer></script>
 </body>
 </html>
