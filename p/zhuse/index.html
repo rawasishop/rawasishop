@@ -424,109 +424,31 @@
       line-height: 1.6;
     }
 
-    /* Showcase — صورتان ترويجيتان */
-    .showcase {
-      background: linear-gradient(180deg, var(--ink) 0%, #221a14 100%);
+    /* صفحة الهبوط — صورة واحدة */
+    .landing-page {
+      padding: 0 0 clamp(24px, 4vw, 40px);
+      background: var(--ink);
     }
-    .showcase-stack {
-      display: grid;
-      gap: clamp(18px, 3vw, 28px);
+    .landing-page__wrap {
+      width: min(560px, 100%);
+      margin: 0 auto;
+      padding: 0 clamp(6px, 2vw, 12px);
     }
-    .showcase-card {
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 3px solid var(--leather-dark);
-      box-shadow: var(--shadow-deep);
-      background: var(--ink-soft);
+    .landing-page__frame {
+      display: block;
+      width: 100%;
       line-height: 0;
-    }
-    .showcase-card--zoom {
-      display: block;
-      width: 100%;
-      padding: 0;
-      margin: 0;
-      cursor: zoom-in;
-      position: relative;
-      font: inherit;
-      color: inherit;
-      text-align: inherit;
-    }
-    .showcase-card--zoom:focus-visible {
-      outline: 3px solid var(--leather-light);
-      outline-offset: 3px;
-    }
-    .showcase-zoom-hint {
-      display: block;
-      line-height: 1.4;
-      padding: 10px 14px;
-      text-align: center;
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--leather-light);
-      background: rgba(26, 20, 16, 0.55);
-    }
-    .showcase-card img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    /* تكبير الصورة السفلى */
-    .image-lightbox {
-      position: fixed;
-      inset: 0;
-      z-index: 300;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-      background: rgba(10, 8, 6, 0.94);
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.25s ease, visibility 0.25s ease;
-    }
-    .image-lightbox.show {
-      opacity: 1;
-      visibility: visible;
-    }
-    .image-lightbox__inner {
-      position: relative;
-      max-width: min(560px, 100%);
-      max-height: 100%;
-      overflow: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-    .image-lightbox__img {
-      display: block;
-      width: 100%;
-      height: auto;
       border-radius: var(--radius-sm);
+      overflow: hidden;
       box-shadow: var(--shadow-deep);
+      border: 2px solid rgba(184, 137, 90, 0.35);
     }
-    .image-lightbox__close {
-      position: fixed;
-      top: max(12px, env(safe-area-inset-top));
-      left: max(12px, env(safe-area-inset-left));
-      z-index: 301;
-      width: 44px;
-      height: 44px;
-      border: none;
-      border-radius: 50%;
-      background: rgba(245, 235, 224, 0.95);
-      color: var(--ink);
-      font-size: 1.75rem;
-      line-height: 1;
-      cursor: pointer;
-      font-family: inherit;
+    .landing-page__frame picture,
+    .landing-page__frame img {
+      display: block;
+      width: 100%;
+      height: auto;
     }
-    .image-lightbox__caption {
-      margin-top: 10px;
-      text-align: center;
-      color: rgba(245, 235, 224, 0.75);
-      font-size: 0.85rem;
-      line-height: 1.5;
-    }
-
     /* Specs */
     .specs-table {
       width: 100%;
@@ -878,52 +800,6 @@
       justify-content: center;
     }
 
-    /* صفحة الهبوط — صورة واحدة */
-    .landing-page {
-      padding: 0 0 clamp(24px, 4vw, 40px);
-      background: var(--ink);
-    }
-    .landing-page__wrap {
-      width: min(560px, 100%);
-      margin: 0 auto;
-      padding: 0 clamp(6px, 2vw, 12px);
-    }
-    .landing-page__btn {
-      display: block;
-      width: 100%;
-      padding: 0;
-      margin: 0;
-      border: none;
-      background: none;
-      cursor: zoom-in;
-      font: inherit;
-      line-height: 0;
-      border-radius: var(--radius-sm);
-      overflow: hidden;
-      box-shadow: var(--shadow-deep);
-      border: 2px solid rgba(184, 137, 90, 0.35);
-    }
-    .landing-page__btn:focus-visible {
-      outline: 3px solid var(--leather-light);
-      outline-offset: 4px;
-    }
-    .landing-page__btn picture,
-    .landing-page__btn img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-    .landing-page__hint {
-      display: block;
-      line-height: 1.45;
-      padding: 12px 14px;
-      text-align: center;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--leather-light);
-      background: rgba(26, 20, 16, 0.88);
-      border-top: 1px solid rgba(184, 137, 90, 0.25);
-    }
   </style>
 </head>
 <body>
@@ -1037,41 +913,27 @@
 
   <section class="landing-page" id="hero">
     <div class="landing-page__wrap">
-      <button type="button" class="landing-page__btn" id="detailImageBtn" aria-label="تكبير صفحة المنتج">
+      <figure class="landing-page__frame">
         <picture>
           <source
-            srcset="assets/landing-page-sharp-860.webp?v=20260708clear 860w, assets/landing-page-sharp.webp?v=20260708clear 1722w"
+            srcset="assets/landing-page-sharp-860.webp?v=20260708nozoom 860w, assets/landing-page-sharp.webp?v=20260708nozoom 1722w"
             sizes="(max-width: 560px) 100vw, 560px"
             type="image/webp" />
           <img
-            id="detailImage"
-            src="assets/landing-page-sharp.webp?v=20260708clear"
+            src="assets/landing-page-sharp.webp?v=20260708nozoom"
             alt="صندوق تخزين جانبي لمقعد السيارة الفخم ZHUSE — شحن 120W وتنظيم ذكي"
             width="1722"
             height="6144"
             loading="lazy"
             decoding="async" />
         </picture>
-        <span class="landing-page__hint">اضغط على الصورة للتكبير وقراءة التفاصيل 🔍</span>
-      </button>
+      </figure>
     </div>
   </section>
 </main>
 
 <div class="sticky-bar" aria-hidden="true">
   <button type="button" class="sticky-bar__submit" id="stickyOrder">اطلب الحين — 199 ر.س</button>
-</div>
-
-<div class="image-lightbox" id="imageLightbox" aria-hidden="true" role="dialog" aria-label="صورة مكبّرة">
-  <button type="button" class="image-lightbox__close" id="imageLightboxClose" aria-label="إغلاق">×</button>
-  <div class="image-lightbox__inner">
-    <img
-      class="image-lightbox__img"
-      id="imageLightboxImg"
-      src="assets/landing-page-sharp.png?v=20260708clear"
-      alt="مواصفات ZHUSE — عرض مكبّر" />
-    <p class="image-lightbox__caption">اسحب للتصفح · اضغط × أو خارج الصورة للإغلاق</p>
-  </div>
 </div>
 
 <div class="modal" id="successModal" aria-hidden="true">
@@ -1152,37 +1014,11 @@
     tick();
     setInterval(tick, 1000);
   }
-
-  var detailBtn = document.getElementById('detailImageBtn');
-  var imageLightbox = document.getElementById('imageLightbox');
-  var imageLightboxClose = document.getElementById('imageLightboxClose');
-  function openImageLightbox() {
-    if (!imageLightbox) return;
-    imageLightbox.classList.add('show');
-    imageLightbox.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  }
-  function closeImageLightbox() {
-    if (!imageLightbox) return;
-    imageLightbox.classList.remove('show');
-    imageLightbox.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  }
-  if (detailBtn) detailBtn.addEventListener('click', openImageLightbox);
-  if (imageLightboxClose) imageLightboxClose.addEventListener('click', closeImageLightbox);
-  if (imageLightbox) {
-    imageLightbox.addEventListener('click', function (e) {
-      if (e.target === imageLightbox) closeImageLightbox();
-    });
-  }
-  document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape') closeImageLightbox();
-  });
 })();
 </script>
-<script src="../../js/gulfcod-zhuse-config.js?v=20260708clear" defer></script>
-<script src="../../js/traffic-source.js?v=20260708clear" defer></script>
-<script src="../../js/facebook-pixel.js?v=20260708clear" defer></script>
-<script src="../../js/main.js?v=20260708clear" defer></script>
+<script src="../../js/gulfcod-zhuse-config.js?v=20260708nozoom" defer></script>
+<script src="../../js/traffic-source.js?v=20260708nozoom" defer></script>
+<script src="../../js/facebook-pixel.js?v=20260708nozoom" defer></script>
+<script src="../../js/main.js?v=20260708nozoom" defer></script>
 </body>
 </html>
