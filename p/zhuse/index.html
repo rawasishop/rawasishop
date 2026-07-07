@@ -745,21 +745,38 @@
       .top-offer-bar { font-size: 0.75rem; }
     }
 
+    .trust-strip {
+      background: rgba(26, 20, 16, 0.92);
+      border-bottom: 1px solid rgba(184, 137, 90, 0.2);
+    }
     .trust-bar {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 8px 16px;
+      gap: 8px 20px;
       list-style: none;
-      padding: 10px 16px;
+      padding: 10px 16px 6px;
       margin: 0;
-      background: rgba(26, 20, 16, 0.92);
-      border-bottom: 1px solid rgba(184, 137, 90, 0.2);
       font-size: 0.78rem;
       font-weight: 600;
       color: rgba(245, 235, 224, 0.85);
     }
     .trust-bar li { white-space: nowrap; }
+    .product-ruler {
+      display: flex;
+      justify-content: center;
+      padding: 4px 16px 12px;
+      margin: 0;
+      line-height: 0;
+    }
+    .product-ruler img {
+      display: block;
+      width: auto;
+      height: clamp(148px, 34vw, 220px);
+      max-width: 56px;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.45));
+    }
 
     /* نموذج علوي أنيق */
     .page-form-top {
@@ -824,12 +841,20 @@
   </div>
 </header>
 
-<ul class="trust-bar" aria-label="مزايا التسوق">
-  <li>✅ شحن لكل السعودية</li>
-  <li>✅ الدفع عند الاستلام</li>
-  <li>✅ ضمان 14 يوم</li>
-  <li>✅ تركيب فوري</li>
-</ul>
+<div class="trust-strip">
+  <ul class="trust-bar" aria-label="مزايا التسوق">
+    <li>✅ شحن لكل السعودية</li>
+    <li>✅ الدفع عند الاستلام</li>
+  </ul>
+  <figure class="product-ruler">
+    <img
+      src="assets/product-ruler.webp?v=20260708ruler"
+      alt="منظم مقعد السيارة ZHUSE"
+      width="400"
+      height="400"
+      decoding="async" />
+  </figure>
+</div>
 
 <main>
   <section id="order" class="page-form-top">
@@ -1026,9 +1051,9 @@
   }
 })();
 </script>
-<script src="../../js/gulfcod-zhuse-config.js?v=20260708v3" defer></script>
-<script src="../../js/traffic-source.js?v=20260708v3" defer></script>
-<script src="../../js/facebook-pixel.js?v=20260708v3" defer></script>
-<script src="../../js/main.js?v=20260708v3" defer></script>
+<script src="../../js/gulfcod-zhuse-config.js?v=20260708ruler" defer></script>
+<script src="../../js/traffic-source.js?v=20260708ruler" defer></script>
+<script src="../../js/facebook-pixel.js?v=20260708ruler" defer></script>
+<script src="../../js/main.js?v=20260708ruler" defer></script>
 </body>
 </html>
