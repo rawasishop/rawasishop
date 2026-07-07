@@ -9,7 +9,7 @@
   <link rel="canonical" href="https://www.rawasishop.com/p/zhuse/" />
   <meta property="og:title" content="منظم مقعد السيارة — 199 ر.س فقط" />
   <meta property="og:description" content="جوالك ومفاتيحك لا تضيع بعد اليوم. شحن 120W · الدفع عند الاستلام." />
-  <meta property="og:image" content="https://www.rawasishop.com/p/zhuse/assets/landing-page.webp" />
+  <meta property="og:image" content="https://www.rawasishop.com/p/zhuse/assets/landing-page-sharp.webp" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
@@ -491,7 +491,7 @@
     }
     .image-lightbox__inner {
       position: relative;
-      max-width: min(960px, 100%);
+      max-width: min(560px, 100%);
       max-height: 100%;
       overflow: auto;
       -webkit-overflow-scrolling: touch;
@@ -884,8 +884,9 @@
       background: var(--ink);
     }
     .landing-page__wrap {
-      width: min(520px, 100%);
+      width: min(560px, 100%);
       margin: 0 auto;
+      padding: 0 clamp(6px, 2vw, 12px);
     }
     .landing-page__btn {
       display: block;
@@ -897,11 +898,16 @@
       cursor: zoom-in;
       font: inherit;
       line-height: 0;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      box-shadow: var(--shadow-deep);
+      border: 2px solid rgba(184, 137, 90, 0.35);
     }
     .landing-page__btn:focus-visible {
       outline: 3px solid var(--leather-light);
       outline-offset: 4px;
     }
+    .landing-page__btn picture,
     .landing-page__btn img {
       display: block;
       width: 100%;
@@ -910,12 +916,13 @@
     .landing-page__hint {
       display: block;
       line-height: 1.45;
-      padding: 10px 14px;
+      padding: 12px 14px;
       text-align: center;
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: rgba(245, 235, 224, 0.65);
-      background: rgba(26, 20, 16, 0.5);
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--leather-light);
+      background: rgba(26, 20, 16, 0.88);
+      border-top: 1px solid rgba(184, 137, 90, 0.25);
     }
   </style>
 </head>
@@ -1031,15 +1038,21 @@
   <section class="landing-page" id="hero">
     <div class="landing-page__wrap">
       <button type="button" class="landing-page__btn" id="detailImageBtn" aria-label="تكبير صفحة المنتج">
-        <img
-          id="detailImage"
-          src="assets/landing-page.webp?v=20260708lp"
-          alt="صندوق تخزين جانبي لمقعد السيارة الفخم ZHUSE — شحن 120W وتنظيم ذكي"
-          width="287"
-          height="1024"
-          loading="lazy"
-          decoding="async" />
-        <span class="landing-page__hint">اضغط على الصورة للتكبير 🔍</span>
+        <picture>
+          <source
+            srcset="assets/landing-page-sharp-860.webp?v=20260708clear 860w, assets/landing-page-sharp.webp?v=20260708clear 1722w"
+            sizes="(max-width: 560px) 100vw, 560px"
+            type="image/webp" />
+          <img
+            id="detailImage"
+            src="assets/landing-page-sharp.webp?v=20260708clear"
+            alt="صندوق تخزين جانبي لمقعد السيارة الفخم ZHUSE — شحن 120W وتنظيم ذكي"
+            width="1722"
+            height="6144"
+            loading="lazy"
+            decoding="async" />
+        </picture>
+        <span class="landing-page__hint">اضغط على الصورة للتكبير وقراءة التفاصيل 🔍</span>
       </button>
     </div>
   </section>
@@ -1055,7 +1068,7 @@
     <img
       class="image-lightbox__img"
       id="imageLightboxImg"
-      src="assets/landing-page-hd.webp?v=20260708lp"
+      src="assets/landing-page-sharp.png?v=20260708clear"
       alt="مواصفات ZHUSE — عرض مكبّر" />
     <p class="image-lightbox__caption">اسحب للتصفح · اضغط × أو خارج الصورة للإغلاق</p>
   </div>
@@ -1167,9 +1180,9 @@
   });
 })();
 </script>
-<script src="../../js/gulfcod-zhuse-config.js?v=20260708lp" defer></script>
-<script src="../../js/traffic-source.js?v=20260708lp" defer></script>
-<script src="../../js/facebook-pixel.js?v=20260708lp" defer></script>
-<script src="../../js/main.js?v=20260708lp" defer></script>
+<script src="../../js/gulfcod-zhuse-config.js?v=20260708clear" defer></script>
+<script src="../../js/traffic-source.js?v=20260708clear" defer></script>
+<script src="../../js/facebook-pixel.js?v=20260708clear" defer></script>
+<script src="../../js/main.js?v=20260708clear" defer></script>
 </body>
 </html>
