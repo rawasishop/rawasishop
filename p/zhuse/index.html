@@ -762,20 +762,21 @@
       color: rgba(245, 235, 224, 0.85);
     }
     .trust-bar li { white-space: nowrap; }
-    .product-ruler {
+    .product-showcase {
       display: flex;
       justify-content: center;
-      padding: 4px 16px 12px;
-      margin: 0;
+      padding: 6px 12px 14px;
+      margin: 0 auto;
+      max-width: min(560px, 94vw);
       line-height: 0;
     }
-    .product-ruler img {
+    .product-showcase img {
       display: block;
-      width: auto;
-      height: clamp(148px, 34vw, 220px);
-      max-width: 56px;
+      width: 100%;
+      max-width: 480px;
+      height: auto;
       object-fit: contain;
-      filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.45));
+      filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.4));
     }
 
     /* نموذج علوي أنيق */
@@ -846,13 +847,16 @@
     <li>✅ شحن لكل السعودية</li>
     <li>✅ الدفع عند الاستلام</li>
   </ul>
-  <figure class="product-ruler">
-    <img
-      src="assets/product-ruler.webp?v=20260708ruler"
-      alt="منظم مقعد السيارة ZHUSE"
-      width="400"
-      height="400"
-      decoding="async" />
+  <figure class="product-showcase">
+    <picture>
+      <source srcset="assets/product-wide.webp?v=20260708wide" type="image/webp" />
+      <img
+        src="assets/product-wide.png?v=20260708wide"
+        alt="منظم مقعد السيارة ZHUSE — تخزين وشحن"
+        width="720"
+        height="720"
+        decoding="async" />
+    </picture>
   </figure>
 </div>
 
@@ -1051,9 +1055,9 @@
   }
 })();
 </script>
-<script src="../../js/gulfcod-zhuse-config.js?v=20260708ruler" defer></script>
-<script src="../../js/traffic-source.js?v=20260708ruler" defer></script>
-<script src="../../js/facebook-pixel.js?v=20260708ruler" defer></script>
-<script src="../../js/main.js?v=20260708ruler" defer></script>
+<script src="../../js/gulfcod-zhuse-config.js?v=20260708wide" defer></script>
+<script src="../../js/traffic-source.js?v=20260708wide" defer></script>
+<script src="../../js/facebook-pixel.js?v=20260708wide" defer></script>
+<script src="../../js/main.js?v=20260708wide" defer></script>
 </body>
 </html>
