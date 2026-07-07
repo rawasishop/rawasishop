@@ -3,8 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>صندوق تخزين مقعد السيارة متعدد الوظائف | ZHUSE</title>
-  <meta name="description" content="صندوق تخزين ZHUSE بجلد PU فاخر وشاحن 120W — USB-C و USB-A وولاعة. تركيب فوري بين المقعد والكونسول. الدفع عند الاستلام." />
+  <title>منظم مقعد السيارة ZHUSE — 199 ر.س | الدفع عند الاستلام | RawasiShop</title>
+  <meta name="description" content="حل فجوة المقعد والكونسول — منظم جلدي مع شواحن 120W. 199 ر.س بدل 299. الدفع عند الاستلام في كل السعودية." />
+  <meta name="theme-color" content="#1a1410" />
+  <link rel="canonical" href="https://www.rawasishop.com/p/zhuse/" />
+  <meta property="og:title" content="منظم مقعد السيارة — 199 ر.س فقط" />
+  <meta property="og:description" content="جوالك ومفاتيحك لا تضيع بعد اليوم. شحن 120W · الدفع عند الاستلام." />
+  <meta property="og:image" content="https://www.rawasishop.com/p/zhuse/assets/hero.webp" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet" />
@@ -119,103 +124,69 @@
       white-space: nowrap;
     }
 
-    /* Hero */
-    .hero {
+    /* Hero banner — صورة ترويجية كاملة */
+    .hero-banner {
+      background: var(--ink);
+      padding: 0;
+    }
+    .hero-banner__frame {
       position: relative;
-      min-height: min(92vh, 820px);
-      display: grid;
-      align-items: center;
-      padding: clamp(32px, 6vw, 64px) 0;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      line-height: 0;
     }
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(to top, var(--ink) 0%, transparent 35%),
-        linear-gradient(to left, rgba(26,20,16,.85) 0%, transparent 55%);
-      pointer-events: none;
+    .hero-banner__frame picture,
+    .hero-banner__frame img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 0 0 var(--radius) var(--radius);
     }
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background: url("images/product-in-car.png") center/cover no-repeat;
-      filter: brightness(0.45) saturate(0.9);
+    @media (min-width: 768px) {
+      .hero-banner__frame {
+        padding: 0 clamp(16px, 3vw, 24px);
+      }
+      .hero-banner__frame img {
+        border-radius: var(--radius);
+        border: 3px solid var(--leather-dark);
+        box-shadow: var(--shadow-deep);
+      }
     }
-    .hero-grid {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: clamp(28px, 5vw, 48px);
-      align-items: center;
-    }
-    @media (min-width: 900px) {
-      .hero-grid { grid-template-columns: 1fr 1fr; }
-    }
-    .hero-copy h1 {
-      font-size: clamp(1.85rem, 4.5vw, 2.75rem);
-      font-weight: 800;
-      line-height: 1.25;
-      margin-bottom: 12px;
-    }
-    .hero-badge {
-      display: inline-block;
-      background: var(--cream);
-      color: var(--text-on-leather);
-      padding: 6px 16px;
-      border-radius: 999px;
-      font-weight: 700;
-      font-size: 0.9rem;
-      margin-bottom: 16px;
-      border: 2px dashed var(--leather-mid);
-    }
-    .hero-copy p {
-      color: rgba(245, 235, 224, 0.88);
-      font-size: clamp(1rem, 2vw, 1.12rem);
-      max-width: 42ch;
-      margin-bottom: 20px;
-    }
-    .hero-price {
+    .hero-banner__cta {
       display: flex;
-      align-items: baseline;
-      gap: 12px;
       flex-wrap: wrap;
-      margin-bottom: 20px;
+      align-items: center;
+      justify-content: center;
+      gap: 12px 20px;
+      padding: clamp(16px, 3vw, 24px) clamp(16px, 4vw, 32px) clamp(20px, 4vw, 32px);
+      text-align: center;
     }
-    .hero-price .now {
-      font-size: clamp(2rem, 5vw, 2.6rem);
+    .hero-banner__price {
+      font-size: clamp(1.35rem, 4vw, 1.75rem);
       font-weight: 800;
       color: var(--leather-light);
     }
-    .hero-price .was {
-      font-size: 1.1rem;
-      color: rgba(245,235,224,.45);
-      text-decoration: line-through;
+    .hero-banner__price s {
+      font-size: 0.75em;
+      color: rgba(245, 235, 224, 0.45);
+      margin-left: 8px;
+      font-weight: 600;
     }
-    .hero-price .tag {
-      background: var(--accent);
-      color: #fff;
-      font-size: 0.8rem;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 6px;
+    .hero-banner__cta .btn-primary {
+      padding: 14px 28px;
+      font-size: 1rem;
     }
-    .hero-product {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    @media (max-width: 767px) {
+      .hero-banner__frame img {
+        border-radius: 0;
+      }
+      .hero-banner__cta {
+        padding-top: 12px;
+        padding-bottom: 16px;
+      }
     }
-    .hero-product img {
-      width: min(100%, 420px);
-      height: auto;
-      filter: drop-shadow(0 28px 48px rgba(0,0,0,.55));
-      animation: float 5s ease-in-out infinite;
-    }
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-12px); }
-    }
+
     .btn-primary {
       display: inline-block;
       background: var(--cream);
@@ -230,17 +201,6 @@
       transition: transform 0.2s, box-shadow 0.2s;
     }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-deep); }
-
-    /* Promo strip */
-    .promo-strip {
-      padding: 0 0 clamp(40px, 6vw, 64px);
-    }
-    .promo-strip img {
-      width: 100%;
-      border-radius: var(--radius);
-      border: 3px solid var(--leather-dark);
-      box-shadow: var(--shadow-deep);
-    }
 
     /* Order section */
     #order {
@@ -327,8 +287,8 @@
       font-weight: 700;
       padding: 5px 12px;
       border-radius: 999px;
-      background: #6c3eb6;
-      color: #fff;
+      background: var(--leather-dark);
+      color: var(--cream);
     }
     .offer-tag--save {
       background: var(--accent);
@@ -575,10 +535,9 @@
     footer .logo { display: block; margin-bottom: 8px; }
     footer p { font-size: 0.85rem; color: rgba(245,235,224,.45); }
 
-    /* جوال: النموذج أولاً — نفس إصلاح المروحة */
+    /* جوال: النموذج بعد البانر — الصورة أولاً */
     main { display: flex; flex-direction: column; }
     @media (max-width: 768px) {
-      #order { order: -1; padding-top: 12px; }
       #order .order-info { display: none; }
       #order .order-box { padding: 20px 18px; }
       .form-control { font-size: 16px; padding: 14px 16px; }
@@ -635,48 +594,250 @@
       cursor: pointer;
       border: 2px solid var(--leather-deep);
     }
+
+    /* شريط العرض — متوافق مع الإعلان */
+    .top-offer-bar {
+      background: linear-gradient(90deg, var(--leather-deep), var(--leather-mid), var(--leather-deep));
+      color: var(--cream);
+      text-align: center;
+      padding: 0.55rem 0.75rem;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      border-bottom: 1px solid rgba(232, 220, 200, 0.2);
+      position: sticky;
+      top: 0;
+      z-index: 110;
+    }
+    .top-offer-bar strong { color: #f4d03f; }
+    .top-offer-bar s { opacity: 0.75; }
+
+    /* قسم المشكلة — من الفيديو */
+    .problem-section {
+      padding: clamp(40px, 6vw, 64px) 0;
+      background: linear-gradient(180deg, #221a14 0%, var(--ink) 100%);
+    }
+    .problem-grid {
+      display: grid;
+      gap: 16px;
+    }
+    @media (min-width: 720px) {
+      .problem-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .problem-card {
+      padding: 22px 18px;
+      border-radius: var(--radius-sm);
+      background: rgba(184, 137, 90, 0.08);
+      border: 1px dashed rgba(184, 137, 90, 0.35);
+      text-align: center;
+    }
+    .problem-card .emoji { font-size: 2rem; margin-bottom: 10px; }
+    .problem-card h3 {
+      font-size: 1rem;
+      color: var(--leather-light);
+      margin-bottom: 6px;
+    }
+    .problem-card p {
+      font-size: 0.88rem;
+      color: rgba(245, 235, 224, 0.65);
+      line-height: 1.55;
+    }
+    .solution-banner {
+      margin-top: 24px;
+      padding: 18px 20px;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(184,137,90,.18), rgba(74,52,32,.4));
+      border: 2px solid var(--leather-dark);
+      text-align: center;
+    }
+    .solution-banner p {
+      font-size: clamp(1rem, 2.5vw, 1.15rem);
+      color: var(--cream);
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    /* عرض النموذج */
+    .offer-head {
+      text-align: center;
+      margin-bottom: 16px;
+      padding-bottom: 14px;
+      border-bottom: 1px dashed rgba(122, 85, 50, 0.35);
+    }
+    .offer-head__tag {
+      display: inline-block;
+      background: var(--leather-deep);
+      color: var(--cream);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+    .offer-head__was {
+      color: var(--text-muted);
+      text-decoration: line-through;
+      font-size: 0.95rem;
+      margin: 0;
+    }
+    .offer-head__now {
+      font-size: clamp(1.75rem, 5vw, 2.2rem);
+      font-weight: 800;
+      color: var(--leather-deep);
+      margin: 4px 0;
+    }
+    .offer-head__save {
+      color: #1e7e34;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin: 0;
+    }
+    .offer-countdown {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin: 12px 0 4px;
+    }
+    .offer-countdown__box {
+      background: rgba(255,255,255,.45);
+      border: 1px solid var(--leather-mid);
+      border-radius: 8px;
+      min-width: 3rem;
+      padding: 6px 8px;
+      text-align: center;
+    }
+    .offer-countdown__num {
+      display: block;
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--leather-deep);
+      font-variant-numeric: tabular-nums;
+    }
+    .offer-countdown__lbl {
+      font-size: 0.6rem;
+      color: var(--text-muted);
+    }
+    .offer-tags .offer-tag {
+      background: var(--leather-dark);
+      color: var(--cream);
+    }
+    .mobile-form-lead {
+      display: none;
+      text-align: center;
+      margin-bottom: 14px;
+      padding: 12px;
+      background: rgba(26, 20, 16, 0.06);
+      border-radius: var(--radius-sm);
+    }
+    .mobile-form-lead h2 {
+      font-size: 1.1rem;
+      color: var(--leather-deep);
+      margin-bottom: 4px;
+    }
+    .mobile-form-lead p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin: 0;
+    }
+    @media (max-width: 768px) {
+      .mobile-form-lead { display: block; }
+      .top-offer-bar { font-size: 0.75rem; }
+    }
+
+    .trust-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 16px;
+      list-style: none;
+      padding: 10px 16px;
+      margin: 0;
+      background: rgba(26, 20, 16, 0.92);
+      border-bottom: 1px solid rgba(184, 137, 90, 0.2);
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: rgba(245, 235, 224, 0.85);
+    }
+    .trust-bar li { white-space: nowrap; }
   </style>
 </head>
 <body>
 
+<div class="top-offer-bar" role="banner">
+  🎁 عرض الإعلان: <s>299</s> → <strong>199 ر.س</strong> · الدفع عند الاستلام · ينتهي اليوم
+</div>
+
 <header>
   <div class="wrap header-inner">
-    <a class="logo" href="#hero">ZHUSE</a>
+    <a class="logo" href="#hero">ZHUSE · RawasiShop</a>
     <a class="header-cta" href="#order">اطلب الحين</a>
   </div>
 </header>
 
+<ul class="trust-bar" aria-label="مزايا التسوق">
+  <li>✅ شحن لكل السعودية</li>
+  <li>✅ الدفع عند الاستلام</li>
+  <li>✅ ضمان 14 يوم</li>
+  <li>✅ تركيب فوري</li>
+</ul>
+
 <main>
-  <section class="hero" id="hero">
-    <div class="hero-bg" aria-hidden="true"></div>
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <span class="hero-badge">متعدد الوظائف</span>
-        <h1>صندوق تخزين مقعد السيارة</h1>
-        <p>يملأ الفجوة بين المقعد والكونسول — جلد PU مخيط فاخر، تخزين عملي، وشاحن 120W لثلاثة أجهزة في وقت واحد.</p>
-        <div class="hero-price">
-          <span class="now">199 ر.س</span>
-          <span class="was">299 ر.س</span>
-          <span class="tag">وفر 33%</span>
-        </div>
-        <p class="stock-note" style="max-width:42ch;margin-bottom:16px">⚠️ الكمية محدودة (20–30 قطعة) — اطلب قبل نفاد المخزون</p>
-        <a class="btn-primary" href="#order">اطلب الآن — الدفع عند الاستلام</a>
-      </div>
-      <div class="hero-product">
-        <img src="assets/product-cut.png" alt="صندوق ZHUSE ZS-CA-003C" width="420" height="420" loading="eager" />
-      </div>
+  <section class="hero-banner" id="hero">
+    <div class="hero-banner__frame">
+      <picture>
+        <source
+          srcset="assets/hero-800.webp?v=20260707hero 800w, assets/hero.webp?v=20260707hero 1200w"
+          sizes="(max-width: 800px) 100vw, 1200px"
+          type="image/webp" />
+        <img
+          src="assets/hero.webp?v=20260707hero"
+          alt="صندوق تخزين مقعد السيارة متعدد الوظائف — شحن 120W وتنظيم ذكي في مكان واحد"
+          width="1024"
+          height="627"
+          fetchpriority="high"
+          decoding="async" />
+      </picture>
+    </div>
+    <div class="hero-banner__cta wrap">
+      <p class="hero-banner__price">199 ر.س <s>299 ر.س</s></p>
+      <a class="btn-primary" href="#order">اطلب الحين — الدفع عند الاستلام</a>
     </div>
   </section>
 
-  <section class="promo-strip wrap">
-    <img src="images/product-promo.png" alt="صندوق تخزين مقعد السيارة متعدد الوظائف ZHUSE" loading="lazy" />
+  <section class="problem-section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="stitch-line"></div>
+        <h2>هل تعرف هذا الموقف؟</h2>
+        <p>نفس المشكلة التي يعرضها الإعلان — والحل بين يديك</p>
+      </div>
+      <div class="problem-grid">
+        <article class="problem-card">
+          <div class="emoji">📱</div>
+          <h3>الجوال يسقط</h3>
+          <p>جوالك ومفاتيحك وحاجاتك تسقط تحت المقعد ويصعب إخراجها</p>
+        </article>
+        <article class="problem-card">
+          <div class="emoji">😤</div>
+          <h3>تضيع في الفجوة</h3>
+          <p>تضيع بين المقعد والكونسول وأنت تقود أو تتوقف</p>
+        </article>
+        <article class="problem-card">
+          <div class="emoji">🔌</div>
+          <h3>فوضى الشواحن</h3>
+          <p>أسلاك متشابكة ولا منفذ كافٍ لشحن أجهزتك</p>
+        </article>
+      </div>
+      <div class="solution-banner">
+        <p>✨ ZHUSE يملأ الفجوة — تخزين + شحن 120W في قطعة واحدة · 199 ر.س فقط</p>
+      </div>
+    </div>
   </section>
 
   <section id="order">
     <div class="wrap order-layout">
       <div class="order-info">
-        <h2>اطلب صندوق ZHUSE الآن</h2>
-        <p>املأ البيانات — سنتصل لتأكيد الطلب. الدفع عند استلام المنتج.</p>
+        <h2>اطلب منظم ZHUSE الآن</h2>
+        <p>نفس المنتج في الإعلان — املأ البيانات وسنتصل لتأكيد الطلب قبل الشحن.</p>
         <ul class="order-perks">
           <li>توصيل لجميع مدن السعودية</li>
           <li>ضمان 14 يوم</li>
@@ -685,14 +846,29 @@
         </ul>
       </div>
       <div class="order-box leather-panel leather-bg order-panel" id="orderFormPanel">
-        <h3>نموذج الطلب</h3>
-        <p class="sub">Gulf COD · SA050101ZE0099 — <span id="heroPriceNew">199 ريال</span></p>
-        <div class="offer-tags">
-          <span class="offer-tag">20% خصم على قطعتين</span>
-          <span class="offer-tag offer-tag--save">خصومات حتى 4 قطع</span>
+        <div class="mobile-form-lead">
+          <h2>اطلب الحين — 199 ر.س</h2>
+          <p>الدفع عند الاستلام · شحن لكل السعودية</p>
         </div>
-        <p class="stock-note">⚠️ الكمية المتاحة محدودة — 20 إلى 30 قطعة</p>
-        <div class="cod-banner">💵 الدفع عند الاستلام (COD)</div>
+        <div class="offer-head">
+          <span class="offer-head__tag">🎁 عرض الإعلان</span>
+          <p class="offer-head__was" id="heroPriceOld">299 ريال</p>
+          <p class="offer-head__now" id="heroPriceNew">199 <span style="font-size:1rem">ريال</span></p>
+          <p class="offer-head__save">وفرت 100 ريال — خصم 33%</p>
+          <div class="offer-countdown" aria-label="ينتهي العرض اليوم">
+            <div class="offer-countdown__box"><span class="offer-countdown__num" id="cd-h">00</span><span class="offer-countdown__lbl">ساعة</span></div>
+            <div class="offer-countdown__box"><span class="offer-countdown__num" id="cd-m">00</span><span class="offer-countdown__lbl">دقيقة</span></div>
+            <div class="offer-countdown__box"><span class="offer-countdown__num" id="cd-s">00</span><span class="offer-countdown__lbl">ثانية</span></div>
+          </div>
+        </div>
+        <h3>أكمل طلبك الآن</h3>
+        <p class="sub">نؤكد طلبك بالاتصال · الدفع عند الاستلام</p>
+        <div class="offer-tags">
+          <span class="offer-tag">قطعتان — 318 ر.س (خصم 20%)</span>
+          <span class="offer-tag offer-tag--save">شحن 120W مدمج</span>
+        </div>
+        <p class="stock-note">⚠️ الكمية محدودة — اطلب قبل نفاد المخزون</p>
+        <div class="cod-banner">💵 الدفع عند الاستلام — لا دفع مقدماً</div>
         <form id="orderForm" novalidate>
           <input type="radio" name="qty" value="1" data-price="199" data-compare="299" checked hidden aria-hidden="true" />
           <input type="radio" name="qty" value="2" data-price="318" data-compare="598" hidden aria-hidden="true" />
@@ -748,7 +924,7 @@
             <span>المجموع</span>
             <span class="form-total__amount" id="totalPrice">199 ريال</span>
           </div>
-          <button type="submit" class="btn-submit" id="orderSubmit">🔒 تأكيد الطلب الآن</button>
+          <button type="submit" class="btn-submit" id="orderSubmit">🔒 اطلب الحين — 199 ر.س · الدفع عند الاستلام</button>
         </form>
       </div>
     </div>
@@ -805,19 +981,19 @@
       </div>
       <div class="gallery-grid">
         <div class="gallery-item featured">
-          <img src="images/product-installed.png" alt="ZHUSE مثبت بين المقاعد" loading="lazy" />
+          <img src="images/product-installed.webp?v=20260707zhusepro" alt="ZHUSE مثبت بين المقاعد" loading="lazy" decoding="async" />
         </div>
         <div class="gallery-item">
-          <img src="images/product-in-car.png" alt="ZHUSE داخل السيارة" loading="lazy" />
+          <img src="images/product-in-car.webp?v=20260707zhusepro" alt="ZHUSE داخل السيارة" loading="lazy" decoding="async" />
         </div>
         <div class="gallery-item">
-          <img src="images/charger-ports.png" alt="منافذ الشحن USB-C و USB-A والولاعة" loading="lazy" />
+          <img src="images/charger-ports.webp?v=20260707zhusepro" alt="منافذ الشحن USB-C و USB-A والولاعة" loading="lazy" decoding="async" />
         </div>
         <div class="gallery-item">
-          <img src="images/product-side.png" alt="منظر جانبي للمنتج" loading="lazy" />
+          <img src="images/product-side.webp?v=20260707zhusepro" alt="منظر جانبي للمنتج" loading="lazy" decoding="async" />
         </div>
         <div class="gallery-item">
-          <img src="images/product-unboxing.png" alt="تغليف المنتج" loading="lazy" />
+          <img src="images/product-unboxing.webp?v=20260707zhusepro" alt="تغليف المنتج" loading="lazy" decoding="async" />
         </div>
       </div>
     </div>
@@ -895,7 +1071,7 @@
 <footer>
   <div class="wrap">
     <span class="logo">ZHUSE</span>
-    <p>صندوق تخزين مقعد السيارة متعدد الوظائف · ZS-CA-003C</p>
+    <p>منظم مقعد السيارة ZHUSE · RawasiShop</p>
     <p style="margin-top:8px">© 2026 — جميع الحقوق محفوظة</p>
   </div>
 </footer>
@@ -943,11 +1119,29 @@
       modal.setAttribute('aria-hidden', 'true');
     });
   }
+
+  var cdH = document.getElementById('cd-h');
+  if (cdH) {
+    var end = new Date();
+    end.setHours(23, 59, 59, 999);
+    function tick() {
+      var diff = Math.max(0, end - new Date());
+      var h = Math.floor(diff / 3600000);
+      var m = Math.floor((diff % 3600000) / 60000);
+      var s = Math.floor((diff % 60000) / 1000);
+      var pad = function (n) { return String(n).padStart(2, '0'); };
+      cdH.textContent = pad(h);
+      document.getElementById('cd-m').textContent = pad(m);
+      document.getElementById('cd-s').textContent = pad(s);
+    }
+    tick();
+    setInterval(tick, 1000);
+  }
 })();
 </script>
-<script src="../../js/gulfcod-zhuse-config.js?v=20260619zhuse3" defer></script>
-<script src="../../js/traffic-source.js?v=20260619zhuse3" defer></script>
-<script src="../../js/facebook-pixel.js?v=20260619zhuse3" defer></script>
-<script src="../../js/main.js?v=20260619zhuse3" defer></script>
+<script src="../../js/gulfcod-zhuse-config.js?v=20260707hero" defer></script>
+<script src="../../js/traffic-source.js?v=20260707hero" defer></script>
+<script src="../../js/facebook-pixel.js?v=20260707hero" defer></script>
+<script src="../../js/main.js?v=20260707hero" defer></script>
 </body>
 </html>

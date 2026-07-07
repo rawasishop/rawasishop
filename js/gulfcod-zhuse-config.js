@@ -6,7 +6,7 @@ window.RAWASI_TAAGER = {
   platform: 'gulfcod',
   productId: 'car-seat-storage-box',
   productSku: 'SA050101ZE0099',
-  productName: 'صندوق تخزين مقعد السيارة متعدد الوظائف',
+  productName: 'منظم مقعد السيارة ZHUSE',
   supplierUrl: 'https://sa.gulf-5hop.com/',
   pageSource: 'rawasishop-zhuse',
   country: 'SA',
@@ -27,7 +27,7 @@ window.RAWASI_TAAGER = {
   compareAt: 299,
   deferPixelLoad: true,
   pixelPlatforms: ['facebook'],
-  skipServiceWorker: false,
+  skipServiceWorker: true,
 
   normalizeSaPhone: function (phone) {
     var d = String(phone || '').replace(/\D/g, '');
@@ -108,16 +108,20 @@ window.RAWASI_TAAGER = {
     try {
       if (navigator.sendBeacon) sent = navigator.sendBeacon(url, blob);
     } catch (e) {}
-    try {
-      fetch(url, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: payload,
-        keepalive: true
-      });
-      sent = true;
-    } catch (e) {}
+    function postOrder() {
+      try {
+        fetch(url, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: payload,
+          keepalive: true
+        });
+        sent = true;
+      } catch (e) {}
+    }
+    postOrder();
+    setTimeout(postOrder, 800);
     return sent;
   },
 
