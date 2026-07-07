@@ -747,7 +747,7 @@
 
     .trust-strip {
       background: rgba(26, 20, 16, 0.92);
-      border-bottom: 1px solid rgba(184, 137, 90, 0.2);
+      border-bottom: none;
     }
     .trust-bar {
       display: flex;
@@ -765,29 +765,29 @@
     .product-showcase {
       display: flex;
       justify-content: center;
-      padding: 6px 12px 14px;
-      margin: 0 auto;
-      max-width: min(560px, 94vw);
+      padding: 4px 16px 0;
+      margin: 0;
       line-height: 0;
+      background: linear-gradient(180deg, rgba(26, 20, 16, 0.92) 0%, #a07245 100%);
     }
     .product-showcase img {
       display: block;
       width: 100%;
-      max-width: 480px;
+      max-width: 440px;
       height: auto;
       object-fit: contain;
-      filter: drop-shadow(0 10px 22px rgba(0, 0, 0, 0.4));
+      margin-bottom: -2px;
+      filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.25));
     }
 
     /* نموذج علوي أنيق */
     .page-form-top {
-      padding: clamp(14px, 3vw, 28px) 0 0;
-      background:
-        radial-gradient(ellipse 90% 60% at 50% 0%, rgba(184, 137, 90, 0.14), transparent 70%),
-        var(--ink);
+      padding: 0 0 clamp(8px, 2vw, 16px);
+      background: var(--ink);
     }
-    .page-form-top .wrap {
-      width: min(520px, 94vw);
+    .order-stack {
+      width: min(560px, 94vw);
+      margin: 0 auto;
     }
     .page-form-top .order-layout {
       grid-template-columns: 1fr;
@@ -796,8 +796,9 @@
     .page-form-top .order-info { display: none; }
     .page-form-top .order-box {
       padding: clamp(18px, 4vw, 28px);
-      border-radius: var(--radius) var(--radius) 0 0;
-      border-bottom: none;
+      border-radius: 0 0 var(--radius) var(--radius);
+      border-top: none;
+      margin-top: 0;
     }
     .page-form-top .offer-head {
       margin-bottom: 12px;
@@ -847,22 +848,23 @@
     <li>✅ شحن لكل السعودية</li>
     <li>✅ الدفع عند الاستلام</li>
   </ul>
-  <figure class="product-showcase">
-    <picture>
-      <source srcset="assets/product-wide.webp?v=20260708wide" type="image/webp" />
-      <img
-        src="assets/product-wide.png?v=20260708wide"
-        alt="منظم مقعد السيارة ZHUSE — تخزين وشحن"
-        width="720"
-        height="720"
-        decoding="async" />
-    </picture>
-  </figure>
 </div>
 
 <main>
   <section id="order" class="page-form-top">
-    <div class="wrap order-layout">
+    <div class="order-stack">
+      <figure class="product-showcase">
+        <picture>
+          <source srcset="assets/product-wide.webp?v=20260708flush" type="image/webp" />
+          <img
+            src="assets/product-wide.png?v=20260708flush"
+            alt="منظم مقعد السيارة ZHUSE — تخزين وشحن"
+            width="720"
+            height="403"
+            decoding="async" />
+        </picture>
+      </figure>
+      <div class="order-layout">
       <div class="order-info" aria-hidden="true">
         <h2>اطلب منظم ZHUSE</h2>
       </div>
@@ -945,6 +947,7 @@
           </div>
           <button type="submit" class="btn-submit" id="orderSubmit">🔒 اطلب الحين — 199 ر.س · الدفع عند الاستلام</button>
         </form>
+      </div>
       </div>
     </div>
   </section>
@@ -1055,9 +1058,9 @@
   }
 })();
 </script>
-<script src="../../js/gulfcod-zhuse-config.js?v=20260708wide" defer></script>
-<script src="../../js/traffic-source.js?v=20260708wide" defer></script>
-<script src="../../js/facebook-pixel.js?v=20260708wide" defer></script>
-<script src="../../js/main.js?v=20260708wide" defer></script>
+<script src="../../js/gulfcod-zhuse-config.js?v=20260708flush" defer></script>
+<script src="../../js/traffic-source.js?v=20260708flush" defer></script>
+<script src="../../js/facebook-pixel.js?v=20260708flush" defer></script>
+<script src="../../js/main.js?v=20260708flush" defer></script>
 </body>
 </html>
