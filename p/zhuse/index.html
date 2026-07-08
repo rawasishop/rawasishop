@@ -801,45 +801,27 @@
     }
 
     .trust-strip {
-      background: rgba(26, 20, 16, 0.92);
-      border-bottom: none;
+      background: #161210;
+      border-bottom: 1px solid rgba(255, 140, 40, 0.18);
     }
     .trust-bar {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 8px 20px;
+      gap: 8px 18px;
       list-style: none;
-      padding: 10px 16px 2px;
+      padding: 10px 16px;
       margin: 0;
       font-size: 0.78rem;
       font-weight: 600;
-      color: rgba(245, 235, 224, 0.85);
+      color: rgba(245, 235, 224, 0.88);
     }
     .trust-bar li { white-space: nowrap; }
-    .product-showcase {
-      display: flex;
-      justify-content: center;
-      padding: 0 16px 0;
-      margin-top: -6px;
-      line-height: 0;
-      background: linear-gradient(180deg, rgba(26, 20, 16, 0.92) 0%, #a07245 100%);
-    }
-    .product-showcase img {
-      display: block;
-      width: 100%;
-      max-width: 440px;
-      height: auto;
-      object-fit: contain;
-      transform: translateY(-10px);
-      margin-bottom: -4px;
-      filter: drop-shadow(0 6px 14px rgba(0, 0, 0, 0.25));
-    }
 
-    /* نموذج علوي أنيق */
+    /* النموذج داخل تصميم الصورة */
     .page-form-top {
-      padding: 0 0 clamp(8px, 2vw, 16px);
-      background: var(--ink);
+      padding: 0 0 clamp(10px, 2vw, 18px);
+      background: #0d0b0a;
     }
     .order-stack {
       width: min(560px, 94vw);
@@ -850,43 +832,138 @@
       gap: 0;
     }
     .page-form-top .order-info { display: none; }
-    .page-form-top .order-box {
-      padding: clamp(18px, 4vw, 28px);
-      border-radius: 0 0 var(--radius) var(--radius);
+
+    .mock-hero {
+      margin: 0;
+      line-height: 0;
+      border-radius: 18px 18px 0 0;
+      overflow: hidden;
+      background: #0d0b0a;
+    }
+    .mock-hero img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .order-box.order-panel.mock-form {
+      margin-top: -1px;
+      padding: 18px 16px 20px;
+      border-radius: 0 0 18px 18px;
+      border: 1px solid rgba(255, 140, 40, 0.22);
       border-top: none;
-      margin-top: 0;
+      background: linear-gradient(180deg, #1b1410 0%, #15100d 55%, #120e0b 100%);
+      color: #f5ebe0;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
     }
-    .page-form-top .offer-head {
-      margin-bottom: 12px;
-      padding-bottom: 12px;
+    .order-box.mock-form.leather-panel::before { display: none; }
+    .order-box.mock-form .mobile-form-lead,
+    .order-box.mock-form .offer-head,
+    .order-box.mock-form > .sub,
+    .order-box.mock-form > .offer-tags,
+    .order-box.mock-form > .stock-note,
+    .order-box.mock-form > .cod-banner,
+    .order-box.mock-form > h3 {
+      display: none !important;
     }
-    .page-form-top .offer-head__now {
-      font-size: clamp(1.6rem, 6vw, 2rem);
+
+    .mock-form-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin: 0 0 14px;
+      font-size: 1rem;
+      font-weight: 800;
+      color: #fff;
     }
-    .page-form-top h3 {
-      font-size: 1.05rem;
-    }
-    .page-form-top .sub,
-    .page-form-top .offer-tags,
-    .page-form-top .stock-note {
+    .mock-form-title span { opacity: 0.9; }
+
+    .mock-form .form-group { margin-bottom: 10px; }
+    .mock-form .form-group label {
       display: none;
     }
-    .page-form-top .mobile-form-lead {
+    .mock-form .form-control {
+      background: #ededed;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      border-radius: 12px;
+      color: #2a2118;
+      padding: 14px 16px;
+      font-size: 0.98rem;
+      font-weight: 600;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,.06);
+    }
+    .mock-form .form-control::placeholder { color: #8a7d70; font-weight: 500; }
+    .mock-form .form-control:focus {
+      border-color: #ff8c28;
+      box-shadow: 0 0 0 3px rgba(255, 140, 40, 0.22);
+    }
+    .mock-form .err { color: #ffb4a8; min-height: 0.9em; }
+
+    .mock-form .btn-submit {
+      margin-top: 4px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, #eaff4d 0%, #c6ff00 45%, #a8e600 100%);
+      border: 2px solid #7ab800;
+      color: #1a2200;
+      box-shadow: 0 8px 24px rgba(198, 255, 0, 0.35);
+      font-size: 1.05rem;
+      padding: 15px 14px;
+      line-height: 1.25;
+    }
+    .mock-form .btn-submit small {
       display: block;
-      background: transparent;
-      padding: 0 0 10px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      opacity: 0.85;
+      margin-top: 2px;
     }
-    .page-form-top .mobile-form-lead h2 {
-      font-size: clamp(1.15rem, 4.5vw, 1.35rem);
+
+    .mock-form .qty-after-submit {
+      margin-top: 12px;
     }
-    .page-form-top .cod-banner {
-      margin-bottom: 16px;
-      justify-content: center;
+    .mock-form .qty-after-submit label {
+      display: block;
+      color: #ffb066;
+      font-weight: 800;
+      margin-bottom: 6px;
     }
-    .mobile-form-lead p,
-    .offer-head__tag,
-    .cod-banner {
-      display: none !important;
+    .mock-form #qtySelect {
+      background-color: #ededed !important;
+      border-color: rgba(0,0,0,.08) !important;
+      color: #2a2118 !important;
+    }
+    .mock-form .form-total {
+      background: rgba(255, 140, 40, 0.12);
+      border: 1.5px dashed rgba(255, 140, 40, 0.55);
+      color: #fff;
+      margin: 10px 0 0;
+    }
+    .mock-form .form-total__amount {
+      color: #ff8c28;
+      font-weight: 800;
+    }
+
+    .mock-trust {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      margin-top: 14px;
+      text-align: center;
+    }
+    .mock-trust div {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: rgba(245, 235, 224, 0.78);
+      line-height: 1.35;
+    }
+    .mock-trust strong {
+      display: block;
+      font-size: 1.05rem;
+      margin-bottom: 2px;
+    }
+    @media (max-width: 420px) {
+      .mock-trust { grid-template-columns: repeat(2, 1fr); }
     }
 
   </style>
@@ -895,12 +972,12 @@
 
 <div class="site-top">
   <div class="top-offer-bar" role="banner">
-    🎁 عرض الإعلان: <s>299</s> → <strong>199 ر.س</strong> · الدفع عند الاستلام · ينتهي اليوم
+    🔥 عرض خاص لفترة محدودة · 🚚 شحن سريع لكل السعودية · 💳 الدفع عند الاستلام
   </div>
   <header>
     <div class="wrap header-inner">
-      <a class="logo" href="#hero">ZHUSE · RawasiShop</a>
-      <a class="header-cta" href="#order">اطلب الحين</a>
+      <a class="logo" href="#hero">ZHUSE | RawasiShop</a>
+      <a class="header-cta" href="#order">ضمان 14 يوم</a>
     </div>
   </header>
 </div>
@@ -915,14 +992,14 @@
 <main>
   <section id="order" class="page-form-top">
     <div class="order-stack">
-      <figure class="product-showcase">
+      <figure class="mock-hero">
         <picture>
-          <source srcset="assets/product-wide.webp?v=20260708orig" type="image/webp" />
+          <source srcset="assets/hero-form.webp?v=20260708mock" type="image/webp" />
           <img
-            src="assets/product-wide.png?v=20260708orig"
-            alt="منظم مقعد السيارة ZHUSE — تخزين وشحن"
+            src="assets/hero-form.png?v=20260708mock"
+            alt="صندوق تخزين وشاحن السيارة الذكي ZHUSE — 199 ر.س"
             width="720"
-            height="403"
+            height="389"
             decoding="async" />
         </picture>
       </figure>
@@ -930,7 +1007,7 @@
       <div class="order-info" aria-hidden="true">
         <h2>اطلب منظم ZHUSE</h2>
       </div>
-      <div class="order-box leather-panel leather-bg order-panel" id="orderFormPanel">
+      <div class="order-box order-panel mock-form" id="orderFormPanel">
         <div class="mobile-form-lead">
           <h2>اطلب منظمك الذكي — 199 ر.س</h2>
           <p>الدفع عند الاستلام · شحن لكل السعودية</p>
@@ -946,7 +1023,7 @@
             <div class="offer-countdown__box"><span class="offer-countdown__num" id="cd-s">00</span><span class="offer-countdown__lbl">ثانية</span></div>
           </div>
         </div>
-        <h3>أكمل طلبك الآن</h3>
+        <h3 class="mock-form-title"><span>🔒</span> اطلب الآن وادفع عند الاستلام</h3>
         <p class="sub">نؤكد طلبك بالاتصال · الدفع عند الاستلام</p>
         <div class="offer-tags">
           <span class="offer-tag">قطعتان — 318 ر.س</span>
@@ -961,18 +1038,18 @@
           <input type="radio" name="qty" value="4" data-price="636" data-compare="1196" hidden aria-hidden="true" />
           <div class="form-group">
             <label for="fullname">الاسم الكامل <span>*</span></label>
-            <input class="form-control" type="text" id="fullname" name="fullname" required placeholder="مثال: محمد العتيبي" autocomplete="name" />
+            <input class="form-control" type="text" id="fullname" name="fullname" required placeholder="👤 الاسم الكامل" autocomplete="name" />
             <span class="err" data-for="fullname"></span>
           </div>
           <div class="form-group">
             <label for="phone">رقم الجوال <span>*</span></label>
-            <input class="form-control" type="tel" id="phone" name="phone" inputmode="numeric" required placeholder="05xxxxxxxx" dir="ltr" autocomplete="tel" />
+            <input class="form-control" type="tel" id="phone" name="phone" inputmode="numeric" required placeholder="📱 رقم الجوال" dir="ltr" autocomplete="tel" />
             <span class="err" data-for="phone"></span>
           </div>
           <div class="form-group">
             <label for="city">المحافظة <span>*</span></label>
             <select class="form-control" id="city" name="city" required autocomplete="address-level1">
-              <option value="" disabled selected>اختار المحافظة</option>
+              <option value="" disabled selected>📍 اختر المحافظة</option>
               <option value="منطقة الرياض">منطقة الرياض</option>
               <option value="منطقة مكة المكرمة">منطقة مكة المكرمة</option>
               <option value="المنطقة الشرقية">المنطقة الشرقية</option>
@@ -991,10 +1068,10 @@
           </div>
           <div class="form-group">
             <label for="address">العنوان التفصيلي <span>*</span></label>
-            <input class="form-control" type="text" id="address" name="address" required placeholder="الحي، الشارع، رقم المنزل، أقرب معلم" autocomplete="street-address" />
+            <input class="form-control" type="text" id="address" name="address" required placeholder="🏠 العنوان التفصيلي" autocomplete="street-address" />
             <span class="err" data-for="address"></span>
           </div>
-          <button type="submit" class="btn-submit" id="orderSubmit">🔒 اطلب الحين — 199 ر.س · الدفع عند الاستلام</button>
+          <button type="submit" class="btn-submit" id="orderSubmit">🛒 اطلب الآن — 199 ر.س فقط<small>ادفع عند الاستلام</small></button>
           <div class="form-group qty-after-submit">
             <label for="qtySelect">الكمية</label>
             <select class="form-control" id="qtySelect">
@@ -1009,6 +1086,12 @@
             <span class="form-total__amount" id="totalPrice">199 ريال</span>
           </div>
         </form>
+        <div class="mock-trust" aria-label="مزايا الثقة">
+          <div><strong>✅</strong>منتج أصلي</div>
+          <div><strong>💵</strong>دفع عند الاستلام</div>
+          <div><strong>🚚</strong>شحن سريع</div>
+          <div><strong>🛡️</strong>ضمان 14 يوم</div>
+        </div>
       </div>
       </div>
     </div>
