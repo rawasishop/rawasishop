@@ -112,15 +112,15 @@
       text-decoration: none;
     }
     .header-cta {
-      background: linear-gradient(180deg, var(--leather-light), var(--leather-mid));
-      color: var(--text-on-leather);
+      background: linear-gradient(180deg, #eaff4d 0%, #c6ff00 55%, #a8e600 100%);
+      color: #1a2200;
       padding: 10px 22px;
       border-radius: 999px;
-      font-weight: 700;
+      font-weight: 800;
       font-size: 0.95rem;
       text-decoration: none;
-      border: 2px solid var(--leather-deep);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 4px 14px rgba(0,0,0,.25);
+      border: 2px solid #7ab800;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.45), 0 4px 14px rgba(198, 255, 0, 0.35);
       white-space: nowrap;
     }
 
@@ -347,17 +347,21 @@
       padding: 16px;
       border: none;
       border-radius: var(--radius-sm);
-      background: linear-gradient(180deg, var(--leather-light), var(--leather-dark));
-      color: var(--cream);
+      background: linear-gradient(180deg, #eaff4d 0%, #c6ff00 45%, #a8e600 100%);
+      color: #1a2200;
       font-family: inherit;
       font-size: 1.1rem;
       font-weight: 800;
       cursor: pointer;
-      border: 2px solid var(--leather-deep);
-      box-shadow: var(--shadow);
-      transition: transform 0.2s;
+      border: 2px solid #7ab800;
+      box-shadow: 0 8px 24px rgba(198, 255, 0, 0.45), 0 4px 12px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s, box-shadow 0.2s, filter 0.2s;
     }
-    .btn-submit:hover { transform: translateY(-1px); }
+    .btn-submit:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.05);
+      box-shadow: 0 10px 28px rgba(198, 255, 0, 0.55), 0 6px 14px rgba(0, 0, 0, 0.22);
+    }
     .order-confirm {
       display: none;
       text-align: center;
@@ -520,13 +524,14 @@
       padding: 14px;
       border: none;
       border-radius: var(--radius-sm);
-      background: linear-gradient(180deg, var(--leather-light), var(--leather-mid));
-      color: var(--text-on-leather);
+      background: linear-gradient(180deg, #eaff4d 0%, #c6ff00 45%, #a8e600 100%);
+      color: #1a2200;
       font-family: inherit;
       font-weight: 800;
       font-size: 1rem;
       cursor: pointer;
-      border: 2px solid var(--leather-deep);
+      border: 2px solid #7ab800;
+      box-shadow: 0 6px 18px rgba(198, 255, 0, 0.4);
     }
 
     footer {
