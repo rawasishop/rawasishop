@@ -562,6 +562,17 @@
       color: var(--text-on-leather);
     }
     .form-total__amount { font-size: 1.15rem; color: var(--leather-deep); }
+    .qty-after-submit {
+      margin-top: 12px;
+    }
+    .qty-after-submit label {
+      color: var(--leather-deep);
+      font-weight: 800;
+    }
+    .qty-after-submit .form-control {
+      color: var(--leather-deep);
+      font-weight: 700;
+    }
 
     .modal {
       position: fixed; inset: 0; z-index: 200;
@@ -938,7 +949,8 @@
             <input class="form-control" type="text" id="address" name="address" required placeholder="الحي، الشارع، رقم المنزل، أقرب معلم" autocomplete="street-address" />
             <span class="err" data-for="address"></span>
           </div>
-          <div class="form-group">
+          <button type="submit" class="btn-submit" id="orderSubmit">🔒 اطلب الحين — 199 ر.س · الدفع عند الاستلام</button>
+          <div class="form-group qty-after-submit">
             <label for="qtySelect">الكمية</label>
             <select class="form-control" id="qtySelect">
               <option value="1">1 — 199 ر.س</option>
@@ -951,7 +963,6 @@
             <span>المجموع</span>
             <span class="form-total__amount" id="totalPrice">199 ريال</span>
           </div>
-          <button type="submit" class="btn-submit" id="orderSubmit">🔒 اطلب الحين — 199 ر.س · الدفع عند الاستلام</button>
         </form>
       </div>
       </div>
