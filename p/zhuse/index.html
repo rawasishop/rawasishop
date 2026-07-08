@@ -839,22 +839,27 @@
       border-radius: 18px 18px 0 0;
       overflow: hidden;
       background: #0d0b0a;
+      position: relative;
+      z-index: 2;
     }
     .mock-hero img {
       display: block;
       width: 100%;
       height: auto;
+      vertical-align: top;
     }
 
     .order-box.order-panel.mock-form {
-      margin-top: -1px;
-      padding: 18px 16px 20px;
+      margin-top: 0;
+      padding: 16px 16px 20px;
       border-radius: 0 0 18px 18px;
       border: 1px solid rgba(255, 140, 40, 0.22);
-      border-top: none;
+      border-top: 1px solid rgba(255, 140, 40, 0.18);
       background: linear-gradient(180deg, #1b1410 0%, #15100d 55%, #120e0b 100%);
       color: #f5ebe0;
       box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+      position: relative;
+      z-index: 1;
     }
     .order-box.mock-form.leather-panel::before { display: none; }
     .order-box.mock-form .mobile-form-lead,
@@ -862,13 +867,14 @@
     .order-box.mock-form > .sub,
     .order-box.mock-form > .offer-tags,
     .order-box.mock-form > .stock-note,
-    .order-box.mock-form > .cod-banner,
-    .order-box.mock-form > h3 {
+    .order-box.mock-form > .cod-banner {
       display: none !important;
     }
-
+    .order-box.mock-form > h3:not(.mock-form-title) {
+      display: none !important;
+    }
     .mock-form-title {
-      display: flex;
+      display: flex !important;
       align-items: center;
       justify-content: center;
       gap: 8px;
@@ -994,12 +1000,12 @@
     <div class="order-stack">
       <figure class="mock-hero">
         <picture>
-          <source srcset="assets/hero-form.webp?v=20260708items" type="image/webp" />
+          <source srcset="assets/hero-form.webp?v=20260708fix2" type="image/webp" />
           <img
-            src="assets/hero-form.png?v=20260708items"
+            src="assets/hero-form.png?v=20260708fix2"
             alt="صندوق تخزين وشاحن السيارة الذكي ZHUSE مع الجوال والمحفظة والمفاتيح — 199 ر.س"
             width="720"
-            height="433"
+            height="465"
             decoding="async" />
         </picture>
       </figure>
