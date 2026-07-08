@@ -223,6 +223,10 @@
         radial-gradient(ellipse 80% 50% at 50% 0%, rgba(184,137,90,.12), transparent),
         var(--ink);
     }
+    #order.page-form-top {
+      padding: 0;
+      background: #0d0b0a;
+    }
     #order.order-after-hero {
       padding-top: clamp(12px, 2.5vw, 20px);
     }
@@ -444,30 +448,26 @@
 
     /* صفحة الهبوط — صورة واحدة */
     .landing-page {
-      padding: 0 0 clamp(28px, 5vw, 48px);
-      background:
-        linear-gradient(180deg, var(--ink) 0%, #141010 40%, var(--ink) 100%);
+      padding: 0 0 clamp(20px, 4vw, 32px);
+      margin-top: 0;
+      background: #0d0b0a;
     }
     .landing-page__wrap {
       width: min(560px, 94vw);
       margin: 0 auto;
     }
     .landing-page__connector {
-      height: 14px;
-      margin: 0 auto;
-      width: min(560px, 94vw);
-      background: linear-gradient(180deg, rgba(184, 137, 90, 0.12), transparent);
+      display: none;
     }
     .landing-page__frame {
       display: block;
       width: 100%;
       margin: 0;
       line-height: 0;
-      border-radius: 0 0 var(--radius) var(--radius);
+      border-radius: 0;
       overflow: hidden;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
-      border: 2px solid var(--leather-dark);
-      border-top: none;
+      box-shadow: none;
+      border: none;
     }
     .landing-page__frame picture,
     .landing-page__frame img {
@@ -820,7 +820,7 @@
 
     /* النموذج داخل تصميم الصورة */
     .page-form-top {
-      padding: 0 0 clamp(10px, 2vw, 18px);
+      padding: 0;
       background: #0d0b0a;
     }
     .order-stack {
@@ -851,13 +851,15 @@
 
     .order-box.order-panel.mock-form {
       margin-top: 0;
-      padding: 16px 16px 20px;
-      border-radius: 0 0 18px 18px;
+      margin-bottom: 0;
+      padding: 16px 16px 14px;
+      border-radius: 0;
       border: 1px solid rgba(255, 140, 40, 0.22);
       border-top: 1px solid rgba(255, 140, 40, 0.18);
+      border-bottom: none;
       background: linear-gradient(180deg, #1b1410 0%, #15100d 55%, #120e0b 100%);
       color: #f5ebe0;
-      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+      box-shadow: none;
       position: relative;
       z-index: 1;
     }
@@ -954,7 +956,8 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 8px;
-      margin-top: 14px;
+      margin-top: 12px;
+      margin-bottom: 0;
       text-align: center;
     }
     .mock-trust div {
