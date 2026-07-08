@@ -88,12 +88,14 @@
 
     .wrap { width: min(1120px, 92vw); margin-inline: auto; }
 
-    /* Header */
-    header {
+    /* Header sticky block (offer + header together) */
+    .site-top {
       position: sticky;
       top: 0;
-      z-index: 100;
-      background: rgba(26, 20, 16, 0.92);
+      z-index: 120;
+    }
+    header {
+      background: rgba(26, 20, 16, 0.96);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(184, 137, 90, 0.2);
     }
@@ -101,27 +103,39 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 14px 0;
-      gap: 16px;
+      padding: 10px 0;
+      gap: 12px;
     }
     .logo {
       font-weight: 800;
-      font-size: 1.35rem;
-      letter-spacing: 0.12em;
+      font-size: clamp(0.95rem, 3.6vw, 1.25rem);
+      letter-spacing: 0.08em;
       color: var(--leather-light);
       text-decoration: none;
+      min-width: 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
     .header-cta {
+      flex-shrink: 0;
       background: linear-gradient(180deg, #eaff4d 0%, #c6ff00 55%, #a8e600 100%);
       color: #1a2200;
-      padding: 10px 22px;
+      padding: 9px 16px;
       border-radius: 999px;
       font-weight: 800;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
+      line-height: 1.2;
       text-decoration: none;
       border: 2px solid #7ab800;
       box-shadow: inset 0 1px 0 rgba(255,255,255,.45), 0 4px 14px rgba(198, 255, 0, 0.35);
       white-space: nowrap;
+    }
+    @media (max-width: 480px) {
+      .header-cta {
+        padding: 8px 12px;
+        font-size: 0.82rem;
+      }
     }
 
     /* Hero banner — صورة ترويجية كاملة */
@@ -650,9 +664,6 @@
       font-size: 0.8125rem;
       font-weight: 700;
       border-bottom: 1px solid rgba(232, 220, 200, 0.2);
-      position: sticky;
-      top: 0;
-      z-index: 110;
     }
     .top-offer-bar strong { color: #f4d03f; }
     .top-offer-bar s { opacity: 0.75; }
@@ -882,16 +893,17 @@
 </head>
 <body>
 
-<div class="top-offer-bar" role="banner">
-  🎁 عرض الإعلان: <s>299</s> → <strong>199 ر.س</strong> · الدفع عند الاستلام · ينتهي اليوم
-</div>
-
-<header>
-  <div class="wrap header-inner">
-    <a class="logo" href="#hero">ZHUSE · RawasiShop</a>
-    <a class="header-cta" href="#order">اطلب الحين</a>
+<div class="site-top">
+  <div class="top-offer-bar" role="banner">
+    🎁 عرض الإعلان: <s>299</s> → <strong>199 ر.س</strong> · الدفع عند الاستلام · ينتهي اليوم
   </div>
-</header>
+  <header>
+    <div class="wrap header-inner">
+      <a class="logo" href="#hero">ZHUSE · RawasiShop</a>
+      <a class="header-cta" href="#order">اطلب الحين</a>
+    </div>
+  </header>
+</div>
 
 <div class="trust-strip">
   <ul class="trust-bar" aria-label="مزايا التسوق">
